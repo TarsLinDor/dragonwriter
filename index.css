@@ -1,35 +1,29 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background-color: #333333;
+  background-color: white;
   overflow: hidden;
 }
 
 #app{
   display: grid;
-  grid-template-columns: auto auto 45px 0px;
+  grid-template-columns: auto auto 45px;
   grid-template-rows: 100vh;
 }
 
 #Toolbar{
-  background-color: skyblue;
+  background-color: white;
   grid-column: 3 / span 1;
+  border-left: solid;
+  border-width: 1px;
+  border-color: grey;
 }
 
 #editor{
-  grid-column: 1 / span 1;
+  grid-column: 1 / span 2;
   grid-row: 1/span 1;
 }
 
-input{
-  border: none;
-  border-bottom: 1px solid rgba(0,0,0,.12);
-  font-size: 14px;
-  padding: 4px 0;
-  background: 0 0;
-  text-align: left;
-  color: inherit;
-}
 .circle{
     color: black;
     border-radius: 50%;
@@ -43,7 +37,7 @@ input{
     grid-column: 1 / span 1;
   }
   .circle:hover{
-    background-color: steelblue;
+    background-color: lightgrey;
   }
 
 button.clicked{
@@ -82,7 +76,7 @@ vertical-align: middle;
 
 hr#tools {
         height: 1px;
-        background-color: black;
+        background-color: grey;
         border: none;
         padding: 0px;
         margin: 1px;

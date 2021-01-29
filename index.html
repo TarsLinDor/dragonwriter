@@ -60,14 +60,19 @@
 
     </div>
 
-  <div id='editor'>
+<div id='editor'>
     <div id='tableofcontents'>
       <div id='booktitle'>Book Title</div><hr>
             <ol id="sortable">
             <li class="toc chapter" class='selected'><a>Title</a></li>
             </ol>
-
-</div>
+            <div id="AddContent">
+              <div class="AddButton" id='addPrologue'><i class="fas fa-plus" style="font-size: 70%"></i> Prologue</div>
+              <div class="AddButton" id='addPart'><i class="fas fa-plus" style="font-size: 70%"></i> Part</div>
+              <div class="AddButton" id='addChapter'><i class="fas fa-plus" style="font-size: 70%"></i> Chapter</div>
+              <div class="AddButton" id='addEpilogue'><i class="fas fa-plus" style="font-size: 70%"></i> Epilogue</div>
+            </div>
+    </div>
     <div id="quill-editor"></div>
     <div class="chapter-title"><a class="contentType">Chapter 1: </a><a class='ChapterTitle'> Title</a></div>
     <div class='chapter-draft'><a>1</a><div class='smallcircle'><i id="hide-draft" class="fab fa-rev" style="font-size: 90%"></i></div></div>
@@ -81,7 +86,8 @@
   <div class='hide-chapter'>
     <i class="far fa-eye-slash"></i>
   </div>
-  </div>
+</div>
+
   
 
   <section id="firebaseui-auth-container"></section>

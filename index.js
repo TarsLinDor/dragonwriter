@@ -1,5 +1,5 @@
 // Import stylesheets
-import "./DragonWriter.css";
+import "./index.css";
 import "./tools/editor/editor.js";
 
 
