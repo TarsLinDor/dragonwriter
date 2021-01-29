@@ -11,9 +11,6 @@
   <!--Icons-->
   <script src="https://kit.fontawesome.com/853a3aba3e.js" crossorigin="anonymous"></script>
   <!--jquery-->
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="jquery.editable.min.js"></script>
 </head>
 
 <body><div id="app">
@@ -61,18 +58,19 @@
     </div>
 
 <div id='editor'>
-    <div id='tableofcontents'>
-      <div id='booktitle'>Book Title</div><hr>
+      <div id='booktitle'>Book Title</div>
+      <div id='tableofcontents'><hr>
             <ol id="sortable">
             <li class="toc chapter" class='selected'><a>Title</a></li>
             </ol>
-            <div id="AddContent">
-              <div class="AddButton" id='addPrologue'><i class="fas fa-plus" style="font-size: 70%"></i> Prologue</div>
-              <div class="AddButton" id='addPart'><i class="fas fa-plus" style="font-size: 70%"></i> Part</div>
-              <div class="AddButton" id='addChapter'><i class="fas fa-plus" style="font-size: 70%"></i> Chapter</div>
-              <div class="AddButton" id='addEpilogue'><i class="fas fa-plus" style="font-size: 70%"></i> Epilogue</div>
-            </div>
-    </div>
+      </div>
+      <div id="AddContent">
+              <div id='addPrologue'> +Prologue</div>
+              <div class="AddButton" id='addPart'> Part</div>
+              <div class="AddButton" id='addChapter'></i> Chapter</div>
+              <div class="AddButton" id='addEpilogue'> Epilogue</div>
+      </div>
+<div id='hide-toc'><i class="fas fa-list"></i></div>
     <div id="quill-editor"></div>
     <div class="chapter-title"><a class="contentType">Chapter 1: </a><a class='ChapterTitle'> Title</a></div>
     <div class='chapter-draft'><a>1</a><div class='smallcircle'><i id="hide-draft" class="fab fa-rev" style="font-size: 90%"></i></div></div>
@@ -83,31 +81,6 @@
       <hr style='margin: 0px 0px 0px 0px'>
     <div class="adddraft-item" id="AddDraft">+ New</div>
     </div>
-  <div class='hide-chapter'>
-    <i class="far fa-eye-slash"></i>
-  </div>
-</div>
-
-  
-
-  <section id="firebaseui-auth-container"></section>
-
-  <section id="description-container">
-
-  </section>
-
-  <section id="guestbook-container">
-       <h2>Discussion</h2>
-
-   <form id="leave-message">
-     <label>Leave a message: </label>
-     <input type="text" id="message">
-     <button type="submit">
-       <i class="material-icons">send</i>
-       <span>SEND</span>
-     </button>
-   </form>
-  </section>
 
 </div>
 </body>
