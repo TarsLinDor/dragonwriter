@@ -67,7 +67,7 @@ hr {
   margin: 0px 0px 0px 0px;
   font-family: 'amiri', sans-serif;
 text-align: center;
- z-index: 200;
+ 
   background-color: #f2f2f2;
 }
 
@@ -125,7 +125,6 @@ hr.undertitle{
   grid-row: 1/span 3;
   border-radius: 5px;
   background-color: #f2f2f2;
-  z-index: 5;
 }
 
 

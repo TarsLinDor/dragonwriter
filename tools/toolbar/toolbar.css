@@ -1,0 +1,23 @@
+#Toolbar{
+  background-color: white;
+  grid-column: 3 / span 1;
+  border-left: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.circle{
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 35px;
+    height: 35px;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+    grid-column: 1 / span 1;
+  }
+  .circle:hover{
+    background-color: lightgrey;
+  }
