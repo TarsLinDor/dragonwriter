@@ -12,7 +12,7 @@ body {
 }
 
 #Toolbar{
-  background-color: rgb(121, 189, 252);
+  background-color: skyblue;
   grid-column: 3 / span 1;
 }
 
@@ -43,7 +43,7 @@ input{
     grid-column: 1 / span 1;
   }
   .circle:hover{
-    background-color: lightgrey;
+    background-color: steelblue;
   }
 
 button.clicked{

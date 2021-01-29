@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import $ from 'jquery-ui';
 
 
 var toolbarOptions = [
@@ -18,15 +19,4 @@ var editor = new Quill('#quill-editor', {
 $('#booktitle').attr('contenteditable', true); //makes the booktitle so that it can be edited/
 
 
-    $('#sortable').sortable({
-        axis: 'y',
-        stop: function (event, ui) {
-	        var data = $(this).sortable('serialize');
-            $('#sortdata').text(data);
-            /*$.ajax({
-                    data: oData,
-                type: 'POST',
-                url: '/your/url/here'
-            });*/
-	}
-    });
+
