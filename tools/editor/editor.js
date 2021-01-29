@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import $ from 'jquery-ui';
-//import "//.CSS/editor.css";
+import ".//CSS/editor.css";
 
 
 var toolbarOptions = [
