@@ -1,5 +1,76 @@
-body{
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
   overflow: hidden;
+}
+
+#app{
   display: grid;
-  grid-template-columns: 50% auto 50px;
+  grid-template-columns: 50% auto 45px;
+}
+
+#Toolbar{
+  grid-column: 3 / span 1;
+  height: 100vh;
+  box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.5), 0 0px 15px 0 rgba(0, 0, 0, 0.5);
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  font-size: 14px;
+  padding: 4px 0;
+  background: 0 0;
+  text-align: left;
+  color: inherit;
+}
+.circle{
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 35px;
+    height: 35px;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+  }
+  .circle:hover{
+    background-color: lightgrey;
+  }
+
+button.clicked{
+  background-color: rgb(60, 67, 154);
+  border-color: rgb(60, 67, 154);
+  color: white;
+  outline-color: rgb(60, 67, 154);
+}
+
+button, button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
+align-items: center;
+background-color: rgba(26, 12, 12, 0);
+border-color: rgb(104, 112, 236);
+border-radius: 10px;
+border-style: solid;
+border-width: 1px;
+box-shadow: none;
+color: rgb(60, 67, 154);
+cursor: default;
+display: inline-flex;
+font-family: Roboto, sans-serif;
+font-size: 14px;
+font-weight: bold;
+height: 36px;
+width: 75px;
+justify-content: center;
+margin: 8px 16px;
+outline-color: rgb(60, 67, 154);
+overflow: hidden;
+padding: 0px 5px;
+position: relative;
+text-align: center;
+text-transform: uppercase;
+vertical-align: middle;
 }

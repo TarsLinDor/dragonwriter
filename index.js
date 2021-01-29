@@ -1,6 +1,6 @@
 // Import stylesheets
-import "./style.css";
 import "./DragonWriter.css";
+import "./text.js";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 
@@ -11,7 +11,8 @@ import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 
 // Document elements
-const startRsvpButton = document.getElementById("startRsvp");
+const Toolbar = document.getElementById("Toolbar");
+const Book = document.getElementById("Book");
 const guestbookContainer = document.getElementById("guestbook-container");
 const form = document.getElementById("leave-message");
 const input = document.getElementById("message");
