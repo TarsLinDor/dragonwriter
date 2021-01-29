@@ -8,22 +8,22 @@ import "firebase/auth";
 import "firebase/firestore";
 
 import * as firebaseui from "firebaseui";
+const startRsvpButton = document.getElementById('startRsvp');
+const guestbookContainer = document.getElementById('guestbook-container');
 
-/*Document elements
-const guestbookContainer = document.getElementById("guestbook-container");
-const form = document.getElementById("leave-message");
-const input = document.getElementById("message");
-const guestbook = document.getElementById("guestbook");
-const numberAttending = document.getElementById("number-attending");
-const rsvpYes = document.getElementById("rsvp-yes");
-const rsvpNo = document.getElementById("rsvp-no");
+const form = document.getElementById('leave-message');
+const input = document.getElementById('message');
+const guestbook = document.getElementById('guestbook');
+const numberAttending = document.getElementById('number-attending');
+const rsvpYes = document.getElementById('rsvp-yes');
+const rsvpNo = document.getElementById('rsvp-no');
+
 var rsvpListener = null;
 var guestbookListener = null;
-*/
 
 async function main() {
-  // Add Firebase project configuration object here
-  var firebaseConfig = {
+
+    var firebaseConfig = {
     apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
     authDomain: "dragonwriter-2d4d4.firebaseapp.com",
     projectId: "dragonwriter-2d4d4",
@@ -35,6 +35,8 @@ async function main() {
 
   firebase.initializeApp(firebaseConfig);
 
+  // Add Firebase project configuration object here
+  var firebaseConfig = {};
   // FirebaseUI config
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -51,49 +53,7 @@ async function main() {
     }
   };
 
-  // Initialize the FirebaseUI widget using Firebase
   const ui = new firebaseui.auth.AuthUI(firebase.auth());
-  ui.start("#login", uiConfig);
-  
-/* startRsvpButton.addEventListener("click", () => {
-    if (firebase.auth().currentUser) {
-      // User is signed in; allows user to sign out
-      firebase.auth().signOut();
-    } else {
-      // No user is signed in; allows user to sign in
-      ui.start("#firebaseui-auth-container", uiConfig);
-    }
-  });
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      startRsvpButton.textContent = "LOGOUT";
-      // Show guestbook to logged-in users
-      guestbookContainer.style.display = "block";
-    } else {
-      startRsvpButton.textContent = "RSVP";
-      // Hide guestbook for non-logged-in users
-      guestbookContainer.style.display = "none";
-    }
-  });
-*/
-  form.addEventListener("submit", e => {
-    // Prevent the default form redirect
-    e.preventDefault();
-    // Write a new message to the database collection "guestbook"
-    firebase
-      .firestore()
-      .collection("guestbook")
-      .add({
-        text: input.value,
-        timestamp: Date.now(),
-        name: firebase.auth().currentUser.displayName,
-        userId: firebase.auth().currentUser.uid
-      });
-    // clear message input field
-    input.value = "";
-    // Return false to avoid redirect
-    return false;
-  });
+  ui.start('#login_window', uiConfig);
 }
 main();
