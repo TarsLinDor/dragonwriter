@@ -1,4 +1,5 @@
 import "./login.css";
+import $ from 'jquery';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 
@@ -8,7 +9,7 @@ import "firebase/firestore";
 
 import * as firebaseui from "firebaseui";
 
-// Document elements
+/*Document elements
 const guestbookContainer = document.getElementById("guestbook-container");
 const form = document.getElementById("leave-message");
 const input = document.getElementById("message");
@@ -18,6 +19,7 @@ const rsvpYes = document.getElementById("rsvp-yes");
 const rsvpNo = document.getElementById("rsvp-no");
 var rsvpListener = null;
 var guestbookListener = null;
+*/
 
 async function main() {
   // Add Firebase project configuration object here
@@ -30,7 +32,7 @@ async function main() {
     appId: "1:986346360064:web:552c83759e18a086e0b7e5",
     measurementId: "G-6VYBWWEX41"
   };
-
+  
   firebase.initializeApp(firebaseConfig);
 
   // FirebaseUI config
