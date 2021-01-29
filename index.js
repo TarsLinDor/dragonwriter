@@ -1,12 +1,5 @@
-// Import stylesheets and scripts
-/*
-import "./index.css";
-import "./tools/editor/editor.js";
-import "./tools/toolbar/toolbar.js";
-import "./tools/login/login.js";
-*/
-
 // Import stylesheets
+
 import './style.css';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
