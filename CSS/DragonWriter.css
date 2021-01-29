@@ -79,3 +79,11 @@ text-align: center;
 text-transform: uppercase;
 vertical-align: middle;
 }
+
+hr#tools {
+        height: 1px;
+        background-color: black;
+        border: none;
+        padding: 0px;
+        margin: 1px;
+}

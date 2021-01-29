@@ -9,9 +9,8 @@
   }
   #tableofcontents{
     grid-row: 1/span 3;
-    background-color: grey;
+    background-color: lightgrey;
   }
-
   #booktitle{
   padding: 5px;
   grid-column: 1 / span 1;
@@ -19,20 +18,12 @@
   background-color: lightgrey;
   outline:none;
   }
-
-.tableofcontents-hide{
-    grid-template-columns: 0px auto auto auto;
-  }
-.draft-hide{
-    grid-template-columns: 225px auto auto auto 70px;
-  }
-.rotate{
-transform: rotate(180deg);
-}
-
-.line{
-  text-align: center;
-  margin: 0px;
+hr {
+        height: 1px;
+        background-color: grey;
+        border: none;
+        padding: 0px;
+        margin: 5px;
 }
 
 .tableofcontents {
