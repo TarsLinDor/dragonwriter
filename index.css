@@ -5,51 +5,13 @@ body {
   overflow: hidden;
 }
 
-
 #app{
   display: grid;
   grid-template-columns: auto auto 45px;
   grid-template-rows: 100vh;
 }
 
-#editor{
-  grid-column: 1 / span 2;
-  grid-row: 1/span 1;
-}
 
-button.clicked{
-  background-color: rgb(60, 67, 154);
-  border-color: rgb(60, 67, 154);
-  color: white;
-  outline-color: rgb(60, 67, 154);
-}
-
-button, button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
-align-items: center;
-background-color: rgba(26, 12, 12, 0);
-border-color: rgb(104, 112, 236);
-border-radius: 10px;
-border-style: solid;
-border-width: 1px;
-box-shadow: none;
-color: rgb(60, 67, 154);
-cursor: default;
-display: inline-flex;
-font-family: Roboto, sans-serif;
-font-size: 14px;
-font-weight: bold;
-height: 36px;
-width: 75px;
-justify-content: center;
-margin: 8px 16px;
-outline-color: rgb(60, 67, 154);
-overflow: hidden;
-padding: 0px 5px;
-position: relative;
-text-align: center;
-text-transform: uppercase;
-vertical-align: middle;
-}
 
 hr#tools {
         height: 1px;

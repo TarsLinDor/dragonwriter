@@ -5,8 +5,9 @@ hr {
         padding: 0px;
         margin: 0px 5px 0px 5px;
 }
-
 #editor{
+    grid-column: 1 / span 2;
+    grid-row: 1/span 1;
     display: grid;
     grid-template-columns: 225px auto auto auto 100px;
     grid-template-rows: 35px  auto  50px;
@@ -14,6 +15,7 @@ hr {
     background-color: white;
     overflow: auto;
   }
+
 #booktitle{
     padding: 7px 5px 0px 5px;
     grid-column: 1 / span 1;
