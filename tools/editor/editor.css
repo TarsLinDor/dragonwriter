@@ -10,7 +10,7 @@ hr {
     grid-row: 1/span 1;
     display: grid;
     grid-template-columns: 225px auto auto auto 100px;
-    grid-template-rows: 35px  auto  50px;
+    grid-template-rows: 35px  auto  70px;
     margin: 0px;
     background-color: white;
     overflow: auto;

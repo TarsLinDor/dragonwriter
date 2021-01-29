@@ -32,7 +32,7 @@ async function main() {
     appId: "1:986346360064:web:552c83759e18a086e0b7e5",
     measurementId: "G-6VYBWWEX41"
   };
-  
+
   firebase.initializeApp(firebaseConfig);
 
   // FirebaseUI config
@@ -53,7 +53,7 @@ async function main() {
 
   // Initialize the FirebaseUI widget using Firebase
   const ui = new firebaseui.auth.AuthUI(firebase.auth());
-  ui.start("#firebaseui-auth-container", uiConfig);
+  ui.start("#login", uiConfig);
   
 /* startRsvpButton.addEventListener("click", () => {
     if (firebase.auth().currentUser) {
