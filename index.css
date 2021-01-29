@@ -11,8 +11,6 @@ body {
   grid-template-rows: 100vh;
 }
 
-
-
 hr#tools {
         height: 1px;
         background-color: grey;

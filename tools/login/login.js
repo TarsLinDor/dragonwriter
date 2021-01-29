@@ -9,9 +9,6 @@ import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 
 // Document elements
-//const Toolbar = document.getElementById("Toolbar");
-const editor = document.getElementById("editor");
-const Book = document.getElementById("Book");
 const guestbookContainer = document.getElementById("guestbook-container");
 const form = document.getElementById("leave-message");
 const input = document.getElementById("message");
@@ -54,7 +51,9 @@ async function main() {
 
   // Initialize the FirebaseUI widget using Firebase
   const ui = new firebaseui.auth.AuthUI(firebase.auth());
-  startRsvpButton.addEventListener("click", () => {
+  ui.start("#firebaseui-auth-container", uiConfig);
+  
+/* startRsvpButton.addEventListener("click", () => {
     if (firebase.auth().currentUser) {
       // User is signed in; allows user to sign out
       firebase.auth().signOut();
@@ -75,7 +74,7 @@ async function main() {
       guestbookContainer.style.display = "none";
     }
   });
-
+*/
   form.addEventListener("submit", e => {
     // Prevent the default form redirect
     e.preventDefault();
