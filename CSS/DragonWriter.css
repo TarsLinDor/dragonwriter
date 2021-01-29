@@ -1,19 +1,24 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background-color: white;
+  background-color: #333333;
   overflow: hidden;
 }
 
 #app{
   display: grid;
-  grid-template-columns: 50% auto 45px;
+  grid-template-columns: auto auto 45px 0px;
+  grid-template-rows: 100vh;
 }
 
 #Toolbar{
+  background-color: rgb(121, 189, 252);
   grid-column: 3 / span 1;
-  height: 100vh;
-  box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.5), 0 0px 15px 0 rgba(0, 0, 0, 0.5);
+}
+
+#editor{
+  grid-column: 1 / span 1;
+  grid-row: 1/span 1;
 }
 
 input{
@@ -26,7 +31,6 @@ input{
   color: inherit;
 }
 .circle{
-    background-color: white;
     color: black;
     border-radius: 50%;
     border: none;
@@ -36,6 +40,7 @@ input{
     height: 35px;
     margin: 5px 5px 5px 5px;
     cursor: pointer;
+    grid-column: 1 / span 1;
   }
   .circle:hover{
     background-color: lightgrey;

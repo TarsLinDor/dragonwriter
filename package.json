@@ -6,6 +6,7 @@
     "@firebase/util": "^0.2.45",
     "firebase": "^7.14.1",
     "firebaseui": "^4.5.0",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1"
   }
 }

@@ -10,11 +10,15 @@
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <!--Icons-->
   <script src="https://kit.fontawesome.com/853a3aba3e.js" crossorigin="anonymous"></script>
+  <!--jquery-->
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="jquery.editable.min.js"></script>
 </head>
 
 <body><div id="app">
   <div id='Toolbar'>
-  <button class='circle' id="Book"><i class="fas fa-dragon"></i></button>
+  <button class='circle' id="Book"><i class="fas fa-book"></i></button>
   <button class='circle' id="edit"><i class="fas fa-edit"></i></button>
   <button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
     <button class="circle" id="World">
@@ -37,7 +41,6 @@
   <i class="far fa-sticky-note"></i>
   </button>
 
-
    <button class="circle" id="Feedback">
   <i class="fas fa-exchange-alt"></i>
   </button>
@@ -54,6 +57,29 @@
   <i class="fas fa-sign-out-alt"></i>
   </button>
 
+    </div>
+
+  <div id='editor'>
+    <div id='tableofcontents'>
+      <div id='booktitle'>Book Title</div>
+            <ol id="sortable">
+            <li class="toc chapter" class='selected'><a>Title</a></li>
+            </ol>
+
+</div>
+    <div id="quill-editor"></div>
+    <div class="chapter-title"><a class="contentType">Chapter 1: </a><a class='ChapterTitle'> Title</a></div>
+    <div class='chapter-draft'><a>1</a><div class='smallcircle'><i id="hide-draft" class="fab fa-rev" style="font-size: 90%"></i></div></div>
+    <div class="draft">
+        <div style='margin: 0px 0px 0px 0px; font-size:120%'>
+          Drafts
+      </div>
+      <hr style='margin: 0px 0px 0px 0px'>
+    <div class="adddraft-item" id="AddDraft">+ New</div>
+    </div>
+  <div class='hide-chapter'>
+    <i class="far fa-eye-slash"></i>
+  </div>
   </div>
   
 

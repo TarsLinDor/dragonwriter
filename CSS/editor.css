@@ -1,0 +1,228 @@
+#editor{
+    display: grid;
+    grid-template-columns: 225px auto auto auto;
+    grid-template-rows: 35px  auto  50px;
+    margin: 5px 5px 5px 5px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: auto;
+  }
+  #tableofcontents{
+    grid-row: 1/span 3;
+    background-color: grey;
+  }
+
+  #booktitle{
+  padding: 5px;
+  grid-column: 1 / span 1;
+  grid-row: 1/span 1;
+  background-color: lightgrey;
+  outline:none;
+  }
+
+.tableofcontents-hide{
+    grid-template-columns: 0px auto auto auto;
+  }
+.draft-hide{
+    grid-template-columns: 225px auto auto auto 70px;
+  }
+.rotate{
+transform: rotate(180deg);
+}
+
+.line{
+  text-align: center;
+  margin: 0px;
+}
+
+.tableofcontents {
+  background-color: #f3f3f3;
+  border-radius: 5px 0px 0px 0px;
+  font-size: 100%;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: lightgray;
+
+}
+
+.hide-toc{
+    font-family: 'Raleway', sans-serif;
+    text-align: left;
+    padding: 10px;
+    grid-column: 2 / span 1;
+    grid-row: 1/ span 1;
+    cursor: pointer;
+  }
+
+.chapter-draft{
+    padding: 5px 7px 0px 0px;
+    text-align: right;
+    grid-column: 4 / span 1;
+    grid-row: 1/ span 1;
+    font-size: 130%;
+    cursor: pointer;
+  }
+
+.ql-toolbar.ql-snow{
+  border-style: none;
+  text-align: center;
+  grid-column: 2 / span 3;
+  grid-row: 4/ span 1;
+}
+
+.BookTitle{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  border-radius: 5px 0px 0px 0px;
+  outline: none;
+  border-color: lightgray;
+  padding: 0px 5px 0px 5px;
+  margin: 0px 0px 0px 0px;
+  font-family: 'amiri', sans-serif;
+  font-size: 120%;
+text-align: center;
+ z-index: 200;
+  background-color: #f2f2f2;
+}
+
+.ql-container.ql-snow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  border: none;
+  margin: auto;
+  padding-top: 20px;
+  max-width: 700px;
+  width: 85%;
+  max-height: 100%;
+  font-family: 'amiri', sans-serif;
+  font-size: 110%;
+  grid-column: 2/span 3;
+  grid-row: 2/span 2;
+}
+
+
+.ql-align-center{text-align: center;}
+
+  ol{
+    cursor: pointer;
+    padding: 0px;
+    list-style-position: inside;
+    margin: 0px;
+
+  }
+
+
+
+  .toc{
+    border-radius: 20px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 5px;
+  }
+  .toc:hover{
+  background-color: lightgray;
+  }
+hr.undertitle{
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.smallcircle{
+  display: inline;
+  border-radius: 50%;
+  padding:  5px 5px 5px 5px ;
+}
+
+.AddContent{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column: 1/span 1;
+  grid-row: 3/span 2;
+  background-color: #f3f3f3;
+  border-radius: 0px 0px 0px 5px;
+}
+
+.AddButton{
+    border-radius: 20px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px;
+  font-size: 90%;
+  font-weight: bold;
+  cursor: pointer;
+  }
+
+.AddButton:hover{
+  background-color: lightgray;
+  }
+
+.draft{
+  text-align: center;
+  grid-column: 5/span 1;
+  grid-row: 1/span 4;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  z-index: 5;
+}
+.hide-chapter{
+  padding-right: 25px;
+  text-align: right;
+  grid-column: 5/span 1;
+  grid-row: 4/span 1;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  z-index: 5;}
+
+.chapter-title{
+    padding: 5px;
+    text-align: center;
+    grid-column: 2/span 3;
+    grid-row: 1/span 1;
+    font-size: 150%;
+    placeholder: 'Chapter Title';
+}
+
+.draft-item{
+    border-radius: 20px;
+    margin: 0px 0px 0px 0px;
+    font-size: 100%;
+  }
+
+.draft-item:hover{
+background-color: lightgray;
+  }
+
+.draft-view{
+grid-template-columns: 0px auto auto auto 50%;
+}
+
+.adddraft-item{
+    border-radius: 20px;
+    margin: 0px 0px 0px 0px;
+    font-size: 100%;
+  }
+
+.adddraft-item:hover{
+background-color: lightgray;
+  }
+
+.ChapterTitle{
+  border-radius: 5px 0px 0px 0px;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  font-family: 'amiri', sans-serif;
+  display: inline-block;
+  min-width: 10px;
+  font-size: inherit;
+}
+
+.selected{background-color: lightgray;}
+
+li.toc{padding: 0px 5px 0px 25px;}
