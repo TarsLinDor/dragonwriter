@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@firebase/util": "^0.2.45",
-    "firebase": "^7.14.1",
-    "firebaseui": "^4.5.0"
+    "@firebase/util": "^0.3.4",
+    "firebase": "^8.2.5",
+    "firebaseui": "^4.7.1"
   }
 }
