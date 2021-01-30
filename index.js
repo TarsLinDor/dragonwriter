@@ -56,6 +56,14 @@ async function user_login() {
     login.style.display ='grid';
     }
   });
-
+  
+   logout.addEventListener('click', 
+  function(){
+    if (firebase.auth().currentUser) {
+      // User is signed in, let's sign out
+      firebase.auth().signOut();
+    } 
+  });
 }
 user_login();
+
