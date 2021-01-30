@@ -1,6 +1,7 @@
 import './style.css';
 import "./tools/login/login.css";
 import "./tools/toolbar/toolbar.css";
+import "./tools/toolbar/toolbar.js"
 import * as firebase from "firebase/app";
 
 // Add the Firebase products that you want to use
@@ -52,15 +53,9 @@ async function user_login() {
     login.style.display ='none';
     }
     else {
-    login.style.display ='inline';
+    login.style.display ='grid';
     }
   });
-  logout.addEventListener('click', 
-  function(){
-    if (firebase.auth().currentUser) {
-      // User is signed in, let's sign out
-      firebase.auth().signOut();
-    } 
-  });
+
 }
 user_login();

@@ -5,6 +5,7 @@
   "dependencies": {
     "@firebase/util": "^0.3.4",
     "firebase": "^8.2.5",
-    "firebaseui": "^4.7.1"
+    "firebaseui": "^4.7.1",
+    "quilljs": "^0.18.1"
   }
 }

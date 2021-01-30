@@ -1,14 +1,16 @@
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: grey;
 }
 
 #app{
+  background-color: white;
   position: absolute;
   top:0px;
   bottom: 0px;
   left:0px;
   right:0px;
-  margin: 5px;
+  padding: 5px;
   display: grid;
   grid-template-columns: 50% auto 40px;
 }
