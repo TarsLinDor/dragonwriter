@@ -1,12 +1,9 @@
 #Toolbar{
-  background-color: white;
   grid-column: 3 / span 1;
-  border-left: solid;
-  border-width: 1px;
-  border-color: grey;
 }
 
 .circle{
+    background-color: inherit;
     color: black;
     border-radius: 50%;
     border: none;
