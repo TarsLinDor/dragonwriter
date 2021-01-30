@@ -20,7 +20,7 @@ const stats = document.getElementById('stats');
 const logout = document.getElementById('logout');
 const app = document.getElementById('app');
 
- book.addEventListener('click', 
+book.addEventListener('click', 
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
@@ -30,7 +30,17 @@ const app = document.getElementById('app');
     };
   });
 
-   stats.addEventListener('click', 
+edit.addEventListener('click', 
+  function(){
+    if(editor.style.display =='grid'){
+    editor.style.display =='none';
+    }
+    else{
+    editor.style.display =='grid';
+    };
+  });
+
+stats.addEventListener('click', 
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
@@ -49,7 +59,13 @@ const app = document.getElementById('app');
     };
   });
 
- 
+  logout.addEventListener('click', 
+  function(){
+    if (firebase.auth().currentUser) {
+      // User is signed in, let's sign out
+      firebase.auth().signOut();
+    } 
+  });
 
 
 
