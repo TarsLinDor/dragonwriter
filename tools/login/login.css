@@ -1,19 +1,45 @@
 #login{
   position: absolute;
   z-index: 2;
-  vertical-align: ;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  display: grid;
+  grid-template-columns: 70% 30%;
   background-image: url('https://stackblitz.com/files/dragonwriter/github/TarsLinDor/dragonwriter/master/tools/login/426190.jpg');
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
+
 #login_window{
-  margin: 150px;
+  grid-column: 2 / span 1;
 }
+#login_window{
+  grid-column: 2 / span 1;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom:10px;
+}
+
+p {
+  font-size: 15px;
+}
+
+h1 + p {
+  padding-bottom:20px;
+  font-size: 15px;
+}
+
+
 
 button.clicked{
   background-color: rgb(60, 67, 154);
