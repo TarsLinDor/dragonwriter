@@ -13,7 +13,7 @@
   background-size: cover; /* Resize the background image to cover the entire container */
 }
 
-#login_window{
+#welcome{
   grid-column: 2 / span 1;
 }
 #login_window{
