@@ -1,0 +1,11 @@
+#menu{
+  display: none;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 300px;
+  right: 0px;
+}
+
+#mybooks{display: none;}

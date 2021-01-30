@@ -15,6 +15,8 @@ var editor = new Quill('#quill-editor', {
   placeholder: "Oh! the places you'll go..."
 });
 
+const booktitle =document.getElementById('booktitle');
+booktitle.contentEditable='true';
 
 
 

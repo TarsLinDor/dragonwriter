@@ -1,72 +1,77 @@
 <head>
-  <meta charset="utf-8">
-  <title>DragonWriter</title>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.css" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Roboto:300,400,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/853a3aba3e.js" crossorigin="anonymous"></script>
-  <link rel="shortcut icon" type="image/jpg" href="logo/favicon.png"/>
-    <!--Quill-->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+	<meta charset="utf-8">
+	<title>DragonWriter</title>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.css" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Roboto:300,400,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/853a3aba3e.js" crossorigin="anonymous"></script>
+	<link rel="shortcut icon" type="image/jpg" href="logo/favicon.png" />
+	<!--Quill-->
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
 
 <body>
-  <!-- login page-->
-<div id='login'>
-  <br><br><br>
-  <div id='welcome'>
-  <h1 style='text-align: center'>Welcome to DragonWriter</h1>
-  <h4 style='text-align: center'> A space to write Sci-fi and Fanasty</h4>
-  </div>
-  <div id="login_window"></div>
-</div>
-
-<div id="app">
-<div id='Toolbar'>
-  <button class='circle' id="book"><i class="fas fa-book"></i></button>
-  <button class='circle' id="edit"><i class="fas fa-edit"></i></button>
-  <button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
-  <button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
-  <button class="circle" id="character"><i class="fas fa-users"></i></button>
-  <button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
-  <button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
-  <button class="circle" id="note"><i class="far fa-sticky-note"></i></button>
-  <button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
-  <button class="circle" id="print"><i class="fas fa-print"></i></button>
-  <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
-  <button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
-  <button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
-
-</div>
-
-<div id='editor'>
-      <div id='booktitle'>Book Title</div>
-      <div id='tableofcontents'><hr>
-            <ol id="sortable">
-            <li class="toc chapter" class='selected'><a>Title</a></li>
-            </ol>
-      </div>
-      <div id="AddContent">
-              <div id='addPrologue'> +Prologue</div>
-              <div class="AddButton" id='addPart'> Part</div>
-              <div class="AddButton" id='addChapter'></i> Chapter</div>
-              <div class="AddButton" id='addEpilogue'> Epilogue</div>
-      </div>
-<div id='hide-toc'><i class="fas fa-list"></i></div>
-    <div id="quill-editor"></div>
-    <div class="chapter-title"><a class="contentType">Chapter 1: </a><a class='ChapterTitle'> Title</a></div>
-    <div class='chapter-draft'><a>1</a><div class='smallcircle'><i id="hide-draft" class="fab fa-rev" style="font-size: 90%"></i></div></div>
-    <div class="draft">
-        <div style='margin: 0px 0px 0px 0px; font-size:120%'>
-          Drafts
-      </div>
-      <hr style='margin: 0px 0px 0px 0px'>
-    <div class="adddraft-item" id="AddDraft">+ New</div>
+	<!-- login page-->
+	<div id='login'>
+		<br><br><br>
+		<div id='welcome'>
+			<h1 style='text-align: center'>Welcome to DragonWriter</h1>
+			<h4 style='text-align: center'> A space to write Sci-fi and Fanasty</h4>
+		</div>
+		<div id="login_window"></div>
+	</div>
+  <div id = 'menu'> 
+    <div id='mybooks'><h4>My book </h4><div>
     </div>
 
-</div>
+	<div id="app">
+		<div id='Toolbar'>
+			<button class='circle' id="book"><i class="fas fa-book"></i></button>
+			<button class='circle' id="edit"><i class="fas fa-edit"></i></button>
+			<button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
+			<button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
+			<button class="circle" id="character"><i class="fas fa-users"></i></button>
+			<button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
+			<button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
+			<button class="circle" id="note"><i class="far fa-sticky-note"></i></button>
+			<button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
+			<button class="circle" id="print"><i class="fas fa-print"></i></button>
+			<button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
+			<button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
+			<button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
 
-</div>
+		</div>
+
+		<div id='editor'>
+			<div id='booktitle'>Book Title</div>
+			<div id='tableofcontents'>
+				<hr>
+				<ol id="sortable">
+					<li class="toc chapter" class='selected'><a>Title</a></li>
+				</ol>
+				
+			</div>
+			<div id="AddContent">
+				<button class='circle' id="book" stlye='right: 0;'><i class="fas fa-plus"></i></button>
+			</div>
+			<div id='hide-toc'><i class="fas fa-list"></i></div>
+			<div id="quill-editor"></div>
+			<div class="chapter-title"><a class="contentType">Chapter 1: </a><a class='ChapterTitle'> Title</a></div>
+			<div class='chapter-draft'><a>1</a>
+				<div class='smallcircle'><i id="hide-draft" class="fab fa-rev" style="font-size: 90%"></i></div>
+			</div>
+			<div class="draft">
+				<div style='margin: 0px 0px 0px 0px; font-size:120%'>
+					Drafts
+				</div>
+				<hr style='margin: 0px 0px 0px 0px'>
+				<div class="adddraft-item" id="AddDraft">+ New</div>
+			</div>
+
+		</div>
+
+	</div>
 </body>

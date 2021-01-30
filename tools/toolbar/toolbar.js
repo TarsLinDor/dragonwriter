@@ -6,6 +6,7 @@ import "firebase/firestore";
 
 
 const book = document.getElementById('book');
+const menu = document.getElementById('menu');
 const edit = document.getElementById('edit');
 const outline = document.getElementById('outline');
 const world = document.getElementById('world');
@@ -24,6 +25,7 @@ book.addEventListener('click',
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
+    menu.style.display ='inline';
     }
     else{
     app.style.right ='0px';
@@ -33,10 +35,10 @@ book.addEventListener('click',
 edit.addEventListener('click', 
   function(){
     if(editor.style.display =='grid'){
-    editor.style.display =='none';
+    editor.style.display ='none';
     }
     else{
-    editor.style.display =='grid';
+    editor.style.display ='grid';
     };
   });
 

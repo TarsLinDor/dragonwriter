@@ -10,10 +10,11 @@ hr {
     grid-row: 1/span 1;
     display: grid;
     grid-template-columns: 225px auto auto auto 100px;
-    grid-template-rows: 35px  auto  70px;
-    margin: 0px;
+    grid-template-rows: 35px  auto  40px;
+    margin: -5px 0px -5px -5px;
     background-color: white;
     overflow: auto;
+   
   }
 
 #booktitle{

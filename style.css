@@ -1,10 +1,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: grey;
+  background-color: #333333;
 }
 
 #app{
-  background-color: white;
+  background-color: grey;
   position: absolute;
   top:0px;
   bottom: 0px;
