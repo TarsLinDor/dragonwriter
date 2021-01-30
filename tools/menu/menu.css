@@ -6,6 +6,7 @@
   bottom: 0px;
   left: 300px;
   right: 0px;
+  z-index:5;
 }
 
 #mybooks{display: none;}
