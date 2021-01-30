@@ -8,6 +8,7 @@ import "firebase/firestore";
 
 import * as firebaseui from "firebaseui";
 const login = document.getElementById('login');
+const logout = document.getElementById('logout');
 
 async function main() {
 
@@ -50,18 +51,15 @@ async function main() {
     login.style.display ='none';
     }
     else {
-
-
+      login.style.display ='inline';
     }
   });
-}
-main();
-
-const logout = document.getElementById('logout');
-logout.addEventListener('click', 
+  logout.addEventListener('click', 
   function(){
     if (firebase.auth().currentUser) {
       // User is signed in, let's sign out
       firebase.auth().signOut();
     } 
   });
+}
+main();
