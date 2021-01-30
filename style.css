@@ -1,6 +1,14 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #333333;
+  background-color: grey;
+}
+
+hr {
+        height: 1px;
+        background-color: black;
+        border: none;
+        padding: 0px;
+        margin: 0px 5px 0px 5px;
 }
 
 #app{
@@ -14,3 +22,259 @@ body {
   display: grid;
   grid-template-columns: 50% auto 40px;
 }
+
+
+
+/*For editor*/
+#editor{
+    grid-column: 1 / span 2;
+    grid-row: 1/span 1;
+    display: grid;
+    grid-template-columns: 225px auto auto auto 100px;
+    grid-template-rows: 35px  auto  40px;
+    margin: -5px 0px -5px -5px;
+    background-color: white;
+    overflow: auto;
+   
+  }
+
+#booktitle{
+    padding: 7px 5px 0px 5px;
+    grid-column: 1 / span 1;
+    grid-row: 1/span 1;
+    outline:none;
+    background-color: whitesmoke;
+    text-align: center;
+    }
+#tableofcontents{
+    grid-column:1/span 1;
+    grid-row: 2/span 1;
+    background-color: whitesmoke;
+    }
+#AddContent{
+  display:grid;
+  grid-template-columns: auto auto;
+    grid-column: 1/span 1;
+    grid-row: 3/span 1;
+    background-color: #f3f3f3;
+    border-radius: 0px 0px 0px 5px;
+    }
+#hide-toc{   
+  grid-column: 2/span 1;
+  grid-row: 1/span 1;
+  padding: 5px;
+  }
+
+.chapter-draft{
+    padding: 5px 7px 0px 0px;
+    text-align: right;
+    grid-column: 4 / span 1;
+    grid-row: 1/ span 1;
+    font-size: 130%;
+    cursor: pointer;
+  }
+
+.ql-toolbar.ql-snow{
+  border-style: none;
+  text-align: center;
+  grid-column: 2 / span 3;
+  grid-row: 3/ span 1;
+}
+
+.BookTitle{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  border-radius: 5px 0px 0px 0px;
+  outline: none;
+  border-color: lightgray;
+  padding: 0px 5px 0px 5px;
+  margin: 0px 0px 0px 0px;
+  font-family: 'amiri', sans-serif;
+text-align: center;
+ 
+  background-color: #f2f2f2;
+}
+
+.ql-container.ql-snow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  border: none;
+  margin: auto;
+  max-width: 700px;
+  width: 85%;
+  max-height: 100%;
+  grid-column: 2/span 3;
+  grid-row: 2/span 1;
+}
+
+
+.ql-align-center{text-align: center;}
+
+ol{
+    cursor: pointer;
+    padding: 0px;
+    list-style-position: inside;
+    margin: 0px;
+}
+
+
+
+  .toc{
+    border-radius: 20px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 5px;
+  }
+  .toc:hover{
+  background-color: lightgray;
+  }
+hr.undertitle{
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.smallcircle{
+  display: inline;
+  border-radius: 50%;
+  padding:  5px 5px 5px 5px ;
+}
+
+.draft{
+  text-align: center;
+  grid-column: 5/span 1;
+  grid-row: 1/span 3;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+
+.chapter-title{
+    padding: 5px;
+    text-align: center;
+    grid-column: 2/span 3;
+    grid-row: 1/span 1;
+    font-size: 150%;
+    placeholder: 'Chapter Title';
+}
+
+.ChapterTitle{
+  border-radius: 5px 0px 0px 0px;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  font-family: 'amiri', sans-serif;
+  display: inline-block;
+  min-width: 10px;
+  font-size: inherit;
+}
+
+.selected{background-color: lightgray;}
+
+/*Menu Items*/
+#menu{
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 300px;
+  right: 0px;
+  background-color: grey;
+}
+
+section{
+  margin: 0px 0px 0px 0px;
+
+padding: 5px 0px 5px 10px;
+  display: none;
+color: white;}
+
+section:hover{
+  color: black;
+  background-color: lightgrey;
+  }
+
+/*Login*/
+#login{
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  grid-template-rows: 30% auto;
+  background-image: url('https://stackblitz.com/files/dragonwriter/github/TarsLinDor/dragonwriter/master/tools/login/426190.jpg');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+h1{
+  font-size: 64px;
+}
+
+h4{
+  font-size: 36px;
+}
+#welcome{
+  grid-row: 1 / span 1;
+}
+#login_window{
+  grid-row: 2 / span 1;
+}
+
+button.clicked{
+  background-color: rgb(60, 67, 154);
+  border-color: rgb(60, 67, 154);
+  color: white;
+  outline-color: rgb(60, 67, 154);
+}
+
+button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
+align-items: center;
+background-color: rgba(26, 12, 12, 0);
+border-color: rgb(104, 112, 236);
+border-radius: 7px;
+border-style: solid;
+border-width: 1px;
+box-shadow: none;
+color: rgb(60, 67, 154);
+cursor: default;
+display: inline-flex;
+font-family: Roboto, sans-serif;
+font-size: 14px;
+font-weight: bold;
+height: 36px;
+width: 75px;
+justify-content: center;
+margin: 8px 16px;
+outline-color: rgb(60, 67, 154);
+overflow: hidden;
+padding: 0px 5px;
+position: relative;
+text-align: center;
+text-transform: uppercase;
+vertical-align: middle;
+}
+
+/*toolbar*/
+#Toolbar{
+  margin: 0px;
+  grid-column: 3 / span 1;
+}
+
+.circle{
+    background-color: inherit;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 35px;
+    height: 35px;
+    margin: 0px 5px 5px 5px;
+    cursor: pointer;
+    grid-column: 1 / span 1;
+  }
+  .circle:hover{
+    background-color: lightgrey;
+  }

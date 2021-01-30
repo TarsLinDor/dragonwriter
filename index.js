@@ -1,10 +1,9 @@
 import './style.css';
-import "./tools/login/login.css";
-import "./tools/toolbar/toolbar.css";
+
 import "./tools/toolbar/toolbar.js"
 import "./tools/editor/editor.js"
 import "./tools/menu/menu.js"
-import "./tools/menu/menu.css"
+
 import * as firebase from "firebase/app";
 
 // Add the Firebase products that you want to use
