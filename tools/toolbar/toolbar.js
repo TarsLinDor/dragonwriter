@@ -25,7 +25,7 @@ book.addEventListener('click',
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
-    menu.style.display ='inline';
+    menu.style.display ='block';
     }
     else{
     app.style.right ='0px';
