@@ -1,5 +1,4 @@
 import "./login.css";
-import $ from 'jquery';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 
@@ -8,18 +7,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 import * as firebaseui from "firebaseui";
-const startRsvpButton = document.getElementById('startRsvp');
-const guestbookContainer = document.getElementById('guestbook-container');
-
-const form = document.getElementById('leave-message');
-const input = document.getElementById('message');
-const guestbook = document.getElementById('guestbook');
-const numberAttending = document.getElementById('number-attending');
-const rsvpYes = document.getElementById('rsvp-yes');
-const rsvpNo = document.getElementById('rsvp-no');
-
-var rsvpListener = null;
-var guestbookListener = null;
+const login = document.getElementById('login');
 
 async function main() {
 
@@ -55,5 +43,25 @@ async function main() {
 
   const ui = new firebaseui.auth.AuthUI(firebase.auth());
   ui.start('#login_window', uiConfig);
+
+   // Listen to the current Auth state
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+    login.style.display ='none';
+    }
+    else {
+
+
+    }
+  });
 }
 main();
+
+const logout = document.getElementById('logout');
+logout.addEventListener('click', 
+  function(){
+    if (firebase.auth().currentUser) {
+      // User is signed in, let's sign out
+      firebase.auth().signOut();
+    } 
+  });

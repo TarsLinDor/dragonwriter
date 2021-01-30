@@ -12,7 +12,7 @@
   background-size: cover; /* Resize the background image to cover the entire container */
 }
 #login_window{
-  padding: 20px;
+  margin: 150px;
 }
 
 button.clicked{
@@ -22,7 +22,7 @@ button.clicked{
   outline-color: rgb(60, 67, 154);
 }
 
-button, button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
+button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
 align-items: center;
 background-color: rgba(26, 12, 12, 0);
 border-color: rgb(104, 112, 236);
