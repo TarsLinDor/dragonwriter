@@ -27,10 +27,13 @@ book.addEventListener('click',
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
+    app.style.borderRadius ='5px';
     bookmenu.style.display ='grid';
     }
     else{
+    app.style.borderRadius ='0px';
     app.style.right ='0px';
+    bookmenu.style.display ='none';
     };
   });
 //start conditions
