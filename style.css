@@ -1,8 +1,14 @@
+/*general css*/
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: grey;
+  background-color: #333333;
   overflow: none;
 }
+section{
+  color: white;
+  font-weight: bold;
+  padding: 0px 10px 0px 10px;
+  }
 
 hr {
         height: 1px;
@@ -11,6 +17,27 @@ hr {
         padding: 0px;
         margin: 0px 5px 0px 5px;
 }
+
+h1{
+  font-size: 64px;
+}
+
+h4{
+  font-size: 36px;
+}
+ol{
+    cursor: pointer;
+    padding: 0px;
+    list-style-position: inside;
+    margin: 0px;
+}
+ul{
+    cursor: pointer;
+    padding: 0px;
+    list-style: none;
+    margin: 0px;
+}
+/*eend gerneral*/ 
 
 #app{
   background-color: grey;
@@ -24,9 +51,6 @@ hr {
   grid-template-columns: 50% auto 40px;
    overflow: none;
 }
-
-
-
 /*For editor*/
 #editor{
     display: grid;
@@ -92,21 +116,9 @@ hr {
 
 }
 
-
 .ql-align-center{text-align: center;}
 
-ol{
-    cursor: pointer;
-    padding: 0px;
-    list-style-position: inside;
-    margin: 0px;
-}
-ul{
-    cursor: pointer;
-    padding: 0px;
-    list-style: none;
-    margin: 0px;
-}
+
 
 
 
@@ -159,35 +171,15 @@ hr.undertitle{
     grid-column: 2/span 3;
     grid-row: 1/span 1;
     font-size: 150%;
-    placeholder: 'Chapter Title';
 }
 
 
 
 .selected{background-color: lightgray;}
 
-/*Menu Items*/
-#menu{
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  width: 300px;
-  right: 0px;
-  background-color: grey;
-}
 
-section{
-  margin: 0px 0px 0px 0px;
 
-padding: 5px 0px 5px 10px;
-  display: none;
-color: white;}
 
-section:hover{
-  color: black;
-  background-color: lightgrey;
-  }
 
 /*Login*/
 #login{
@@ -204,13 +196,7 @@ section:hover{
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
-h1{
-  font-size: 64px;
-}
 
-h4{
-  font-size: 36px;
-}
 #welcome{
   grid-row: 1 / span 1;
 }
@@ -255,6 +241,8 @@ vertical-align: middle;
 /*toolbar*/
 #Toolbar{
   margin: 0px;
+  display: grid;
+  grid-template-rows: 35px  auto  35px;
   grid-column: 3 / span 1;
 }
 
@@ -273,4 +261,35 @@ vertical-align: middle;
   }
   .circle:hover{
     background-color: lightgrey;
+  }
+
+  /* bookmenu*/
+
+  /*Menu Items*/
+#bookmenu{
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 300px;
+  right: 0px;
+  grid-template-rows: 35px  auto  40px;
+}
+
+.menu_title{
+    padding: 7px 5px 0px 5px;
+    grid-column: 1 / span 1;
+    grid-row: 1/span 1;
+    outline:none;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    }
+
+  .menu_toc{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 5px 0px 5px;
+  }
+  .menu_toc:hover{
+  background-color: gray;
   }

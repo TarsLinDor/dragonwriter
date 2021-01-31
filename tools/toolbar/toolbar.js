@@ -7,7 +7,7 @@ import "firebase/firestore";
 
 const book = document.getElementById('book');
 const selectbook = document.getElementById('selectbook');
-const menu = document.getElementById('menu');
+const bookmenu = document.getElementById('bookmenu');
 const edit = document.getElementById('edit');
 const outline = document.getElementById('outline');
 const world = document.getElementById('world');
@@ -26,8 +26,7 @@ book.addEventListener('click',
   function(){
     if(app.style.right <='0px'){
     app.style.right ='300px';
-    menu.style.display ='block';
-    newbook.style.display ='block';
+    bookmenu.style.display ='grid';
     }
     else{
     app.style.right ='0px';
