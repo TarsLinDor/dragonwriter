@@ -37,35 +37,35 @@
     </div>
     <div id='addBook' style='text-align: right;'><button class='circle'><i class="fas fa-plus"></i></button></div>
   </div>
-<!-- The 'app' contains all the tools for the book writing software-->
+  <!-- The 'app' contains all the tools for the book writing software-->
 	<div id="app">
 		<div id='Toolbar'>
       <div>
 			<button class='circle' id="book"><i class="fas fa-book"></i></button>
       </div>
       <div>
-			<button class='circle' id="edit"><i class="fas fa-edit"></i></button>
-			<button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
-			<button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
-			<button class="circle" id="character"><i class="fas fa-users"></i></button>
-			<button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
-			<button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
-			<button class="circle" id="note"><i class="far fa-sticky-note"></i></button>
-			<button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
-			<button class="circle" id="print"><i class="fas fa-print"></i></button>
-			<button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
-			<button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
+        <button class='circle' id="edit"><i class="fas fa-edit"></i></button>
+        <button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
+        <button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
+        <button class="circle" id="character"><i class="fas fa-users"></i></button>
+        <button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
+        <button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
+        <button class="circle" id="note"><i class="far fa-sticky-note"></i></button>
+        <button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
+        <button class="circle" id="print"><i class="fas fa-print"></i></button>
+        <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
+        <button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
       </div>
       <div>
-			<button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
+			  <button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
       </div>
 
 		</div>
-<!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
+  <!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
  a middle section for a text editor and a draft section for revising there chapters-->
 		<div class = 'tool' id='editor'>
       <!-- Contains everything on the left menu-->
-      <div class = 'leftmenu'>
+      <div class = 'col-leftmenu'>
 			  <div class='leftmenu-tooltitle' id='booktitle'>Book Title</div>
 			  <div class='leftmenu-tooltoc' id='tableofcontents'>
 				  <hr>
@@ -80,12 +80,12 @@
 			</div>
       </div>
       <!-- Contains everything on the middle area-->
-      <div class='middle'>
-      <div class="middle-title"><a class="contentType">Chapter 1: </a><a id='Content_Title'>Title</a></div>
-			<div id="quill-editor"></div>
+      <div class='col-middle'>
+        <div class="middle-title"><a class="contentType">Chapter 1: </a><a id='Content_Title'>Title</a></div>
+			  <div id="quill-editor"></div>
       </div>
 			<!-- Contains everything on the right 'draft' area-->
-      <div class='draft'>
+      <div class='col-draft'>
 			<div class="draft_title"><b>Drafts</b></div>
 				<div class="draft_toc">
           <hr>
@@ -95,7 +95,6 @@
         </div>
         <div class = 'addDraft'>
 				  <button class='circle' ><i class="fas fa-plus"></i></button>
-          <button class='circle'><i class="fas fa-eye-slash"></i></button>
         </div>
       </div>
 

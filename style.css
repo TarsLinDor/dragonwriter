@@ -36,7 +36,7 @@ ul {
   margin: 0px;
   border-radius: 5px;
 }
-/*eend gerneral*/
+/*end gerneral*/
 
 #app {
   background-color: rgb(141, 114, 96);
@@ -81,7 +81,7 @@ ul {
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 /*Left menu items*/
-.leftmenu{
+.col-leftmenu{
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
@@ -117,10 +117,10 @@ ul {
 
 .leftmenu-bottom{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 50px;
 }
 /*middle content items*/
-.middle{  
+.col-middle{  
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
@@ -167,8 +167,15 @@ ul {
 .ql-align-center {
   text-align: center;
 }
+
+#Content_Title {
+  outline: none;
+}
+
 /*right 'draft' items*/
-.draft{  
+.col-draft{  
+  background-color: whitesmoke;
+  border-radius: 0px 5px 5px 5px;
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
@@ -176,26 +183,11 @@ ul {
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
   }
 
-#Content_Title {
-  outline: none;
-}
-
-.ql-toolbar.ql-snow {
-  border-style: none;
-  text-align: center;
-  grid-column: 2 / span 3;
-  grid-row: 3 / span 1;
-}
-
-#draft_title {
-  border-top-right-radius: 5px;
+.draft_title {
   text-align: center;
   padding: 7px 5px 0px 5px;
-  grid-column: 5 / span 1;
-  grid-row: 1 / span 1;
-  background-color: whitesmoke;
 }
-#drafts {
+.drafts {
   text-align: center;
   padding: 0px 0px 0px 0px;
   grid-column: 5 / span 1;
@@ -203,9 +195,7 @@ ul {
   background-color: whitesmoke;
 }
 #addDraft {
-  border-bottom-right-radius: 5px;
-  display: flex;
-  text-align: left;
+  text-align: center;
   padding: 0px 0px 0px 0px;
   grid-column: 5 / span 1;
   grid-row: 3 / span 1;
@@ -233,10 +223,8 @@ ul {
   left: 0;
   right: 0;
   grid-template-rows: 30% auto;
-  background-image: url("https://stackblitz.com/files/dragonwriter/github/TarsLinDor/dragonwriter/master/tools/login/426190.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-color: rgb(141, 114, 96);
+  opacity: .9;
 }
 
 #welcome {

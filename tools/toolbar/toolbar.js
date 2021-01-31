@@ -38,8 +38,8 @@ book.addEventListener('click',
   });
 //start conditions
 editor.style.display ='grid';
-editor.classList.add("first");
-character_tool.classList.add("second");
+editor.classList.add("full");
+//character_tool.classList.add("second");
 
 edit.addEventListener('click', 
   function(){
