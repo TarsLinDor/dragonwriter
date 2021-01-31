@@ -12,6 +12,7 @@ const edit = document.getElementById('edit');
 const outline = document.getElementById('outline');
 const world = document.getElementById('world');
 const character = document.getElementById('character');
+const character_tool = document.getElementById('character_tool');
 const magic = document.getElementById('magic');
 const dictionary = document.getElementById('dictionary');
 const note = document.getElementById('note');
@@ -35,7 +36,7 @@ book.addEventListener('click',
 //start conditions
 editor.style.display ='grid';
 editor.classList.add("first");
-character.classList.add("second");
+character_tool.classList.add("second");
 
 edit.addEventListener('click', 
   function(){

@@ -2,8 +2,8 @@
 body {
   //font-family: "Open Sans", sans-serif;
   font-family: 'Merriweather', serif;
-  background-color: grey;
-  overflow: none;
+  background-color: steelblue;
+  //overflow: none;
 }
 .selected {
 background-color: grey;
@@ -41,34 +41,39 @@ ul {
 /*eend gerneral*/
 
 #app {
-  background-color: grey;
+  background-color: rgb(141, 114, 96);
   position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  padding: 5px;
   display: grid;
   grid-template-columns: 50% auto 40px;
   grid-template-rows: 100%;
   overflow: none;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  border-radius: 5px;
 }
 /*For editor*/
 #editor {
+  border-radius: 5px;
   display: grid;
   grid-template-columns: 225px auto auto auto 90px;
   grid-template-rows: 35px auto 40px;
-  margin: -5px 0px -5px -5px;
+  margin:  0px ;
   overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 
-#character {
+#character_tool {
+  border-radius: 5px;
   display: grid;
   grid-template-columns: 225px auto auto auto 90px;
   grid-template-rows: 35px auto 40px;
-  margin: -5px 0px -5px -5px;
+  margin: 0px 0px 0px 5px;
   overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 
 .full {
@@ -88,6 +93,7 @@ ul {
 }
 
 #booktitle {
+  border-top-left-radius: 5px;
   padding: 7px 5px 0px 5px;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
@@ -131,7 +137,7 @@ ul {
   grid-column: 2 / span 3;
   grid-row: 2 / span 1;
   font-family: 'Merriweather', serif;
-  font-size: 18px;
+  font-size: 16px;
   padding: 0px 0 0 0 ;
 }
 .ql-container.ql-snow p{ 
@@ -157,6 +163,7 @@ hr.undertitle {
 }
 
 #draft_title {
+  border-top-right-radius: 5px;
   text-align: center;
   padding: 7px 5px 0px 5px;
   grid-column: 5 / span 1;
@@ -171,6 +178,7 @@ hr.undertitle {
   background-color: whitesmoke;
 }
 #addDraft {
+  border-bottom-right-radius: 5px;
   display: flex;
   text-align: left;
   padding: 0px 0px 0px 0px;
@@ -189,10 +197,11 @@ hr.undertitle {
 
 .chapter-title {
   padding: 5px;
+  margin: 5px;
   text-align: center;
   grid-column: 2 / span 3;
   grid-row: 1 / span 1;
-  font-size: 150%;
+  font-size: 110%;
   font-family: 'Merriweather', serif;
 }
 
