@@ -17,6 +17,8 @@ var editor = new Quill('#quill-editor', {
 
 const booktitle =document.getElementById('booktitle');
 booktitle.contentEditable='true';
+const Content_Title = document.getElementById('Content_Title');
+Content_Title.contentEditable='true';
 
 
 

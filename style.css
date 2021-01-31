@@ -1,6 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: grey;
+  overflow: none;
 }
 
 hr {
@@ -21,22 +22,31 @@ hr {
   padding: 5px;
   display: grid;
   grid-template-columns: 50% auto 40px;
+   overflow: none;
 }
 
 
 
 /*For editor*/
 #editor{
-    grid-column: 1 / span 2;
-    grid-row: 1/span 1;
     display: grid;
-    grid-template-columns: 225px auto auto auto 100px;
+    grid-template-columns: 225px auto auto auto 90px;
     grid-template-rows: 35px  auto  40px;
     margin: -5px 0px -5px -5px;
-    background-color: white;
-    overflow: auto;
-   
+    overflow: none;
   }
+.full{   
+  background-color: white; 
+  grid-column: 1 / span 2;
+  grid-row: 1/span 1;}
+.first{
+  background-color: white;
+    grid-column: 1 / span 1;
+    grid-row: 1/span 1;}
+.second{   
+  background-color: white; 
+  grid-column: 1 / span 1;
+    grid-row: 1/span 1;}
 
 #booktitle{
     padding: 7px 5px 0px 5px;
@@ -52,47 +62,20 @@ hr {
     background-color: whitesmoke;
     }
 #AddContent{
-  display:grid;
   grid-template-columns: auto auto;
     grid-column: 1/span 1;
     grid-row: 3/span 1;
     background-color: #f3f3f3;
     border-radius: 0px 0px 0px 5px;
     }
-#hide-toc{   
-  grid-column: 2/span 1;
-  grid-row: 1/span 1;
-  padding: 5px;
-  }
 
-.chapter-draft{
-    padding: 5px 7px 0px 0px;
-    text-align: right;
-    grid-column: 4 / span 1;
-    grid-row: 1/ span 1;
-    font-size: 130%;
-    cursor: pointer;
-  }
+    #Content_Title{outline: none;}
 
 .ql-toolbar.ql-snow{
   border-style: none;
   text-align: center;
   grid-column: 2 / span 3;
   grid-row: 3/ span 1;
-}
-
-.BookTitle{
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  border-radius: 5px 0px 0px 0px;
-  outline: none;
-  border-color: lightgray;
-  padding: 0px 5px 0px 5px;
-  margin: 0px 0px 0px 0px;
-  font-family: 'amiri', sans-serif;
-text-align: center;
- 
-  background-color: #f2f2f2;
 }
 
 .ql-container.ql-snow{
@@ -106,6 +89,7 @@ text-align: center;
   max-height: 100%;
   grid-column: 2/span 3;
   grid-row: 2/span 1;
+
 }
 
 
@@ -117,13 +101,18 @@ ol{
     list-style-position: inside;
     margin: 0px;
 }
+ul{
+    cursor: pointer;
+    padding: 0px;
+    list-style: none;
+    margin: 0px;
+}
 
 
 
   .toc{
-    border-radius: 20px;
     padding: 0px 5px 0px 10px;
-    margin: 0px 0px 0px 5px;
+    margin: 0px 5px 0px 5px;
   }
   .toc:hover{
   background-color: lightgray;
@@ -133,19 +122,35 @@ hr.undertitle{
   margin: 0px 0px 0px 0px;
 }
 
-.smallcircle{
-  display: inline;
-  border-radius: 50%;
-  padding:  5px 5px 5px 5px ;
-}
-
-.draft{
+#draft_title{
   text-align: center;
+  padding: 7px 5px 0px 5px;
   grid-column: 5/span 1;
-  grid-row: 1/span 3;
-  border-radius: 5px;
-  background-color: #f2f2f2;
+  grid-row: 1/span 1;
+  background-color: whitesmoke;
 }
+#drafts{
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  grid-column: 5/span 1;
+  grid-row: 2/span 1;
+  background-color: whitesmoke;
+}
+#addDraft{ 
+  display: flex;
+  text-align: left; 
+  padding: 0px 0px 0px 0px;
+  grid-column: 5/span 1;
+  grid-row: 3/span 1;
+  background-color: whitesmoke;}
+
+  .draft_toc{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 5px 0px 5px;
+  }
+  .draft_toc:hover{
+  background-color: lightgray;
+  }
 
 
 .chapter-title{
@@ -157,16 +162,7 @@ hr.undertitle{
     placeholder: 'Chapter Title';
 }
 
-.ChapterTitle{
-  border-radius: 5px 0px 0px 0px;
-  padding: 0px;
-  margin: 0px;
-  outline: none;
-  font-family: 'amiri', sans-serif;
-  display: inline-block;
-  min-width: 10px;
-  font-size: inherit;
-}
+
 
 .selected{background-color: lightgray;}
 

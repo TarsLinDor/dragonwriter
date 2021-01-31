@@ -33,6 +33,9 @@ book.addEventListener('click',
     app.style.right ='0px';
     };
   });
+//start conditions
+editor.style.display ='grid';
+editor.classList.add("full")
 
 edit.addEventListener('click', 
   function(){
@@ -41,6 +44,7 @@ edit.addEventListener('click',
     }
     else{
     editor.style.display ='grid';
+    editor.classList.add("full")
     };
   });
 
