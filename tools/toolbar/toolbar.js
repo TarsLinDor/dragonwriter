@@ -34,7 +34,8 @@ book.addEventListener('click',
   });
 //start conditions
 editor.style.display ='grid';
-editor.classList.add("full")
+editor.classList.add("first");
+character.classList.add("second");
 
 edit.addEventListener('click', 
   function(){

@@ -1,108 +1,124 @@
 /*general css*/
 body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #333333;
+  //font-family: "Open Sans", sans-serif;
+  font-family: 'Merriweather', serif;
+  background-color: grey;
   overflow: none;
 }
-section{
-  color: white;
-  font-weight: bold;
-  padding: 0px 10px 0px 10px;
-  }
-
-hr {
-        height: 1px;
-        background-color: black;
-        border: none;
-        padding: 0px;
-        margin: 0px 5px 0px 5px;
+.selected {
+background-color: grey;
 }
 
-h1{
+hr {
+  height: 1px;
+  background-color: black;
+  border: none;
+  padding: 0px;
+  margin: 0px 5px 0px 5px;
+}
+
+h1 {
   font-size: 64px;
 }
 
-h4{
+h4 {
   font-size: 36px;
 }
-ol{
-    cursor: pointer;
-    padding: 0px;
-    list-style-position: inside;
-    margin: 0px;
+ol {
+  cursor: pointer;
+  padding: 0px;
+  list-style-position: inside;
+  margin: 0px;
+  border-radius: 5px;
 }
-ul{
-    cursor: pointer;
-    padding: 0px;
-    list-style: none;
-    margin: 0px;
+ul {
+  cursor: pointer;
+  padding: 0px;
+  list-style: none;
+  margin: 0px;
+  border-radius: 5px;
 }
-/*eend gerneral*/ 
+/*eend gerneral*/
 
-#app{
+#app {
   background-color: grey;
   position: absolute;
-  top:0px;
+  top: 0px;
   bottom: 0px;
-  left:0px;
-  right:0px;
+  left: 0px;
+  right: 0px;
   padding: 5px;
   display: grid;
   grid-template-columns: 50% auto 40px;
-   overflow: none;
+  overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 /*For editor*/
-#editor{
-    display: grid;
-    grid-template-columns: 225px auto auto auto 90px;
-    grid-template-rows: 35px  auto  40px;
-    margin: -5px 0px -5px -5px;
-    overflow: none;
-  }
-.full{   
-  background-color: white; 
-  grid-column: 1 / span 2;
-  grid-row: 1/span 1;}
-.first{
+#editor {
+  display: grid;
+  grid-template-columns: 225px auto auto auto 90px;
+  grid-template-rows: 35px auto 40px;
+  margin: -5px 0px -5px -5px;
+  overflow: none;
+}
+
+#character {
+  display: grid;
+  grid-template-columns: 225px auto auto auto 90px;
+  grid-template-rows: 35px auto 40px;
+  margin: -5px 0px -5px -5px;
+  overflow: none;
+}
+
+.full {
   background-color: white;
-    grid-column: 1 / span 1;
-    grid-row: 1/span 1;}
-.second{   
-  background-color: white; 
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+}
+.first {
+  background-color: white;
   grid-column: 1 / span 1;
-    grid-row: 1/span 1;}
+  grid-row: 1 / span 1;
+}
+.second {
+  background-color: white;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
 
-#booktitle{
-    padding: 7px 5px 0px 5px;
-    grid-column: 1 / span 1;
-    grid-row: 1/span 1;
-    outline:none;
-    background-color: whitesmoke;
-    text-align: center;
-    }
-#tableofcontents{
-    grid-column:1/span 1;
-    grid-row: 2/span 1;
-    background-color: whitesmoke;
-    }
-#AddContent{
-  grid-template-columns: auto auto;
-    grid-column: 1/span 1;
-    grid-row: 3/span 1;
-    background-color: #f3f3f3;
-    border-radius: 0px 0px 0px 5px;
-    }
+#booktitle {
+  padding: 7px 5px 0px 5px;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  outline: none;
+  background-color: whitesmoke;
+  text-align: center;
+}
+#tableofcontents {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  background-color: whitesmoke;
+}
+#AddContent {
+  display: flex;
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+  background-color: whitesmoke;
+  border-radius: 0px 0px 0px 5px;
+}
 
-    #Content_Title{outline: none;}
+#Content_Title {
+  outline: none;
+}
 
-.ql-toolbar.ql-snow{
+.ql-toolbar.ql-snow {
   border-style: none;
   text-align: center;
   grid-column: 2 / span 3;
-  grid-row: 3/ span 1;
+  grid-row: 3 / span 1;
 }
 
-.ql-container.ql-snow{
+.ql-container.ql-snow {
   overflow-x: hidden;
   overflow-y: auto;
   outline: none;
@@ -110,79 +126,81 @@ ul{
   margin: auto;
   max-width: 700px;
   width: 85%;
-  max-height: 100%;
-  grid-column: 2/span 3;
-  grid-row: 2/span 1;
+  max-height: 90vh;
+  grid-column: 2 / span 3;
+  grid-row: 2 / span 1;
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+  padding: 0px 0 0 0 ;
+}
+.ql-container.ql-snow p{ 
+  text-indent: 20px;
+  padding: 0px 0px 5px 0px;
+  }
 
+.ql-align-center {
+  text-align: center;
 }
 
-.ql-align-center{text-align: center;}
-
-
-
-
-
-  .toc{
-    padding: 0px 5px 0px 10px;
-    margin: 0px 5px 0px 5px;
-  }
-  .toc:hover{
+.toc {
+  padding: 0px 5px 0px 10px;
+  margin: 0px 5px 0px 5px;
+  border-radius: 10px;
+}
+.toc:hover {
   background-color: lightgray;
-  }
-hr.undertitle{
+}
+hr.undertitle {
   padding: 0px;
   margin: 0px 0px 0px 0px;
 }
 
-#draft_title{
+#draft_title {
   text-align: center;
   padding: 7px 5px 0px 5px;
-  grid-column: 5/span 1;
-  grid-row: 1/span 1;
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
   background-color: whitesmoke;
 }
-#drafts{
+#drafts {
   text-align: center;
   padding: 0px 0px 0px 0px;
-  grid-column: 5/span 1;
-  grid-row: 2/span 1;
+  grid-column: 5 / span 1;
+  grid-row: 2 / span 1;
   background-color: whitesmoke;
 }
-#addDraft{ 
+#addDraft {
   display: flex;
-  text-align: left; 
+  text-align: left;
   padding: 0px 0px 0px 0px;
-  grid-column: 5/span 1;
-  grid-row: 3/span 1;
-  background-color: whitesmoke;}
-
-  .draft_toc{
-    padding: 0px 0px 0px 0px;
-    margin: 0px 5px 0px 5px;
-  }
-  .draft_toc:hover{
-  background-color: lightgray;
-  }
-
-
-.chapter-title{
-    padding: 5px;
-    text-align: center;
-    grid-column: 2/span 3;
-    grid-row: 1/span 1;
-    font-size: 150%;
+  grid-column: 5 / span 1;
+  grid-row: 3 / span 1;
+  background-color: whitesmoke;
 }
 
+.draft_toc {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 5px 0px 5px;
+}
+.draft_toc:hover {
+  background-color: lightgray;
+}
 
+.chapter-title {
+  padding: 5px;
+  text-align: center;
+  grid-column: 2 / span 3;
+  grid-row: 1 / span 1;
+  font-size: 150%;
+  font-family: 'Merriweather', serif;
+}
 
-.selected{background-color: lightgray;}
-
-
-
-
+.selected {
+  background-color: lightgray;
+}
 
 /*Login*/
-#login{
+#login {
   display: none;
   position: absolute;
   z-index: 2;
@@ -191,105 +209,129 @@ hr.undertitle{
   left: 0;
   right: 0;
   grid-template-rows: 30% auto;
-  background-image: url('https://stackblitz.com/files/dragonwriter/github/TarsLinDor/dragonwriter/master/tools/login/426190.jpg');
+  background-image: url("https://stackblitz.com/files/dragonwriter/github/TarsLinDor/dragonwriter/master/tools/login/426190.jpg");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
 
-#welcome{
+#welcome {
   grid-row: 1 / span 1;
 }
-#login_window{
+#login_window {
   grid-row: 2 / span 1;
 }
 
-button.clicked{
+button.clicked {
   background-color: rgb(60, 67, 154);
   border-color: rgb(60, 67, 154);
   color: white;
   outline-color: rgb(60, 67, 154);
 }
 
-button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored{
-align-items: center;
-background-color: rgba(26, 12, 12, 0);
-border-color: rgb(104, 112, 236);
-border-radius: 7px;
-border-style: solid;
-border-width: 1px;
-box-shadow: none;
-color: rgb(60, 67, 154);
-cursor: default;
-display: inline-flex;
-font-family: Roboto, sans-serif;
-font-size: 14px;
-font-weight: bold;
-height: 36px;
-width: 75px;
-justify-content: center;
-margin: 8px 16px;
-outline-color: rgb(60, 67, 154);
-overflow: hidden;
-padding: 0px 5px;
-position: relative;
-text-align: center;
-text-transform: uppercase;
-vertical-align: middle;
+button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
+  align-items: center;
+  background-color: rgba(26, 12, 12, 0);
+  border-color: rgb(104, 112, 236);
+  border-radius: 7px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: none;
+  color: rgb(60, 67, 154);
+  cursor: default;
+  display: inline-flex;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  height: 36px;
+  width: 75px;
+  justify-content: center;
+  margin: 8px 16px;
+  outline-color: rgb(60, 67, 154);
+  overflow: hidden;
+  padding: 0px 5px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 /*toolbar*/
-#Toolbar{
+#Toolbar {
   margin: 0px;
   display: grid;
-  grid-template-rows: 35px  auto  35px;
+  grid-template-rows: 35px auto 35px;
   grid-column: 3 / span 1;
 }
 
-.circle{
-    background-color: inherit;
-    color: black;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 100%;
-    width: 35px;
-    height: 35px;
-    margin: 0px 5px 5px 5px;
-    cursor: pointer;
-    grid-column: 1 / span 1;
-  }
-  .circle:hover{
-    background-color: lightgrey;
-  }
+.circle {
+  background-color: inherit;
+  color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  width: 35px;
+  height: 35px;
+  margin: 0px 5px 5px 5px;
+  cursor: pointer;
+  grid-column: 1 / span 1;
+}
+.circle:hover {
+  background-color: lightgrey;
+}
 
-  /* bookmenu*/
+/* bookmenu*/
 
-  /*Menu Items*/
-#bookmenu{
+/*Menu Items*/
+#bookmenu {
   display: none;
   position: absolute;
   top: 0px;
   bottom: 0px;
   width: 300px;
   right: 0px;
-  grid-template-rows: 35px  auto  40px;
+  grid-template-rows: 35px auto 40px;
 }
 
-.menu_title{
-    padding: 7px 5px 0px 5px;
-    grid-column: 1 / span 1;
-    grid-row: 1/span 1;
-    outline:none;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    }
+.menu_title {
+  padding: 5px 5px 0px 5px;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  outline: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-  .menu_toc{
-    padding: 0px 0px 0px 0px;
-    margin: 0px 5px 0px 5px;
-  }
-  .menu_toc:hover{
-  background-color: gray;
-  }
+.menu_toc {
+  padding: 5px 0px 5px 0px;
+  margin: 0px 5px 0px 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.menu_toc:hover {
+  background-color: lightgray;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: inherit;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
+::-webkit-scrollbar-thumb:onscroll {
+  background: gray;
+}
