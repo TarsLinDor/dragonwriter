@@ -50,6 +50,7 @@ ul {
   padding: 5px;
   display: grid;
   grid-template-columns: 50% auto 40px;
+  grid-template-rows: 100%;
   overflow: none;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
@@ -82,7 +83,7 @@ ul {
 }
 .second {
   background-color: white;
-  grid-column: 1 / span 1;
+  grid-column: 2 / span 1;
   grid-row: 1 / span 1;
 }
 
