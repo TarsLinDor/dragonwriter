@@ -53,6 +53,23 @@ ul {
   padding: 5px 5px 5px 0px;
 
 }
+/*toolbar classes*/
+.full {
+  background-color: white;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+}
+.first {
+  background-color: white;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.second {
+  background-color: white;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
 /*For tools*/
 .tool {
   border-radius: 5px;
@@ -141,6 +158,7 @@ ul {
   font-size: 16px;
   padding: 0px 0 0 0 ;
 }
+
 .ql-container.ql-snow p{ 
   text-indent: 20px;
   padding: 0px 0px 5px 0px;
@@ -158,22 +176,6 @@ ul {
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
   }
 
-.full {
-  background-color: white;
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 1;
-}
-.first {
-  background-color: white;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-}
-.second {
-  background-color: white;
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
-}
-
 #Content_Title {
   outline: none;
 }
@@ -183,12 +185,6 @@ ul {
   text-align: center;
   grid-column: 2 / span 3;
   grid-row: 3 / span 1;
-}
-
-
-hr.undertitle {
-  padding: 0px;
-  margin: 0px 0px 0px 0px;
 }
 
 #draft_title {
