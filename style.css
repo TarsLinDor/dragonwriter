@@ -43,7 +43,7 @@ li{
   border-radius: 12px;
   }
 li:hover{
-  background-color: #C3CED4;
+  background-color: #C6B9B0;
   }
 
   p.menu{
@@ -52,7 +52,7 @@ li:hover{
   border-radius: 12px;
   }
   p.menu:hover{
-  background-color: #C3CED4;
+  background-color: #C6B9B0;
   }
 /*end gerneral*/
 
@@ -321,7 +321,7 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
   grid-column: 1 / span 1;
 }
 .circle:hover {
-  background-color: #C3CED4;
+  background-color: #C6B9B0;
 }
 
 /* bookmenu*/
