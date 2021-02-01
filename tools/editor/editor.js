@@ -12,7 +12,7 @@ var editor = new Quill('#quill-editor', {
     toolbar: toolbarOptions,
   },
   theme: 'snow',
-  placeholder: "     Oh! the places you'll go..."
+  placeholder: "      Oh! the places you'll go..."
 });
 
 const booktitle =document.getElementById('booktitle');

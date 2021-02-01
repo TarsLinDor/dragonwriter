@@ -39,6 +39,7 @@ book.addEventListener('click',
   });
 //start conditions
 editor.style.display ='grid';
+world_tool.style.display ='grid';
 editor.classList.add("first");
 world_tool.classList.add("second");
 
@@ -46,10 +47,22 @@ edit.addEventListener('click',
   function(){
     if(editor.style.display =='grid'){
     editor.style.display ='none';
+    editor.classList.add("full")
     }
     else{
     editor.style.display ='grid';
     editor.classList.add("full")
+    };
+  });
+
+  world.addEventListener('click', 
+  function(){
+    if(world_tool.style.display =='grid'){
+    world_tool.style.display ='none';
+    }
+    else{
+    world_tool.style.display ='grid';
+    world_tool.classList.add("second")
     };
   });
 
