@@ -2,7 +2,7 @@
 body {
   //font-family: "Open Sans", sans-serif;
   font-family: 'Merriweather', serif;
-  background-color: steelblue;
+  background-color: #607B8D;
   //overflow: none;
 }
 
@@ -36,6 +36,24 @@ ul {
   margin: 0px;
   border-radius: 5px;
 }
+
+li{
+  padding: 1px 5px 2px 10px;
+  margin: 1px 5px 0px 5px;
+  border-radius: 12px;
+  }
+li:hover{
+  background-color: #C3CED4;
+  }
+
+  p.menu{
+  padding: 2px 14px 2px 7px;
+  margin: 1px 5px 0px 5px;
+  border-radius: 12px;
+  }
+  p.menu:hover{
+  background-color: #C3CED4;
+  }
 /*end gerneral*/
 
 #app {
@@ -74,7 +92,17 @@ ul {
 .tool {
   border-radius: 5px;
   display: grid;
-  grid-template-columns: 225px auto auto auto 90px;
+  grid-template-columns: 210px auto auto auto 90px;
+  /*grid-template-rows: 35px auto 40px;*/
+  margin:  0px 0px 0px 5px;
+  overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+}
+
+.tool2 {
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 200px auto;
   /*grid-template-rows: 35px auto 40px;*/
   margin:  0px 0px 0px 5px;
   overflow: none;
@@ -85,34 +113,42 @@ ul {
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
-  background-color: whitesmoke;
+  background-color: #EBEFF1;
+  border-radius: 5px 0px 0px 5px;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
+}
+.col-leftmenu2{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 35px auto 35px auto 35px auto;
+  grid-row: 1 / span 3;
+  background-color: #EBEFF1;
   border-radius: 5px 0px 0px 5px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
 }
 .leftmenu-tooltitle {
   height: 35px;
   padding: 7px 5px 0px 5px;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
   outline: none;
-  text-align: center;
+
+  font-size: 110%;
+  overflow-y: hidden ;
+  overflow-x: auto;
+}
+.leftmenu-tooltitle2 {
+  display: flex;
+  height: 35px;
+  padding: 7px 5px 0px 5px;
+  outline: none;
   font-size: 110%;
   overflow-y: hidden ;
   overflow-x: auto;
 }
 .leftmenu-toc{overflow:auto}
-
-.leftmenu-toc {
-  padding: 2px 5px 2px 10px;
-  margin: 0px 5px 0px 5px;
-  border-radius: 12px;
-}
-.leftmenu-toc:hover {
-  background-color: lightgray;
-}
+.leftmenu-toc2{overflow:auto}
 
 .leftmenu-selected {
-  background-color: lightgray;
+  background-color: #C3CED4;
 }
 
 .leftmenu-bottom{
@@ -132,14 +168,14 @@ ul {
   padding: 5px;
   margin: 5px;
   text-align: center;
-  grid-column: 2 / span 3;
+  grid-column: 1 / span 3;
   grid-row: 1 / span 1;
   font-size: 110%;
 }
 .ql-toolbar.ql-snow {
   border-style: none;
   text-align: center;
-  grid-column: 2 / span 3;
+  grid-column: 1 / span 3;
   grid-row: 3 / span 1;
 }
 
@@ -152,7 +188,7 @@ ul {
   max-width: 700px;
   width: 85%;
   max-height: 90vh;
-  grid-column: 2 / span 3;
+  grid-column: 1 / span 3;
   grid-row: 2 / span 1;
   font-family: 'Merriweather', serif;
   font-size: 16px;
@@ -174,7 +210,7 @@ ul {
 
 /*right 'draft' items*/
 .col-draft{  
-  background-color: whitesmoke;
+  background-color: #EBEFF1;
   border-radius: 0px 5px 5px 5px;
   display: grid;
   grid-template-rows: 35px auto 40px;
@@ -184,34 +220,22 @@ ul {
   }
 
 .draft_title {
+  font-size: 110%;
   text-align: center;
   padding: 7px 5px 0px 5px;
 }
-.drafts {
-  text-align: center;
-  padding: 0px 0px 0px 0px;
-  grid-column: 5 / span 1;
-  grid-row: 2 / span 1;
-  background-color: whitesmoke;
-}
-#addDraft {
-  text-align: center;
-  padding: 0px 0px 0px 0px;
-  grid-column: 5 / span 1;
-  grid-row: 3 / span 1;
-  background-color: whitesmoke;
-}
 
 .draft_toc {
+  text-align: center;
   padding: 0px 0px 0px 0px;
-  margin: 0px 5px 0px 5px;
+  grid-row: 2 / span 1;
+  background-color: #EBEFF1;
 }
-.draft_toc:hover {
-  background-color: lightgray;
+.addDraft {
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  grid-row: 3 / span 1;
 }
-
-
-
 
 /*Login*/
 #login {
@@ -290,7 +314,7 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
   grid-column: 1 / span 1;
 }
 .circle:hover {
-  background-color: lightgrey;
+  background-color: #C3CED4;
 }
 
 /* bookmenu*/
@@ -307,23 +331,22 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
 }
 
 .menu_title {
-  padding: 5px 5px 0px 5px;
+  padding: 5px 5px 5px 10px;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   outline: none;
-  text-align: center;
   font-weight: bold;
   font-size: 20px;
 }
 
 .menu_toc {
-  padding: 5px 0px 5px 0px;
-  margin: 0px 5px 0px 5px;
-  text-align: center;
+  padding: 2px 5px 2px 10px;
+  margin: 5px 5px 5px 5px;
+ 
   font-weight: bold;
 }
 .menu_toc:hover {
-  background-color: lightgray;
+  background-color: #C6B9B0;
 }
 ::-webkit-scrollbar {
   width: 10px;

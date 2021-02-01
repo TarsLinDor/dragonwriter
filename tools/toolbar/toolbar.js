@@ -11,6 +11,7 @@ const bookmenu = document.getElementById('bookmenu');
 const edit = document.getElementById('edit');
 const outline = document.getElementById('outline');
 const world = document.getElementById('world');
+const world_tool = document.getElementById('world_tool');
 const character = document.getElementById('character');
 const character_tool = document.getElementById('character_tool');
 const magic = document.getElementById('magic');
@@ -38,8 +39,8 @@ book.addEventListener('click',
   });
 //start conditions
 editor.style.display ='grid';
-editor.classList.add("full");
-//character_tool.classList.add("second");
+editor.classList.add("first");
+world_tool.classList.add("second");
 
 edit.addEventListener('click', 
   function(){

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
 	<title>DragonWriter</title>
@@ -26,13 +27,14 @@
 		</div>
 		<div id="login_window"></div>
 	</div>
+
   <div id = 'bookmenu'> 
     
     <div class = 'menu_title'>My Books</div>
     <div id='mybooks'>
     <hr>
         <ul >
-          <li class='menu_toc'>Speaker for the Silent</li>
+          <li class='menu_toc'>Book Title</li>
         </ul>
     </div>
     <div id='addBook' style='text-align: right;'><button class='circle'><i class="fas fa-plus"></i></button></div>
@@ -45,12 +47,13 @@
       </div>
       <div>
         <button class='circle' id="edit"><i class="fas fa-edit"></i></button>
-        <button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
         <button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
         <button class="circle" id="character"><i class="fas fa-users"></i></button>
         <button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
         <button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
         <button class="circle" id="note"><i class="far fa-sticky-note"></i></button>
+        <button class='circle' id="outline"><i class="fas fa-code-branch" style="transform: rotate(90deg); margin-top:5px; "></i></button>
+
         <button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
         <button class="circle" id="print"><i class="fas fa-print"></i></button>
         <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
@@ -70,8 +73,8 @@
 			  <div class='leftmenu-tooltoc' id='tableofcontents'>
 				  <hr>
 				  <ol class="sortable" id='content-list'>
-					  <li class="leftmenu-toc leftmenu-selected">Title</li>
-            <li class="leftmenu-toc">Title</li>
+					  <li class="leftmenu-selected">Title</li>
+            <li>Title</li>
 				  </ol>
 			  </div>
 			<div class ="leftmenu-bottom">
@@ -86,7 +89,7 @@
       </div>
 			<!-- Contains everything on the right 'draft' area-->
       <div class='col-draft'>
-			<div class="draft_title"><b>Drafts</b></div>
+			<div class="draft_title">Drafts</div>
 				<div class="draft_toc">
           <hr>
           <ul>
@@ -100,7 +103,36 @@
 
 		</div><!--end of editor tool -->
 
-    <div class= 'tool' id='character_tool'></div>
+    <div class= 'tool2' id='world_tool'>
+
+            <!-- Contains everything on the left menu-->
+      <div class = 'col-leftmenu2'>
+			  <div class='leftmenu-tooltitle2' >Setting</div>
+			  <div class='leftmenu-tooltoc2' >
+				  <hr>
+					  <p class='menu'>Maps</p>
+            <p class='menu'>Worlds</p>
+            <p class='menu'>Places</p>
+			  </div>
+        <div class='leftmenu-tooltitle2' >Races & Peoples</div>
+			  <div class='leftmenu-tooltoc2' >
+				  <hr>
+
+            <button class='circle'><i class="fas fa-plus"></i></button>
+			  </div>
+        <div class='leftmenu-tooltitle2' >Creatures</div>
+			  <div class='leftmenu-tooltoc2' >
+				  <hr>
+
+            <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
+			  </div>
+      </div>
+      <!-- Contains everything on the middle area-->
+      <div class='col-middle'>
+        <div class="middle-title"><a class="contentType">World</a><a id='Content_Title'></a></div>
+			  <div id="quill-editor"></div>
+      </div>
+    </div>
 	</div>
 
 
