@@ -90,6 +90,7 @@ li:hover{
 
 /*For tools*/
 .tool {
+  background-color: #F1EDEB;
   border-radius: 5px;
   display: grid;
   grid-template-columns: 210px auto auto auto 90px;
@@ -103,6 +104,7 @@ li:hover{
   border-radius: 5px;
   display: grid;
   grid-template-columns: 200px auto;
+  background-color: #F1EDEB;
   /*grid-template-rows: 35px auto 40px;*/
   margin:  0px 0px 0px 5px;
   overflow: none;
@@ -113,7 +115,6 @@ li:hover{
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
-  background-color: #EBEFF1;
   border-radius: 5px 0px 0px 5px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
 }
@@ -122,7 +123,6 @@ li:hover{
   grid-template-columns: auto;
   grid-template-rows: 35px auto 35px auto 35px auto;
   grid-row: 1 / span 3;
-  background-color: #EBEFF1;
   border-radius: 5px 0px 0px 5px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
 }
@@ -156,12 +156,22 @@ li:hover{
   grid-template-columns: auto 50px;
 }
 /*middle content items*/
-.col-middle{  
+.col-middle{ 
+  background-color: white; 
   display: grid;
   grid-template-rows: 35px auto 40px;
   grid-row: 1 / span 3;
   grid-column: 2 / span 3;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  }
+  .col-middle2{ 
+  border-top-left-radius: 5px 5px 5px 5px;
+  background-color: white; 
+  display: grid;
+  grid-template-rows: 35px auto 40px;
+  grid-row: 1 / span 3;
+  grid-column: 2 / span 3;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   }
 
 .middle-title {
@@ -210,7 +220,6 @@ li:hover{
 
 /*right 'draft' items*/
 .col-draft{  
-  background-color: #EBEFF1;
   border-radius: 0px 5px 5px 5px;
   display: grid;
   grid-template-rows: 35px auto 40px;
@@ -229,7 +238,6 @@ li:hover{
   text-align: center;
   padding: 0px 0px 0px 0px;
   grid-row: 2 / span 1;
-  background-color: #EBEFF1;
 }
 .addDraft {
   text-align: center;
@@ -248,7 +256,7 @@ li:hover{
   right: 0;
   grid-template-rows: 30% auto;
   background-color: rgb(141, 114, 96);
-  opacity: .9;
+  opacity: 1;
 }
 
 #welcome {
