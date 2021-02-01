@@ -173,10 +173,6 @@ li:hover{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   }
 
-.hide_chapter{  
-  margin: 2px -3px 0px -3px ;
-  grid-column: 1 / span 1;
-  grid-row: 3 / span 1;}
 
 .middle-title {
   padding: 5px;
