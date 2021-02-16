@@ -40,8 +40,10 @@ book.addEventListener('click',
 //start conditions
 editor.style.display ='grid';
 world_tool.style.display ='grid';
-editor.classList.add("first");
-world_tool.classList.add("second");
+editor.classList.add("full");
+world_tool.style.display ='none';
+character_tool.style.display ='none';
+//world_tool.classList.add("second");
 
 edit.addEventListener('click', 
   function(){
@@ -59,10 +61,14 @@ edit.addEventListener('click',
   function(){
     if(world_tool.style.display =='grid'){
     world_tool.style.display ='none';
+    editor.classList.add("full");
+    editor.classList.remove("first");
     }
     else{
     world_tool.style.display ='grid';
     world_tool.classList.add("second")
+    editor.classList.remove("full");
+    editor.classList.add("first");
     };
   });
 
