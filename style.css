@@ -71,6 +71,17 @@ li:hover{
   padding: 5px 5px 5px 0px;
 
 }
+#gettingstarted{  
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  margin:  0px 0px 0px 5px;
+  padding: 10%;
+  display: hidden;
+  }
 /*toolbar classes*/
 .full {
   background-color: white;
