@@ -1,5 +1,4 @@
 import './style.css';
-
 import "./tools/toolbar/toolbar.js"
 import "./tools/editor/editor.js"
 import "./tools/bookmenu/bookmenu.js"
@@ -9,10 +8,11 @@ import * as firebase from "firebase/app";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-
 import * as firebaseui from "firebaseui";
+
 const login = document.getElementById('login');
 const logout = document.getElementById('logout');
+const bookTitle = document.getElementById('booktitle');
 
 async function user_login() {
 
@@ -40,6 +40,9 @@ async function user_login() {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
         // Handle sign-in.
+        console.log("Login successfull!");
+        
+
         // Return false to avoid redirect.
         return false;
       }
