@@ -80,7 +80,7 @@ li:hover{
   border-radius: 5px;
   margin:  0px 0px 0px 5px;
   padding: 10%;
-  display: hidden;
+  display: none;
   }
 /*toolbar classes*/
 .full {
