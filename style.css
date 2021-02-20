@@ -361,12 +361,21 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
   display: grid;
   grid-template-columns: auto 15px;
   font-weight: bold;
-  background-color: #607B8D;
+  background-color: #C6B9B0;
+  z-index: 2;
 }
 
 .menu_toc:hover {
-  background-color: #C6B9B0;
+  background-color: #DBD3CE;
 }
+
+.dropdown{
+  padding: 2px 5px 2px 0px;
+}
+.dropdown::hover{
+  color:#607B8D;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
