@@ -1,6 +1,6 @@
 /*general css*/
 body {
-  //font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
   font-family: 'Merriweather', serif;
   background-color: #607B8D;
   overflow: none;
@@ -365,7 +365,7 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
 }
 
 .menu_toc {
-  padding: 2px 5px 2px 0px;
+  padding: 2px 5px 2px 10px;
   margin: 5px 5px 5px 5px;
   display: grid;
   grid-template-columns: auto 15px;
