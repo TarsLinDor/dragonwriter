@@ -265,16 +265,21 @@ li:hover{
   bottom: 0;
   left: 0;
   right: 0;
-  grid-template-rows: 30% auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
   background-color: rgb(141, 114, 96);
   opacity: 1;
 }
 
 #welcome {
+  grid-column: 1 / span 1;
   grid-row: 1 / span 1;
+  margin: auto;
 }
 #login_window {
-  grid-row: 2 / span 1;
+  margin: auto;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
 }
 
 button.clicked {
