@@ -46,10 +46,19 @@
     <div id='mybooks'>
     <hr>
         <ul >
-          <li class='menu_toc'>
-            <a>Book Title</a>
+          <div class='menu_books'>
+          <li id='?' class='menu_books_item'>
+            <a class='menu_book_title'>Book Title</a>
             <i class="fas fa-chevron-down dropdown"></i>
-            </li>
+          </li>
+              <ul class='Book_Meta_Data'>
+                <li>Genre: <a>Fanasty</a></li>
+                <li>Length:</li>
+                <li>Perspective:</li>
+                <li>Audience:</li>
+                <li>Tags:</li>
+            </ul>
+          </div>
         </ul>
     </div>
     <div id='addBook' style='text-align: right;'><button class='circle'><i class="fas fa-plus"></i></button></div>
@@ -88,7 +97,7 @@
 			  <div class='leftmenu-tooltoc' id='tableofcontents'>
 				  <hr>
 				  <ol class="sortable" id='content-list'>
-					  <li class="leftmenu-selected">Title</li>
+					  <li class="leftmenu-list selected">Title</li>
 				  </ol>
 			  </div>
 			<div class ="leftmenu-bottom">
