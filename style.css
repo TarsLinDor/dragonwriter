@@ -372,8 +372,8 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
 .dropdown{
   padding: 2px 5px 2px 0px;
 }
-.dropdown::hover{
-  color:#607B8D;
+.dropdown:hover{
+  color:#3C4D58;
 }
 
 ::-webkit-scrollbar {
