@@ -360,8 +360,8 @@ button.firebaseui-id-submit.mdl-button--raised.mdl-button--colored {
   margin: 5px 5px 5px 5px;
   display: grid;
   grid-template-columns: auto 15px;
-  grid-template-rows: auto;
   font-weight: bold;
+  background-color: #607B8D;
 }
 
 .menu_toc:hover {
