@@ -27,6 +27,7 @@ async function user_login() {
   };
 
   firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
 
   // Add Firebase project configuration object here
   var firebaseConfig = {};
