@@ -1,7 +1,4 @@
-import './style.css';
-import "./tools/toolbar/toolbar.js"
-import "./tools/editor/editor.js"
-import "./tools/bookmenu/bookmenu.js"
+
 
 import * as firebase from "firebase/app";
 
@@ -68,3 +65,7 @@ async function user_login() {
 }
 user_login();
 
+import './style.css';
+import "./tools/toolbar/toolbar.js"
+import "./tools/editor/editor.js"
+import "./tools/bookmenu/bookmenu.js"
