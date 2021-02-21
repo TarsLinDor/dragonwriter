@@ -441,4 +441,5 @@ font-weight: bold;
   content: attr(placeholder);
   pointer-events: none;
   display: block; /* For Firefox */
+  color: gray;
 }
