@@ -2,12 +2,13 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import * as firebaseui from "firebaseui";
+import "./tools/bookmenu/bookmenu.js"
 
 //Define all global variable here
 const login = document.getElementById('login');
 const logout = document.getElementById('logout');
 const bookTitle = document.getElementById('bookTitle');
-const bookName = document.getElementById('BookName');
+const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
 
 //run main function
@@ -26,6 +27,7 @@ async function main() {
   firebase.initializeApp(firebaseConfig);
   login_func(firebase);
   newbook(firebase);
+  viewbooks(firebase);
 };
 
 async function login_func(firebase){
@@ -78,7 +80,7 @@ async function newbook(firebase) {
     newbook.set({
         title: "Book Title",
         genre: "Fantasy",
-        lenght: "Short Story",
+        length: "Short Story",
         perspective: '3rd Person',
         audience: 'YA',
         tags: [null]
@@ -91,12 +93,10 @@ async function newbook(firebase) {
     });
     }
     else{
-          
-    
     newbook.set({
-        title: bookName,
+        title: bookName.innerText,
         genre: "Fantasy",
-        lenght: "Short Story",
+        length: "Short Story",
         perspective: '3rd Person',
         audience: 'YA',
         tags: [null]
@@ -107,9 +107,20 @@ async function newbook(firebase) {
     .catch((error) => {
       console.error("Error writing document: ", error);
     });
-
     };
+
+    bookName.innerText = null;
   });
+
+
+};
+
+async function viewbooks(firebase){
+  var db = firebase.firestore();
+  var userBooks = db.collection("books").doc()
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+    });
 
 
 };
