@@ -112,12 +112,14 @@ p.menu{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
 }
 .leftmenu-tooltitle {
+  
+  overflow-x: wrap;
   height: 35px;
   padding: 7px 5px 0px 5px;
   outline: none;
   font-size: 110%;
-  overflow-y: hidden ;
-  overflow-x: auto;
+  
+  
 }
 .leftmenu-tooltitle2 {
   display: flex;
@@ -424,13 +426,14 @@ font-weight: bold;
   font-weight: bold;
 }
 #BookName{
-  border-radius: 5px ;
   text-align: left;
   outline: none;
-  margin: 0px 5px 0px 5px;
-  padding: 5px 5px 15px 5px;
+  margin: 0px 5px 7px 15px;
+  padding: 5px 5px 0px 5px;
   color: #242E35;
-  
+  font-weight: bold;
+  border-bottom: 1px solid #242E35;
+  overflow-y: hidden;
 }
 
 
