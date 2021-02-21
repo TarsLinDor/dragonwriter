@@ -11,6 +11,7 @@ const bookTitle = document.getElementById('bookTitle');
 const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
 
+
 //run main function
 main();
 
@@ -117,11 +118,9 @@ async function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
-  var userBooks = db.collection("books").doc()
-    .onSnapshot((doc) => {
-        console.log("Current data: ", doc.data());
-    });
-
+  var userBooks = db.collection("books");
+  const test = document.getElementById('test');
+  test.intnerHtml = userBooks.orderBy('title');
 
 };
 
