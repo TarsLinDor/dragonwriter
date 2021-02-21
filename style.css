@@ -284,7 +284,6 @@ li.leftmenu-list:hover{
   height: 35px;
   margin: 0px 5px 5px 5px;
   cursor: pointer;
-  grid-column: 1 / span 1;
 }
 .circle:hover {
   background-color: #C6B9B0;
@@ -412,6 +411,28 @@ font-weight: bold;
   padding: 5px;
   font-size: 82%;
   }
+
+.addBook{
+  display: grid;
+  grid-template-columns: auto 50px;
+}
+#BookName[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
+  color: #242E35;
+  font-weight: bold;
+}
+#BookName{
+  border-radius: 5px ;
+  text-align: left;
+  outline: none;
+  margin: 0px 5px 0px 5px;
+  padding: 5px 5px 15px 5px;
+  color: #242E35;
+  
+}
+
 
 /* meta stuff*/
 ::-webkit-scrollbar {
