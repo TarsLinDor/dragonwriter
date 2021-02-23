@@ -38,7 +38,7 @@ newbook(firebase);
 viewbooks(firebase);
 };
 
-function login(firebase){
+async function login(firebase){
   // Add Firebase project configuration object here
   
   // FirebaseUI config
@@ -83,6 +83,7 @@ function userlogout(firebase){
     if (firebase.auth().currentUser) {
       // User is signed in, let's sign out
       firebase.auth().signOut();
+      console.log("Logged out successfully!");
     } 
   });
 };
@@ -91,7 +92,7 @@ function newbook(firebase) {
   var db = firebase.firestore();
   addBook.addEventListener('click', 
   function(){
-    var newbook = db.collection("book").doc();
+    var newbook = db.collection("books").doc();
     if(bookName == null){
     
     
@@ -139,6 +140,7 @@ function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
+  var books = db.collection(books).where
 };
 
 
