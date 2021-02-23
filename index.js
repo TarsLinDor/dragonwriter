@@ -79,6 +79,8 @@ async function newbook(firebase) {
     
     
     newbook.set({
+        userId: firebase.auth().currentUser.uid,
+        timestamp: Date.now(),
         title: "Book Title",
         genre: "Fantasy",
         length: "Short Story",
@@ -95,6 +97,8 @@ async function newbook(firebase) {
     }
     else{
     newbook.set({
+        userId: firebase.auth().currentUser.uid,
+        timestamp: Date.now(),
         title: bookName.innerText,
         genre: "Fantasy",
         length: "Short Story",
