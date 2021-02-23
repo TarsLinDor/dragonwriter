@@ -15,8 +15,11 @@ const booktitle = document.getElementById('booktitle');
 booktitle.contentEditable = 'true';
 const content_Title = document.getElementById('Content_Title');
 content_Title.contentEditable='true';
-//run main function
 const booklist = document.getElementById('booklist');
+
+//run main function
+
+main();
 
 async function main() {
   var firebaseConfig = {
@@ -35,7 +38,7 @@ async function main() {
   user_login(firebase);
   user_logout(firebase);
   user_newbook(firebase);
-  //viewbooklist(firebase);
+  user_viewbooks(firebase);
 };
 
 async function user_login(firebase){
@@ -93,7 +96,7 @@ async function user_newbook(firebase) {
   addBook.addEventListener('click', 
   function(){
     var newbook = db.collection("books").doc();
-    if(bookName == null){
+    if(bookName.innerText == ''){
     newbook.set({
         userId: firebase.auth().currentUser.uid,
         timestamp: Date.now(),
@@ -133,28 +136,20 @@ async function user_newbook(firebase) {
     bookName.innerText = null;
   });
 };
-/*
-async function viewbooks(firebase){
-  var db = firebase.firestore();
-  var books = db.collection(books).collection("books")
-  .orderBy("timestamp","desc").onSnapshot((snaps) => {
+
+async function user_viewbooks(firebase){
+firebase.firestore().collection("books")
+.orderBy("timestamp","desc")
+.onSnapshot((snaps) => {
  // Reset page
- 
+ booklist.innerHTML = "";
  // Loop through documents in database
  snaps.forEach((doc) => {
    // Create an HTML entry for each document and add it to the chat
-   //const booklist_item = document.createElement("div");
-    //booklist_item.classList.add("booklist_item");
-    //booklist_item.id = doc.data().id;
-   const booklist_title = document.createElement("a");
-    booklist_title.classList.add("booklist_title");
-    booklist_title.textContent = doc.data().title;
-
-   //booklist_item.appendChild(booklist_title);
-   booklist.appendChild(booklist_title);
+   const entry = document.createElement("p");
+   entry.textContent = doc.data().title;
+   booklist.appendChild(entry);
  });
 });
-  
 };
-*/
-main();
+
