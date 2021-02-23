@@ -5,15 +5,15 @@ import * as firebaseui from "firebaseui";
 import './style.css';
 import "./tools/toolbar/toolbar.js";
 import "./tools/editor/editor.js";
-import "./tools/bookmenu/bookmenu.js";
 
 //Define all global variable here
-const login_screen = document.getElementById('login_screen');
+const login_screen = document.getElementById('login');
 const logout = document.getElementById('logout');
 const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
 
 //run main function
+main();
 async function main() {
   var firebaseConfig = {
     apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
@@ -25,6 +25,7 @@ async function main() {
     measurementId: "G-6VYBWWEX41"
 };
 firebase.initializeApp(firebaseConfig);
+var firebaseConfig = {};
 
 //Call functions;
 login(firebase);
@@ -33,7 +34,7 @@ userlogout(firebase);
 
 async function login(firebase){
   // Add Firebase project configuration object here
-  var firebaseConfig = {};
+  
   // FirebaseUI config
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -82,6 +83,6 @@ function userlogout(firebase){
   });
 };
 
-main();
+
 
 
