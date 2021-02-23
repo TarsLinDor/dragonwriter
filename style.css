@@ -294,7 +294,7 @@ li.leftmenu-list:hover{
 /* bookmenu*/
 
 /*Menu Items*/
-.bookmenu {
+.rightmenu {
   display: none;
   position: absolute;
   top: 0px;
@@ -307,14 +307,12 @@ li.leftmenu-list:hover{
 
 .menu_title {
   padding: 5px 5px 5px 10px;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
   outline: none;
   font-weight: bold;
   font-size: 20px;
 }
 
-.menu_books_item {
+.booklist_item {
   position: relative;
   padding: 3px 5px 3px 10px;
   margin: 5px 10px 5px 10px;
@@ -322,14 +320,15 @@ li.leftmenu-list:hover{
   display: grid;
   grid-template-columns: auto 15px;
   background-color: #C6B9B0;
-box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
-z-index: 10;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
+  z-index: 10;
 }
-a.menu_book_title{
+
+.booklist_title{
 font-weight: bold;
 }
 
-.menu_books_item:hover {
+.booklist_item:hover {
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -340,7 +339,7 @@ font-weight: bold;
   color:#3C4D58;
 }
 
-.Book_Meta_Data{
+.booklist_MetaData{
   position: relative;
   display: grid;
   grid-template-columns: 150px auto;
@@ -351,14 +350,14 @@ font-weight: bold;
   font-size: 80%;
   /*display: none;*/
   }
-.Meta_Data_Item{
+.MetaData_Item{
   outline: none;
   padding: 5px;
   border-radius: 5px;
   }
-  .Meta_Data_Item:focus{background-color: lightgrey;}
+.MetaData_Item:focus{background-color: lightgrey;}
 
-.Meta_Data_tags{
+.Taglist{
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
@@ -366,18 +365,18 @@ font-weight: bold;
   padding: 5px;
   margin: 2px;
   }
-  .Meta_Data_Title{
+.MetaData_Title{
   text-align: center;
   border-bottom: 1px solid black;
   grid-column: 1 / span 2;
   padding: 0px
   }
-  #addTag{
+#addTag{
   text-align: center;
   padding: 5px;
   }
 
-   #TagName{
+#TagName{
   outline: none;
   margin: 2px;
   min-width: 50px;
@@ -386,17 +385,18 @@ font-weight: bold;
   font-size: 82%;
   border-bottom: 1px solid lightgrey;
   
-  }
-  #TagName:hover{
+}
+  
+#TagName:hover{
   background-color: lightgrey;
   border-radius: 5px;
-  }
-   #TagName:focus{
+}
+  #TagName:focus{
      background-color: lightgrey;
      border-radius: 5px;
   }
 
-  .insertTag{
+.insertTag{
   grid-column: 1 / span 2;
   position: relative;
   text-align: left;
@@ -418,6 +418,7 @@ font-weight: bold;
   display: grid;
   grid-template-columns: auto 50px;
 }
+
 #bookName[contenteditable=true]:empty:before{
   content: attr(placeholder);
   pointer-events: none;
@@ -425,6 +426,7 @@ font-weight: bold;
   color: #242E35;
   font-weight: bold;
 }
+
 #bookName{
   text-align: left;
   outline: none;

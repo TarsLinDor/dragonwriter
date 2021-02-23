@@ -15,12 +15,8 @@ const booktitle = document.getElementById('booktitle');
 booktitle.contentEditable = 'true';
 const content_Title = document.getElementById('Content_Title');
 content_Title.contentEditable='true';
-
-const books = document.getElementById('books');
-
-books.style.display ='none';
-
 //run main function
+const booklist = document.getElementById('booklist');
 
 async function main() {
   var firebaseConfig = {
@@ -31,15 +27,15 @@ async function main() {
     messagingSenderId: "986346360064",
     appId: "1:986346360064:web:552c83759e18a086e0b7e5",
     measurementId: "G-6VYBWWEX41"
-};
-firebase.initializeApp(firebaseConfig);
-var firebaseConfig = {};
+  };
+  firebase.initializeApp(firebaseConfig);
+  var firebaseConfig = {};
 
-//Call functions;
-login(firebase);
-userlogout(firebase);
-newbook(firebase);
-viewbooks(firebase);
+  //Call functions;
+  login(firebase);
+  userlogout(firebase);
+  newbook(firebase);
+  viewbooks(firebase);
 };
 
 async function login(firebase){
@@ -144,17 +140,22 @@ function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
-  var books = db.collection(books).collection("books").orderBy("timestamp","desc")
-.onSnapshot((snaps) => {
+  var books = db.collection(books).collection("books")
+  .orderBy("timestamp","desc").onSnapshot((snaps) => {
  // Reset page
  
  // Loop through documents in database
  snaps.forEach((doc) => {
    // Create an HTML entry for each document and add it to the chat
-   //const book = document.createElement("div");
-  // book.classList.add("menu_book");
-   //book.id = doc.data().id;
-   //books.appendChild();
+   //const booklist_item = document.createElement("div");
+    //booklist_item.classList.add("booklist_item");
+    //booklist_item.id = doc.data().id;
+   const booklist_title = document.createElement("a");
+    booklist_title.classList.add("booklist_title");
+    booklist_title.textContent = doc.data().title;
+
+   //booklist_item.appendChild(booklist_title);
+   booklist.appendChild(booklist_title);
  });
 });
   
