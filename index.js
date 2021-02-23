@@ -5,11 +5,11 @@ import * as firebaseui from "firebaseui";
 import "./tools/bookmenu/bookmenu.js"
 
 //Define all global variable here
-const login = document.getElementById('login');
+const login_screen = document.getElementById('login_screen');
 const logout = document.getElementById('logout');
-const bookTitle = document.getElementById('bookTitle');
 const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
+
 
 
 
@@ -27,14 +27,14 @@ async function main() {
     measurementId: "G-6VYBWWEX41"
   };
   firebase.initializeApp(firebaseConfig);
-  login_func(firebase);
+  login(firebase);
   newbook(firebase);
   viewbooks(firebase);
   userlogout(firebase);
 };
 
 
-async function login_func(firebase){
+async function login(firebase){
   // Add Firebase project configuration object here
   var firebaseConfig = {};
   // FirebaseUI config
@@ -65,10 +65,10 @@ async function login_func(firebase){
    // Listen to the current Auth state
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-    login.style.display ='none';
+    login_screen.style.display ='none';
     }
     else {
-    login.style.display ='grid';
+    login_screen.style.display ='grid';
     }
   });
 };
@@ -131,7 +131,8 @@ async function viewbooks(firebase){
   test.intnerHtml = userBooks.orderBy('title');
 
 };
-async function userlogout(firebase){
+
+function userlogout(firebase){
   logout.addEventListener('click', 
   function(){
     if (firebase.auth().currentUser) {
