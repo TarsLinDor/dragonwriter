@@ -11,6 +11,10 @@ const login_screen = document.getElementById('login');
 const logout = document.getElementById('logout');
 const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
+const booktitle = document.getElementById('booktitle');
+booktitle.contentEditable = 'true';
+const content_Title = document.getElementById('Content_Title');
+content_Title.contentEditable='true';
 
 //run main function
 
@@ -31,9 +35,10 @@ var firebaseConfig = {};
 login(firebase);
 userlogout(firebase);
 newbook(firebase);
+viewbooks(firebase);
 };
 
-async function login(firebase){
+function login(firebase){
   // Add Firebase project configuration object here
   
   // FirebaseUI config
@@ -50,7 +55,7 @@ async function login(firebase){
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
         // Handle sign-in.
         console.log("Login successfull!");
-        
+        login_screen.style.display ='none';
 
         // Return false to avoid redirect.
         return false;
@@ -82,7 +87,7 @@ function userlogout(firebase){
   });
 };
 
-async function newbook(firebase) {
+function newbook(firebase) {
   var db = firebase.firestore();
   addBook.addEventListener('click', 
   function(){
@@ -134,11 +139,6 @@ async function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
-  
-  var userBooks = db.collection("books").where('userId', '==', "");
-  const test = document.getElementById('test');
-  test.intnerHtml = userBooks.orderBy('title');
-
 };
 
 
