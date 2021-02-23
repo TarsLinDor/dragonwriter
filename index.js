@@ -105,7 +105,7 @@ async function user_newbook(firebase) {
         length: "Short Story",
         perspective: '3rd Person',
         audience: 'YA',
-        tags: [null]
+        tags: ['lgbtq+', 'women-lead']
     })
     .then(() => {
       console.log("Document successfully written!");
@@ -142,13 +142,84 @@ firebase.firestore().collection("books")
 .orderBy("timestamp","desc")
 .onSnapshot((snaps) => {
  // Reset page
- booklist.innerHTML = "";
+ booklist.innerHTML = "<hr>";
  // Loop through documents in database
  snaps.forEach((doc) => {
    // Create an HTML entry for each document and add it to the chat
-   const entry = document.createElement("p");
-   entry.textContent = doc.data().title;
-   booklist.appendChild(entry);
+  const booklist_item = document.createElement("div");
+   booklist_item.classList.add('booklist_item');
+   const booklist_title = document.createElement("a");
+   booklist_title.classList.add('booklist_title');
+   const dropdown = document.createElement("i");
+   dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
+   booklist_title.textContent = doc.data().title;
+   booklist_item.appendChild(booklist_title);
+   booklist_item.appendChild(dropdown);
+
+  const booklist_MetaData = document.createElement("div");
+    booklist_MetaData.classList.add('booklist_MetaData');
+
+      const genre = document.createElement("a");
+      genre.classList.add('MetaData_Item');
+      genre.innerHTML = "<b> Genre: </b>"
+      const genre_value = document.createElement("a");
+      genre_value.contentEditable='true';
+      genre_value.classList.add('MetaData_Item');
+      genre_value.textContent = doc.data().genre;
+      booklist_MetaData.appendChild(genre);
+      booklist_MetaData.appendChild(genre_value);
+
+      const length = document.createElement("a");
+      length.classList.add('MetaData_Item');
+      length.innerHTML = "<b> Length: </b>"
+      const length_value = document.createElement("a");
+      length_value.contentEditable='true';
+      length_value.classList.add('MetaData_Item');
+      length_value.textContent = doc.data().length;
+      booklist_MetaData.appendChild(length);
+      booklist_MetaData.appendChild(length_value);
+
+      const perspective = document.createElement("a");
+      perspective.classList.add('MetaData_Item');
+      perspective.innerHTML = "<b> Perspective: </b>"
+      const perspective_value = document.createElement("a");
+      perspective_value.contentEditable='true';
+      perspective_value.classList.add('MetaData_Item');
+      perspective_value.textContent = doc.data().perspective;
+      booklist_MetaData.appendChild(perspective);
+      booklist_MetaData.appendChild(perspective_value);
+
+      const audience = document.createElement("a");
+      audience.classList.add('MetaData_Item');
+      audience.innerHTML = "<b> Audience: </b>"
+      const audience_value = document.createElement("a");
+      audience_value.contentEditable='true';
+      audience_value.classList.add('MetaData_Item');
+      audience_value.textContent = doc.data().audience;
+      booklist_MetaData.appendChild(audience);
+      booklist_MetaData.appendChild(audience_value);
+
+      const taglist_title = document.createElement("a");
+      taglist_title.classList.add('MetaData_Title');
+      taglist_title.innerHTML = "<b> Tags </b>"
+      booklist_MetaData.appendChild(taglist_title);
+
+      const taglist = document.createElement("div");
+      taglist.classList.add('Taglist');
+         const tag = document.createElement("a");
+          tag.classList.add('tag');
+          tag .textContent = doc.data().tags;
+          taglist.appendChild(tag);
+
+
+
+      booklist_MetaData.appendChild(taglist);
+      
+
+      
+
+   booklist.appendChild(booklist_item);
+   booklist.appendChild(booklist_MetaData);
  });
 });
 };
