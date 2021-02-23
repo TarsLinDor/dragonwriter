@@ -16,6 +16,10 @@ booktitle.contentEditable = 'true';
 const content_Title = document.getElementById('Content_Title');
 content_Title.contentEditable='true';
 
+const books = document.getElementById('books');
+
+books.style.display ='none';
+
 //run main function
 
 async function main() {
@@ -140,8 +144,20 @@ function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
-  var books = db.collection(books).where
+  var books = db.collection(books).collection("books").orderBy("timestamp","desc")
+.onSnapshot((snaps) => {
+ // Reset page
+ 
+ // Loop through documents in database
+ snaps.forEach((doc) => {
+   // Create an HTML entry for each document and add it to the chat
+   //const book = document.createElement("div");
+  // book.classList.add("menu_book");
+   //book.id = doc.data().id;
+   //books.appendChild();
+ });
+});
+  
 };
-
 
 main();
