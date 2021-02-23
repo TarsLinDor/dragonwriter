@@ -53,6 +53,7 @@ async function user_login(firebase){
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      //firebase.auth.signInAnonymously.PROVIDER_ID
     ],
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -138,8 +139,8 @@ async function user_newbook(firebase) {
 };
 
 async function user_viewbooks(firebase){
-firebase.firestore().collection("books")
-.orderBy("timestamp","desc").where('userId', '==', firebase.auth().currentUser.uid)
+  var db = firebase.firestore();
+  db.collection("books")
 .onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
@@ -208,7 +209,7 @@ firebase.firestore().collection("books")
       taglist.classList.add('Taglist');
          const tag = document.createElement("a");
           tag.classList.add('tag');
-          tag .textContent = doc.data().tags;
+          tag .textContent = doc.data().tags[];
           taglist.appendChild(tag);
 
 

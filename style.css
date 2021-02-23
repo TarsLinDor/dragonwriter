@@ -338,6 +338,9 @@ font-weight: bold;
 .dropdown:hover{
   color:#3C4D58;
 }
+#booklist{
+  overflow: hidden;
+}
 
 .booklist_MetaData{
   position: relative;
