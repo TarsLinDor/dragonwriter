@@ -88,7 +88,7 @@ function userlogout(firebase){
   });
 };
 
-function newbook(firebase) {
+async function newbook(firebase) {
   var db = firebase.firestore();
   addBook.addEventListener('click', 
   function(){
