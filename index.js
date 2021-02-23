@@ -32,13 +32,13 @@ async function main() {
   var firebaseConfig = {};
 
   //Call functions;
-  login(firebase);
-  userlogout(firebase);
-  newbook(firebase);
-  viewbooks(firebase);
+  user_login(firebase);
+  user_logout(firebase);
+  user_newbook(firebase);
+  //viewbooklist(firebase);
 };
 
-async function login(firebase){
+async function user_login(firebase){
   // Add Firebase project configuration object here
   
   // FirebaseUI config
@@ -77,7 +77,7 @@ async function login(firebase){
   });
 };
 
-function userlogout(firebase){
+function user_logout(firebase){
   logout.addEventListener('click', 
   function(){
     if (firebase.auth().currentUser) {
@@ -88,7 +88,7 @@ function userlogout(firebase){
   });
 };
 
-async function newbook(firebase) {
+async function user_newbook(firebase) {
   var db = firebase.firestore();
   addBook.addEventListener('click', 
   function(){
