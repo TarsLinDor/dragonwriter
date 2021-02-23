@@ -94,8 +94,6 @@ async function user_newbook(firebase) {
   function(){
     var newbook = db.collection("books").doc();
     if(bookName == null){
-    
-    
     newbook.set({
         userId: firebase.auth().currentUser.uid,
         timestamp: Date.now(),
@@ -134,8 +132,6 @@ async function user_newbook(firebase) {
 
     bookName.innerText = null;
   });
-
-
 };
 /*
 async function viewbooks(firebase){
