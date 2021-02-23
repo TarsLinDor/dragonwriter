@@ -137,7 +137,7 @@ async function newbook(firebase) {
 
 
 };
-
+/*
 async function viewbooks(firebase){
   var db = firebase.firestore();
   var books = db.collection(books).collection("books")
@@ -160,5 +160,5 @@ async function viewbooks(firebase){
 });
   
 };
-
+*/
 main();
