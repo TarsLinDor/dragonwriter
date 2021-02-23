@@ -30,6 +30,7 @@ async function main() {
   login_func(firebase);
   newbook(firebase);
   viewbooks(firebase);
+  userlogout(firebase);
 };
 
 
@@ -130,7 +131,7 @@ async function viewbooks(firebase){
   test.intnerHtml = userBooks.orderBy('title');
 
 };
-
+async function userlogout(firebase){
   logout.addEventListener('click', 
   function(){
     if (firebase.auth().currentUser) {
@@ -138,6 +139,7 @@ async function viewbooks(firebase){
       firebase.auth().signOut();
     } 
   });
+};
 
 import './style.css';
 import "./tools/toolbar/toolbar.js"
