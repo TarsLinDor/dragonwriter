@@ -12,6 +12,7 @@ const bookName = document.getElementById('bookName');
 const addBook = document.getElementById('addBook');
 
 
+
 //run main function
 main();
 
@@ -30,6 +31,7 @@ async function main() {
   newbook(firebase);
   viewbooks(firebase);
 };
+
 
 async function login_func(firebase){
   // Add Firebase project configuration object here
@@ -122,11 +124,20 @@ async function newbook(firebase) {
 
 async function viewbooks(firebase){
   var db = firebase.firestore();
-  var userBooks = db.collection("books");
+  
+  var userBooks = db.collection("books").where('userId', '==', "");
   const test = document.getElementById('test');
   test.intnerHtml = userBooks.orderBy('title');
 
 };
+
+  logout.addEventListener('click', 
+  function(){
+    if (firebase.auth().currentUser) {
+      // User is signed in, let's sign out
+      firebase.auth().signOut();
+    } 
+  });
 
 import './style.css';
 import "./tools/toolbar/toolbar.js"

@@ -1,6 +1,3 @@
-
-
-
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
   [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],

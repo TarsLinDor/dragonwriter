@@ -1,10 +1,3 @@
-import * as firebase from "firebase/app";
-
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
-
-
 const book = document.getElementById('book');
 const selectbook = document.getElementById('selectbook');
 const bookmenu = document.getElementById('bookmenu');
@@ -89,14 +82,6 @@ stats.addEventListener('click',
     else{
     app.style.right ='0px';
     };
-  });
-
-  logout.addEventListener('click', 
-  function(){
-    if (firebase.auth().currentUser) {
-      // User is signed in, let's sign out
-      firebase.auth().signOut();
-    } 
   });
 
 
