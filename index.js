@@ -139,7 +139,7 @@ async function user_newbook(firebase) {
 
 async function user_viewbooks(firebase){
 firebase.firestore().collection("books")
-.orderBy("timestamp","desc")
+.orderBy("timestamp","desc").where('userId', '==', firebase.auth().currentUser.uid)
 .onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
@@ -157,7 +157,7 @@ firebase.firestore().collection("books")
    booklist_item.appendChild(dropdown);
 
   const booklist_MetaData = document.createElement("div");
-    booklist_MetaData.classList.add('booklist_MetaData');
+  booklist_MetaData.classList.add('booklist_MetaData');
 
       const genre = document.createElement("a");
       genre.classList.add('MetaData_Item');
