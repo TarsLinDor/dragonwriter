@@ -94,12 +94,13 @@ function user_logout(firebase){
 
 async function user_newbook(firebase) {
   var db = firebase.firestore();
+  var user = firebase.auth().currentUser;
   addBook.addEventListener('click', 
   function(){
     var newbook = db.collection("books").doc();
     if(bookName.innerText == ''){
     newbook.set({
-        userId: firebase.auth().currentUser.uid,
+        userId: user.uid,
         timestamp: Date.now(),
         title: "Book Title",
         genre: "Fantasy",
@@ -117,7 +118,7 @@ async function user_newbook(firebase) {
     }
     else{
     newbook.set({
-        userId: firebase.auth().currentUser.uid,
+        userId: user.uid,
         timestamp: Date.now(),
         title: bookName.innerText,
         genre: "Fantasy",
@@ -140,7 +141,8 @@ async function user_newbook(firebase) {
 
 async function user_viewbooks(firebase){
   var db = firebase.firestore();
-  db.collection("books")
+  var user = firebase.auth().currentUser;
+  db.collection("books").where('userId', '==', user.uid)
 .onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
@@ -209,7 +211,7 @@ async function user_viewbooks(firebase){
       taglist.classList.add('Taglist');
          const tag = document.createElement("a");
           tag.classList.add('tag');
-          tag .textContent = doc.data().tags[];
+          tag .textContent = doc.data().tags;
           taglist.appendChild(tag);
 
 
