@@ -141,8 +141,9 @@ async function user_newbook(firebase) {
 
 async function user_viewbooks(firebase){
   var db = firebase.firestore();
-  var user = firebase.auth().currentUser;
-  db.collection("books").where('user', '==' , user.uid).onSnapshot((snaps) => {
+   
+  db.collection("books")
+  .onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
  // Loop through documents in database
