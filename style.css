@@ -17,7 +17,7 @@ hr {
 ol {
   cursor: pointer;
   padding: 0px;
-  list-style-position: inside;
+  list-style-position: outside;
   margin: 0px;
   border-radius: 5px;
 }
@@ -138,9 +138,12 @@ p.menu{
 }
 
 li.leftmenu-list{
+  display: grid;
+  grid-template-columns: auto 15px;
   padding: 1px 5px 2px 10px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
+  background-color: #E3DCD7;
   }
 
 li.leftmenu-list:hover{

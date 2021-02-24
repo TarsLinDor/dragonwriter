@@ -239,7 +239,7 @@
       
     };
 
-    function select_book(bookid, title){
+    async function select_book(bookid, title){
       addchapter(bookid);
       viewchapters(bookid);
       const booktitle = document.getElementById('booktitle');
