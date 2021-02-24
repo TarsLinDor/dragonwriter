@@ -32,6 +32,7 @@ async function main() {
     measurementId: "G-6VYBWWEX41"
   };
   firebase.initializeApp(firebaseConfig);
+  
   var firebaseConfig = {};
 
   //Call functions;
@@ -94,20 +95,19 @@ function user_logout(firebase){
 
 async function user_newbook(firebase) {
   var db = firebase.firestore();
-  var user = firebase.auth().currentUser;
   addBook.addEventListener('click', 
   function(){
     var newbook = db.collection("books").doc();
     if(bookName.innerText == ''){
     newbook.set({
-        userId: user.uid,
+        user: firebase.auth().currentUser.uid,
         timestamp: Date.now(),
         title: "Book Title",
         genre: "Fantasy",
         length: "Short Story",
         perspective: '3rd Person',
-        audience: 'YA',
-        tags: ['lgbtq+', 'women-lead']
+        audience: 'Adult',
+        tags: [null]
     })
     .then(() => {
       console.log("Document successfully written!");
@@ -118,13 +118,13 @@ async function user_newbook(firebase) {
     }
     else{
     newbook.set({
-        userId: user.uid,
+        user: firebase.auth().currentUser.uid,
         timestamp: Date.now(),
         title: bookName.innerText,
         genre: "Fantasy",
-        length: "Short Story",
+        length: "Novel",
         perspective: '3rd Person',
-        audience: 'YA',
+        audience: 'Adult',
         tags: [null]
     })
     .then(() => {
@@ -142,8 +142,7 @@ async function user_newbook(firebase) {
 async function user_viewbooks(firebase){
   var db = firebase.firestore();
   var user = firebase.auth().currentUser;
-  db.collection("books").where('userId', '==', user.uid)
-.onSnapshot((snaps) => {
+  db.collection("books").where('user', '==' , user.uid).onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
  // Loop through documents in database
