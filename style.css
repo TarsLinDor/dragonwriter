@@ -17,7 +17,7 @@ hr {
 ol {
   cursor: pointer;
   padding: 0px;
-  list-style-position: outside;
+  list-style-position: inside;
   margin: 0px;
   border-radius: 5px;
 }
