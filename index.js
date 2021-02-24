@@ -241,36 +241,53 @@
 
     function select_book(bookid, title){
       addchapter(bookid);
+      viewchapters(bookid);
       const booktitle = document.getElementById('booktitle');
       booktitle.contentEditable = 'true';
       booktitle.innerText = title;
     };
 
 
-function addchapter(bookid){
+  function addchapter(bookid){
     const addContent = document.getElementById('AddContent');
       var db = firebase.firestore();
         addContent.addEventListener('click', 
           function(){
-            var newContent = db.collection("books").doc(bookid).collection('contents');
-            newContent.set({
-                bookId: bookid,
-                timestamp: Date.now(),
-                title: "Title",
-                type: 'Chapter',
-                pov: "none",
-                discription: "Write a Chapter Discription.",
-                draft: 1,
-                content: [null]
-            })
+              var newContent = db.collection("books").doc(bookid).collection('contents');
+                if(bookid != null){
+                  newContent.add({
+                    bookId: bookid,
+                    timestamp: Date.now(),
+                    title: "Title",
+                    type: 'Chapter',
+                    pov: "none",
+                    discription: "Write a Chapter Discription.",
+                    draft: 1,
+                    content: [null],
+                  })
             .then(() => {
               console.log("Document successfully written!");
-            })
+              })
             .catch((error) => {
               console.error("Error writing document: ", error);
-            });
-            }
-    });
-};
+              });
+          }});
+  };
 
-
+  function viewchapters(bookid){
+    const content_list = document.getElementById('content-list');
+      var db = firebase.firestore();
+        db.collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
+          // Reset page
+          content_list.innerHTML = "";
+          // Loop through documents in database
+            snaps.forEach((doc) => {
+                if(doc.data().type == 'Chapter'){
+                  const content_item = document.createElement("li");
+                  content_item.classList.add('leftmenu-list');
+                  content_item.innerHTML = doc.data().title;
+                  content_list.appendChild(content_item);
+                };
+              });
+      });
+    };
