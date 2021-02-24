@@ -5,23 +5,7 @@ import * as firebaseui from "firebaseui";
 import './style.css';
 import "./tools/toolbar/toolbar.js";
 import "./tools/editor/editor.js";
-
-//Define all global variable here
-const login_screen = document.getElementById('login');
-const logout = document.getElementById('logout');
-const bookName = document.getElementById('bookName');
-const addBook = document.getElementById('addBook');
-const booktitle = document.getElementById('booktitle');
-booktitle.contentEditable = 'true';
-const content_Title = document.getElementById('Content_Title');
-content_Title.contentEditable='true';
-const booklist = document.getElementById('booklist');
-
-//run main function
-
-main();
-
-async function main() {
+// Add Firebase project configuration object here
   var firebaseConfig = {
     apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
     authDomain: "dragonwriter-2d4d4.firebaseapp.com",
@@ -35,14 +19,28 @@ async function main() {
   
   var firebaseConfig = {};
 
-  //Call functions;
-  user_login(firebase);
-  user_logout(firebase);
-  user_newbook(firebase);
-  user_viewbooks(firebase);
-};
+//Define all global variable here
+const login_screen = document.getElementById('login');
+const logout = document.getElementById('logout');
+const bookName = document.getElementById('bookName');
+const addBook = document.getElementById('addBook');
+const booktitle = document.getElementById('booktitle');
+booktitle.contentEditable = 'true';
+const content_Title = document.getElementById('Content_Title');
+content_Title.contentEditable='true';
+const booklist = document.getElementById('booklist');
+const userid = 'zFZIb7azTVOvIH2jvmK5On22hAw2';
 
-async function user_login(firebase){
+//run main function
+
+
+user_login();
+user_logout();
+user_newbook();
+user_viewbooks();
+
+
+function user_login(){
   // Add Firebase project configuration object here
   
   // FirebaseUI config
@@ -61,8 +59,8 @@ async function user_login(firebase){
         // Handle sign-in.
         console.log("Login successfull!");
         login_screen.style.display ='none';
-
-        // Return false to avoid redirect.
+        user = firebase.auth().currentUser;
+                // Return false to avoid redirect.
         return false;
       }
     }
@@ -74,15 +72,17 @@ async function user_login(firebase){
    // Listen to the current Auth state
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-    login_screen.style.display ='none';
+
     }
     else {
     login_screen.style.display ='grid';
+    
     }
   });
+
 };
 
-function user_logout(firebase){
+function user_logout(){
   logout.addEventListener('click', 
   function(){
     if (firebase.auth().currentUser) {
@@ -93,7 +93,7 @@ function user_logout(firebase){
   });
 };
 
-async function user_newbook(firebase) {
+function user_newbook() {
   var db = firebase.firestore();
   addBook.addEventListener('click', 
   function(){
@@ -134,16 +134,13 @@ async function user_newbook(firebase) {
       console.error("Error writing document: ", error);
     });
     };
-
     bookName.innerText = null;
   });
 };
 
-async function user_viewbooks(firebase){
+function user_viewbooks(){
   var db = firebase.firestore();
-   
-  db.collection("books")
-  .onSnapshot((snaps) => {
+  db.collection("books").where('user', '==', userid).onSnapshot((snaps) => {
  // Reset page
  booklist.innerHTML = "<hr>";
  // Loop through documents in database
@@ -213,16 +210,21 @@ async function user_viewbooks(firebase){
           tag.classList.add('tag');
           tag .textContent = doc.data().tags;
           taglist.appendChild(tag);
+      const insertTag = document.createElement("div");
+      insertTag.classList.add('insertTag');
+      insertTag.innerHTML = "<a id='TagName' contenteditable='true' placeholder='Add Tag'></a><a id='addTag'><i class='fas fa-plus'></i></a>";
 
 
 
       booklist_MetaData.appendChild(taglist);
+      booklist_MetaData.appendChild(insertTag);
       
 
       
 
    booklist.appendChild(booklist_item);
    booklist.appendChild(booklist_MetaData);
+ 
  });
 });
 };
