@@ -248,32 +248,29 @@
 
 
 function addchapter(bookid){
-const addContent = document.getElementById('AddContent');
-var db = firebase.firestore();
-      addContent.addEventListener('click', 
-      function(){
-        var newContent = db.collection("books").doc(bookid).collection('contents');
-        if(bookName.innerText == ''){
-        newContent.set({
-            bookId: bookid,
-            timestamp: Date.now(),
-            title: "Title",
-            type: 'chapter',
-            pov: "none",
-            draft: 0,
-            content: [null]
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        }
-        
-
-
-});
+    const addContent = document.getElementById('AddContent');
+      var db = firebase.firestore();
+        addContent.addEventListener('click', 
+          function(){
+            var newContent = db.collection("books").doc(bookid).collection('contents');
+            newContent.set({
+                bookId: bookid,
+                timestamp: Date.now(),
+                title: "Title",
+                type: 'Chapter',
+                pov: "none",
+                discription: "Write a Chapter Discription.",
+                draft: 1,
+                content: [null]
+            })
+            .then(() => {
+              console.log("Document successfully written!");
+            })
+            .catch((error) => {
+              console.error("Error writing document: ", error);
+            });
+            }
+    });
 };
 
 
