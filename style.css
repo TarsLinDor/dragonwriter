@@ -139,12 +139,19 @@ p.menu{
 
 li.leftmenu-list{
   display: grid;
-  grid-template-columns: auto 15px;
+  counter-reset: elementcounter;
+  list-style-type: none;
   padding: 1px 5px 2px 10px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
   }
+li.leftmenu-list:before{
+    /* print out "Element " followed by the current counter value */
+  content: "Chapter " counter(elementcounter) ": ";
+  /* increment counter */
+  counter-increment: elementcounter;
+}
 
 li.leftmenu-list:hover{
   background-color: #C6B9B0;
@@ -445,6 +452,10 @@ font-weight: bold;
   overflow-y: hidden;
 }
 
+.content-item{
+  display: grid;
+  grid-template-columns: auto 20px;
+}
 
 /* meta stuff*/
 ::-webkit-scrollbar {
