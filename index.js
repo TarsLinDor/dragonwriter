@@ -129,12 +129,13 @@ viewchapters();
 
   function viewbooks(){
       var db = firebase.firestore();
+      var userID = firebase.UserInfo.uid;
       db.collection("books")//.where('user', '==', firebase.User.uid)
       .onSnapshot((snaps) => {
         // Reset page
         booklist.innerHTML = "";
         // Loop through documents in database
-        var x = 0;
+        
           snaps.forEach((doc) => {
                 // Create an HTML entry for each document and add it to the chat
                 const booklist_item = document.createElement("div");
@@ -229,21 +230,10 @@ viewchapters();
                     const insertTag = document.createElement("div");
                     insertTag.classList.add('insertTag');
                     insertTag.innerHTML = "<a id='TagName' contenteditable='true' placeholder='Add Tag'></a><a id='addTag'><i class='fas fa-plus'></i></a>";
-
-
-
                     booklist_MetaData.appendChild(taglist);
                     booklist_MetaData.appendChild(insertTag);
-                    
-
-                    
-
                 booklist.appendChild(booklist_item);
                 booklist.appendChild(booklist_MetaData);
-                  if(x==0){
-                    booktitle.name = doc.id;
-                  };
-              
         });
       });
       
@@ -257,8 +247,6 @@ viewchapters();
       const toc = document.getElementById('content-list');
       var db = firebase.firestore();
         var bookid = booktitle.name;
-          const test = document.getElementById('quill-editor');
-            test.innerText = booktitle.name;
         addContent.addEventListener('click', 
           function(){
               var newContent = db.collection("books").doc(bookid).collection('contents');
