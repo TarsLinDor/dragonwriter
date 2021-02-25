@@ -26,11 +26,11 @@ initializeApp(); // Initiizes all functions and starts firebase
   //run functions
   login_logout();
   books();
-  editor(); 
+   
 };
 
 // Define all functions
-  function login_logout(){ // Logs users in and out of DragonWriter.
+  async function login_logout(){ // Logs users in and out of DragonWriter.
       const login = document.getElementById('login');
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -73,7 +73,7 @@ initializeApp(); // Initiizes all functions and starts firebase
       });
       };
 
-  function books(){ //Adds new books and allows users to select books they want to edit  
+  async function books(){ //Adds new books and allows users to select books they want to edit  
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
         addbook();
@@ -233,7 +233,7 @@ initializeApp(); // Initiizes all functions and starts firebase
     };
 
 
-  function editor(){ // "editor" defines everything that happens in the editor tool
+  async function editor(){ // "editor" defines everything that happens in the editor tool
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
         tableofcontents();
@@ -241,12 +241,13 @@ initializeApp(); // Initiizes all functions and starts firebase
       };
     });
     };
-  function addchapter(){
+  async function addchapter(){
       firebase.auth().onAuthStateChanged((user) => {
           if(user){
           const addContent = document.getElementById('AddContent');
           const toc = document.getElementById('content-list');
           addContent.addEventListener('click', function(){
+            var bookid = booktitle.value;
             if(bookid != null){
               firebase.firestore().collection("books").doc(bookid).collection('contents').add({
                   bookId: bookid,
@@ -270,11 +271,11 @@ initializeApp(); // Initiizes all functions and starts firebase
       });
     };
 
-  function tableofcontents(){
+  async function tableofcontents(){
       firebase.auth().onAuthStateChanged((user) => {
       if(user){
       const content_list = document.getElementById('content-list');
-        content_list.innerText = booktitle.value;
+        var bookid = booktitle.value;
         
           firebase.firestore().collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
             // Reset page
@@ -298,4 +299,5 @@ initializeApp(); // Initiizes all functions and starts firebase
       };
     });
     };
+  
     
