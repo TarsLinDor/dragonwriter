@@ -36,7 +36,7 @@ function main(){
   world_tool.style.display ='grid';
   editor.classList.add("full");
   world_tool.style.display ='none';
-  character_tool.style.display ='none';
+  
   //world_tool.classList.add("second");
 
   edit.addEventListener('click', 

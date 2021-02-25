@@ -133,11 +133,11 @@
       });
       };
 
-    async function user_viewbooks(){
+    function user_viewbooks(){
       var db = firebase.firestore();
       db.collection("books").where('user', '==', userid).onSnapshot((snaps) => {
         // Reset page
-        booklist.innerHTML = "<hr>";
+        booklist.innerHTML = "";
         // Loop through documents in database
           snaps.forEach((doc) => {
                 // Create an HTML entry for each document and add it to the chat
@@ -250,6 +250,7 @@
 
     function addchapter(bookid){
       const addContent = document.getElementById('AddContent');
+      const toc = document.getElementById('content-list');
       var db = firebase.firestore();
         addContent.addEventListener('click', 
           function(){
@@ -264,6 +265,7 @@
                     discription: "Write a Chapter Discription.",
                     draft: 1,
                     content: [null],
+                    order: toc.childElementCount+1,
                   })
             .then(() => {
               console.log("Document successfully written!");
@@ -284,8 +286,13 @@
               snaps.forEach((doc) => {
                 if(doc.data().type == 'Chapter'){
                   const content_item = document.createElement("li");
-                  content_item.classList.add('leftmenu-list');
-                  content_item.innerHTML = doc.data().title;
+                    content_item.classList.add('leftmenu-list');
+                      const content_title = document.createElement("a");
+                        content_title.innerText = doc.data().title;
+                      const content_dropdown = document.createElement("i");
+                        content_dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown',);
+                  content_item.appendChild(content_title);
+                  content_item.appendChild(content_dropdown);
                   content_list.appendChild(content_item);
                 };
               });

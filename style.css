@@ -7,13 +7,8 @@ body {
 }
 
 
-hr {
-  height: 1px;
-  background-color: black;
-  border: none;
-  padding: 0px;
-  margin: 0px 5px 0px 5px;
-}
+
+
 ol {
   cursor: pointer;
   padding: 0px;
@@ -79,47 +74,28 @@ p.menu{
   border-radius: 5px;
   display: grid;
   grid-template-columns: 210px auto auto auto 90px;
-  /*grid-template-rows: 35px auto 40px;*/
   margin:  0px 0px 0px 5px;
-  overflow: none;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
-}
-
-.tool2 {
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: 200px auto;
-  background-color: #F1EDEB;
-  /*grid-template-rows: 35px auto 40px;*/
-  margin:  0px 0px 0px 5px;
-  overflow: none;
+  overflow: hidden;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 /*Left menu items*/
-.col-leftmenu{
+.col-1{
   display: grid;
-  grid-template-rows: 35px auto 40px;
+  grid-template-rows: auto 37px;
   grid-row: 1 / span 3;
   border-radius: 5px 0px 0px 5px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
-}
-.col-leftmenu2{
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 35px auto 35px auto 35px auto;
-  grid-row: 1 / span 3;
-  border-radius: 5px 0px 0px 5px;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
-}
-.leftmenu-tooltitle {
   
-  overflow-x: wrap;
-  height: 35px;
-  padding: 7px 5px 0px 5px;
+}
+.toc{
+  overflow: auto ;
+}
+
+.col-1-title {
+  padding: 7px 5px 5px 5px;
   outline: none;
   font-size: 110%;
-  
-  
+  text-align: center;
 }
 .leftmenu-tooltitle2 {
   display: flex;
@@ -130,26 +106,30 @@ p.menu{
   overflow-y: hidden ;
   overflow-x: auto;
 }
-.leftmenu-toc{overflow:auto}
+.leftmenu-tooltoc{
+  
+}
+
 .leftmenu-toc2{overflow:auto}
 
 .selected {
   background-color: #C3CED4;
 }
 
-li.leftmenu-list{
+.leftmenu-list{
   display: grid;
-  list-style-type: none;
-  padding: 1px 5px 2px 10px;
+  grid-template-columns: 25px auto 5px;
+  padding: 1px 15px 2px 0px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
-  }
-li.leftmenu-list:before{
-    /* print out "Element " followed by the current counter value */
-  content: "Chapter" counter(elementcounter) ": ";
-  /* increment counter */
   counter-increment: elementcounter;
+  }
+.leftmenu-list:before{
+    /* print out "Element " followed by the current counter value */
+  content: counter(elementcounter) ": ";
+  margin: auto ;
+  /* increment counter */
 }
 
 li.leftmenu-list:hover{
@@ -315,10 +295,12 @@ li.leftmenu-list:hover{
 }
 
 .menu_title {
+  margin: 0px 5px 0px 5px;
   padding: 5px 5px 5px 10px;
   outline: none;
   font-weight: bold;
   font-size: 20px;
+  border-bottom: solid 1px;
 }
 
 .booklist_item {
@@ -349,7 +331,7 @@ font-weight: bold;
   color:#3C4D58;
 }
 #booklist{
-  overflow: hidden;
+  overflow: auto;
 }
 
 .booklist_MetaData{
@@ -458,25 +440,29 @@ font-weight: bold;
 
 /* meta stuff*/
 ::-webkit-scrollbar {
-  width: 10px;
+  display: none;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
+  //display: none;
     background: inherit;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+  display: none;
   background: inherit;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
+  display: none;
   background: gray;
 }
 
 ::-webkit-scrollbar-thumb:onscroll {
+  display: none;
   background: gray;
 }
 

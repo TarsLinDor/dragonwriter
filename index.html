@@ -46,7 +46,6 @@
   <div id = 'bookmenu' class = 'rightmenu'> 
     <div class = 'menu_title'>My Books</div>
     <div id='booklist'>
-    <hr>
          <!-- <div class='booklist_item'>
             <a class='booklist_title'>Book Title</a>
             <i class="fas fa-chevron-down dropdown"></i>
@@ -112,9 +111,9 @@
  a middle section for a text editor and a draft section for revising there chapters-->
 		<div class = 'tool' id='editor'>
       <!-- Contains everything on the left menu-->
-      <div class = 'col-leftmenu'>
-			  <div class='leftmenu-tooltitle' id='booktitle'>Book Title</div>
-			  <div class='leftmenu-tooltoc' id='tableofcontents'>
+      <div class = 'col-1'>
+			  <div class='toc'>
+          <div class='col-1-title' id='booktitle'>Book Title</div>
 				  <hr>
 				  <ol class="sortable" id='content-list'>
             
@@ -123,9 +122,15 @@
                 <a>Title</a>
                 <i class="fas fa-chevron-down dropdown"></i>
               </div>
+              <br>
+                <div class='content-meta'>
+                
+              </div>
             </li>
+
 				  </ol>
 			  </div>
+
 			<div class ="leftmenu-bottom">
         <div><button class='circle' id="AddContent"><i class="fas fa-plus"></i></button></div>
         <div><button class='circle' id="HideContent"><i class="fas fa-eye"></i></button></div>
@@ -186,36 +191,7 @@
 	</div>
 
       <!--Character tool -->
-    <div class= 'tool2' id='character_tool'>
 
-            <!-- Contains everything on the left menu-->
-      <div class = 'col-leftmenu2'>
-			  <div class='leftmenu-tooltitle2' >Setting</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-					  <p class='menu'>Maps</p>
-            <p class='menu'>Worlds</p>
-            <p class='menu'>Places</p>
-			  </div>
-        <div class='leftmenu-tooltitle2' >Races & Peoples</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-
-            <button class='circle'><i class="fas fa-plus"></i></button>
-			  </div>
-        <div class='leftmenu-tooltitle2' >Creatures</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-
-            <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
-			  </div>
-      </div>
-      <!-- Contains everything on the middle area-->
-      <div class='col-middle2'>
-        <div class="middle-title"><a class="contentType">World</a><a id='Content_Title'></a></div>
-			  <div id="quill-editor"></div>
-      </div>
-    </div>
 	</div>
 
 
