@@ -28,12 +28,15 @@
     const content_Title = document.getElementById('Content_Title');
     content_Title.contentEditable='true';
     const userid = 'zFZIb7azTVOvIH2jvmK5On22hAw2'; // Note this needs work
+    var bookid = booktitle.name;
     
 //run functions
   user_login();
   user_logout();
   user_newbook();
   user_viewbooks();
+  addchapter();
+  viewchapters();
   
 
 
@@ -139,6 +142,7 @@
         // Reset page
         booklist.innerHTML = "";
         // Loop through documents in database
+        var x = 0;
           snaps.forEach((doc) => {
                 // Create an HTML entry for each document and add it to the chat
                 const booklist_item = document.createElement("div");
@@ -148,7 +152,19 @@
                   const dropdown = document.createElement("i");
                   dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
                   booklist_title.textContent = doc.data().title;
-                  booklist_title.addEventListener('click', function(){select_book(doc.id, doc.data().title)});
+
+                    booklist_title.addEventListener('click', function(){
+                      bookId = doc.id;
+                      booktitle.contentEditable = 'true';
+                      booktitle.innerText = doc.data().title;
+                      var select = document.getElementsByClassName("selected");
+                      select.classList.remove("selected");
+                      booklist_item.classList.add('selected');
+                      booktitle.name = doc.id;
+                      const test = document.getElementById('quill-editor');
+                      test.innerText = booktitle.name;
+                  });
+
                   dropdown.addEventListener('click', function(){
                     const meta = document.getElementById(doc.id);
                     if(dropdown.classList.contains('fa-chevron-down')){
@@ -162,6 +178,7 @@
                       dropdown.classList.add('fa-chevron-down');
                     }
                   });
+
                   booklist_item.appendChild(booklist_title);
                   booklist_item.appendChild(dropdown);
 
@@ -233,25 +250,23 @@
 
                 booklist.appendChild(booklist_item);
                 booklist.appendChild(booklist_MetaData);
+                  if(x==0){
+                    booktitle.name = doc.id;
+                  };
               
         });
       });
       
       };
 
-    function select_book(bookid, title){
-      addchapter(bookid);
-      viewchapters(bookid);
-      const booktitle = document.getElementById('booktitle');
-      booktitle.contentEditable = 'true';
-      booktitle.innerText = title;
-      };
 
 
-    function addchapter(bookid){
+
+    function addchapter(){
       const addContent = document.getElementById('AddContent');
       const toc = document.getElementById('content-list');
       var db = firebase.firestore();
+        var bookid = booktitle.name;
         addContent.addEventListener('click', 
           function(){
               var newContent = db.collection("books").doc(bookid).collection('contents');
@@ -276,9 +291,11 @@
           }});
       };
 
-    function viewchapters(bookid){
+    function viewchapters(){
       const content_list = document.getElementById('content-list');
         var db = firebase.firestore();
+        bookid = booktitle.name;
+        /*
           db.collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
             // Reset page
             content_list.innerHTML = "";
@@ -297,4 +314,5 @@
                 };
               });
       });
+      */
       };
