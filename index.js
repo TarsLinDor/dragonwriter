@@ -7,41 +7,32 @@
     import "./tools/toolbar/toolbar.js";
     import "./tools/editor/editor.js";
 // Add Firebase project configuration object here
-    var firebaseConfig = {
-        apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
-        authDomain: "dragonwriter-2d4d4.firebaseapp.com",
-        projectId: "dragonwriter-2d4d4",
-        storageBucket: "dragonwriter-2d4d4.appspot.com",
-        messagingSenderId: "986346360064",
-        appId: "1:986346360064:web:552c83759e18a086e0b7e5",
-        measurementId: "G-6VYBWWEX41"
-      };
-    firebase.initializeApp(firebaseConfig);
-      
-    var firebaseConfig = {};
-
-//Define all global variables here
-    const login_screen = document.getElementById('login');
-    const logout = document.getElementById('logout');
-    const bookName = document.getElementById('bookName');
-    const addBook = document.getElementById('addBook');
-    const content_Title = document.getElementById('Content_Title');
-    content_Title.contentEditable='true';
-    const userid = 'zFZIb7azTVOvIH2jvmK5On22hAw2'; // Note this needs work
-    var bookid = booktitle.name;
-    
+initializeDragon();
+  function initializeDragon(){
+      var firebaseConfig = {
+          apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
+          authDomain: "dragonwriter-2d4d4.firebaseapp.com",
+          projectId: "dragonwriter-2d4d4",
+          storageBucket: "dragonwriter-2d4d4.appspot.com",
+          messagingSenderId: "986346360064",
+          appId: "1:986346360064:web:552c83759e18a086e0b7e5",
+          measurementId: "G-6VYBWWEX41"
+        };
+      firebase.initializeApp(firebaseConfig);
+        
+      var firebaseConfig = {};
 //run functions
-  user_login();
-  user_logout();
-  user_newbook();
-  user_viewbooks();
-  addchapter();
-  viewchapters();
-  
-
+user_login();
+user_logout();
+newbook();
+viewbooks();
+addchapter();
+viewchapters(); 
+  };
 
 //functions
-    function user_login(){
+  function user_login(){
+      const login_screen = document.getElementById('login');
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
         signInOptions: [
@@ -53,11 +44,8 @@
           //firebase.auth.signInAnonymously.PROVIDER_ID
         ],
         callbacks: {
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          signInSuccessWithAuthResult: function() {
             // Handle sign-in.
-            console.log("Login successfull!");
-            login_screen.style.display ='none';
-            // Return false to avoid redirect.
             return false;
           }
         }
@@ -69,18 +57,19 @@
       // Listen to the current Auth state
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-        
+        login_screen.style.display ='none';
+ 
         }
         else {
         login_screen.style.display ='grid';
-        
         }
       });
 
-
+      
       };
 
-    function user_logout(){
+  function user_logout(){
+      const logout = document.getElementById('logout');
       logout.addEventListener('click', 
       function(){
         if (firebase.auth().currentUser) {
@@ -91,8 +80,10 @@
       });
       };
 
-    function user_newbook() {
+  function newbook() {
       var db = firebase.firestore();
+      const addBook = document.getElementById('addBook');
+      const bookName = document.getElementById('bookName');
       addBook.addEventListener('click', 
       function(){
         var newbook = db.collection("books").doc();
@@ -136,9 +127,10 @@
       });
       };
 
-    function user_viewbooks(){
+  function viewbooks(){
       var db = firebase.firestore();
-      db.collection("books").where('user', '==', userid).onSnapshot((snaps) => {
+      db.collection("books")//.where('user', '==', firebase.User.uid)
+      .onSnapshot((snaps) => {
         // Reset page
         booklist.innerHTML = "";
         // Loop through documents in database
@@ -154,15 +146,13 @@
                   booklist_title.textContent = doc.data().title;
 
                     booklist_title.addEventListener('click', function(){
-                      bookId = doc.id;
                       booktitle.contentEditable = 'true';
                       booktitle.innerText = doc.data().title;
-                      var select = document.getElementsByClassName("selected");
-                      select.classList.remove("selected");
+                      //var select = document.getElementsByClassName("selected");
+                      //select.classList.remove("selected");
                       booklist_item.classList.add('selected');
                       booktitle.name = doc.id;
-                      const test = document.getElementById('quill-editor');
-                      test.innerText = booktitle.name;
+
                   });
 
                   dropdown.addEventListener('click', function(){
@@ -262,11 +252,13 @@
 
 
 
-    function addchapter(){
+  async function addchapter(){
       const addContent = document.getElementById('AddContent');
       const toc = document.getElementById('content-list');
       var db = firebase.firestore();
         var bookid = booktitle.name;
+          const test = document.getElementById('quill-editor');
+            test.innerText = booktitle.name;
         addContent.addEventListener('click', 
           function(){
               var newContent = db.collection("books").doc(bookid).collection('contents');
@@ -291,11 +283,14 @@
           }});
       };
 
-    function viewchapters(){
+  function viewchapters(){
+    const content_Title = document.getElementById('Content_Title');
+    content_Title.contentEditable='true';
+    
       const content_list = document.getElementById('content-list');
         var db = firebase.firestore();
-        bookid = booktitle.name;
-        /*
+        var bookid = booktitle.name;
+        
           db.collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
             // Reset page
             content_list.innerHTML = "";
@@ -314,5 +309,5 @@
                 };
               });
       });
-      */
+      
       };
