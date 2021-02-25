@@ -13,8 +13,4 @@ var editor = new Quill('#quill-editor', {
 });
 
 
-const Content_Title = document.getElementById('Content_Title');
-Content_Title.contentEditable='true';
-
-
 

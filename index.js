@@ -6,9 +6,11 @@
     import './style.css';
     import "./tools/toolbar/toolbar.js";
     import "./tools/editor/editor.js";
-// Add Firebase project configuration object here
-initializeDragon();
-  function initializeDragon(){
+// Define Global Variables
+const booktitle = document.getElementById('booktitle');
+
+initializeApp(); // Initiizes all functions and starts firebase 
+  function initializeApp(){
       var firebaseConfig = {
           apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
           authDomain: "dragonwriter-2d4d4.firebaseapp.com",
@@ -21,18 +23,15 @@ initializeDragon();
       firebase.initializeApp(firebaseConfig);
         
       var firebaseConfig = {};
-//run functions
-user_login();
-user_logout();
-newbook();
-viewbooks();
-addchapter();
-viewchapters(); 
-  };
+  //run functions
+  login_logout();
+  books();
+  editor(); 
+};
 
-//functions
-  function user_login(){
-      const login_screen = document.getElementById('login');
+// Define all functions
+  function login_logout(){ // Logs users in and out of DragonWriter.
+      const login = document.getElementById('login');
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
         signInOptions: [
@@ -57,18 +56,12 @@ viewchapters();
       // Listen to the current Auth state
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-        login_screen.style.display ='none';
- 
+        login.style.display ='none';
         }
         else {
-        login_screen.style.display ='grid';
+        login.style.display ='grid';
         }
       });
-
-      
-      };
-
-  function user_logout(){
       const logout = document.getElementById('logout');
       logout.addEventListener('click', 
       function(){
@@ -80,95 +73,43 @@ viewchapters();
       });
       };
 
-  function newbook() {
-      var db = firebase.firestore();
-      const addBook = document.getElementById('addBook');
-      const bookName = document.getElementById('bookName');
-      addBook.addEventListener('click', 
-      function(){
-        var newbook = db.collection("books").doc();
-        if(bookName.innerText == ''){
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: "Book Title",
-            genre: "Fantasy",
-            length: "Short Story",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: [null]
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        }
-        else{
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: bookName.innerText,
-            genre: "Fantasy",
-            length: "Novel",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: [null]
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        };
-        bookName.innerText = null;
-      });
-      };
-
-  function viewbooks(){
-      var db = firebase.firestore();
-      var userID = firebase.UserInfo.uid;
-      db.collection("books")//.where('user', '==', firebase.User.uid)
-      .onSnapshot((snaps) => {
-        // Reset page
-        booklist.innerHTML = "";
-        // Loop through documents in database
-        
-          snaps.forEach((doc) => {
+  function books(){ //Adds new books and allows users to select books they want to edit  
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+        addbook();
+        firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {
+          // Reset page
+          booklist.innerHTML = "";
+          // Loop through documents in database
+        snaps.forEach((doc) => {
                 // Create an HTML entry for each document and add it to the chat
-                const booklist_item = document.createElement("div");
-                  booklist_item.classList.add('booklist_item');
-                  const booklist_title = document.createElement("a");
-                  booklist_title.classList.add('booklist_title');
+                const booklist_item = document.createElement("div"); //create book list item
+                  const booklist_title = document.createElement("a");//create book list children elements
                   const dropdown = document.createElement("i");
-                  dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
-                  booklist_title.textContent = doc.data().title;
+                    booklist_item.classList.add('booklist_item');
+                    booklist_title.classList.add('booklist_title');
+                    dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
+                    booklist_title.textContent = doc.data().title;
+                      booklist_title.addEventListener('click', function(){ // Adds select book on click
+                          booktitle.contentEditable = 'true';
+                          booktitle.innerText = doc.data().title;
+                          booklist_item.classList.add('selected');
+                          booktitle.value = doc.id;
+                        });
 
-                    booklist_title.addEventListener('click', function(){
-                      booktitle.contentEditable = 'true';
-                      booktitle.innerText = doc.data().title;
-                      //var select = document.getElementsByClassName("selected");
-                      //select.classList.remove("selected");
-                      booklist_item.classList.add('selected');
-                      booktitle.name = doc.id;
-
-                  });
-
-                  dropdown.addEventListener('click', function(){
-                    const meta = document.getElementById(doc.id);
-                    if(dropdown.classList.contains('fa-chevron-down')){
-                    meta.style.display = 'grid';
-                    dropdown.classList.add('fa-chevron-up')
-                    dropdown.classList.remove('fa-chevron-down');
-                    }
-                    else{
-                      meta.style.display = 'none';
-                      dropdown.classList.remove('fa-chevron-up')
-                      dropdown.classList.add('fa-chevron-down');
-                    }
-                  });
+                      dropdown.addEventListener('click', function(){
+                        const meta = document.getElementById(doc.id);
+                        if(dropdown.classList.contains('fa-chevron-down')){
+                        meta.style.display = 'grid';
+                        dropdown.classList.add('fa-chevron-up')
+                        dropdown.classList.remove('fa-chevron-down');
+                        }
+                        else{
+                          meta.style.display = 'none';
+                          dropdown.classList.remove('fa-chevron-up')
+                          dropdown.classList.add('fa-chevron-down');
+                        }
+                        });
 
                   booklist_item.appendChild(booklist_title);
                   booklist_item.appendChild(dropdown);
@@ -232,54 +173,110 @@ viewchapters();
                     insertTag.innerHTML = "<a id='TagName' contenteditable='true' placeholder='Add Tag'></a><a id='addTag'><i class='fas fa-plus'></i></a>";
                     booklist_MetaData.appendChild(taglist);
                     booklist_MetaData.appendChild(insertTag);
-                booklist.appendChild(booklist_item);
-                booklist.appendChild(booklist_MetaData);
-        });
-      });
+              booklist.appendChild(booklist_item);
+              booklist.appendChild(booklist_MetaData);
+          });
+          });
       
-      };
+      }});
+    };
 
-
-
-
-  async function addchapter(){
-      const addContent = document.getElementById('AddContent');
-      const toc = document.getElementById('content-list');
+    function addbook() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user){
       var db = firebase.firestore();
-        var bookid = booktitle.name;
-        addContent.addEventListener('click', 
-          function(){
-              var newContent = db.collection("books").doc(bookid).collection('contents');
-                if(bookid != null){
-                  newContent.add({
-                    bookId: bookid,
-                    timestamp: Date.now(),
-                    title: "Title",
-                    type: 'Chapter',
-                    pov: "none",
-                    discription: "Write a Chapter Discription.",
-                    draft: 1,
-                    content: [null],
-                    order: toc.childElementCount+1,
-                  })
-            .then(() => {
-              console.log("Document successfully written!");
-              })
-            .catch((error) => {
-              console.error("Error writing document: ", error);
-              });
-          }});
-      };
+      const addBook = document.getElementById('addBook');
+      const bookName = document.getElementById('bookName');
+      addBook.addEventListener('click', 
+      function(){
+        var newbook = db.collection("books").doc();
+        if(bookName.innerText == ''){
+        newbook.set({
+            user: firebase.auth().currentUser.uid,
+            timestamp: Date.now(),
+            title: "Book Title",
+            genre: "Fantasy",
+            length: "Short Story",
+            perspective: '3rd Person',
+            audience: 'Adult',
+            tags: [null]
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+        }
+        else{
+        newbook.set({
+            user: firebase.auth().currentUser.uid,
+            timestamp: Date.now(),
+            title: bookName.innerText,
+            genre: "Fantasy",
+            length: "Novel",
+            perspective: '3rd Person',
+            audience: 'Adult',
+            tags: [null]
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+        };
+        bookName.innerText = null;
+        });
+        };
+      });
+    };
 
-  function viewchapters(){
-    const content_Title = document.getElementById('Content_Title');
-    content_Title.contentEditable='true';
-    
+
+  function editor(){ // "editor" defines everything that happens in the editor tool
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        tableofcontents();
+        addchapter();
+      };
+    });
+    };
+  function addchapter(){
+      firebase.auth().onAuthStateChanged((user) => {
+          if(user){
+          const addContent = document.getElementById('AddContent');
+          const toc = document.getElementById('content-list');
+          addContent.addEventListener('click', function(){
+            if(bookid != null){
+              firebase.firestore().collection("books").doc(bookid).collection('contents').add({
+                  bookId: bookid,
+                  timestamp: Date.now(),
+                  title: "Title",
+                  type: 'Chapter',
+                  pov: "none",
+                  discription: "Write a Chapter Discription.",
+                  draft: 1,
+                  content: [null],
+                  order: toc.childElementCount+1,
+                      })
+                .then(() => {
+                  console.log("Document successfully written!");
+                  })
+                .catch((error) => {
+                  console.error("Error writing document: ", error);
+                  });
+              }});
+          };
+      });
+    };
+
+  function tableofcontents(){
+      firebase.auth().onAuthStateChanged((user) => {
+      if(user){
       const content_list = document.getElementById('content-list');
-        var db = firebase.firestore();
-        var bookid = booktitle.name;
+        content_list.innerText = booktitle.value;
         
-          db.collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
+          firebase.firestore().collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
             // Reset page
             content_list.innerHTML = "";
             // Loop through documents in database
@@ -299,3 +296,6 @@ viewchapters();
       });
       
       };
+    });
+    };
+    
