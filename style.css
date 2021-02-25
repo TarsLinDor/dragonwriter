@@ -99,8 +99,15 @@ ol {
 
 .leftmenu-toc2{overflow:auto}
 
-.selected {
-  background-color: #C3CED4;
+.selected_book {
+    position: relative;
+      padding: 3px 5px 3px 10px;
+      margin: 5px 10px 5px 10px;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: auto 15px;
+      background-color: rgb(176, 185, 198);
+      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
 }
 
 .leftmenu-list{
@@ -299,7 +306,6 @@ li.leftmenu-list:hover{
       grid-template-columns: auto 15px;
       background-color: #C6B9B0;
       box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
-      z-index: 10;
     }
 
     .booklist_title{

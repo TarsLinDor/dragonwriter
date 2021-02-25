@@ -8,6 +8,7 @@
     import "./tools/editor/editor.js";
 // Define Global Variables
 const booktitle = document.getElementById('booktitle');
+booktitle.contentEditable = 'true';
 
 initializeApp(); // Initiizes all functions and starts firebase 
   function initializeApp(){
@@ -81,38 +82,23 @@ initializeApp(); // Initiizes all functions and starts firebase
           // Reset page
           booklist.innerHTML = "";
           // Loop through documents in database
+          var x = 0;
         snaps.forEach((doc) => {
-                // Create an HTML entry for each document and add it to the chat
-                const booklist_item = document.createElement("div"); //create book list item
-                  const booklist_title = document.createElement("a");//create book list children elements
-                  const dropdown = document.createElement("i");
-                    booklist_item.classList.add('booklist_item');
-                    booklist_title.classList.add('booklist_title');
-                    dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
-                    booklist_title.textContent = doc.data().title;
-                      booklist_title.addEventListener('click', function(){ // Adds select book on click
-                          booktitle.contentEditable = 'true';
-                          booktitle.innerText = doc.data().title;
-                          booklist_item.classList.add('selected');
-                          booktitle.value = doc.id;
-                        });
-
-                      dropdown.addEventListener('click', function(){
-                        const meta = document.getElementById(doc.id);
-                        if(dropdown.classList.contains('fa-chevron-down')){
-                        meta.style.display = 'grid';
-                        dropdown.classList.add('fa-chevron-up')
-                        dropdown.classList.remove('fa-chevron-down');
-                        }
-                        else{
-                          meta.style.display = 'none';
-                          dropdown.classList.remove('fa-chevron-up')
-                          dropdown.classList.add('fa-chevron-down');
-                        }
-                        });
-
-                  booklist_item.appendChild(booklist_title);
-                  booklist_item.appendChild(dropdown);
+                // Create an HTML entry for each book document
+                const booklist_item = document.createElement("div")
+                  booklist_item.classList.add('booklist_item');
+                const booklist_title = document.createElement("a");
+                  booklist_title.classList.add('booklist_title');
+                  booklist_title.innerHTML = doc.data().title;
+                  booklist_item.value = doc.id;
+                const dropdown = document.createElement("i");
+                  dropdown.classList.add('fas', 'fa-chevron-down', 'dropdown');
+                  if(x == 0){
+                    booklist_item.classList.add('selected_book');
+                    booklist_item.classList.remove('booklist_item');
+                    sessionStorage.setItem("bookid", doc.id);
+                    x=1;
+                  }
 
                 const booklist_MetaData = document.createElement("div");
                     booklist_MetaData.classList.add('booklist_MetaData');
@@ -173,8 +159,31 @@ initializeApp(); // Initiizes all functions and starts firebase
                     insertTag.innerHTML = "<a id='TagName' contenteditable='true' placeholder='Add Tag'></a><a id='addTag'><i class='fas fa-plus'></i></a>";
                     booklist_MetaData.appendChild(taglist);
                     booklist_MetaData.appendChild(insertTag);
+                  
+                    
+
+
+                      dropdown.addEventListener('click', function(){
+                        const meta = document.getElementById(doc.id);
+                        if(dropdown.classList.contains('fa-chevron-down')){
+                        meta.style.display = 'grid';
+                        dropdown.classList.add('fa-chevron-up')
+                        dropdown.classList.remove('fa-chevron-down');
+                        }
+                        else{
+                          meta.style.display = 'none';
+                          dropdown.classList.remove('fa-chevron-up')
+                          dropdown.classList.add('fa-chevron-down');
+                        }
+                        });
+
+                  booklist_item.appendChild(booklist_title);
+                  booklist_item.appendChild(dropdown);
+
+
               booklist.appendChild(booklist_item);
               booklist.appendChild(booklist_MetaData);
+
           });
           });
       
