@@ -8,8 +8,8 @@
     import "./tools/editor/editor.js";
     import $ from "jquery";
 // Define Global Variables
-const booktitle = document.getElementById('booktitle');
-booktitle.contentEditable = 'true';
+  const booktitle = document.getElementById('booktitle');
+  booktitle.contentEditable = 'true';
 
 initializeApp(); // Initiizes all functions and starts firebase 
   function initializeApp(){
@@ -25,12 +25,10 @@ initializeApp(); // Initiizes all functions and starts firebase
       firebase.initializeApp(firebaseConfig);
         
       var firebaseConfig = {};
-  //run functions
-  login_logout();
-  books();
-};
+  };
 
-// Define all functions
+  //run functions
+login_logout(); // logs user in and out
   async function login_logout(){ // Logs users in and out of DragonWriter.
       const login = document.getElementById('login');
       const uiConfig = {
@@ -72,9 +70,11 @@ initializeApp(); // Initiizes all functions and starts firebase
           console.log("Logged out successfully!");
         } 
       });
-      };
+  };
 
-  async function books(){ //Adds new books and allows users to select books they want to edit  
+
+books();//Adds new books and allows users to select books they want to edit 
+async function books(){ 
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
         addbook();
@@ -108,10 +108,14 @@ initializeApp(); // Initiizes all functions and starts firebase
                           </div></div>";
 
           $("#booklist").append(item);
-          var tags = doc.data().tags[0];
-          $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
-  
-          });
+          var i = doc.data().tags;
+          i = i.length;
+          var x;
+          var tags;
+          for (x = 0; x < i; x++) {
+                tags = '<a class = "tags">'+doc.data().tags[x]+'</a>';
+                $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+          };
           });
       
       }});
