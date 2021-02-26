@@ -120,8 +120,8 @@ async function books(){
           });
       $('.dropdown').on('click', function(e){
         e.addclass('fa-chevron-up').removeclass('fa-chevron-down');
-        var meta = $('.dropdown').parent().parent().id;
-        $()
+        var meta = $('.dropdown').parent().parent().atri('id');
+        $('#'+meta).children('booklist_MetaData').toggle;
       });
       editor();
     };
