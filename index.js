@@ -75,54 +75,10 @@ login_logout(); // logs user in and out
 
 books();//Adds new books and allows users to select books they want to edit 
 async function books(){ 
-      firebase.auth().onAuthStateChanged((user) => {
-        if(user){
-        addbook();
-        firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => { //Load Users books
-          // Reset page
-          $("#booklist").html('');
-          // Loop through documents in database
-          var x = 0;
-          snaps.forEach((doc) => {
-            var item = "<div class='book_info' id ='"+doc.id+"'>\
-                        <div class='booklist_item'>\
-                        <a class='booklist_title'>"+ doc.data().title+ "</a>\
-                        <i class='fas fa-chevron-down dropdown'></i>\
-                        </div>\
-                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
-                          <a class='MetaData_Item'><b>Length:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
-                          <a class='MetaData_Item'><b>Perspective:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
-                          <a class='MetaData_Item'><b>Audience:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a>\
-                          <a class='MetaData_Title'><b>Tags</b></a>\
-                          <div class='Taglist'>\
-                          <br>\
-                          </div>\
-                          <div class='insertTag'>\
-                          <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                          <a id='addTag'><i class='fas fa-plus'></i></a>\
-                          </div></div>";
-
-            $("#booklist").append(item);
-              var i = doc.data().tags;
-              i = i.length;
-              var x;
-              var tags;
-              for (x = 0; x < i; x++) {
-                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
-                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
-              };
-          });
-      
-          });
-    };
-      });
+  addbook();
+  loadbooks();
+  selectbook();
 };
-
-
 
     function addbook() {
       firebase.auth().onAuthStateChanged((user) => {
@@ -173,6 +129,59 @@ async function books(){
         });
         };
       });
+    };
+
+    function loadbooks(){
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+          firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
+          // Reset page
+          $("#booklist").html('');
+          // Loop through documents in database
+          var x = 0;
+          snaps.forEach((doc) => {
+            var item = "<div class='book_info' id ='"+doc.id+"'>\
+                        <div class='booklist_item'>\
+                        <a class='booklist_title'>"+ doc.data().title+ "</a>\
+                        <i class='fas fa-chevron-down dropdown'></i>\
+                        </div>\
+                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
+                          <a class='MetaData_Item'><b>Length:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
+                          <a class='MetaData_Item'><b>Perspective:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
+                          <a class='MetaData_Item'><b>Audience:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a>\
+                          <a class='MetaData_Title'><b>Tags</b></a>\
+                          <div class='Taglist'>\
+                          <br>\
+                          </div>\
+                          <div class='insertTag'>\
+                          <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
+                          <a id='addTag'><i class='fas fa-plus'></i></a>\
+                          </div></div>";
+
+            $("#booklist").append(item);
+            $('.booklist_MetaData').hide();
+              var i = doc.data().tags;
+              i = i.length;
+              var x;
+              var tags;
+              for (x = 0; x < i; x++) {
+                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
+                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+              };
+            });
+      
+          });
+        };
+      });
+      
+    };
+
+    function selectbook(){
+
     };
 
 
