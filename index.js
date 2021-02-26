@@ -176,10 +176,10 @@ async function books(){
             $('.booklist_MetaData').hide();
             $('.dropdown').on('click', function(){
               $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-              $(this).parent('.booklist_item').parent('.book_info').children('.booklist_MetaData').toggle();
+              $(this).parent().parent().children('.booklist_MetaData').toggle();
             });
             $('.booklist_title').on('click', function(){
-              $(this).parent().addClass('selected').removeClass('booklist_item');
+              $(this).parent().addClass('selected_book').removeClass('booklist_item');
             });
           });
         };
