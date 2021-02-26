@@ -179,7 +179,7 @@ async function books(){
               $(this).parent().parent().children('.booklist_MetaData').toggle();
             });
             $('.booklist_title').on('click', function(){
-              $(this).parent().addClass('selected_book').removeClass('booklist_item');
+              $(this).parent().toggleClass('selected_book');
             });
           });
         };
