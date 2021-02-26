@@ -118,17 +118,12 @@ async function books(){
           });
       
           });
-      
-
-        //e.addclass('fa-chevron-up').removeclass('fa-chevron-down');
-        //var meta = $('.dropdown').parent().parent().attr('id');
-        //$('#'+meta).children('booklist_MetaData').toggle();
-      
-      editor();
     };
       });
 };
-$('i.dropdown').click(function(){$('i.dropdown').addclass('fa-chevron-up').removeclass('fa-chevron-down')};
+
+
+
     function addbook() {
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
