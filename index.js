@@ -175,7 +175,7 @@ async function books(){
             });
             $('.booklist_MetaData').hide();
             $('.dropdown').on('click', function(){
-              $('.booklist_MetaData').toggle();
+              $('#'+doc.id).children('.booklist_MetaData').toggle();
             });
           });
         };
