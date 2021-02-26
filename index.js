@@ -118,11 +118,12 @@ async function books(){
           });
       
           });
-      $('.dropdown').on('click', function(e){
-        e.addclass('fa-chevron-up').removeclass('fa-chevron-down');
-        var meta = $('.dropdown').parent().parent().atri('id');
-        $('#'+meta).children('booklist_MetaData').toggle;
-      });
+      $('booklist_item').children('.dropdown').click().addclass('fa-chevron-up').removeclass('fa-chevron-down');
+
+        //e.addclass('fa-chevron-up').removeclass('fa-chevron-down');
+        //var meta = $('.dropdown').parent().parent().attr('id');
+        //$('#'+meta).children('booklist_MetaData').toggle();
+      
       editor();
     };
       });
