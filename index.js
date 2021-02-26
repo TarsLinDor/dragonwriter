@@ -163,8 +163,8 @@ async function books(){
                           </div></div>";
 
             $("#booklist").append(item);
-            $('.booklist_MetaData').hide();
-              var i = doc.data().tags;
+            
+            var i = doc.data().tags;
               i = i.length;
               var x;
               var tags;
@@ -173,7 +173,10 @@ async function books(){
                     $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
               };
             });
-      
+            $('.booklist_MetaData').hide();
+            $('.dropdown').on('click', function(){
+              $('.booklist_MetaData').toggle();
+            });
           });
         };
       });
