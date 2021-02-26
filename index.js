@@ -77,6 +77,7 @@ books();//Adds new books and allows users to select books they want to edit
   async function books(){ 
   addbook();
   loadbooks();
+  editor();
 
 };
 
@@ -140,9 +141,9 @@ books();//Adds new books and allows users to select books they want to edit
           // Loop through documents in database
           var x = 0;
           snaps.forEach((doc) => {
-            var item = "<div class='book_info' id ='"+doc.id+"'>\
+            var item = "<div class='book_info' >\
                         <div class='booklist_item'>\
-                        <a class='booklist_title'>"+ doc.data().title+ "</a>\
+                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
                         <i class='fas fa-chevron-down dropdown'></i>\
                         </div>\
                         <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
