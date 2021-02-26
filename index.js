@@ -118,9 +118,11 @@ async function books(){
           };
           });
       
-      }});
+      });
       editor();
     };
+      });
+};
 
     function addbook() {
       firebase.auth().onAuthStateChanged((user) => {
