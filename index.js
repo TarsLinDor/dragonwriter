@@ -142,7 +142,7 @@ async function books(){
             length: "Short Story",
             perspective: '3rd Person',
             audience: 'Adult',
-            tags: [null, 'test']
+            tags: ["", 'test']
         })
         .then(() => {
           console.log("Document successfully written!");
@@ -160,7 +160,7 @@ async function books(){
             length: "Novel",
             perspective: '3rd Person',
             audience: 'Adult',
-            tags: [null, 'test']
+            tags: ["", 'test']
         })
         .then(() => {
           console.log("Document successfully written!");
