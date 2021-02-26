@@ -78,13 +78,12 @@ async function books(){
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
         addbook();
-        firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {
+        firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => { //Load Users books
           // Reset page
           $("#booklist").html('');
           // Loop through documents in database
           var x = 0;
-        snaps.forEach((doc) => {
-
+          snaps.forEach((doc) => {
             var item = "<div class='book_info' id ='"+doc.id+"'>\
                         <div class='booklist_item'>\
                         <a class='booklist_title'>"+ doc.data().title+ "</a>\
@@ -116,8 +115,13 @@ async function books(){
                     tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
                     $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
               };
-        });
+          });
       
+          });
+      $('.dropdown').on('click', function(e){
+        e.addclass('fa-chevron-up').removeclass('fa-chevron-down');
+        var meta = $('.dropdown').parent().parent().id;
+        $()
       });
       editor();
     };
