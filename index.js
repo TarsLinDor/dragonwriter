@@ -74,10 +74,10 @@ login_logout(); // logs user in and out
 
 
 books();//Adds new books and allows users to select books they want to edit 
-async function books(){ 
+  async function books(){ 
   addbook();
   loadbooks();
-  selectbook();
+
 };
 
     function addbook() {
@@ -152,7 +152,7 @@ async function books(){
                           <a class='MetaData_Item'><b>Perspective:</b></a>\
                           <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
                           <a class='MetaData_Item'><b>Audience:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a><br>\
                           <a class='MetaData_Title'><b>Tags</b></a>\
                           <div class='Taglist'>\
                           <br>\
@@ -163,6 +163,10 @@ async function books(){
                           </div></div>";
 
             $("#booklist").append(item);
+            if(x == 0){
+              $('.booklist_item').addClass('selected_book').removeClass('booklist_item');
+              x=1;
+            };
             
             var i = doc.data().tags;
               i = i.length;
@@ -179,7 +183,8 @@ async function books(){
               $(this).parent().parent().children('.booklist_MetaData').toggle();
             });
             $('.booklist_title').on('click', function(){
-              $(this).parent().toggleClass('selected_book');
+              $('.selected_book').addClass('booklist_item').removeClass('selected_book');
+              $(this).parent().addClass('selected_book').removeClass('booklist_item');
             });
           });
         };
@@ -187,9 +192,7 @@ async function books(){
       
     };
 
-    function selectbook(){
 
-    };
 
 
   async function editor(){ // "editor" defines everything that happens in the editor tool
