@@ -84,31 +84,33 @@ initializeApp(); // Initiizes all functions and starts firebase
           // Loop through documents in database
           var x = 0;
         snaps.forEach((doc) => {
-            var item = "<div class='booklist_item'><a class='booklist_title'>"+ doc.data().title+ "</a><i class='fas fa-chevron-down dropdown'></i></div>";
-            var meta = "<div class='booklist_MetaData'id ='"+doc.id+"'><a class='MetaData_Item'><b>Genre: </b></a>\
-                <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
-                <a class='MetaData_Item'><b>Length:</b></a>\
-                <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
-                <a class='MetaData_Item'><b>Perspective:</b></a>\
-                <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
-                <a class='MetaData_Item'><b>Audience:</b></a>\
-                <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a>\
-                <a class='MetaData_Title'><b>Tags</b></a>\
-                <div class='Taglist'>\
-                <a class='tag' contenteditable='true'>Grimdark</a>\
-                <br>\
-                </div>\
-                <div class='insertTag'>\
-                <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                  <a id='addTag'><i class='fas fa-plus'></i></a>\
-                </div></div>";
 
-          $("#booklist").append( item, meta);
-          
-          
-                // Create an HTML entry for each book document
+            var item = "<div class='book_info' id ='"+doc.id+"'>\
+                        <div class='booklist_item'>\
+                        <a class='booklist_title'>"+ doc.data().title+ "</a>\
+                        <i class='fas fa-chevron-down dropdown'></i>\
+                        </div>\
+                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
+                          <a class='MetaData_Item'><b>Length:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
+                          <a class='MetaData_Item'><b>Perspective:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
+                          <a class='MetaData_Item'><b>Audience:</b></a>\
+                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a>\
+                          <a class='MetaData_Title'><b>Tags</b></a>\
+                          <div class='Taglist'>\
+                          <br>\
+                          </div>\
+                          <div class='insertTag'>\
+                          <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
+                          <a id='addTag'><i class='fas fa-plus'></i></a>\
+                          </div></div>";
 
-              
+          $("#booklist").append(item);
+          var tags = doc.data().tags[0];
+          $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+  
           });
           });
       
