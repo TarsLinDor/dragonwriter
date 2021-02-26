@@ -107,16 +107,16 @@ async function books(){
                           <a id='addTag'><i class='fas fa-plus'></i></a>\
                           </div></div>";
 
-          $("#booklist").append(item);
-          var i = doc.data().tags;
-          i = i.length;
-          var x;
-          var tags;
-          for (x = 0; x < i; x++) {
-                tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
-                $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
-          };
-          });
+            $("#booklist").append(item);
+              var i = doc.data().tags;
+              i = i.length;
+              var x;
+              var tags;
+              for (x = 0; x < i; x++) {
+                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
+                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+              };
+        });
       
       });
       editor();
@@ -142,7 +142,7 @@ async function books(){
             length: "Short Story",
             perspective: '3rd Person',
             audience: 'Adult',
-            tags: ["", 'test']
+            tags: [""]
         })
         .then(() => {
           console.log("Document successfully written!");
@@ -160,7 +160,7 @@ async function books(){
             length: "Novel",
             perspective: '3rd Person',
             audience: 'Adult',
-            tags: ["", 'test']
+            tags: [""]
         })
         .then(() => {
           console.log("Document successfully written!");
