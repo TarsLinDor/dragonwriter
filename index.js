@@ -62,11 +62,11 @@ login_logout(); // logs user in and out
         $('#login').hide();
         }
         else {
-        
+        $('#login').show();
         }
       });
       const logout = document.getElementById('logout');
-      logout.addEventListener('click', 
+      $('#logout').on('click', 
       function(){
         if (firebase.auth().currentUser) {
           // User is signed in, let's sign out
