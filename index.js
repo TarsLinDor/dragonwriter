@@ -7,6 +7,7 @@
     import "./tools/toolbar/toolbar.js";
     import "./tools/editor/editor.js";
     import $ from "jquery";
+    
 // Define Global Variables
   const booktitle = document.getElementById('booktitle');
   booktitle.contentEditable = 'true';
@@ -39,11 +40,14 @@ login_logout(); // logs user in and out
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          //firebase.auth.signInAnonymously.PROVIDER_ID
+          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
         ],
-        callbacks: {
+          tosUrl: '<your-tos-link>',
+          privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+          callbacks: {
           signInSuccessWithAuthResult: function() {
             // Handle sign-in.
+            console.log('sign in successfull');
             return false;
           }
         }
@@ -58,7 +62,7 @@ login_logout(); // logs user in and out
         $('#login').hide();
         }
         else {
-        $("#login").css("display", "grid");
+        
         }
       });
       const logout = document.getElementById('logout');

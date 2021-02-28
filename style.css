@@ -228,28 +228,29 @@ li.leftmenu-list:hover{
 
 /*Login*/
 #login {
-  display: none;
   position: absolute;
   z-index: 2;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  grid-template-columns: auto auto;
-  grid-template-rows: 20% auto 20%;
   background-color: rgb(141, 114, 96);
   opacity: 1;
 }
 
+#login_window{
+  background-color: whitesmoke;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
 #welcome {
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
-  margin: auto;
+  margin: 12vh auto 0 auto;
 }
 #login_window {
   margin: auto;
-  grid-column: 2 / span 1;
-  grid-row: 2 / span 1;
 }
 /*toolbar*/
 #Toolbar {
