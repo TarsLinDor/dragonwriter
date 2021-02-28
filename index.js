@@ -139,7 +139,7 @@ async function loadbooks(){ //Loads books from the database
           snaps.forEach((doc) => {
             var item = "<div class='book_info' >\
                         <div class='booklist_item'>\
-                        <a class='booklist_title' id ='"+doc.id+""'>"+ doc.data().title+ "</a>\
+                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
                         <i class='fas fa-chevron-down dropdown'></i>\
                         </div>\
                         <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
