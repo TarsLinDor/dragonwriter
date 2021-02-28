@@ -25,7 +25,7 @@ $( document ).ready(function() {
     login_logout();
     //loads data from database
     load_book();
-    load_quill();
+    //load_quill();
 });
 
 // Initiizes all functions and starts firebase 
@@ -187,6 +187,13 @@ async function load_quill(){
   theme: 'snow',
   placeholder: "      Oh! the places you'll go..."
   });
+
+  editor.on('text-change', function() {
+  var justHtml = editor.root.innerHTML;
+  return justHtml;
+  });
+
+  return justHtml;
 };
 
 // adds book to book list
@@ -292,10 +299,9 @@ $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
   localStorage.setItem('ChapterID', ChapterID);
   //const content = document.getElementById('quill-editor');
-
-
-
   $('#quill-editor').html(localStorage.getItem('ChapterID'));
+  var text = load_quill();
+  $('#Content_Title').html($(this).html());
 });
   
     
