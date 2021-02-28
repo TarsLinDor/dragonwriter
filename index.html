@@ -35,7 +35,7 @@
 
 <body>
 	<!-- login page-->
-	<div id='login'>
+<div id='login'>
     
 		<div id='welcome'>
 			<h1 style='text-align: center'>Welcome to DragonWriter</h1>
@@ -46,7 +46,7 @@
 	</div>
 
 <!-- Right Menu page-->
-  <div id = 'bookmenu' class = 'rightmenu'> 
+<div id = 'bookmenu' class = 'rightmenu'> 
     <div class = 'menu_title' id = 'test'>My Books</div>
     <div id='booklist'>
          <!-- <div class='booklist_item'>
@@ -84,14 +84,14 @@
   </div>
   <!-- Right Menu page-->
 
-	<div id="app"> <!-- The 'app' contains all the tools for the book writing software-->
+<div id="app"> <!-- The 'app' contains all the tools for the book writing software-->
   
 		<div id='Toolbar'>
       <div>
 			<button class='circle' id="book"><i class="fas fa-book"></i></button></div>
       <div>
         <button class='circle' id="edit"><i class="fas fa-edit"></i></button>
-        <button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
+        <!--<button class="circle" id="world"><i class="fas fa-globe-europe"></i></button>
         <button class="circle" id="character"><i class="fas fa-users"></i></button>
         <button class="circle" id="magic"><i class="fas fa-hat-wizard"></i></button>
         <button class="circle" id="dictionary"><i class="fas fa-book-open"></i></button>
@@ -102,12 +102,14 @@
         <button class="circle" id="print"><i class="fas fa-print"></i></button>
         <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
         <button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
+        -->
       </div>
       <div>
 			  <button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
       </div>
 
 		  </div>
+
   <!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
  a middle section for a text editor and a draft section for revising there chapters-->
 		<div class ='tool' id='editor'>
@@ -155,43 +157,6 @@
       </div>
 
 		</div><!--end of editor tool -->
-
-    <!--World tool -->
-      <!-- The wolrd tool is where the user adds info on there world. it containts a left menu for a table of contents.
- a middle section for a text editor-->
-    <div class= 'tool2' id='world_tool'>
-
-            <!-- Contains everything on the left menu-->
-      <div class = 'col-leftmenu2'>
-			  <div class='leftmenu-tooltitle2' >Setting</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-					  <p class='menu'>Maps</p>
-            <p class='menu'>Worlds</p>
-            <p class='menu'>Places</p>
-			  </div>
-        <div class='leftmenu-tooltitle2' >Races & Peoples</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-
-            <button class='circle'><i class="fas fa-plus"></i></button>
-			  </div>
-        <div class='leftmenu-tooltitle2' >Creatures</div>
-			  <div class='leftmenu-tooltoc2' >
-				  <hr>
-
-            <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
-			  </div>
-      </div>
-      <!-- Contains everything on the middle area-->
-      <div class='col-middle2'>
-        <div class="middle-title"><a class="contentType">World</a><a id=''></a></div>
-			  <div id="quill-editor"></div>
-      </div>
-    </div>
-	</div>
-
-      <!--Character tool -->
 
 	</div>
 

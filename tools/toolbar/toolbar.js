@@ -1,20 +1,20 @@
 function main(){
   const book = document.getElementById('book');
-  const selectbook = document.getElementById('selectbook');
+  //const selectbook = document.getElementById('selectbook');
   const bookmenu = document.getElementById('bookmenu');
   const edit = document.getElementById('edit');
-  const outline = document.getElementById('outline');
-  const world = document.getElementById('world');
-  const world_tool = document.getElementById('world_tool');
-  const character = document.getElementById('character');
-  const character_tool = document.getElementById('character_tool');
-  const magic = document.getElementById('magic');
-  const dictionary = document.getElementById('dictionary');
-  const note = document.getElementById('note');
-  const feedback = document.getElementById('feedback');
-  const print = document.getElementById('print');
-  const settings = document.getElementById('settings');
-  const stats = document.getElementById('stats');
+  //const outline = document.getElementById('outline');
+  //const world = document.getElementById('world');
+  //const world_tool = document.getElementById('world_tool');
+  //const character = document.getElementById('character');
+  //const character_tool = document.getElementById('character_tool');
+  //const magic = document.getElementById('magic');
+  //const dictionary = document.getElementById('dictionary');
+  //const note = document.getElementById('note');
+  //const feedback = document.getElementById('feedback');
+  //const print = document.getElementById('print');
+  //const settings = document.getElementById('settings');
+  //const stats = document.getElementById('stats');
   const logout = document.getElementById('logout');
   const app = document.getElementById('app');
 
@@ -33,9 +33,9 @@ function main(){
     });
   //start conditions
   editor.style.display ='grid';
-  world_tool.style.display ='grid';
+  //world_tool.style.display ='grid';
   editor.classList.add("full");
-  world_tool.style.display ='none';
+  //world_tool.style.display ='none';
   
   //world_tool.classList.add("second");
 
@@ -51,7 +51,7 @@ function main(){
       };
     });
 
-    world.addEventListener('click', 
+    /*world.addEventListener('click', 
     function(){
       if(world_tool.style.display =='grid'){
       world_tool.style.display ='none';
@@ -84,6 +84,8 @@ function main(){
       app.style.right ='0px';
       };
     });
+
+*/
 };
 main();
 
