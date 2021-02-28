@@ -32,9 +32,6 @@ initializeApp(); // Initiizes all functions and starts firebase
   login_logout(); // logs user in and out
   addbook(); // adds a new book to the book tab
   loadbooks(); //loads books to the book tab
-  bookdropdown(); // adds on click functionality to book metadata dropdown.
-  selectbook(); //selects the book the user will then be able to edit in all other tabs.
-  editor();
 //end run functions
 
 async function login_logout(){ // Logs users in and out of DragonWriter.
@@ -142,7 +139,7 @@ async function loadbooks(){ //Loads books from the database
           snaps.forEach((doc) => {
             var item = "<div class='book_info' >\
                         <div class='booklist_item'>\
-                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
+                        <a class='booklist_title' id ='"+doc.id+""'>"+ doc.data().title+ "</a>\
                         <i class='fas fa-chevron-down dropdown'></i>\
                         </div>\
                         <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
@@ -176,6 +173,9 @@ async function loadbooks(){ //Loads books from the database
                     tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
                     $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
               };
+            selectbook();
+            bookdropdown();
+            editor();
             });
           });
         };
@@ -188,19 +188,17 @@ async function selectbook(){ // selects the book so the user can edit it
   $('.booklist_title').on('click', function(){
     $('.selected_book').addClass('booklist_item').removeClass('selected_book');
     $(this).parent().addClass('selected_book').removeClass('booklist_item');
-  
-    //localStorage.setItem('bookid', $(this).parent().id);
-    //localStorage.setItem('booktitle', $(this).text());
-    //$('#booktitle').html(localStorage.getItem('booktitle'));
+    localStorage.setItem('bookid', $(this).attr('id'));
+    localStorage.setItem('booktitle', $(this).text());
+    
   });
 };
 //end of selectbook
 
-
 async function bookdropdown(){ //adds book meta data drop down
   //TODO: add update features options
             $('.booklist_MetaData').hide();
-            $('.dropdown').on('click', function(){
+            $(docmument).on('click','.dropdown', function(){
               $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
               $(this).parent().parent().children('.booklist_MetaData').toggle();
             });
@@ -209,13 +207,14 @@ async function bookdropdown(){ //adds book meta data drop down
 //
 
   async function editor(){ // "editor" defines everything that happens in the editor tool
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user){
+  $('.booklist_title').on('click', function(){
+    $('#booktitle').html(localStorage.getItem('booktitle'));
+    bookid = localStorage.getItem('bookid');
         tableofcontents();
         addchapter();
-      };
     });
-    };
+  };
+
   async function addchapter(){
       firebase.auth().onAuthStateChanged((user) => {
           if(user){
