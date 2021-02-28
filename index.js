@@ -172,6 +172,7 @@ async function load_toc(){
     };
 //end of load table of contents
 
+//load quill  wysiwyg editor
 async function load_quill(){
     var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
@@ -187,6 +188,7 @@ async function load_quill(){
   placeholder: "      Oh! the places you'll go..."
   });
 };
+
 // adds book to book list
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
   firebase.auth().onAuthStateChanged((user) => { // must call to define the user
@@ -289,11 +291,11 @@ $(document).on('click','#AddContent', function(){
 $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
   localStorage.setItem('ChapterID', ChapterID);
-  const content = document.getElementById('quill-editor');
+  //const content = document.getElementById('quill-editor');
 
 
 
-  editor.innerText = localStorage.getItem('ChapterID');
+  $('#quill-editor').html(localStorage.getItem('ChapterID'));
 });
   
     
