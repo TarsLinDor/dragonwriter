@@ -175,7 +175,7 @@ async function loadbooks(){ //Loads books from the database
               };
             selectbook();
             bookdropdown();
-            editor();
+
             });
           });
         };
@@ -190,7 +190,7 @@ async function selectbook(){ // selects the book so the user can edit it
     $(this).parent().addClass('selected_book').removeClass('booklist_item');
     localStorage.setItem('bookid', $(this).attr('id'));
     localStorage.setItem('booktitle', $(this).text());
-    
+    editor();
   });
 };
 //end of selectbook
@@ -204,15 +204,13 @@ async function bookdropdown(){ //adds book meta data drop down
             });
 };
 
-//
-
-  async function editor(){ // "editor" defines everything that happens in the editor tool
-  $('.booklist_title').on('click', function(){
+async function editor(){ // "editor" defines everything that happens in the editor tool
     $('#booktitle').html(localStorage.getItem('booktitle'));
-    bookid = localStorage.getItem('bookid');
-        tableofcontents();
-        addchapter();
-    });
+    const bookid = localStorage.getItem('book');
+  if ($('#editor').is(':visible')){ // only load if visible
+    addchapter(bookid);
+    tableofcontents(bookid);
+    };
   };
 
   async function addchapter(){
