@@ -32,6 +32,8 @@ initializeApp(); // Initiizes all functions and starts firebase
   login_logout(); // logs user in and out
   addbook(); // adds a new book to the book tab
   loadbooks(); //loads books to the book tab
+  bookdropdown(); // adds on click functionality to book metadata dropdown.
+  selectbook(); //selects the book the user will then be able to edit in all other tabs.
   editor();
 //end run functions
 
@@ -130,7 +132,7 @@ async function addbook() { // adds a new book to the book tab bar.
 //end add book function
 
 
-async function loadbooks(){
+async function loadbooks(){ //Loads books from the database
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
           firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
@@ -176,23 +178,29 @@ async function loadbooks(){
                     $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
               };
             });
-            $('.booklist_MetaData').hide();
-            $('.dropdown').on('click', function(){
-              $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-              $(this).parent().parent().children('.booklist_MetaData').toggle();
-            });
-            $('.booklist_title').on('click', function(){
-              $('.selected_book').addClass('booklist_item').removeClass('selected_book');
-              $(this).parent().addClass('selected_book').removeClass('booklist_item');
-            });
           });
         };
       });
       
     };
+// end of load books
 
 
+async function selectbook(){ // selects the book so the user can edit it
+  $('.booklist_title').on('click', function(){
+    $('.selected_book').addClass('booklist_item').removeClass('selected_book');
+    $(this).parent().addClass('selected_book').removeClass('booklist_item');
+  });
+  localStorage.setItem('bookid', $(this).parent().id);
+};
 
+async function bookdropdown(){
+  $('.booklist_MetaData').hide();
+  $('.dropdown').on('click', function(){
+    $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+    $(this).parent().parent().children('.booklist_MetaData').toggle();
+  });
+};
 
   async function editor(){ // "editor" defines everything that happens in the editor tool
     firebase.auth().onAuthStateChanged((user) => {
