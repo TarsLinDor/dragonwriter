@@ -4,13 +4,12 @@
     import "firebase/firestore";
     import * as firebaseui from "firebaseui";
     import './style.css';
-    import "./tools/toolbar/toolbar.js";
-    import "./tools/editor/editor.js";
+    import "./tools/toolbar/toolbar.js"; //this will eventually be in this one file.
+    import "./tools/editor/editor.js"; //this will eventually be in this one file.
     import $ from "jquery";
     
-// Define Global Variables
-  const booktitle = document.getElementById('booktitle');
-  booktitle.contentEditable = 'true';
+// Dont use Global Variables
+
 
 initializeApp(); // Initiizes all functions and starts firebase 
   function initializeApp(){
@@ -85,10 +84,9 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
 async function addbook() { // adds a new book to the book tab bar.
   firebase.auth().onAuthStateChanged((user) => { // must call to define the user
     if(user){
-      const bookName = document.getElementById('#bookName');
       $('#addBook').on('click', function(){
         var newbook = firebase.firestore().collection("books").doc();
-        if(bookName.innerText == ''){
+        if($("#bookName").html('')){
         newbook.set({
             user: firebase.auth().currentUser.uid,
             timestamp: Date.now(),
@@ -124,7 +122,7 @@ async function addbook() { // adds a new book to the book tab bar.
           console.error("Error writing document: ", error);
         });
         };
-        bookName.innerText = null;
+        $("#bookName").html('');
         });
         };
       });
