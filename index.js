@@ -24,14 +24,19 @@ initializeApp(); // Initiizes all functions and starts firebase
           measurementId: "G-6VYBWWEX41"
         };
       firebase.initializeApp(firebaseConfig);
-        
+      
       var firebaseConfig = {};
   };
+//end app firebase initiazation
 
-  //run functions
-login_logout(); // logs user in and out
-  async function login_logout(){ // Logs users in and out of DragonWriter.
-      const login = document.getElementById('login');
+//run functions
+  login_logout(); // logs user in and out
+  addbook(); // adds a new book to the book tab
+  loadbooks(); //loads books to the book tab
+  editor();
+//end run functions
+
+async function login_logout(){ // Logs users in and out of DragonWriter.
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
         signInOptions: [
@@ -65,9 +70,8 @@ login_logout(); // logs user in and out
         $('#login').show();
         }
       });
-      const logout = document.getElementById('logout');
-      $('#logout').on('click', 
-      function(){
+
+      $('#logout').on('click', function(){
         if (firebase.auth().currentUser) {
           // User is signed in, let's sign out
           firebase.auth().signOut();
@@ -75,25 +79,15 @@ login_logout(); // logs user in and out
         } 
       });
   };
+// End of login logout function
 
 
-books();//Adds new books and allows users to select books they want to edit 
-  async function books(){ 
-  addbook();
-  loadbooks();
-  editor();
-
-};
-
-    function addbook() {
-      firebase.auth().onAuthStateChanged((user) => {
-        if(user){
-      var db = firebase.firestore();
-      const addBook = document.getElementById('addBook');
-      const bookName = document.getElementById('bookName');
-      addBook.addEventListener('click', 
-      function(){
-        var newbook = db.collection("books").doc();
+async function addbook() { // adds a new book to the book tab bar.
+  firebase.auth().onAuthStateChanged((user) => { // must call to define the user
+    if(user){
+      const bookName = document.getElementById('#bookName');
+      $('#addBook').on('click', function(){
+        var newbook = firebase.firestore().collection("books").doc();
         if(bookName.innerText == ''){
         newbook.set({
             user: firebase.auth().currentUser.uid,
@@ -135,8 +129,10 @@ books();//Adds new books and allows users to select books they want to edit
         };
       });
     };
+//end add book function
 
-    function loadbooks(){
+
+async function loadbooks(){
       firebase.auth().onAuthStateChanged((user) => {
         if(user){
           firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books

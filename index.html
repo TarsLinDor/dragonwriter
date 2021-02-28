@@ -17,24 +17,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="jquery-3.5.1.min.js"></script>
-
-<!--Firebase Authentication-->
-
-<!-- The core Firebase JS SDK is always required and must be listed first 
-<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries 
-<script src="/__/firebase/8.2.7/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase 
-<script src="/__/firebase/init.js"></script>
--->
 </head>
 
 <body>
-	<!-- login page-->
+<!-- login page-->
 <div id='login'>
     
 		<div id='welcome'>
@@ -82,11 +68,11 @@
       <button class='circle' id='addBook'><i class="fas fa-plus"></i></button>
       </div>
   </div>
-  <!-- Right Menu page-->
+
 
 <div id="app"> <!-- The 'app' contains all the tools for the book writing software-->
   
-		<div id='Toolbar'>
+	<div id='Toolbar'>
       <div>
 			<button class='circle' id="book"><i class="fas fa-book"></i></button></div>
       <div>
@@ -108,11 +94,11 @@
 			  <button class="circle" id="logout"><i class="fas fa-sign-out-alt"></i></button>
       </div>
 
-		  </div>
+		</div>
 
   <!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
  a middle section for a text editor and a draft section for revising there chapters-->
-		<div class ='tool' id='editor'>
+	<div class ='tool' id='editor'>
       <!-- Contains everything on the left menu-->
       <div class = 'col-1'>
 			  <div class='toc'>
