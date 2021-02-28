@@ -111,23 +111,32 @@ ol {
       z-index: 10;
 }
 
-.leftmenu-list{
+li.leftmenu-list{
   display: grid;
   grid-template-columns: 25px auto 5px;
-  padding: 1px 15px 2px 0px;
+  padding: 1px 15px 2px 2px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
   counter-increment: elementcounter;
   }
-.leftmenu-list:before{
+ div.leftmenu-list{
+  display: grid;
+  grid-template-columns: auto 5px;
+  padding: 1px 15px 2px 7px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 12px;
+  background-color: #E3DCD7;
+  counter-increment: elementcounter;
+  }
+li.leftmenu-list:before{
     /* print out "Element " followed by the current counter value */
   content: counter(elementcounter) ": ";
   margin: auto ;
   /* increment counter */
 }
 
-li.leftmenu-list:hover{
+.leftmenu-list:hover{
   background-color: #C6B9B0;
   }
 

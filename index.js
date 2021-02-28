@@ -5,7 +5,7 @@
     import * as firebaseui from "firebaseui";
     import './style.css';
     import "./tools/toolbar/toolbar.js"; //this will eventually be in this one file.
-    import "./tools/editor/editor.js"; //this will eventually be in this one file.
+    //import "./tools/editor/editor.js"; //this will eventually be in this one file.
     import $ from "jquery";
     
 /*
@@ -25,6 +25,7 @@ $( document ).ready(function() {
     login_logout();
     //loads data from database
     load_book();
+    load_quill();
 });
 
 // Initiizes all functions and starts firebase 
@@ -154,8 +155,14 @@ async function load_toc(){
                 if(doc.data().type == 'Chapter'){
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
                               </li>";
+                }
+                else{
+                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
+                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
+                              </div>";
                 };
               $("#content-list").append(item);
               });
@@ -165,6 +172,21 @@ async function load_toc(){
     };
 //end of load table of contents
 
+async function load_quill(){
+    var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],
+  [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
+  ['clean']
+  ];
+
+  var editor = new Quill('#quill-editor', {
+  modules: {
+    toolbar: toolbarOptions,
+  },
+  theme: 'snow',
+  placeholder: "      Oh! the places you'll go..."
+  });
+};
 // adds book to book list
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
   firebase.auth().onAuthStateChanged((user) => { // must call to define the user
@@ -240,7 +262,6 @@ $(document).on('click','#AddContent', function(){
       firebase.auth().onAuthStateChanged((user) => {
           if(user){
           const bookid = localStorage.getItem('bookid');
-          const toc = document.getElementById('content-list');
             if(bookid != null){
               firebase.firestore().collection("books").doc(bookid).collection('contents').add({
                   bookId: bookid,
@@ -250,7 +271,8 @@ $(document).on('click','#AddContent', function(){
                   pov: "none",
                   discription: "Write a Chapter Discription.",
                   draft: 1,
-                  order: toc.childElementCount+1,
+                  order: $('#content-list').children().length,
+                  content: ['test'],
                       })
                 .then(() => {
                   console.log("Document successfully written!");
@@ -264,6 +286,14 @@ $(document).on('click','#AddContent', function(){
   });
 //end of add contents function
 
+$(document).on('click','.content_title', function(){
+  var ChapterID = $(this).parent().attr('id');
+  localStorage.setItem('ChapterID', ChapterID);
+  const content = document.getElementById('quill-editor');
 
+
+
+  editor.innerText = localStorage.getItem('ChapterID');
+});
   
     
