@@ -190,17 +190,25 @@ async function selectbook(){ // selects the book so the user can edit it
   $('.booklist_title').on('click', function(){
     $('.selected_book').addClass('booklist_item').removeClass('selected_book');
     $(this).parent().addClass('selected_book').removeClass('booklist_item');
+  
+    localStorage.setItem('bookid', $(this).parent().id);
+    localStorage.setItem('booktitle', $(this).text());
+    $('#booktitle').html(localStorage.getItem('booktitle'));
   });
-  localStorage.setItem('bookid', $(this).parent().id);
 };
+//end of selectbook
 
-async function bookdropdown(){
+
+async function bookdropdown(){ //adds book meta data drop down
+  //TODO: add update features options
   $('.booklist_MetaData').hide();
   $('.dropdown').on('click', function(){
     $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
     $(this).parent().parent().children('.booklist_MetaData').toggle();
   });
 };
+
+//
 
   async function editor(){ // "editor" defines everything that happens in the editor tool
     firebase.auth().onAuthStateChanged((user) => {
