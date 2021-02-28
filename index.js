@@ -191,9 +191,9 @@ async function selectbook(){ // selects the book so the user can edit it
     $('.selected_book').addClass('booklist_item').removeClass('selected_book');
     $(this).parent().addClass('selected_book').removeClass('booklist_item');
   
-    localStorage.setItem('bookid', $(this).parent().id);
-    localStorage.setItem('booktitle', $(this).text());
-    $('#booktitle').html(localStorage.getItem('booktitle'));
+    //localStorage.setItem('bookid', $(this).parent().id);
+    //localStorage.setItem('booktitle', $(this).text());
+    //$('#booktitle').html(localStorage.getItem('booktitle'));
   });
 };
 //end of selectbook
