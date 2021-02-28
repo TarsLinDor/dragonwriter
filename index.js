@@ -82,7 +82,6 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
   };
 // End of login logout function
 
-
 async function addbook() { // adds a new book to the book tab bar.
   firebase.auth().onAuthStateChanged((user) => { // must call to define the user
     if(user){
@@ -181,7 +180,6 @@ async function loadbooks(){ //Loads books from the database
           });
         };
       });
-      
     };
 // end of load books
 
@@ -201,11 +199,11 @@ async function selectbook(){ // selects the book so the user can edit it
 
 async function bookdropdown(){ //adds book meta data drop down
   //TODO: add update features options
-  $('.booklist_MetaData').hide();
-  $('.dropdown').on('click', function(){
-    $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-    $(this).parent().parent().children('.booklist_MetaData').toggle();
-  });
+            $('.booklist_MetaData').hide();
+            $('.dropdown').on('click', function(){
+              $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+              $(this).parent().parent().children('.booklist_MetaData').toggle();
+            });
 };
 
 //
