@@ -176,7 +176,7 @@ async function load_toc(){
 
 //load quill  wysiwyg editor
 
-    var toolbarOptions = [
+  var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
   [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
   ['clean']
@@ -188,10 +188,6 @@ async function load_toc(){
   },
   theme: 'snow',
   placeholder: "      Oh! the places you'll go..."
-  });
-
-  editor.on('text-change', function() {
-  var justHtml = editor.root.innerHTML;
   });
 
 
@@ -307,7 +303,7 @@ $(document).on('click','.content_title', function(){
         var words = doc.data().content;
         
         editor.root.innerHTML = words;
-        //load_quill();
+
 
       console.log('Content Retrived successfull!');
     } else {
