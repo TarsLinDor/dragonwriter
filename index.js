@@ -62,6 +62,8 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
           callbacks: {
           signInSuccessWithAuthResult: function() {
             // Handle sign-in.
+
+            //TODO: add one book when user signs in. if new user then add book
             console.log('sign in successfull');
             return false;
           }
@@ -124,7 +126,7 @@ async function load_book(){
                           </div></div>";
 
             $("#booklist").append(item);
-            
+            //TODO: fix tags
             var i = doc.data().tags;
               i = i.length;
               var x;
@@ -166,7 +168,7 @@ async function load_toc(){
                 };
               $("#content-list").append(item);
               });
-      });
+        });
       };
     });
     };
@@ -281,7 +283,7 @@ $(document).on('click','#AddContent', function(){
                   discription: "Write a Chapter Discription.",
                   draft: 1,
                   order: $('#content-list').children().length,
-                  content: ['test'],
+                  content: ['test', 'draft 2'],
                       })
                 .then(() => {
                   console.log("Document successfully written!");
@@ -298,10 +300,29 @@ $(document).on('click','#AddContent', function(){
 $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
   localStorage.setItem('ChapterID', ChapterID);
+  firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+          firebase.firestore().collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
+      if (doc.exists){
+       // Convert to City object
+        var draft_numb = doc.data().draft-1;
+        var words = doc.data().content;
+        
+        $('#quill-editor').html(words);
+        load_quill();
+
+      console.log('Content Retrived successfull!');
+    } else {
+      console.log("No such document!");
+    }}).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
   //const content = document.getElementById('quill-editor');
-  $('#quill-editor').html(localStorage.getItem('ChapterID'));
-  var text = load_quill();
-  $('#Content_Title').html($(this).html());
+  //$('#quill-editor').html(localStorage.getItem('ChapterID'));
+  
+      };
+});
 });
   
     
