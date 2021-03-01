@@ -175,7 +175,7 @@ async function load_toc(){
 //end of load table of contents
 
 //load quill  wysiwyg editor
-async function load_quill(){
+
     var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
   [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
@@ -192,11 +192,9 @@ async function load_quill(){
 
   editor.on('text-change', function() {
   var justHtml = editor.root.innerHTML;
-  return justHtml;
   });
 
-  return justHtml;
-};
+
 
 // adds book to book list
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -308,8 +306,8 @@ $(document).on('click','.content_title', function(){
         var draft_numb = doc.data().draft-1;
         var words = doc.data().content;
         
-        $('#quill-editor').html(words);
-        load_quill();
+        editor.root.innerHTML = words;
+        //load_quill();
 
       console.log('Content Retrived successfull!');
     } else {
