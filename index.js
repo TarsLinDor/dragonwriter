@@ -24,7 +24,7 @@ $( document ).ready(function() {
     initializeApp();
     login_logout();
     //loads data from database
-    load_book();
+    load_books();
     //load_quill();
 });
 
@@ -94,7 +94,7 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
 // End of login logout function
 
 //Loads books from the database
-async function load_book(){
+async function load_books(){
   firebase.auth().onAuthStateChanged((user) => {
         if(user){
           firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
@@ -189,8 +189,7 @@ async function load_toc(){
   theme: 'snow',
   placeholder: "      Oh! the places you'll go..."
   });
-
-
+//end load  quill editor 
 
 // adds book to book list
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
