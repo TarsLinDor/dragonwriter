@@ -339,6 +339,4 @@ $(document).on('click','.content_title', function(){
 });
 });
 
-var el = document.getElementById('content-list');
-var sortable = Sortable.create(el);
 
