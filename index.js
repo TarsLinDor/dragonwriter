@@ -151,7 +151,8 @@ async function load_toc(){
     const bookid = localStorage.getItem('bookid');
       firebase.auth().onAuthStateChanged((user) => {
       if(user){
-          firebase.firestore().collection("books").doc(bookid).collection('contents').onSnapshot((snaps) => {
+          firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
+          .onSnapshot((snaps) => {
             // Reset page
             $("#content-list").html('');
             // Loop through documents in database
@@ -294,19 +295,20 @@ $(document).on('click','#AddContent', function(){
 
 $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
-  var title = $(this).html();
   localStorage.setItem('ChapterID', ChapterID);
   firebase.auth().onAuthStateChanged((user) => {
       if(user){
           firebase.firestore().collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
       if (doc.exists){
+        var title = doc.data().title;
         var draft_numb = doc.data().draft-1;
-        var words = doc.data().content;
+        var words = doc.data().content[draft_numb];
+        var order = doc.data().order;
         var content_type = doc.data().type;
         editor.root.innerHTML = words;
         $('#Content_Title').html(title);
-        $('#numb').html("2:");
-        $('#type').html(content_type);
+        $('#numb').html(order +":");
+        $('#content_type').html(content_type);
       console.log('Content Retrived successfull!');
     } else {
       console.log("No such document!");
