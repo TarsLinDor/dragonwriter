@@ -340,5 +340,5 @@ $(document).on('click','.content_title', function(){
 });
 
 var el = document.getElementById('content-list');
-var sortable = new Sortable(el,);
+var sortable = Sortable.create(el);
 
