@@ -170,7 +170,7 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
 };
 
 async function load_TOC(selected){// loads editor table of contents
-const bookid = $(selected).attr('id');
+  const bookid = $(selected).attr('id');
       firebase.auth().onAuthStateChanged((user) => {
       if(user){
           firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
@@ -195,7 +195,7 @@ const bookid = $(selected).attr('id');
               });
         });
       };
-    });
+  });
 };
 
 
