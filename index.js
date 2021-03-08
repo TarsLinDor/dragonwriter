@@ -146,35 +146,8 @@ async function load_books(){
   };
 // end of load books
 
-// loads editor table of contents
-async function load_toc(){
-    const bookid = localStorage.getItem('bookid');
-      firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-          firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
-          .onSnapshot((snaps) => {
-            // Reset page
-            $("#content-list").html('');
-            // Loop through documents in database
-              snaps.forEach((doc) => {
-                if(doc.data().type == 'Chapter'){
-                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </li>";
-                }
-                else{
-                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </div>";
-                };
-              $("#content-list").append(item);
-              });
-        });
-      };
-    });
-    };
+
+
 //end of load table of contents
 
 //load quill  wysiwyg editor
@@ -259,7 +232,33 @@ $(document).on('click','.booklist_title', function(){
     localStorage.setItem('booktitle', $(this).text());
     $('#booktitle').html(localStorage.getItem('booktitle'));
     if ($('#editor').is(':visible')){ // only load if visible
-    load_toc();
+    // loads editor table of contents
+    const bookid = $(this).attr('id');
+      firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+          firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
+          .onSnapshot((snaps) => {
+            // Reset page
+            $("#content-list").html('');
+            // Loop through documents in database
+              snaps.forEach((doc) => {
+                if(doc.data().type == 'Chapter'){
+                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
+                              <a class='content_title'>"+doc.data().title+"</a>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
+                              </li>";
+                }
+                else{
+                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
+                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
+                              </div>";
+                };
+              $("#content-list").append(item);
+              });
+        });
+      };
+    });
     };
   });
 //end of select book function
@@ -307,7 +306,12 @@ $(document).on('click','.content_title', function(){
         var content_type = doc.data().type;
         editor.root.innerHTML = words;
         $('#Content_Title').html(title);
+        if(content_type =='Chapter'){
         $('#numb').html(order +":");
+        }
+        else{
+          $('#numb').html(":");
+        }
         $('#content_type').html(content_type);
       console.log('Content Retrived successfull!');
     } else {
