@@ -305,11 +305,8 @@ $(document).on('click','.content_title', function(){
         var content_type = doc.data().type;
         editor.root.innerHTML = words;
         $('#Content_Title').html(title);
-
-        $('#numb').html(1+":");
+        $('#numb').html("2:");
         $('#type').html(content_type);
-
-
       console.log('Content Retrived successfull!');
     } else {
       console.log("No such document!");
