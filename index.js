@@ -294,16 +294,20 @@ $(document).on('click','#AddContent', function(){
 
 $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
+  var title = $(this).html();
   localStorage.setItem('ChapterID', ChapterID);
   firebase.auth().onAuthStateChanged((user) => {
       if(user){
           firebase.firestore().collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
       if (doc.exists){
-       // Convert to City object
         var draft_numb = doc.data().draft-1;
         var words = doc.data().content;
-        
+        var content_type = doc.data().type;
         editor.root.innerHTML = words;
+        $('#Content_Title').html(title);
+
+        $('#numb').html(1+":");
+        $('#type').html(content_type);
 
 
       console.log('Content Retrived successfull!');
@@ -320,6 +324,6 @@ $(document).on('click','.content_title', function(){
 });
 });
 
-var el = document.getElementById('content-list');
-var sortable = new Sortable(el,);
+//var el = document.getElementById('content-list');
+//var sortable = new Sortable(el,);
 
