@@ -7,6 +7,8 @@
     import "./tools/toolbar/toolbar.js"; //this will eventually be in this one file.
     //import "./tools/editor/editor.js"; //this will eventually be in this one file.
     import $ from "jquery";
+    import Sortable from 'sortablejs';
+   
     
 /*
 GENERAL NOTE: 
@@ -318,4 +320,6 @@ $(document).on('click','.content_title', function(){
 });
 });
   
-    
+var el = document.getElementById('content-list');
+var sortable = Sortable.create(el);
+
