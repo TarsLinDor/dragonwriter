@@ -8,6 +8,7 @@
     //import "./tools/editor/editor.js"; //this will eventually be in this one file.
     import $ from "jquery";
     import Sortable from 'sortablejs';
+    
    
     
 /*
@@ -151,7 +152,6 @@ async function load_books(){
 //end of load table of contents
 
 //load quill  wysiwyg editor
-
   var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
   [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
@@ -327,6 +327,6 @@ $(document).on('click','.content_title', function(){
 });
 });
 
-//var el = document.getElementById('content-list');
-//var sortable = new Sortable(el,);
+var el = document.getElementById('content-list');
+var sortable = new Sortable(el,);
 

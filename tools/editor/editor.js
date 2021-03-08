@@ -1,10 +1,10 @@
-var toolbarOptions = [
+export var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
   [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
   ['clean']
 ];
 
-var editor = new Quill('#quill-editor', {
+export var editor = new Quill('#quill-editor', {
   modules: {
     toolbar: toolbarOptions,
   },
