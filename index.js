@@ -1,38 +1,28 @@
-//import important stuff
-    import * as firebase from "firebase/app";
-    import "firebase/auth";
-    import "firebase/firestore";
-    import * as firebaseui from "firebaseui";
-    import './style.css';
-    import "./tools/toolbar/toolbar.js"; //this will eventually be in this one file.
-    //import "./tools/editor/editor.js"; //this will eventually be in this one file.
-    import $ from "jquery";
-    import Sortable from 'sortablejs';
-    
-   
-    
 /*
 GENERAL NOTE: 
-This app works by 
+This app works by:
 A: Loading content using Async functions 
 B: Adding content by using the jquery modual $(document).on('event','content name', function(){}; to add or edit content.
-C: Defining all UI stuff inside functions used
+C: Defining all UI stuff inside event functions
 D: Specifying start state conditions
+
+Goal: minimize reads and writes per user. {ensure all functions are only called once.}
 */
 
-// Loads app when ready.
-$( document ).ready(function() {
-    console.log( "ready!" );
-    //starts app
-    initializeApp();
-    login_logout();
-    //loads data from database
-    load_books();
-    //load_quill();
-});
+//import important stuff
+  import * as firebase from "firebase/app";
+  import "firebase/auth";
+  import "firebase/firestore";
+  import * as firebaseui from "firebaseui";
+  import './style.css';
+  import $ from "jquery";
+  import Sortable from 'sortablejs';
+//end of imports 
 
-// Initiizes all functions and starts firebase 
-function initializeApp(){
+// Add global variables.
+
+  // Initiizes and starts firebase modual.
+    function initializeApp(){
       var firebaseConfig = {
           apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
           authDomain: "dragonwriter-2d4d4.firebaseapp.com",
@@ -45,10 +35,94 @@ function initializeApp(){
       firebase.initializeApp(firebaseConfig);
       
       var firebaseConfig = {}; 
-  };
-//end app firebase initiazation
+      };
+  //end app firebase initiazation
+   
+  //load quill  wysiwyg editor
+    var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
+    ['clean']
+    ];
 
-// login function is called inside document ready function
+    var editor = new Quill('#quill-editor', {
+    modules: {
+      toolbar: toolbarOptions,
+    },
+    theme: 'snow',
+    placeholder: "      Oh! the places you'll go..."
+    });
+  //end load  quill editor     
+
+//ends global variable 
+
+// Load App 
+  $(document).ready(function() {
+      console.log( "ready!" );
+      //starts app
+      initializeApp(); //Initializes firebase auth and firestore
+      
+      login_logout(); //requires user to login before using app
+      
+      loadbooks(); // loads book
+
+      //Initial App State:
+        $('#editor').addClass('full');
+        $('.app').addClass('app-full');
+        $('#bookmenu').hide();
+  });
+// end LOAD App
+
+//Async FUNCTIONS: should be running the entire time the app is loaded.
+async function loadbooks(){ //loads books and book meta-data from firebase.
+    firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+          firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
+          // Reset page
+          $("#booklist").html('');
+          // Loop through documents in database
+
+          snaps.forEach((doc) => {
+            var item = "<div class='book_info' >\
+                        <div class='booklist_item'>\
+                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
+                        <i class='fas fa-chevron-down dropdown'></i>\
+                        </div>\
+                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
+                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
+                        <a class='MetaData_Item'><b>Length:</b></a>\
+                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
+                        <a class='MetaData_Item'><b>Perspective:</b></a>\
+                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
+                        <a class='MetaData_Item'><b>Audience:</b></a>\
+                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a><br>\
+                        <a class='MetaData_Title'><b>Tags</b></a>\
+                        <div class='Taglist'>\
+                        <br>\
+                        </div>\
+                        <div class='insertTag'>\
+                        <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
+                        <a id='addTag'><i class='fas fa-plus'></i></a>\
+                        </div></div>";
+
+            $("#booklist").append(item);
+            //TODO: fix tags
+            var i = doc.data().tags;
+              i = i.length;
+              var x;
+              var tags;
+              for (x = 0; x < i; x++) {
+                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
+                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+              };
+
+            $('.booklist_MetaData').hide();
+            });
+          });
+        };
+      });
+};
+
 async function login_logout(){ // Logs users in and out of DragonWriter.
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -93,79 +167,43 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
           console.log("Logged out successfully!");
         } 
       });
-  };
-// End of login logout function
+};
 
-//Loads books from the database
-async function load_books(){
-  firebase.auth().onAuthStateChanged((user) => {
-        if(user){
-          firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
-          // Reset page
-          $("#booklist").html('');
-          // Loop through documents in database
-
-          snaps.forEach((doc) => {
-            var item = "<div class='book_info' >\
-                        <div class='booklist_item'>\
-                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
-                        <i class='fas fa-chevron-down dropdown'></i>\
-                        </div>\
-                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
-                          <a class='MetaData_Item'><b>Length:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
-                          <a class='MetaData_Item'><b>Perspective:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
-                          <a class='MetaData_Item'><b>Audience:</b></a>\
-                          <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a><br>\
-                          <a class='MetaData_Title'><b>Tags</b></a>\
-                          <div class='Taglist'>\
-                          <br>\
-                          </div>\
-                          <div class='insertTag'>\
-                          <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                          <a id='addTag'><i class='fas fa-plus'></i></a>\
-                          </div></div>";
-
-            $("#booklist").append(item);
-            //TODO: fix tags
-            var i = doc.data().tags;
-              i = i.length;
-              var x;
-              var tags;
-              for (x = 0; x < i; x++) {
-                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
-                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
-              };
-
-            $('.booklist_MetaData').hide();
-            });
-          });
-        };
-      });
-  };
-// end of load books
+async function load_TOC(selected){// loads editor table of contents
+const bookid = $(selected).attr('id');
+      firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+          firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
+          .onSnapshot((snaps) => {
+            // Reset page
+            $("#content-list").html('');
+            // Loop through documents in database
+              snaps.forEach((doc) => {
+                if(doc.data().type == 'Chapter'){
+                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
+                              <a class='content_title'>"+doc.data().title+"</a>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
+                              </li>";
+                }
+                else{
+                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
+                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
+                              <i class='fas fa-chevron-down dropdown'></i>\
+                              </div>";
+                };
+              $("#content-list").append(item);
+              });
+        });
+      };
+    });
+};
 
 
-
-//end of load table of contents
-
-//load quill  wysiwyg editor
-  var toolbarOptions = [
-  ['bold', 'italic', 'underline', 'strike'],
-  [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
-  ['clean']
-  ];
-
-  var editor = new Quill('#quill-editor', {
-  modules: {
-    toolbar: toolbarOptions,
-  },
-  theme: 'snow',
-  placeholder: "      Oh! the places you'll go..."
-  });
-//end load  quill editor 
+$(document).on('click','#book', function(){ // defines events when the book button is clicked.
+  $('.app').toggleClass('app-full');
+  $('.app').toggleClass('app-side');
+  $('#bookmenu').toggle(); 
+});
 
 // adds book to book list
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -232,33 +270,7 @@ $(document).on('click','.booklist_title', function(){
     localStorage.setItem('booktitle', $(this).text());
     $('#booktitle').html(localStorage.getItem('booktitle'));
     if ($('#editor').is(':visible')){ // only load if visible
-    // loads editor table of contents
-    const bookid = $(this).attr('id');
-      firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-          firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
-          .onSnapshot((snaps) => {
-            // Reset page
-            $("#content-list").html('');
-            // Loop through documents in database
-              snaps.forEach((doc) => {
-                if(doc.data().type == 'Chapter'){
-                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </li>";
-                }
-                else{
-                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </div>";
-                };
-              $("#content-list").append(item);
-              });
-        });
-      };
-    });
+      load_TOC(this);
     };
   });
 //end of select book function

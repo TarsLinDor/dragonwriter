@@ -24,20 +24,30 @@ ol {
 }
 /*end gerneral*/
 
-#app {
+.app {
   background-color: rgb(141, 114, 96);
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
   display: grid;
   grid-template-columns: 50% auto 40px;
   grid-template-rows: 100%;
   overflow: none;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
   padding: 5px 5px 5px 0px;
+}
 
+.app-full{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.app-side{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 300px;
 }
 
 /*toolbar classes*/
@@ -288,8 +298,8 @@ li.leftmenu-list:before{
 /* bookmenu*/
 
 /*Menu Items*/
- .rightmenu {
-      display: none;
+ #bookmenu {
+      display: grid;
       position: absolute;
       top: 0px;
       bottom: 0px;
@@ -340,7 +350,6 @@ li.leftmenu-list:before{
     }
 
     .booklist_MetaData{
-      //z-index: -1;
       position: relative;
       display: grid;
       grid-template-columns: 120px auto;
@@ -349,8 +358,8 @@ li.leftmenu-list:before{
       border-radius: 0px 0px 5px 5px;
       background-color: whitesmoke;
       font-size: 80%;
-      
       }
+
     .MetaData_Item{
       outline: none;
       padding: 5px;
