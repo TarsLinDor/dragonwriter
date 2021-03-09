@@ -22,7 +22,7 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
 // Add global variables.
 
   // Initiizes and starts firebase modual.
-    function initializeApp(){
+  function initializeFireBase(){
       var firebaseConfig = {
           apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
           authDomain: "dragonwriter-2d4d4.firebaseapp.com",
@@ -44,7 +44,6 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
     [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
     ['clean']
     ];
-
     var editor = new Quill('#quill-editor', {
     modules: {
       toolbar: toolbarOptions,
@@ -57,27 +56,34 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
 //ends global variable 
 
 // Load App 
-  $(document).ready(function() {
+$(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
       //starts app
-      initializeApp(); //Initializes firebase auth and firestore
-      
+      initializeFireBase(); //Initializes firebase auth and firestore
       login_logout(); //requires user to login before using app
       
-      loadbooks(); // loads book
+
 
       //Initial App State:
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
         $('#bookmenu').hide();
+        $('.booklist_MetaData').hide();
+        
   });
 // end LOAD App
+
+  loadbooks(); // loads book
+  updatebook_meta();
+
+
 
 //Async FUNCTIONS: should be running the entire time the app is loaded.
 async function loadbooks(){ //loads books and book meta-data from firebase.
     firebase.auth().onAuthStateChanged((user) => {
         if(user){
-          firebase.firestore().collection("books").where('user', '==', user.uid).onSnapshot((snaps) => {   //Load Users books
+          firebase.firestore().collection("books").where('user', '==', user.uid) //.orderBy('timestamp', 'desc')
+          .onSnapshot((snaps) => {   //Load Users books
           // Reset page
           $("#booklist").html('');
           // Loop through documents in database
@@ -89,15 +95,15 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
                         <i class='fas fa-chevron-down dropdown'></i>\
                         </div>\
                         <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
-                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().genre+"</a>\
+                        <a class='MetaData_Item' contenteditable='true' id='genre'>"+doc.data().genre+"</a>\
                         <a class='MetaData_Item'><b>Length:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().length+"</a>\
+                        <a class='MetaData_Item' contenteditable='true' id = 'length'>"+doc.data().length+"</a>\
                         <a class='MetaData_Item'><b>Perspective:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().perspective+"</a>\
+                        <a class='MetaData_Item' contenteditable='true' id = 'perspective'>"+doc.data().perspective+"</a>\
                         <a class='MetaData_Item'><b>Audience:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true'>"+doc.data().audience+"</a><br>\
+                        <a class='MetaData_Item' contenteditable='true' id = 'audience'>"+doc.data().audience+"</a><br>\
                         <a class='MetaData_Title'><b>Tags</b></a>\
-                        <div class='Taglist'>\
+                        <div class='Taglist' id ='tag"+doc.id+"'>\
                         <br>\
                         </div>\
                         <div class='insertTag'>\
@@ -107,20 +113,17 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
 
             $("#booklist").append(item);
             //TODO: fix tags
-            var i = doc.data().tags;
-              i = i.length;
-              var x;
-              var tags;
-              for (x = 0; x < i; x++) {
-                    tags = '<a class = "tag">'+doc.data().tags[x]+'</a>';
-                    $('#' + doc.id).children('.booklist_MetaData').children('.Taglist').append(tags);
+            var booktags = doc.data().tags;
+            var i;
+            for (i = 0; i < booktags.length; i++) {
+              var tags = '<a class = "tag">'+booktags[i]+'</a>';
+              $('#tag'+doc.id+'').append(tags);
               };
-
-            $('.booklist_MetaData').hide();
-            });
+            }); 
           });
         };
       });
+  
 };
 
 async function login_logout(){ // Logs users in and out of DragonWriter.
@@ -205,7 +208,7 @@ $(document).on('click','#book', function(){ // defines events when the book butt
   $('#bookmenu').toggle(); 
 });
 
-// adds book to book list
+
 $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
   firebase.auth().onAuthStateChanged((user) => { // must call to define the user
     if(user){
@@ -220,7 +223,7 @@ $(document).on('click','#addBook', function(){ // adds a new book to the book ta
             length: "Short Story",
             perspective: '3rd Person',
             audience: 'Adult',
-            tags: [""]
+            tags: ["test", 'grimdark']
         })
         .then(() => {
           console.log("Document successfully written!");
@@ -304,6 +307,7 @@ $(document).on('click','#AddContent', function(){
   });
 //end of add contents function
 
+// load contents on click
 $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
   localStorage.setItem('ChapterID', ChapterID);
@@ -336,7 +340,27 @@ $(document).on('click','.content_title', function(){
   //$('#quill-editor').html(localStorage.getItem('ChapterID'));
   
       };
-});
+  });
 });
 
 
+async function updatebook_meta(){
+  $(document).on('focusout','.MetaData_Item', function(){
+    if($(this).attr('contenteditable')){
+    var item = $(this).html();
+    var itemid = $(this).attr('id');
+    var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
+    firebase.auth().onAuthStateChanged((user) => { // must call to define the user
+    if(user){
+        var updatebook = firebase.firestore().collection("books").doc(bookid);
+        updatebook.update({
+          [itemid]: item,
+        });
+
+        };
+        //newbook.update({
+    });
+    };
+    });
+    $(this).parent().show();
+};
