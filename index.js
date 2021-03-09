@@ -59,22 +59,20 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
       //starts app
-      initializeFireBase(); //Initializes firebase auth and firestore
+initializeFireBase(); //Initializes firebase auth and firestore
       login_logout(); //requires user to login before using app
-      
-
-
+         loadbooks(); // loads book
+   updatebook_meta();
+            //addtag();
       //Initial App State:
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
         $('#bookmenu').hide();
-        $('.booklist_MetaData').hide();
         
   });
 // end LOAD App
 
-  loadbooks(); // loads book
-  updatebook_meta();
+
 
 
 
@@ -108,7 +106,7 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
                         </div>\
                         <div class='insertTag'>\
                         <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                        <a id='addTag'><i class='fas fa-plus'></i></a>\
+                        <a class='addTag'><i class='fas fa-plus'></i></a>\
                         </div></div>";
 
             $("#booklist").append(item);
@@ -119,6 +117,7 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
               var tags = '<a class = "tag">'+booktags[i]+'</a>';
               $('#tag'+doc.id+'').append(tags);
               };
+              $('.booklist_MetaData').hide();
             }); 
           });
         };
@@ -356,11 +355,31 @@ async function updatebook_meta(){
         updatebook.update({
           [itemid]: item,
         });
-
         };
         //newbook.update({
     });
     };
     });
-    $(this).parent().show();
+  $(this).parent().parent.show();
 };
+
+/*async function addtag(){
+  $(document).on('click','.addTag', function(){
+    if($(this).attr('contenteditable')){
+    var item = $(this).html();
+    var itemid = $(this).attr('id');
+    var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
+    firebase.auth().onAuthStateChanged((user) => { // must call to define the user
+    if(user){
+        var updatebook = firebase.firestore().collection("books").doc(bookid);
+        updatebook.update({
+          [itemid]: item,
+        });
+        };
+        //newbook.update({
+    });
+    };
+    });
+  $(this).parent().parent.show();
+};
+*/
