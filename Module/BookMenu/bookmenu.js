@@ -1,12 +1,16 @@
+// import stuff here
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
 
-firebase.auth().onAuthStateChanged((user) => {//Loads books 
-  if(user){
-    firebase.firestore().collection("books").where('user', '==', user.uid) //.orderBy('timestamp', 'desc')
-          .onSnapshot((snaps) => {   //Load Users books
+// define global variables
+
+var db = firebase.firestore();
+
+firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should be done only if user is logged in
+
+  db.collection("books").where('user', '==', user.uid).onSnapshot((snaps) => { //Load Books
           // Reset page
           $("#booklist").html('');
           // Loop through documents in database
@@ -44,81 +48,69 @@ firebase.auth().onAuthStateChanged((user) => {//Loads books
               };
               
             }); 
+  });
+
+  $(document).on('click','#book', function(){ // defines events when the book button is clicked.
+    $('.app').toggleClass('app-full');
+    $('.app').toggleClass('app-side');
+    $('#bookmenu').toggle(); 
+    $('.booklist_MetaData').hide();
+  });
+
+  $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
+    var title = $("#bookName").html();
+    var newbook = db.collection("books").doc();
+          if(title ==''){
+          newbook.set({
+              user: firebase.auth().currentUser.uid,
+              timestamp: Date.now(),
+              title: "Book Title",
+              genre: "Fantasy",
+              length: "Short Story",
+              perspective: '3rd Person',
+              audience: 'Adult',
+              tags: ["test", 'grimdark']
+          })
+          .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
           });
-        };
-});
-  
-$(document).on('click','#book', function(){ // defines events when the book button is clicked.
-  $('.app').toggleClass('app-full');
-  $('.app').toggleClass('app-side');
-  $('#bookmenu').toggle(); 
-  $('.booklist_MetaData').hide();
-});
+          }
+          else{
+          newbook.set({
+              user: firebase.auth().currentUser.uid,
+              timestamp: Date.now(),
+              title: title,
+              genre: "Fantasy",
+              length: "Novel",
+              perspective: '3rd Person',
+              audience: 'Adult',
+              tags: [""]
+          })
+          .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+          };
+          $("#bookName").html('');
 
-$(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
-  firebase.auth().onAuthStateChanged((user) => { // must call to define the user
-    if(user){
-        var title = $("#bookName").html();
-        var newbook = firebase.firestore().collection("books").doc();
-        if(title ==''){
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: "Book Title",
-            genre: "Fantasy",
-            length: "Short Story",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: ["test", 'grimdark']
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        }
-        else{
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: title,
-            genre: "Fantasy",
-            length: "Novel",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: [""]
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        };
-        $("#bookName").html('');
-        };
-        });
-});
+  });
     
+  $(document).on('click','.dropdown', function(){ //adds book meta data drop down
+      $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+      $(this).parent().parent().children('.booklist_MetaData').toggle();
+  });
 
-
-$(document).on('click','.dropdown', function(){ //adds book meta data drop down
-  //TODO: add update features options
-    $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-    $(this).parent().parent().children('.booklist_MetaData').toggle();
-});
-
-$(document).on('click','.booklist_title', function(){//selects book  
-    $('.selected_book').addClass('booklist_item').removeClass('selected_book');
-    $(this).parent().addClass('selected_book').removeClass('booklist_item');
-    localStorage.setItem('bookid', $(this).attr('id'));
-    localStorage.setItem('booktitle', $(this).text());
-    $('#booktitle').html(localStorage.getItem('booktitle'));
-    if ($('#editor').is(':visible')){ // only load if visible
-      load_TOC(this);
-    };
-});
+  $(document).on('click','.booklist_title', function(){//selects book  
+      $('.selected_book').addClass('booklist_item').removeClass('selected_book');
+      $(this).parent().addClass('selected_book').removeClass('booklist_item');
+      localStorage.setItem('bookid', $(this).attr('id'));
+      localStorage.setItem('booktitle', $(this).text());
+  });
 
 
 
@@ -127,14 +119,14 @@ $(document).on('focusout','.MetaData_Item', function(){//update meta data
     var item = $(this).html();
     var itemid = $(this).attr('id');
     var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
-    firebase.auth().onAuthStateChanged((user) => { // must call to define the user
-    if(user){
-        var updatebook = firebase.firestore().collection("books").doc(bookid);
+    var updatebook = firebase.firestore().collection("books").doc(bookid);
         updatebook.update({
           [itemid]: item,
         });
         };
-        //newbook.update({
-    });
-    };
+});
+
+
+
+};
 });
