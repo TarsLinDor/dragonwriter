@@ -21,41 +21,8 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
   import './Module/BookMenu/bookmenu.js';
   import Sortable from 'sortablejs';
 //end of imports 
-
-// Add global variables.
-
-  // Initiizes and starts firebase modual.
-  /*function initializeFireBase(){
-      var firebaseConfig = {
-          apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
-          authDomain: "dragonwriter-2d4d4.firebaseapp.com",
-          projectId: "dragonwriter-2d4d4",
-          storageBucket: "dragonwriter-2d4d4.appspot.com",
-          messagingSenderId: "986346360064",
-          appId: "1:986346360064:web:552c83759e18a086e0b7e5",
-          measurementId: "G-6VYBWWEX41"
-        };
-      firebase.initializeApp(firebaseConfig);
-      
-      var firebaseConfig = {}; 
-      };
-      */
-  //end app firebase initiazation
    
-  //load quill  wysiwyg editor
-    var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
-    ['clean']
-    ];
-    var editor = new Quill('#quill-editor', {
-    modules: {
-      toolbar: toolbarOptions,
-    },
-    theme: 'snow',
-    placeholder: "      Oh! the places you'll go..."
-    });
-  //end load  quill editor     
+   
 
 //ends global variable 
 
