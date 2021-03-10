@@ -63,7 +63,7 @@ initializeFireBase(); //Initializes firebase auth and firestore
       login_logout(); //requires user to login before using app
          loadbooks(); // loads book
    updatebook_meta();
-            //addtag();
+            addtag();
       //Initial App State:
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
@@ -105,7 +105,7 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
                         <br>\
                         </div>\
                         <div class='insertTag'>\
-                        <a id='TagName' contenteditable='true' placeholder='Add Tag'></a>\
+                        <a class='TagName' contenteditable='true' placeholder='Add Tag'></a>\
                         <a class='addTag'><i class='fas fa-plus'></i></a>\
                         </div></div>";
 
@@ -117,7 +117,7 @@ async function loadbooks(){ //loads books and book meta-data from firebase.
               var tags = '<a class = "tag">'+booktags[i]+'</a>';
               $('#tag'+doc.id+'').append(tags);
               };
-              $('.booklist_MetaData').hide();
+              
             }); 
           });
         };
@@ -205,6 +205,7 @@ $(document).on('click','#book', function(){ // defines events when the book butt
   $('.app').toggleClass('app-full');
   $('.app').toggleClass('app-side');
   $('#bookmenu').toggle(); 
+  $('.booklist_MetaData').hide();
 });
 
 
@@ -360,26 +361,27 @@ async function updatebook_meta(){
     });
     };
     });
+  //$('.booklist_MetaData').hide();
   $(this).parent().parent.show();
 };
 
-/*async function addtag(){
+
+async function addtag(){
   $(document).on('click','.addTag', function(){
-    if($(this).attr('contenteditable')){
-    var item = $(this).html();
-    var itemid = $(this).attr('id');
+    var tag = ('.TagName').html();
+    if(tag !=''){
     var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
     firebase.auth().onAuthStateChanged((user) => { // must call to define the user
     if(user){
         var updatebook = firebase.firestore().collection("books").doc(bookid);
         updatebook.update({
-          [itemid]: item,
+          tags: tag,
         });
         };
         //newbook.update({
     });
     };
     });
+  
   $(this).parent().parent.show();
 };
-*/
