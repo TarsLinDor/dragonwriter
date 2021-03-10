@@ -19,6 +19,7 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
   import './Module/firebase/startfire.js';
   import './Module/login/login_logout.js';
   import './Module/BookMenu/bookmenu.js';
+  import './Module/Editor/editor.js';
   import Sortable from 'sortablejs';
 //end of imports 
    
