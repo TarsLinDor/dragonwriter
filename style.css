@@ -381,12 +381,12 @@ li.leftmenu-list:before{
       grid-column: 1 / span 2;
       padding: 0px
       }
-    #addTag{
+    .addTag{
       text-align: center;
       padding: 5px;
       }
 
-    #TagName{
+    .TagName{
       outline: none;
       margin: 2px;
       min-width: 50px;
