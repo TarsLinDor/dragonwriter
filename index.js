@@ -66,8 +66,8 @@ $(document).ready(function() { // Loads App and establishes base load state.
 //initializeFireBase(); //Initializes firebase auth and firestore
       //login_logout(); //requires user to login before using app
          //loadbooks(); // loads book
-   updatebook_meta();
-            addtag();
+   //updatebook_meta();
+            //addtag();
       //Initial App State:
         $('#editor').addClass('full');
         $('.app').addClass('app-full');

@@ -121,8 +121,8 @@ $(document).on('click','.booklist_title', function(){//selects book
 });
 
 
-async function updatebook_meta(){
-  $(document).on('focusout','.MetaData_Item', function(){
+
+$(document).on('focusout','.MetaData_Item', function(){//update meta data
     if($(this).attr('contenteditable')){
     var item = $(this).html();
     var itemid = $(this).attr('id');
@@ -137,7 +137,4 @@ async function updatebook_meta(){
         //newbook.update({
     });
     };
-    });
-  //$('.booklist_MetaData').hide();
-  $(this).parent().parent.show();
-};
+});
