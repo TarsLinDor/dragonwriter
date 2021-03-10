@@ -16,13 +16,16 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
   import * as firebaseui from "firebaseui";
   import './style.css';
   import $ from "jquery";
+  import './Module/firebase/startfire.js';
+  import './Module/login/login_logout.js';
+  import './Module/BookMenu/bookmenu.js';
   import Sortable from 'sortablejs';
 //end of imports 
 
 // Add global variables.
 
   // Initiizes and starts firebase modual.
-  function initializeFireBase(){
+  /*function initializeFireBase(){
       var firebaseConfig = {
           apiKey: "AIzaSyC8YOMLaOiD72p4i5DYRSAFwQB7B0AO9vE",
           authDomain: "dragonwriter-2d4d4.firebaseapp.com",
@@ -36,6 +39,7 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
       
       var firebaseConfig = {}; 
       };
+      */
   //end app firebase initiazation
    
   //load quill  wysiwyg editor
@@ -59,9 +63,9 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
       //starts app
-initializeFireBase(); //Initializes firebase auth and firestore
-      login_logout(); //requires user to login before using app
-         loadbooks(); // loads book
+//initializeFireBase(); //Initializes firebase auth and firestore
+      //login_logout(); //requires user to login before using app
+         //loadbooks(); // loads book
    updatebook_meta();
             addtag();
       //Initial App State:
@@ -71,105 +75,6 @@ initializeFireBase(); //Initializes firebase auth and firestore
         
   });
 // end LOAD App
-
-
-
-
-
-//Async FUNCTIONS: should be running the entire time the app is loaded.
-async function loadbooks(){ //loads books and book meta-data from firebase.
-    firebase.auth().onAuthStateChanged((user) => {
-        if(user){
-          firebase.firestore().collection("books").where('user', '==', user.uid) //.orderBy('timestamp', 'desc')
-          .onSnapshot((snaps) => {   //Load Users books
-          // Reset page
-          $("#booklist").html('');
-          // Loop through documents in database
-
-          snaps.forEach((doc) => {
-            var item = "<div class='book_info' >\
-                        <div class='booklist_item'>\
-                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
-                        <i class='fas fa-chevron-down dropdown'></i>\
-                        </div>\
-                        <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
-                        <a class='MetaData_Item' contenteditable='true' id='genre'>"+doc.data().genre+"</a>\
-                        <a class='MetaData_Item'><b>Length:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true' id = 'length'>"+doc.data().length+"</a>\
-                        <a class='MetaData_Item'><b>Perspective:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true' id = 'perspective'>"+doc.data().perspective+"</a>\
-                        <a class='MetaData_Item'><b>Audience:</b></a>\
-                        <a class='MetaData_Item' contenteditable='true' id = 'audience'>"+doc.data().audience+"</a><br>\
-                        <a class='MetaData_Title'><b>Tags</b></a>\
-                        <div class='Taglist' id ='tag"+doc.id+"'>\
-                        <br>\
-                        </div>\
-                        <div class='insertTag'>\
-                        <a class='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                        <a class='addTag'><i class='fas fa-plus'></i></a>\
-                        </div></div>";
-
-            $("#booklist").append(item);
-            //TODO: fix tags
-            var booktags = doc.data().tags;
-            var i;
-            for (i = 0; i < booktags.length; i++) {
-              var tags = '<a class = "tag">'+booktags[i]+'</a>';
-              $('#tag'+doc.id+'').append(tags);
-              };
-              
-            }); 
-          });
-        };
-      });
-  
-};
-
-async function login_logout(){ // Logs users in and out of DragonWriter.
-      const uiConfig = {
-        credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-        signInOptions: [
-          // Email / Password Provider.
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-        ],
-          tosUrl: '<your-tos-link>',
-          privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
-          callbacks: {
-          signInSuccessWithAuthResult: function() {
-            // Handle sign-in.
-
-            //TODO: add one book when user signs in. if new user then add book
-            console.log('sign in successfull');
-            return false;
-          }
-        }
-      };
-
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start('#login_window', uiConfig);
-
-      // Listen to the current Auth state
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-        $('#login').hide();
-        }
-        else {
-        $('#login').show();
-        }
-      });
-
-      $('#logout').on('click', function(){
-        if (firebase.auth().currentUser) {
-          // User is signed in, let's sign out
-          firebase.auth().signOut();
-          console.log("Logged out successfully!");
-        } 
-      });
-};
 
 async function load_TOC(selected){// loads editor table of contents
   const bookid = $(selected).attr('id');
@@ -199,84 +104,14 @@ async function load_TOC(selected){// loads editor table of contents
       };
   });
 };
-
-
-$(document).on('click','#book', function(){ // defines events when the book button is clicked.
-  $('.app').toggleClass('app-full');
-  $('.app').toggleClass('app-side');
-  $('#bookmenu').toggle(); 
-  $('.booklist_MetaData').hide();
-});
-
-
-$(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
-  firebase.auth().onAuthStateChanged((user) => { // must call to define the user
-    if(user){
-        var title = $("#bookName").html();
-        var newbook = firebase.firestore().collection("books").doc();
-        if(title ==''){
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: "Book Title",
-            genre: "Fantasy",
-            length: "Short Story",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: ["test", 'grimdark']
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        }
-        else{
-        newbook.set({
-            user: firebase.auth().currentUser.uid,
-            timestamp: Date.now(),
-            title: title,
-            genre: "Fantasy",
-            length: "Novel",
-            perspective: '3rd Person',
-            audience: 'Adult',
-            tags: [""]
-        })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-        };
-        $("#bookName").html('');
-        };
-        });
-  });
     
 //end add book function
 
 //dropdown function
-$(document).on('click','.dropdown', function(){ //adds book meta data drop down
-  //TODO: add update features options
-    $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-    $(this).parent().parent().children('.booklist_MetaData').toggle();
-  });
+
 //end of dropdown function
 
-//select book function
-$(document).on('click','.booklist_title', function(){  
-    $('.selected_book').addClass('booklist_item').removeClass('selected_book');
-    $(this).parent().addClass('selected_book').removeClass('booklist_item');
-    localStorage.setItem('bookid', $(this).attr('id'));
-    localStorage.setItem('booktitle', $(this).text());
-    $('#booktitle').html(localStorage.getItem('booktitle'));
-    if ($('#editor').is(':visible')){ // only load if visible
-      load_TOC(this);
-    };
-  });
-//end of select book function
+
 
 //add content to editor table of contents
 $(document).on('click','#AddContent', function(){
@@ -344,26 +179,7 @@ $(document).on('click','.content_title', function(){
 });
 
 
-async function updatebook_meta(){
-  $(document).on('focusout','.MetaData_Item', function(){
-    if($(this).attr('contenteditable')){
-    var item = $(this).html();
-    var itemid = $(this).attr('id');
-    var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
-    firebase.auth().onAuthStateChanged((user) => { // must call to define the user
-    if(user){
-        var updatebook = firebase.firestore().collection("books").doc(bookid);
-        updatebook.update({
-          [itemid]: item,
-        });
-        };
-        //newbook.update({
-    });
-    };
-    });
-  //$('.booklist_MetaData').hide();
-  $(this).parent().parent.show();
-};
+
 
 
 async function addtag(){
