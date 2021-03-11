@@ -40,7 +40,7 @@ $(document).ready(function() { // Loads App and establishes base load state.
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
         $('#bookmenu').hide();
-        
+        $('bookmenu_title').trigger('click');
   });
 // end LOAD App
 
