@@ -126,6 +126,21 @@ $(document).on('focusout','.MetaData_Item', function(){//update meta data
         };
 });
 
+$(document).on('click','.addTag', function(){
+    var tag = ('.TagName').html();
+    if(tag !=''){
+    var bookid = $(this).parent().parent().children('.booklist_item').children('.booklist_title').attr('id');
+    firebase.auth().onAuthStateChanged((user) => { // must call to define the user
+    if(user){
+        var updatebook = firebase.firestore().collection("books").doc(bookid);
+        updatebook.update({
+          tags: tag,
+        });
+        };
+        //newbook.update({
+    });
+    };
+    });
 
 
 };
