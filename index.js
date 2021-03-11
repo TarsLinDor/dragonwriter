@@ -30,17 +30,11 @@ Goal: minimize reads and writes per user. {ensure all functions are only called 
 // Load App 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
-      //starts app
-//initializeFireBase(); //Initializes firebase auth and firestore
-      //login_logout(); //requires user to login before using app
-         //loadbooks(); // loads book
-   //updatebook_meta();
-            //addtag();
-      //Initial App State:
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
+        $('#bookmenu_title').last().trigger('click');
         $('#bookmenu').hide();
-        $('bookmenu_title').trigger('click');
+
   });
 // end LOAD App
 
