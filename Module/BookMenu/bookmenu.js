@@ -16,9 +16,9 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
           // Loop through documents in database
 
           snaps.forEach((doc) => {
-            var item = "<div class='book_info' >\
+            var item = "<div class='book_info' id ='"+doc.id+"'>\
                         <div class='booklist_item'>\
-                        <a class='booklist_title' id ='"+doc.id+"'>"+ doc.data().title+ "</a>\
+                        <a class='booklist_title'>"+ doc.data().title+ "</a>\
                         <i class='fas fa-chevron-down dropdown'></i>\
                         </div>\
                         <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
@@ -54,7 +54,7 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
     $('.app').toggleClass('app-full');
     $('.app').toggleClass('app-side');
     $('#bookmenu').toggle(); 
-    $('.booklist_MetaData').hide();
+    //$('.booklist_MetaData').hide();
   });
 
   $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.

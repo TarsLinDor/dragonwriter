@@ -12,19 +12,15 @@
 //end of imports 
    
    
-
-//ends global variable 
-
-// Load App 
+// Load App and set initial conditions. 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
         $('#editor').addClass('full');
         $('.app').addClass('app-full');
-        $('#bookmenu_title').last().trigger('click');
+        $('#booklist').children('.booklist_item').last().children('.booklist_title').trigger('click');
         $('#bookmenu').hide();
 
   });
-// end LOAD App
 
 // load contents on click
 
