@@ -70,5 +70,40 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
               };
   });
 
+  $(document).on('click','.content_title', function(){
+  var ChapterID = $(this).parent().attr('id');
+  localStorage.setItem('ChapterID', ChapterID);
+  firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+          firebase.firestore().collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
+      if (doc.exists){
+        var title = doc.data().title;
+        var draft_numb = doc.data().draft-1;
+        var words = doc.data().content[draft_numb];
+        var order = doc.data().order;
+        var content_type = doc.data().type;
+        editor.root.innerHTML = words;
+        $('#Content_Title').html(title);
+        if(content_type =='Chapter'){
+        $('#numb').html(order +":");
+        }
+        else{
+          $('#numb').html(":");
+        }
+        $('#content_type').html(content_type);
+      console.log('Content Retrived successfull!');
+    } else {
+      console.log("No such document!");
+    }}).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+  //const content = document.getElementById('quill-editor');
+  //$('#quill-editor').html(localStorage.getItem('ChapterID'));
+  
+      };
+  });
+});
+
 };
 });
