@@ -7,6 +7,8 @@ import Sortable from 'sortablejs';
 
 // define global variables
   //load quill  wysiwyg editor
+async function editor(){
+
     var toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
@@ -24,6 +26,7 @@ import Sortable from 'sortablejs';
 var db = firebase.firestore();
 var bookid = localStorage.getItem('bookid');
 var booktitle = localStorage.getItem('booktitle');
+$('#booktitle').html(booktitle);
 
 firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should be done only if user is logged in
   db.collection("books").doc(bookid).collection('contents').orderBy('order')
@@ -107,3 +110,4 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
 
 };
 });
+};
