@@ -50,7 +50,7 @@ async function bookmenu(){
                 $('#tag'+doc.id+'').append(tags);
                 };
               }); 
-              $('.booklist_title').last().trigger('click');
+              $('.booklist_title').first().trigger('click');
 
       });
 

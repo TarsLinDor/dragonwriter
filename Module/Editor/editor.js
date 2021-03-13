@@ -128,7 +128,7 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
                   });
               };
   });
-
+*/
   $(document).on('click','.content_title', function(){
   var ChapterID = $(this).parent().attr('id');
   localStorage.setItem('ChapterID', ChapterID);
@@ -164,7 +164,6 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
   });
 });
 
-};
-});
-*/
+
+
 export default editor();
