@@ -18,7 +18,7 @@ async function bookmenu(){
               var item = "<div class='book_info' id ='"+doc.id+"'>\
                           \
                           <div class='booklist_item'>\
-                          <a class='booklist_title'>"+ doc.data().title+ "</a>\
+                          <a class='booklist_title' contenteditable='true' id='title'>"+ doc.data().title+ "</a>\
                           <i class='fas fa-chevron-down dropdown'></i>\
                           </div>\
                           \
@@ -126,7 +126,17 @@ async function bookmenu(){
               });
               };
       });
-  $(document).on('click','.addTag', function(){
+$(document).on('focusout','.booklist_title', function(){//update meta data
+          var item = $(this).html();
+          var itemid = $(this).attr('id');
+          var bookid = $(this).parent().parent().attr('id');
+          var updatebook = firebase.firestore().collection("books").doc(bookid);
+              updatebook.update({
+                [itemid]: item,
+              });
+              
+});
+$(document).on('click','.addTag', function(){
         var tag = $(this).parent().children('.TagName').text();
         
         //if(tag !=''){

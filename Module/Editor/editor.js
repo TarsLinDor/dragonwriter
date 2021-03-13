@@ -6,26 +6,29 @@ import $ from "jquery";
 import Sortable from 'sortablejs';
 
 // define global variables
-  //load quill  wysiwyg editor
-async function editor(){
-
-    var toolbarOptions = [
+var toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }],
     ['clean']
     ];
-    var editor = new Quill('#quill-editor', {
+var texteditor = new Quill('#quill-editor', {
     modules: {
       toolbar: toolbarOptions,
     },
     theme: 'snow',
     placeholder: "      Oh! the places you'll go..."
     });
+  //load quill  wysiwyg editor
+async function editor(){
+  var db = firebase.firestore();
+  var bookid = localStorage.getItem('bookid');
+  var booktitle = localStorage.getItem('booktitle');
   //end load  quill editor  
 
-var db = firebase.firestore();
-var bookid = localStorage.getItem('bookid');
-var booktitle = localStorage.getItem('booktitle');
+};
+
+
+
 $('#booktitle').html(booktitle);
 
 firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should be done only if user is logged in
@@ -110,4 +113,5 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
 
 };
 });
-};
+
+export default editor;

@@ -332,6 +332,7 @@ li.leftmenu-list:before{
 
     .booklist_title{
     font-weight: bold;
+    outline: none;
     }
 
     .booklist_item:hover {

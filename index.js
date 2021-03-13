@@ -8,20 +8,21 @@
   import './Module/firebase/startfire.js';
   import './Module/login/login_logout.js';
   import bookmenu from './Module/BookMenu/bookmenu.js';
-  import './Module/Editor/editor.js';
+  import editor from './Module/Editor/editor.js';
 //end of imports 
    
    
 // Load App and set initial conditions. 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
-      bookmenu
+      bookmenu;
+      editor;
   });
 
 // load contents on click
-        $('#editor').addClass('full');
-        $('.app').addClass('app-full');
-        $('#bookmenu').hide();
+$('#editor').addClass('full');
+$('.app').addClass('app-full');
+$('#bookmenu').hide();
 
 
 
