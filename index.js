@@ -7,16 +7,17 @@
   import $ from "jquery";
   import './Module/firebase/startfire.js';
   import './Module/login/login_logout.js';
+  import editor from'./Module/Editor/editor.js';
   import bookmenu from './Module/BookMenu/bookmenu.js';
-  import editor from './Module/Editor/editor.js';
 //end of imports 
-   
+  
    
 // Load App and set initial conditions. 
 $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
-      bookmenu;
-      editor;
+    bookmenu;
+    editor;
+      //$('.booklist').children('.book_info').last().children('.booklist_item').children
   });
 
 // load contents on click

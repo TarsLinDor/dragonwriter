@@ -13,8 +13,9 @@ async function bookmenu(){
             // Reset page
             $("#booklist").html('');
             // Loop through documents in database
-
+            var count = 0;
             snaps.forEach((doc) => {
+              
               var item = "<div class='book_info' id ='"+doc.id+"'>\
                           \
                           <div class='booklist_item'>\
@@ -48,8 +49,9 @@ async function bookmenu(){
                 var tags = '<a class = "tag" contenteditable="true" id="'+i+'">'+booktags[i]+'</a>';
                 $('#tag'+doc.id+'').append(tags);
                 };
-                
               }); 
+              $('.booklist_title').last().trigger('click');
+
       });
 
   $(document).on('click','#book', function(){ // defines events when the book button is clicked.
@@ -107,13 +109,16 @@ async function bookmenu(){
           $(this).parent().parent().children('.booklist_MetaData').toggle();
       });
 
+  
+  //select book
   $(document).on('click','.booklist_title', function(){//selects book  
           $('.selected_book').addClass('booklist_item').removeClass('selected_book');
           $(this).parent().addClass('selected_book').removeClass('booklist_item');
-          localStorage.setItem('bookid', $(this).attr('id'));
+          localStorage.setItem('bookid', $(this).parent().parent().attr('id'));
           localStorage.setItem('booktitle', $(this).text());
+          $('#edit').trigger('click');
       });
-
+  //select book
 
   $(document).on('focusout','.MetaData_Item', function(){//update meta data
           if($(this).attr('contenteditable')){
@@ -126,7 +131,7 @@ async function bookmenu(){
               });
               };
       });
-$(document).on('focusout','.booklist_title', function(){//update meta data
+  $(document).on('focusout','.booklist_title', function(){//update meta data
           var item = $(this).html();
           var itemid = $(this).attr('id');
           var bookid = $(this).parent().parent().attr('id');
@@ -135,8 +140,8 @@ $(document).on('focusout','.booklist_title', function(){//update meta data
                 [itemid]: item,
               });
               
-});
-$(document).on('click','.addTag', function(){
+    });
+  $(document).on('click','.addTag', function(){
         var tag = $(this).parent().children('.TagName').text();
         
         //if(tag !=''){
