@@ -214,7 +214,10 @@ li.leftmenu-list:before{
   text-align: center;
 }
 
-.#Content_Title {
+#Content_Title {
+  outline: none;
+}
+.content_title{
   outline: none;
 }
 
