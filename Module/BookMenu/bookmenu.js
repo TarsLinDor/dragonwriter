@@ -51,7 +51,6 @@ async function bookmenu(){
                 };
               }); 
               $('.booklist_title').first().trigger('click');
-
       });
 
   $(document).on('click','#book', function(){ // defines events when the book button is clicked.

@@ -20,8 +20,6 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
           callbacks: {
           signInSuccessWithAuthResult: function() {
             // Handle sign-in.
-
-            //TODO: add one book when user signs in. if new user then add book
             console.log('sign in successfull');
             return false;
           }
