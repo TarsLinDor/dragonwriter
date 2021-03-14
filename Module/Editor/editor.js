@@ -19,12 +19,12 @@ var texteditor = new Quill('#quill-editor', {
     theme: 'snow',
     placeholder: "      Oh! the places you'll go..."
     });
-  
+var db = firebase.firestore(); 
   //load quill  wysiwyg editor
 async function editor(){
 firebase.auth().onAuthStateChanged((user)=>{ if(user){
-var db = firebase.firestore();
-  $(document).on('click','#edit', function(){ //loads editor
+
+$(document).on('click','#edit', function(){ //loads editor
     var bookid = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     $('#booktitle').html(booktitle);
@@ -36,7 +36,7 @@ var db = firebase.firestore();
               snaps.forEach((doc) => {
                 if(doc.data().type == 'Chapter'){
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title' contenteditable='true'>"+doc.data().title+"</a>\
+                              <a class='content_title'>"+doc.data().title+"</a>\
                               <i class='fas fa-chevron-down dropdown'></i>\
                               </li>";
                 }
@@ -63,9 +63,9 @@ var db = firebase.firestore();
                   type: 'Chapter',
                   pov: "none",
                   discription: "Write a Chapter Discription.",
-                  draft: 1,
+                  a: '',
                   order: $('#content-list').children().length,
-                  content: ['test', 'draft 2'],
+                  
                       })
                 .then(() => {
                   console.log("Document successfully written!");
@@ -77,64 +77,36 @@ var db = firebase.firestore();
         });
   
   }});
-  //end load  quill editor  
-};
 
 
-
-
-/*
-firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should be done only if user is logged in
-  firebase.firestore().collection("books").doc(bookid).collection('contents').orderBy('order')
-    .onSnapshot((snaps) => {
-            // Reset page
-            $("#content-list").html('');
-            // Loop through documents in database
-              snaps.forEach((doc) => {
-                if(doc.data().type == 'Chapter'){
-                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </li>";
-                }
-                else{
-                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
-                              </div>";
-                };
-              $("#content-list").append(item);
-              });
-        });
-  $(document).on('click','#AddContent', function(){
-          const bookid = localStorage.getItem('bookid');
-            if(bookid != null){
-              firebase.firestore().collection("books").doc(bookid).collection('contents').add({
-                  bookId: bookid,
-                  timestamp: Date.now(),
-                  title: "Title",
-                  type: 'Chapter',
-                  pov: "none",
-                  discription: "Write a Chapter Discription.",
-                  draft: 1,
-                  order: $('#content-list').children().length,
-                  content: ['test', 'draft 2'],
-                      })
-                .then(() => {
-                  console.log("Document successfully written!");
-                  })
-                .catch((error) => {
-                  console.error("Error writing document: ", error);
-                  });
-              };
-  });
-*/
   $(document).on('click','.content_title', function(){
-  var ChapterID = $(this).parent().attr('id');
-  localStorage.setItem('ChapterID', ChapterID);
-  firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-          firebase.firestore().collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
+    var bookid = localStorage.getItem('bookid');
+    var booktitle = localStorage.getItem('booktitle');
+    var chapterid = $(this).parent().attr('id');
+    localStorage.setItem('ChapterID', chapterid);
+     firebase.firestore().collection("books").doc(bookid).collection('contents').doc(chapterid).get().then((doc) => {
+       $('#Content_Title').html(doc.data().title);
+        var title = doc.data().title;
+        var draft_numb = doc.data().draft-1;
+        //var words = doc.data().1;
+        var order = doc.data().order+1;
+        var content_type = doc.data().type;
+        texteditor.root.innerHTML = doc.data().a;
+        if(content_type =='Chapter'){
+        $('#numb').html(order +":");
+        }
+        else{
+          $('#numb').html(":");
+        }
+        $('#content_type').html(content_type);
+     });
+  });
+
+};
+  /*
+    var chapterID = $(this).parent().attr('id');
+    localStorage.setItem('ChapterID', chapterID);
+    db.collection("books").doc(localStorage.getItem('bookid')).collection('contents').doc(localStorage.getItem('ChapterID')).get().then((doc) => {
       if (doc.exists){
         var title = doc.data().title;
         var draft_numb = doc.data().draft-1;
@@ -157,12 +129,22 @@ firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should 
       console.log("Error getting document:", error);
     });
 
-  //const content = document.getElementById('quill-editor');
-  //$('#quill-editor').html(localStorage.getItem('ChapterID'));
+    //  const content = document.getElementById('quill-editor');
+    //$('#quill-editor').html(localStorage.getItem('ChapterID'));
   
-      };
+      });
   });
-});
+*/
+  
+ 
+
+
+
+
+
+
+
+
 
 
 
