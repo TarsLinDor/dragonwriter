@@ -17,6 +17,7 @@ $(document).ready(function() { // Loads App and establishes base load state.
       console.log( "ready!" );
     bookmenu;
     editor;
+    $('.content_title').last().trigger('click');
       //$('.booklist').children('.book_info').last().children('.booklist_item').children
   });
 
