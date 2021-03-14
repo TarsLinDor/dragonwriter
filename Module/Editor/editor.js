@@ -48,9 +48,8 @@ $(document).on('click','#edit', function(){ //loads editor
                 };
               $("#content-list").append(item);
               });
+        $('.content_title').last().trigger('click');
         });
-
-
     });
   //adds new chapters and stuff.
   $(document).on('click','#AddContent', function(){
