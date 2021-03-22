@@ -92,6 +92,9 @@ async function editor(){
   
   }});
 
+$(document).on('click','.fa-eye', function(){
+  $('.content_MetaData').show();
+});
 
   $(document).on('click','.content_title', function(){
     $('.content_MetaData').hide();

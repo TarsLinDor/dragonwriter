@@ -468,7 +468,7 @@ li.leftmenu-list:before{
       grid-template-columns: 100px auto;
       font-size: 75%;
       grid-column: 1/span 2;
-      background-color: #E3DCD7;
+      background-color: whitesmoke;
       margin: 5px;
       padding: 3px;
       border-radius: 5px 5px 5px 5px;
