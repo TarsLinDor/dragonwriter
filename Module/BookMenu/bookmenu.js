@@ -9,7 +9,8 @@ async function bookmenu(){
   var db = firebase.firestore();
   firebase.auth().onAuthStateChanged((user) => { if(user){// all functions should be done only if user is logged in
 
-    db.collection("books").where('user', '==', user.uid).onSnapshot((snaps) => { //Load Books
+    db.collection("books").where('user', '==', user.uid)
+    .onSnapshot((snaps) => { //Load Books
             // Reset page
             $("#booklist").html('');
             // Loop through documents in database

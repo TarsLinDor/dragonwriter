@@ -53,7 +53,7 @@ async function editor(){
                               <div class='content_MetaData'>\
                               <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
                               <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
-                              <a class='content-full underline'><b>Chapter Descrition</b></a><hr>\
+                              <a class='content-full underline'><b>Chapter Descrition</b></a>\
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                               </div>\
                               </div>";
