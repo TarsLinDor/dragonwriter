@@ -123,12 +123,13 @@ ol {
 
 li.leftmenu-list{
   display: grid;
-  grid-template-columns: 25px auto 5px;
-  padding: 1px 15px 2px 2px;
+  grid-template-columns: 25px auto 20px;
+  padding: 1px 1px 2px 2px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
   counter-increment: elementcounter;
+  z-index: 1;
   }
  div.leftmenu-list{
   display: grid;
@@ -455,7 +456,24 @@ li.leftmenu-list:before{
     .content-item{
       display: grid;
       grid-template-columns: auto 20px;
+      
     }
+  .content_MetaData{
+      position: relative;
+      display: grid;
+      grid-gap: 2px;
+      grid-template-columns: 120px auto;
+      border-top: solid 1px;
+      font-size: 80%;
+      grid-column: 1/span 2;
+      background-color: whitesmoke;
+      margin: 5px;
+      padding: 3px;
+      border-radius: 0px 0px 5px 5px;
+  }
+  .content-full{
+    grid-column: 1/span 2;
+  }
 
 /* meta stuff*/
 ::-webkit-scrollbar {

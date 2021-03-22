@@ -20,7 +20,7 @@ async function bookmenu(){
                           \
                           <div class='booklist_item'>\
                           <a class='booklist_title' contenteditable='true' id='title'>"+ doc.data().title+ "</a>\
-                          <i class='fas fa-chevron-down dropdown'></i>\
+                          \
                           </div>\
                           \
                           <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
@@ -42,6 +42,7 @@ async function bookmenu(){
                           </div>";
 
               $("#booklist").append(item);
+              $('.booklist_MetaData').hide();
               //TODO: fix tags
               var booktags = doc.data().tags;
               var i;
@@ -102,11 +103,6 @@ async function bookmenu(){
               $("#bookName").html('');
 
       });
-        
-  $(document).on('click','.dropdown', function(){ //adds book meta data drop down
-          $(this).toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-          $(this).parent().parent().children('.booklist_MetaData').toggle();
-      });
 
   
   //select book
@@ -116,6 +112,8 @@ async function bookmenu(){
           localStorage.setItem('bookid', $(this).parent().parent().attr('id'));
           localStorage.setItem('booktitle', $(this).text());
           $('#edit').trigger('click');
+          $('.booklist_MetaData').hide()
+          $(this).parent().parent().children('.booklist_MetaData').show()
       });
   //select book
 

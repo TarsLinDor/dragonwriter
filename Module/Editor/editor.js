@@ -22,9 +22,10 @@ var texteditor = new Quill('#quill-editor', {
 var db = firebase.firestore(); 
   //load quill  wysiwyg editor
 async function editor(){
-firebase.auth().onAuthStateChanged((user)=>{ if(user){
+  firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
-$(document).on('click','#edit', function(){ //loads editor
+  $(document).on('click','#edit', function(){ //loads editor
+    //$('#editor').show();
     var bookid = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     $('#booktitle').html(booktitle);
@@ -37,23 +38,36 @@ $(document).on('click','#edit', function(){ //loads editor
                 if(doc.data().type == 'Chapter'){
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
+                             \
+                              <div class='content_MetaData'>\
+                              <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
+                              <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
+                              <a class='content-full'><b>Chapter Descrition</b></a><hr>\
+                              <a class='content-full'>"+doc.data().discription+"</a>\
+                              </div>\
                               </li>";
                 }
                 else{
                   var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
-                              <i class='fas fa-chevron-down dropdown'></i>\
+                              <div class='content_MetaData'>\
+                              <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
+                              <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
+                              <a class='content-full'><b>Chapter Descrition</b></a><hr>\
+                              <a class='content-full'>"+doc.data().discription+"</a>\
+                              </div>\
                               </div>";
                 };
               $("#content-list").append(item);
+              $('.content_MetaData').hide();
               });
 
         });
-
+    
     });
-  //adds new chapters and stuff.
-  $(document).on('click','#AddContent', function(){
+  
+    //adds new chapters and stuff.
+    $(document).on('click','#AddContent', function(){
           const bookid = localStorage.getItem('bookid');
             if(bookid != null){
               firebase.firestore().collection("books").doc(bookid).collection('contents').add({
@@ -80,6 +94,8 @@ $(document).on('click','#edit', function(){ //loads editor
 
 
   $(document).on('click','.content_title', function(){
+    $('.content_MetaData').hide();
+    $(this).parent().children('.content_MetaData').show();
     var bookid = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     var chapterid = $(this).parent().attr('id');
