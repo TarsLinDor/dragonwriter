@@ -40,10 +40,10 @@ async function editor(){
                               <a class='content_title'>"+doc.data().title+"</a>\
                              \
                               <div class='content_MetaData'>\
-                              <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
-                              <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
-                              <a class='content-full'><b>Chapter Descrition</b></a><hr>\
-                              <a class='content-full'>"+doc.data().discription+"</a>\
+                              <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
+                              <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
+                              <a class='content-full underline'><b>Chapter Descrition</b></a>\
+                              <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                               </div>\
                               </li>";
                 }
@@ -53,8 +53,8 @@ async function editor(){
                               <div class='content_MetaData'>\
                               <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
                               <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
-                              <a class='content-full'><b>Chapter Descrition</b></a><hr>\
-                              <a class='content-full'>"+doc.data().discription+"</a>\
+                              <a class='content-full underline'><b>Chapter Descrition</b></a><hr>\
+                              <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                               </div>\
                               </div>";
                 };
@@ -96,6 +96,7 @@ async function editor(){
   $(document).on('click','.content_title', function(){
     $('.content_MetaData').hide();
     $(this).parent().children('.content_MetaData').show();
+    $(this).parent().addClass('content-selected');
     var bookid = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     var chapterid = $(this).parent().attr('id');

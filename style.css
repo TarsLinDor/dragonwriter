@@ -123,8 +123,8 @@ ol {
 
 li.leftmenu-list{
   display: grid;
-  grid-template-columns: 25px auto 20px;
-  padding: 1px 1px 2px 2px;
+  grid-template-columns: 25px auto;
+  padding: 2px 2px 2px 2px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
@@ -134,7 +134,7 @@ li.leftmenu-list{
  div.leftmenu-list{
   display: grid;
   grid-template-columns: auto 5px;
-  padding: 1px 15px 2px 7px;
+  padding: 2px 2px 2px 7px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
@@ -150,6 +150,9 @@ li.leftmenu-list:before{
 .leftmenu-list:hover{
   background-color: #C6B9B0;
   }
+.content-selected{
+  background-color: #C6B9B0;
+}
 
 .leftmenu-bottom{
   display: grid;
@@ -461,8 +464,8 @@ li.leftmenu-list:before{
   .content_MetaData{
       position: relative;
       display: grid;
-      grid-gap: 2px;
-      grid-template-columns: 120px auto;
+      grid-gap: 5px;
+      grid-template-columns: 100px auto;
       border-top: solid 1px;
       font-size: 80%;
       grid-column: 1/span 2;
@@ -470,9 +473,14 @@ li.leftmenu-list:before{
       margin: 5px;
       padding: 3px;
       border-radius: 0px 0px 5px 5px;
+      z-index: 1;
   }
   .content-full{
+    text-align: center;
     grid-column: 1/span 2;
+  }
+  .underline{
+    border-bottom: solid 1px;
   }
 
 /* meta stuff*/
