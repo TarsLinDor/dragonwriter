@@ -466,13 +466,12 @@ li.leftmenu-list:before{
       display: grid;
       grid-gap: 5px;
       grid-template-columns: 100px auto;
-      border-top: solid 1px;
-      font-size: 80%;
+      font-size: 75%;
       grid-column: 1/span 2;
-      background-color: whitesmoke;
+      background-color: #E3DCD7;
       margin: 5px;
       padding: 3px;
-      border-radius: 0px 0px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
       z-index: 1;
   }
   .content-full{

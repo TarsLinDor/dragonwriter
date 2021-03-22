@@ -95,8 +95,9 @@ async function editor(){
 
   $(document).on('click','.content_title', function(){
     $('.content_MetaData').hide();
+    $('.leftmenu-list').css('background-color','#E3DCD7');
     $(this).parent().children('.content_MetaData').show();
-    $(this).parent().addClass('content-selected');
+    $(this).parent().css('background-color','#C6B9B0');
     var bookid = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     var chapterid = $(this).parent().attr('id');
