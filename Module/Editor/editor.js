@@ -20,22 +20,30 @@ var texteditor = new Quill('#quill-editor', {
     placeholder: "      Oh! the places you'll go..."
     });
 var db = firebase.firestore(); 
+var contents = "";
+var bookID = "";
+var chapterID = "";
+var draft = "";
   //load quill  wysiwyg editor
 async function editor(){
   firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
   $(document).on('click','#edit', function(){ //loads editor
     //$('#editor').show();
-    var bookid = localStorage.getItem('bookid');
+    bookID = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     $('#booktitle').html(booktitle);
-    db.collection("books").doc(bookid).collection('contents').orderBy('order')
+    db.collection("books").doc(bookID).collection('contents')
+    .where('hidden','==', false)
+    //.orderBy('order') 
     .onSnapshot((snaps) => {
             // Reset page
             $("#content-list").html('');
             // Loop through documents in database
               snaps.forEach((doc) => {
                 if(doc.data().type == 'Chapter'){
+                  draft = doc.data().draft;
+                  contents = doc.data().contents;
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().title+"</a>\
                              \
@@ -44,6 +52,7 @@ async function editor(){
                               <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
                               <a class='content-full underline'><b>Chapter Descrition</b></a>\
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
+                              <a class='inner-contents'>"+contents[draft]+"</a>\
                               </div>\
                               </li>";
                 }
@@ -60,6 +69,7 @@ async function editor(){
                 };
               $("#content-list").append(item);
               $('.content_MetaData').hide();
+              $('.inner-contents').hide();
               });
 
         });
@@ -71,14 +81,15 @@ async function editor(){
           const bookid = localStorage.getItem('bookid');
             if(bookid != null){
               firebase.firestore().collection("books").doc(bookid).collection('contents').add({
-                  bookId: bookid,
+                  draft: 0,
                   timestamp: Date.now(),
                   title: "Title",
                   type: 'Chapter',
                   pov: "none",
                   discription: "Write a Chapter Discription.",
-                  a: '',
-                  order: $('#content-list').children().length,
+                  contents: [''],
+                  order: $('#content-list').children().length+1,
+                  hidden: false,
                   
                       })
                 .then(() => {
@@ -92,38 +103,38 @@ async function editor(){
   
   }});
 
-$(document).on('click','.fa-eye', function(){
-  $('.content_MetaData').show();
-});
+  $(document).on('click','.fa-eye', function(){
+    //$('.content_MetaData').show();
+    $(this).addClass('fa-eye-slash').removeClass('fa-eye');
+  });
+
+  $(document).on('click','.fa-eye-slash', function(){
+    //$('.content_MetaData').hide();
+    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+  });
 
   $(document).on('click','.content_title', function(){
     $('.content_MetaData').hide();
     $('.leftmenu-list').css('background-color','#E3DCD7');
     $(this).parent().children('.content_MetaData').show();
     $(this).parent().css('background-color','#C6B9B0');
-    var bookid = localStorage.getItem('bookid');
-    var booktitle = localStorage.getItem('booktitle');
-    var chapterid = $(this).parent().attr('id');
-    localStorage.setItem('ChapterID', chapterid);
-     firebase.firestore().collection("books").doc(bookid).collection('contents').doc(chapterid).get().then((doc) => {
-       $('#Content_Title').html(doc.data().title);
-        var title = doc.data().title;
-        var draft_numb = doc.data().draft-1;
-        //var words = doc.data().1;
-        var order = doc.data().order+1;
-        var content_type = doc.data().type;
-        texteditor.root.innerHTML = doc.data().a;
-        if(content_type =='Chapter'){
-        $('#numb').html(order +":");
-        }
-        else{
-          $('#numb').html(":");
-        }
-        $('#content_type').html(content_type);
-     });
+    chapterID = $(this).parent().attr('id');
+    texteditor.root.innerHTML = $(this).parent().children('.content_MetaData').children('.inner-contents').html();
   });
 
-};
+
+    $(document).on('click','.newDraft', function(){
+            var updatebook = firebase.firestore().collection("books").doc(bookid).collection('contents')
+            .doc(chapterID);
+            updatebook.update({
+              contents: firebase.firestore.FieldValue.arrayUnion('')
+
+
+            });
+        tag
+            //newbook.update({
+        });
+
   /*
     var chapterID = $(this).parent().attr('id');
     localStorage.setItem('ChapterID', chapterID);
@@ -157,7 +168,7 @@ $(document).on('click','.fa-eye', function(){
   });
 */
   
- 
+};
 
 
 
