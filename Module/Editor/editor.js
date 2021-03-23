@@ -41,9 +41,10 @@ async function editor(){
             $("#content-list").html('');
             // Loop through documents in database
               snaps.forEach((doc) => {
+                draft = doc.data().draft;
+                contents = doc.data().contents;
                 if(doc.data().type == 'Chapter'){
-                  draft = doc.data().draft;
-                  contents = doc.data().contents;
+
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().title+"</a>\
                              \
@@ -55,19 +56,22 @@ async function editor(){
                               <a class='inner-contents'>"+contents[draft]+"</a>\
                               </div>\
                               </li>";
+                            $("#content-list").append(item);
                 }
-                else{
+                else if(doc.data().type == 'Prologue') {
                   var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
                               <div class='content_MetaData'>\
-                              <a><b>Type:</b></a><a>"+doc.data().type+"</a>\
-                              <a><b>POV:</b></a><a>"+doc.data().pov+"</a>\
+                              <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
+                              <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
                               <a class='content-full underline'><b>Chapter Descrition</b></a>\
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
+                              <a class='inner-contents'>"+contents[draft]+"</a>\
                               </div>\
                               </div>";
+                              $("#content-list").prepend(item);
                 };
-              $("#content-list").append(item);
+              
               $('.content_MetaData').hide();
               $('.inner-contents').hide();
               });
