@@ -27,9 +27,7 @@ var draft = "";
   //load quill  wysiwyg editor
 async function editor(){
   firebase.auth().onAuthStateChanged((user)=>{ if(user){
-
   $(document).on('click','#edit', function(){ //loads editor
-    //$('#editor').show();
     bookID = localStorage.getItem('bookid');
     var booktitle = localStorage.getItem('booktitle');
     $('#booktitle').html(booktitle);
@@ -39,12 +37,13 @@ async function editor(){
     .onSnapshot((snaps) => {
             // Reset page
             $("#content-list").html('');
+            $(".draft_toc").html('<hr>');
             // Loop through documents in database
               snaps.forEach((doc) => {
                 draft = doc.data().draft;
                 contents = doc.data().contents;
                 if(doc.data().type == 'Chapter'){
-
+                  var draft = "<button class='circle' ><b>"+draft+"</b></button><br>";
                   var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
                               <a class='content_title'>"+doc.data().title+"</a>\
                              \
@@ -54,9 +53,11 @@ async function editor(){
                               <a class='content-full underline'><b>Chapter Descrition</b></a>\
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                               <a class='inner-contents'>"+contents[draft]+"</a>\
+                              <a class='inner-drafts'>"+draft+"</a>\
                               </div>\
                               </li>";
                             $("#content-list").append(item);
+                            $(".draft_toc").append(draft);
                 }
                 else if(doc.data().type == 'Prologue') {
                   var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
