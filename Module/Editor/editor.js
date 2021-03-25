@@ -49,14 +49,14 @@ $(document).on('click','#edit', function(){ //loads editor
       // Loop through documents in database
         snaps.forEach((doc) => {
           contents = doc.data().contents;
-          draft_NUM = contents.length-1;
+          draft_NUM = contents.length;
           order = $('.order').length+1;
                 if(doc.data().type == 'Chapter'){
 
-                  var hidden = "<div class ='content-data hidden' id='>";
-                  for (var i = 0; i <= draft_NUM; i++) {
-                    var drafts = "<a class='drafts'>"+contents[i]+"</a>"
-                    hidden = hidden+drafts;
+                  var hidden = "<div class ='content-data ' id='>";
+                  for (var i = 0; i < draft_NUM; i++) {
+                    var drafts = "<a class='drafts'>"+contents[i]+" </a>"
+                    hidden = hidden + drafts;
                   }
 
                   var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
@@ -85,14 +85,13 @@ $(document).on('click','#edit', function(){ //loads editor
           const bookid = localStorage.getItem('bookid');
             if(bookid != null){
               firebase.firestore().collection("books").doc(bookid).collection('contents').add({
-                  draft: 0,
                   timestamp: Date.now(),
                   title: "Title",
                   type: 'Chapter',
                   pov: "none",
-                  discription: "Write a Chapter Discription.",
+                  discription: "Write a description.",
                   contents: [''],
-                  order: $('#content-list').children().length+1,
+                  order: 0,
                   hidden: false,
                   
                       })
@@ -122,8 +121,14 @@ $(document).on('click','#edit', function(){ //loads editor
     $('.leftmenu-list').css('background-color','#E3DCD7');
     $(this).children('.content_MetaData').show();
     $(this).css('background-color','#C6B9B0');
-    chapterID = $(this).parent().attr('id');
-    texteditor.root.innerHTML = $(this).children('.content_MetaData').children('.inner-contents').html();
+    chapterID = $(this).attr('id');
+    var draft_num = $(this).children('.content-data').children('.drafts').length;
+    if (draft_num != 0){
+      texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
+    }
+    else {
+      texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').first().html();
+    }
   });
 
 
