@@ -13,7 +13,7 @@ import toolbarOptions from './quill.js';
 var db = firebase.firestore(); 
 var contents = "";
 var bookID = "";
-var booktitle
+var booktitle ="";
 var chapterID = "";
 var draft_NUM = 0;
 var order = "";
@@ -53,9 +53,9 @@ $(document).on('click','#edit', function(){ //loads editor
           order = $('.order').length+1;
                 if(doc.data().type == 'Chapter'){
 
-                  var hidden = "<div class ='content-data ' id='>";
+                  var hidden = "<div class ='content-data hidden'>";
                   for (var i = 0; i < draft_NUM; i++) {
-                    var drafts = "<a class='drafts'>"+contents[i]+" </a>"
+                    var drafts = "<a class='drafts'>"+contents[i]+"</a>"
                     hidden = hidden + drafts;
                   }
 
@@ -118,28 +118,28 @@ $(document).on('click','#edit', function(){ //loads editor
 
   $(document).on('click','.leftmenu-list', function(){
     $('.content_MetaData').hide();
+    $(".draft_toc").html('<hr>');
     $('.leftmenu-list').css('background-color','#E3DCD7');
     $(this).children('.content_MetaData').show();
     $(this).css('background-color','#C6B9B0');
     chapterID = $(this).attr('id');
-    var draft_num = $(this).children('.content-data').children('.drafts').length;
-    if (draft_num != 0){
-      texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
-    }
-    else {
-      texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').first().html();
-    }
+    localStorage.setItem('ChapterID', chapterID);
+    texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
+    var num_of_drafts = $(this).children('.content-data').children('.drafts').length
+
+    for (var i = 0; i < num_of_drafts-1; i++) {
+      var drafts = "<button class='circle draft' ><b>"+(i+1)+"</b></button><br>"
+      $(".draft_toc").append(drafts);
+      }
+
   });
 
 
-    $(document).on('click','.newDraft', function(){
-            var updatebook = firebase.firestore().collection("books").doc(bookid).collection('contents')
+    $(document).on('click','#newDraft', function(){
+            var updatebook = firebase.firestore().collection("books").doc(bookID).collection('contents')
             .doc(chapterID);
             updatebook.update({
               contents: firebase.firestore.FieldValue.arrayUnion('')
-
-
             });
-        tag
             //newbook.update({
         });
