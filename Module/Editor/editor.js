@@ -15,7 +15,7 @@ var contents = "";
 var bookID = "";
 var booktitle
 var chapterID = "";
-var draft = "";
+var draft_NUM = 0;
 var order = "";
 
   //load quill  wysiwyg editor
@@ -45,12 +45,19 @@ $(document).on('click','#edit', function(){ //loads editor
       // Reset page
       $("#content-list").html('');
       $(".draft_toc").html('<hr>');
+      //$(".col-draft").hide();
       // Loop through documents in database
         snaps.forEach((doc) => {
           contents = doc.data().contents;
-          draft = contents.length-1;
+          draft_NUM = contents.length-1;
           order = $('.order').length+1;
                 if(doc.data().type == 'Chapter'){
+
+                  var hidden = "<div class ='content-data hidden' id='>";
+                  for (var i = 0; i <= draft_NUM; i++) {
+                    var drafts = "<a class='drafts'>"+contents[i]+"</a>"
+                    hidden = hidden+drafts;
+                  }
 
                   var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
                                 <a class='content_title'>"+order+":</a>\
@@ -61,15 +68,10 @@ $(document).on('click','#edit', function(){ //loads editor
                                   <a class='content-full underline'><b>Chapter Descrition</b></a>\
                                   <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                                 </div>\
+                                "+ hidden +"<\div>\
                               </div>";
                   $("#content-list").append(item);
-                  
-                  var contents = "<div class ='hidden' id='content-data>\
-                                    <a id='inner-contents'>"+contents[draft]+"</a>\
-                                    <a id='inner-drafts'>"+draft+"</a>\
-                                  </div>";
-                            
-                            $(".draft_toc").append(draft);
+
                 }
               $('.hidden').hide();
               });
