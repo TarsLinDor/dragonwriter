@@ -121,32 +121,18 @@ ol {
       box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
       z-index: 10;
 }
+.order{
+  display: grid;
+  grid-template-columns: 20px auto;
+}
 
-li.leftmenu-list{
-  display: grid;
-  grid-template-columns: 25px auto;
-  padding: 2px 2px 2px 2px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: #E3DCD7;
-  counter-increment: elementcounter;
-  z-index: 1;
-  }
  div.leftmenu-list{
-  display: grid;
-  grid-template-columns: auto 5px;
+
   padding: 2px 2px 2px 7px;
   margin: 5px 5px 5px 5px;
   border-radius: 12px;
   background-color: #E3DCD7;
-  counter-increment: elementcounter;
   }
-li.leftmenu-list:before{
-    /* print out "Element " followed by the current counter value */
-  content: counter(elementcounter) ": ";
-  margin: auto ;
-  /* increment counter */
-}
 
 .leftmenu-list:hover{
   background-color: #C6B9B0;
@@ -466,12 +452,12 @@ li.leftmenu-list:before{
       position: relative;
       display: grid;
       grid-gap: 5px;
-      grid-template-columns: 100px auto;
+      grid-template-columns: auto auto;
       font-size: 75%;
       grid-column: 1/span 2;
       background-color: whitesmoke;
-      margin: 5px;
-      padding: 3px;
+      margin: 5px 5px 5px 0px;
+      padding: 5px;
       border-radius: 5px 5px 5px 5px;
       z-index: 1;
   }
@@ -482,6 +468,7 @@ li.leftmenu-list:before{
   .underline{
     border-bottom: solid 1px;
   }
+  
 
 /* meta stuff*/
 ::-webkit-scrollbar {

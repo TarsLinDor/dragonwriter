@@ -16,6 +16,7 @@ var bookID = "";
 var booktitle
 var chapterID = "";
 var draft = "";
+var order = "";
 
   //load quill  wysiwyg editor
 var toolbarOptions = [
@@ -30,9 +31,6 @@ var texteditor = new Quill('#quill-editor', {
     theme: 'snow',
     placeholder: "      Oh! the places you'll go..."
     });
-
-
-
 
 
 firebase.auth().onAuthStateChanged((user)=>{ if(user){
@@ -51,39 +49,29 @@ $(document).on('click','#edit', function(){ //loads editor
         snaps.forEach((doc) => {
           contents = doc.data().contents;
           draft = contents.length-1;
+          order = $('.order').length+1;
                 if(doc.data().type == 'Chapter'){
-                  var draft = "<button class='circle' ><b>"+draft+"</b></button><br>";
-                  var item = "<li class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().title+"</a>\
-                             \
-                              <div class='content_MetaData'>\
-                              <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
-                              <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
-                              <a class='content-full underline'><b>Chapter Descrition</b></a>\
-                              <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
-                              <a class='inner-contents'>"+contents[draft]+"</a>\
-                              <a class='inner-drafts'>"+draft+"</a>\
-                              </div>\
-                              </li>";
-                            $("#content-list").append(item);
+
+                  var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
+                                <a class='content_title'>"+order+":</a>\
+                                <a class='content_title'> "+doc.data().title+"</a>\
+                                <div class='content_MetaData hidden'>\
+                                  <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
+                                  <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
+                                  <a class='content-full underline'><b>Chapter Descrition</b></a>\
+                                  <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
+                                </div>\
+                              </div>";
+                  $("#content-list").append(item);
+                  
+                  var contents = "<div class ='hidden' id='content-data>\
+                                    <a id='inner-contents'>"+contents[draft]+"</a>\
+                                    <a id='inner-drafts'>"+draft+"</a>\
+                                  </div>";
+                            
                             $(".draft_toc").append(draft);
                 }
-                else if(doc.data().type == 'Prologue') {
-                  var item = "<div class = 'leftmenu-list' id ='"+doc.id+"'>\
-                              <a class='content_title'>"+doc.data().type+": "+doc.data().title+"</a>\
-                              <div class='content_MetaData'>\
-                              <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
-                              <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
-                              <a class='content-full underline'><b>Chapter Descrition</b></a>\
-                              <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
-                              <a class='inner-contents'>"+contents[draft]+"</a>\
-                              </div>\
-                              </div>";
-                              $("#content-list").prepend(item);
-                };
-              
-              $('.content_MetaData').hide();
-              $('.inner-contents').hide();
+              $('.hidden').hide();
               });
 
         });
@@ -127,13 +115,13 @@ $(document).on('click','#edit', function(){ //loads editor
     $(this).removeClass('fa-eye-slash').addClass('fa-eye');
   });
 
-  $(document).on('click','.content_title', function(){
+  $(document).on('click','.leftmenu-list', function(){
     $('.content_MetaData').hide();
     $('.leftmenu-list').css('background-color','#E3DCD7');
-    $(this).parent().children('.content_MetaData').show();
-    $(this).parent().css('background-color','#C6B9B0');
+    $(this).children('.content_MetaData').show();
+    $(this).css('background-color','#C6B9B0');
     chapterID = $(this).parent().attr('id');
-    texteditor.root.innerHTML = $(this).parent().children('.content_MetaData').children('.inner-contents').html();
+    texteditor.root.innerHTML = $(this).children('.content_MetaData').children('.inner-contents').html();
   });
 
 
