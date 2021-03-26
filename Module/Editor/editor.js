@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
             contents = doc.data().contents;
             draft_NUM = contents.length;
             order = $('.order').length+1;
-                  if(doc.data().type == 'Chapter'){
+                  
 
                     var hidden = "<div class ='content-data hidden'>";
                     for (var i = 0; i < draft_NUM; i++) {
@@ -59,20 +59,28 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                       hidden = hidden + drafts;
                     }
 
+                    var content_title = "<a class='content_title title' > "+doc.data().title+"</a>"
+                    var content_type = "<a class='content_title order'>0"+order+":</a>";
+                    var content_meta = "<div class='content_MetaData hidden'>\
+                                          <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
+                                          <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
+                                          <a class='content-full underline'><b>Chapter Descrition</b></a>\
+                                          <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
+                                        </div>";
+
+                    if(doc.data().type != 'Chapter'){
+                        content_type = "<a class='content_title'>"+doc.data().type+" "+order+":</a>";
+                    }
+
                     var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
-                                  <a class='content_title'>"+order+":</a>\
-                                  <a class='content_title'> "+doc.data().title+"</a>\
-                                  <div class='content_MetaData hidden'>\
-                                    <a><b>Type:</b></a><a contenteditable='true'>"+doc.data().type+"</a>\
-                                    <a><b>POV:</b></a><a contenteditable='true'>"+doc.data().pov+"</a>\
-                                    <a class='content-full underline'><b>Chapter Descrition</b></a>\
-                                    <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
-                                  </div>\
+                                  "+content_type+"\
+                                  "+content_title+"\
+                                  "+content_meta+"\
                                   "+ hidden +"<\div>\
                                 </div>";
                     $("#content-list").append(item);
 
-                  }
+                  
                 $('.hidden').hide();
                 });
 
@@ -122,6 +130,15 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
       $('.leftmenu-list').css('background-color','#E3DCD7');
       $(this).children('.content_MetaData').show();
       $(this).css('background-color','#C6B9B0');
+      var content_type = $(this).children('.content_MetaData').children('.type').html();
+      if(content_type =='Chapter'){
+        content_type = "";
+      }
+      var content_order = $(this).children('.order').html();
+      var content_title = $(this).children('.title').html();
+      $('#content_type').html(content_type);
+      $('#numb').html(content_order);
+      $('#Content_Title').html(content_title);
       chapterID = $(this).attr('id');
       localStorage.setItem('ChapterID', chapterID);
       texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
@@ -136,13 +153,42 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
 
       $(document).on('click','#newDraft', function(){
-              var updatebook = firebase.firestore().collection("books").doc(bookID).collection('contents')
+              bookID = localStorage.getItem('bookid');
+              chapterID = localStorage.getItem('ChapterID');
+              var update = firebase.firestore().collection("books").doc(bookID).collection('contents')
               .doc(chapterID);
-              updatebook.update({
+              update.update({
                 contents: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
               });
-              //newbook.update({
+              $('.leftmenu-list').attr("id", chapterID).trigger('click');
           });
+
+        $(document).on('focusout','#Content_Title', function(){//update meta data
+          if($(this).attr('contenteditable')){
+          var text = $(this).html();
+          bookID = localStorage.getItem('bookid');
+          chapterID = localStorage.getItem('ChapterID');
+          var update = firebase.firestore().collection("books").doc(bookID).collection('contents')
+              .doc(chapterID);
+              update.update({
+                title: text,
+              });
+              };
+      });
+
+          $(document).on('focusout','#quill-editor', function(){//update meta data
+              bookID = localStorage.getItem('bookid');
+              chapterID = localStorage.getItem('ChapterID');
+              var update = firebase.firestore().collection("books").doc(bookID).collection('contents')
+                  .doc(chapterID);
+                  update.update({
+                    contents: firebase.firestore.FieldValue.arrayRemove(texteditor.root.innerHTML),
+                    contents: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
+                  });
+                  
+        });
+
+      
 
 
 

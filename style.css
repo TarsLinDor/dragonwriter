@@ -72,7 +72,7 @@ ol {
   background-color: #F1EDEB;
   border-radius: 5px;
   display: grid;
-  grid-template-columns: 210px auto auto auto 90px;
+  grid-template-columns: 250px auto auto auto 80px;
   margin:  0px 0px 0px 5px;
   overflow: hidden;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
@@ -122,8 +122,8 @@ ol {
       z-index: 10;
 }
 .order{
-  display: grid;
-  grid-template-columns: 20px auto;
+  /*display: inline;*/
+  /*grid-template-columns: 20px auto;*/
 }
 
  div.leftmenu-list{
@@ -287,6 +287,9 @@ ol {
 }
 .circle:hover {
   background-color: #C6B9B0;
+}
+#numb{
+  font-size: 120%;
 }
 
 /* bookmenu*/
@@ -468,7 +471,9 @@ ol {
   .underline{
     border-bottom: solid 1px;
   }
-  
+  .right{
+    text-align: right;
+  }
 
 /* meta stuff*/
 ::-webkit-scrollbar {
