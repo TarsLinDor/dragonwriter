@@ -51,7 +51,8 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
           snaps.forEach((doc) => {
             content = doc.data().content;
             drafts = doc.data().drafts;
-            word_count = word_count + content.split(" ").length-1;
+            var words = content.split(" ").length;
+            word_count = word_count + words;
             order = $('.order').length+1;
                   
 
@@ -70,7 +71,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                     var content_meta = "<div class='content_MetaData hidden'>\
                                           <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
                                           <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
-                                          <a><b>Word Count:</b></a><a class='right'>"+(content.split(" ").length-1)+"</a>\
+                                          <a><b>Word Count:</b></a><a class='right'>"+words+"</a>\
                                           <a class='content-full underline'><b>Chapter Descrition</b></a>\
                                           <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                                         </div>";
@@ -89,8 +90,10 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
                   
                 $('.hidden').hide();
+                $('.leftmenu_list').last().trigger('click');
                 });
                 $("#content-list").append(word_count);
+                
           });
       
       });
