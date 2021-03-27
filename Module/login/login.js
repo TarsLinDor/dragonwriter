@@ -4,12 +4,15 @@ import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 import $ from "jquery";
 import './login.css';
-import * as LOGIN from './login.html';
 
 
-$(document).ready(function() {
-  $("login").html(LOGIN);
+
+/*$(document).ready(function() {
+  $("body").load('./login.html');
 });
+*/
+
+$( "login" ).get( "./login.html .welcome" );
 
 
 async function login_logout(){ // Logs users in and out of DragonWriter.
@@ -36,7 +39,7 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
       };
 
       const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start('#login_window', uiConfig);
+      ui.start('firebaseUI-login', uiConfig);
 
       // Listen to the current Auth state
       firebase.auth().onAuthStateChanged((user) => {

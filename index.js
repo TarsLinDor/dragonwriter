@@ -6,7 +6,7 @@
   import './style.css';
   import $ from "jquery";
   import './Module/firebase/startfire.js';
-  import './Module/login/login_logout.js';
+  import './Module/login/login.js';
   import editor from'./Module/Editor/editor.js';
   import bookmenu from './Module/BookMenu/bookmenu.js';
 //end of imports 
