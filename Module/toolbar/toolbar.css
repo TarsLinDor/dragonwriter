@@ -27,7 +27,7 @@ toolbar-top button{
   font-size: 100%;
   width: 2em;
   height: 2em;
-  cursor: pointer;\
+  cursor: pointer;
   margin: auto;
 }
 toolbar-top button:hover{
