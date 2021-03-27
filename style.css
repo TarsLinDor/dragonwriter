@@ -1,5 +1,34 @@
 body {
   font-family: 'Merriweather', serif;
-  background-color: #607B8D;
+  background-color: grey;
   overflow: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+app {
+  background-color: white;
+  overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+}
+
+app.full{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+app.side{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+app.grid1{
+  display: grid;
+  grid-template-columns: 2.5em 1fr;
+  grid-template-rows: 2.5em 1fr;
 }

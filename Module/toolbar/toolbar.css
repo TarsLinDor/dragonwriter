@@ -1,0 +1,52 @@
+toolbar-top{
+  grid-row: 1;
+  grid-column: 1/span 3;
+  display: grid;
+  grid-template-columns: 2.5em 1fr 2.5em;
+  background-color: darkgrey;
+  padding: .25em;
+}
+toolbar-left{
+  grid-row: 2;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: 2em;
+  background-color: grey;
+}
+toolbar-top book-title{
+  display: block;
+}
+
+
+toolbar-top button{
+  background-color: inherit;
+  color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;\
+  margin: auto;
+}
+toolbar-top button:hover{
+  background-color: #C6B9B0;
+}
+
+toolbar-left button{
+  background-color: inherit;
+  color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  margin: auto;
+}
+toolbar-left button:hover{
+  background-color: #C6B9B0;
+}
+

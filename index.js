@@ -7,6 +7,7 @@
   import $ from "jquery";
   import './Module/firebase/startfire.js';
   import './Module/login/login.js';
+  import toolbar from'./Module/toolbar/toolbar.js';
   import editor from'./Module/Editor/editor.js';
   import bookmenu from './Module/BookMenu/bookmenu.js';
 //end of imports 
@@ -14,8 +15,9 @@
    
 // Load App and set initial conditions. 
 $(document).ready(function() { // Loads App and establishes base load state.
-      console.log( "ready!" );
+    console.log( "ready!" );
     bookmenu;
+    toolbar;
     editor;
     $('.content_title').last().trigger('click');
     $('.leftmenu_list').last().trigger('click');
@@ -23,9 +25,7 @@ $(document).ready(function() { // Loads App and establishes base load state.
   });
 
 // load contents on click
-$('#editor').addClass('full');
-$('.app').addClass('app-full');
-$('#bookmenu').hide();
+
 
 
 
