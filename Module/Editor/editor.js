@@ -92,7 +92,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                 $('.hidden').hide();
                 
                 });
-                $("#content-list").append(word_count);
+                $(".leftmenu-bottom").prepend(word_count);
                 
           });
       
