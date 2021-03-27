@@ -3,8 +3,17 @@ import "firebase/auth";
 import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 import $ from "jquery";
+import './login.css';
+import * as LOGIN from './login.html';
+
+
+$(document).ready(function() {
+  $("login").html(LOGIN);
+});
+
 
 async function login_logout(){ // Logs users in and out of DragonWriter.
+
       const uiConfig = {
         credentialHelper: firebaseui.auth.CredentialHelper.NONE,
         signInOptions: [
@@ -32,10 +41,10 @@ async function login_logout(){ // Logs users in and out of DragonWriter.
       // Listen to the current Auth state
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-        $('#login').hide();
+        $('login').hide();
         }
         else {
-        $('#login').show();
+        $('login').show();
         }
       });
 

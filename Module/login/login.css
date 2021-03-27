@@ -1,0 +1,36 @@
+login{
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(141, 114, 96);
+  opacity: 1;
+}
+
+login #login {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(141, 114, 96);
+  opacity: 1;
+}
+
+login #login_window{
+  background-color: whitesmoke;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+login #welcome {
+  margin: 12vh auto 0 auto;
+}
+login #login_window {
+  margin: auto;
+}
