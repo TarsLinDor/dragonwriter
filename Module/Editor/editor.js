@@ -47,23 +47,30 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
         $(".draft_toc").html('<hr>');
         //$(".col-draft").hide();
         // Loop through documents in database
+        var word_count = 0;
           snaps.forEach((doc) => {
-            contents = doc.data().contents;
-            draft_NUM = contents.length;
+            content = doc.data().content;
+            drafts = doc.data().drafts;
+            word_count = word_count + content.split(" ").length-1;
             order = $('.order').length+1;
                   
 
                     var hidden = "<div class ='content-data hidden'>";
+                    if(drafts){
+                    draft_NUM = drafts.length;
                     for (var i = 0; i < draft_NUM; i++) {
-                      var drafts = "<a class='drafts'>"+contents[i]+"</a>"
+                      var drafts = "<a class='drafts' value='"+i+"'>"+drafts[i]+"</a>";
                       hidden = hidden + drafts;
+                    }
                     }
 
                     var content_title = "<a class='content_title title' > "+doc.data().title+"</a>"
                     var content_type = "<a class='content_title order'>0"+order+":</a>";
+                    var content = "<a class='drafts'>"+doc.data().content+"</a>"
                     var content_meta = "<div class='content_MetaData hidden'>\
                                           <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
                                           <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
+                                          <a><b>Word Count:</b></a><a class='right'>"+(content.split(" ").length-1)+"</a>\
                                           <a class='content-full underline'><b>Chapter Descrition</b></a>\
                                           <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                                         </div>";
@@ -76,14 +83,14 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                                   "+content_type+"\
                                   "+content_title+"\
                                   "+content_meta+"\
-                                  "+ hidden +"<\div>\
+                                  "+ hidden + content+"<\div>\
                                 </div>";
                     $("#content-list").append(item);
 
                   
                 $('.hidden').hide();
                 });
-
+                $("#content-list").append(word_count);
           });
       
       });
@@ -96,9 +103,9 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                     timestamp: Date.now(),
                     title: "Title",
                     type: 'Chapter',
-                    pov: "none",
+                    pov: "",
                     discription: "Write a description.",
-                    contents: [''],
+                    content: '',
                     order: $('.leftmenu-list').length,
                     hidden: false,
                     
@@ -145,7 +152,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
       var num_of_drafts = $(this).children('.content-data').children('.drafts').length
 
       for (var i = 0; i < num_of_drafts-1; i++) {
-        var drafts = "<button class='circle draft' ><b>"+(i+1)+"</b></button><br>"
+        var drafts = "<button class='circle draft'><b>"+(i+1)+"</b></button><br>"
         $(".draft_toc").append(drafts);
         }
 
@@ -158,7 +165,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
               var update = firebase.firestore().collection("books").doc(bookID).collection('contents')
               .doc(chapterID);
               update.update({
-                contents: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
+                drafts: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
               });
               $('.leftmenu-list').attr("id", chapterID).trigger('click');
           });
@@ -182,11 +189,17 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
               var update = firebase.firestore().collection("books").doc(bookID).collection('contents')
                   .doc(chapterID);
                   update.update({
-                    contents: firebase.firestore.FieldValue.arrayRemove(texteditor.root.innerHTML),
-                    contents: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
+                    content: texteditor.root.innerHTML,
                   });
                   
         });
+
+        $(document).on('click','button.draft', function(){
+          var numb = Number($(this).text());
+
+          $("#content-list").append(numb);
+
+          });
 
       
 
