@@ -48,7 +48,7 @@ async function bookmenu(){
                 $('#tag'+doc.id+'').append(tags);
                 };
               }); 
-              $('book').first().trigger('click');
+              $('booktitle').first().trigger('click');
       });
 
   $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -96,15 +96,14 @@ async function bookmenu(){
 
   
   //select book
-  $(document).on('click','book', function(){//selects book  
-          $(this).stopPropagation;
+  $(document).on('click','booktitle', function(){//selects book  
           $('book').addClass('unselected').removeClass('selected');
-          $(this).addClass('selected').removeClass('unselected');
-          localStorage.setItem('bookid', $(this).attr('id'));
-          localStorage.setItem('booktitle', $(this).text());
+          $(this).parent().addClass('selected').removeClass('unselected');
+          localStorage.setItem('bookid', $(this).parent().attr('id'));
+          localStorage.setItem('booktitle', $(this).parent().text());
           $('#editor').trigger('click');
           $('MetaData').hide()
-          $(this).children('MetaData').show()
+          $(this).parent().children('MetaData').show()
       });
   //select book
 
@@ -122,10 +121,10 @@ async function bookmenu(){
   $(document).on('focusout','booktitle', function(){//update meta data
           var item = $(this).html();
           var itemid = $(this).attr('id');
-          var bookid = $(this).parent().parent().attr('id');
+          var bookid = $(this).parent().attr('id');
           var updatebook = firebase.firestore().collection("books").doc(bookid);
               updatebook.update({
-                [itemid]: item,
+                title: item,
               });
               
     });
