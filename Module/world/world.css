@@ -1,8 +1,8 @@
-editor{
+world{
   background-color: whitesmoke;
   display: grid;
-  grid-template-columns: 15em 1fr 5em;
-  overflow: hidden;
+  grid-template-columns: 20em 1fr 5em;
   margin: 5px 0px 5px 5px;
+  overflow: hidden;
   border-radius: .25em;
 }

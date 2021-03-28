@@ -3,6 +3,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
+import './bookmenu.css';
 
 // define global variables
 async function bookmenu(){
@@ -12,38 +13,33 @@ async function bookmenu(){
     db.collection("books").where('user', '==', user.uid)
     .onSnapshot((snaps) => { //Load Books
             // Reset page
-            $("#booklist").html('');
+            $("booklist").html('');
             // Loop through documents in database
             var count = 0;
             snaps.forEach((doc) => {
               
-              var item = "<div class='book_info' id ='"+doc.id+"'>\
-                          \
-                          <div class='booklist_item'>\
-                          <a class='booklist_title' contenteditable='true' id='title'>"+ doc.data().title+ "</a>\
-                          \
-                          </div>\
-                          \
-                          <div class='booklist_MetaData'><a class='MetaData_Item'><b>Genre: </b></a>\
-                            <a class='MetaData_Item' contenteditable='true' id='genre'>"+doc.data().genre+"</a>\
-                            <a class='MetaData_Item'><b>Length:</b></a>\
-                            <a class='MetaData_Item' contenteditable='true' id = 'length'>"+doc.data().length+"</a>\
-                            <a class='MetaData_Item'><b>Perspective:</b></a>\
-                            <a class='MetaData_Item' contenteditable='true' id = 'perspective'>"+doc.data().perspective+"</a>\
-                            <a class='MetaData_Item'><b>Audience:</b></a>\
-                            <a class='MetaData_Item' contenteditable='true' id = 'audience'>"+doc.data().audience+"</a><br>\
-                            <a class='MetaData_Title'><b>Tags</b></a>\
-                            <div class='Taglist' id ='tag"+doc.id+"'>\
-                              <br>\
-                            </div>\
-                            <div class='insertTag'>\
-                            <a class='TagName' contenteditable='true' placeholder='Add Tag'></a>\
-                            <a class='addTag'><i class='fas fa-plus'></i></a>\
-                            </div>\
-                          </div>";
+              var item = "<book id ='"+doc.id+"'>\
+                          <booktitle contenteditable='true'>"+ doc.data().title+ "</booktitle>\
+                            <MetaData>\
+                              <a class='Item'><b>Genre: </b></a>\
+                              <a class='Item' contenteditable='true' id='genre'>"+doc.data().genre+"</a>\
+                              <a class='Item'><b>Length:</b></a>\
+                              <a class='Item' contenteditable='true' id = 'length'>"+doc.data().length+"</a>\
+                              <a class='Item'><b>Perspective:</b></a>\
+                              <a class='Item' contenteditable='true' id = 'perspective'>"+doc.data().perspective+"</a>\
+                              <a class='Item'><b>Audience:</b></a>\
+                              <a class='Item' contenteditable='true' id = 'audience'>"+doc.data().audience+"</a><br>\
+                              <a class='Title'><b>Tags</b></a>\
+                              <tag id ='tag"+doc.id+"'></tag>\
+                              <addTag>\
+                                <a class='tagname' contenteditable='true' placeholder='Add Tag'></a>\
+                                <button class = 'addtag'><i class='fas fa-plus'></i></button>\
+                              </addTag>\
+                            </MetaData>\
+                          </book>";
 
-              $("#booklist").append(item);
-              $('.booklist_MetaData').hide();
+              $("booklist").append(item);
+              $('MetaData').hide();
               //TODO: fix tags
               var booktags = doc.data().tags;
               var i;
@@ -52,14 +48,7 @@ async function bookmenu(){
                 $('#tag'+doc.id+'').append(tags);
                 };
               }); 
-              $('.booklist_title').first().trigger('click');
-      });
-
-  $(document).on('click','#book', function(){ // defines events when the book button is clicked.
-        $('app').toggleClass('full');
-        $('app').toggleClass('side');
-        $('#bookmenu').toggle(); 
-        //$('.booklist_MetaData').hide();
+              $('book').first().trigger('click');
       });
 
   $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -107,18 +96,19 @@ async function bookmenu(){
 
   
   //select book
-  $(document).on('click','.booklist_title', function(){//selects book  
-          $('.selected_book').addClass('booklist_item').removeClass('selected_book');
-          $(this).parent().addClass('selected_book').removeClass('booklist_item');
-          localStorage.setItem('bookid', $(this).parent().parent().attr('id'));
+  $(document).on('click','book', function(){//selects book  
+          $(this).stopPropagation;
+          $('book').addClass('unselected').removeClass('selected');
+          $(this).addClass('selected').removeClass('unselected');
+          localStorage.setItem('bookid', $(this).attr('id'));
           localStorage.setItem('booktitle', $(this).text());
-          $('#edit').trigger('click');
-          $('.booklist_MetaData').hide()
-          $(this).parent().parent().children('.booklist_MetaData').show()
+          $('#editor').trigger('click');
+          $('MetaData').hide()
+          $(this).children('MetaData').show()
       });
   //select book
 
-  $(document).on('focusout','.MetaData_Item', function(){//update meta data
+  $(document).on('focusout','MetaData a.Item', function(){//update meta data
           if($(this).attr('contenteditable')){
           var item = $(this).html();
           var itemid = $(this).attr('id');
@@ -129,7 +119,7 @@ async function bookmenu(){
               });
               };
       });
-  $(document).on('focusout','.booklist_title', function(){//update meta data
+  $(document).on('focusout','booktitle', function(){//update meta data
           var item = $(this).html();
           var itemid = $(this).attr('id');
           var bookid = $(this).parent().parent().attr('id');
@@ -139,16 +129,14 @@ async function bookmenu(){
               });
               
     });
-  $(document).on('click','.addTag', function(){
-        var tag = $(this).parent().children('.TagName').text();
+  $(document).on('click','.addtag', function(){
+        var tag = $(this).parent().children('.tagname').text();
         
         //if(tag !=''){
-        var bookid = $(this).parent().parent().parent().attr('id');
+        var bookid = $(this).parent().parent().attr('id');
             var updatebook = firebase.firestore().collection("books").doc(bookid);
             updatebook.update({
               tags: firebase.firestore.FieldValue.arrayUnion(tag)
-
-
             });
         tag
             //newbook.update({

@@ -10,6 +10,7 @@
   import toolbar from'./Module/toolbar/toolbar.js';
   import editor from'./Module/Editor/editor.js';
   import bookmenu from './Module/BookMenu/bookmenu.js';
+  import world from './Module/world/world.js';
 //end of imports 
   
    
@@ -19,6 +20,7 @@ $(document).ready(function() { // Loads App and establishes base load state.
     bookmenu;
     toolbar;
     editor;
+    world;
     $('.content_title').last().trigger('click');
     $('.leftmenu_list').last().trigger('click');
       //$('.booklist').children('.book_info').last().children('.booklist_item').children

@@ -1,6 +1,6 @@
 body {
   font-family: 'Merriweather', serif;
-  background-color: grey;
+  background-color: #607B8D;
   overflow: none;
 }
 ::-webkit-scrollbar {
@@ -8,7 +8,7 @@ body {
 }
 
 app {
-  background-color: inherit;
+  background-color: rgb(141, 114, 96);
   overflow: none;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
@@ -24,8 +24,8 @@ app.side{
   position: absolute;
   top: 0em;
   bottom: 0em;
-  left: 20em;
-  right: 00em;
+  left: 0em;
+  right: 20em;
 }
 app.grid1{
   display: grid;
@@ -38,6 +38,11 @@ app.grid2{
   grid-template-rows: 1fr 0fr;
 }
 app.grid3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.5em;
+  grid-template-rows: 1fr 1fr;
+}
+app.grid4{
   display: grid;
   grid-template-columns: 1fr 1fr 2.5em;
   grid-template-rows: 1fr 1fr;

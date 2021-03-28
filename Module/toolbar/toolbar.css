@@ -1,7 +1,6 @@
 toolbar{
   grid-row: 1/span 2;
   grid-column: 3;
-  background-color: rgb(141, 114, 96);
   padding: .25em;
   display: grid;
   grid-template-rows: 2.25em 1fr 2.5em;

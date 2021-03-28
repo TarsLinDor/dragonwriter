@@ -33,13 +33,17 @@
 
 <!-- Right Menu page-->
 <booklist-menu> 
-    <menu-title>My Books</menu-title>
-    <booklist></booklist>
+    <menu-title>
+      My Books
+    </menu-title>
+    <booklist>
+
+    </booklist>
 
     <add-book>
       <a id='bookName' contenteditable="true" placeholder='Insert book title...'></a>
-      <button class='circle' id='addBook'><i class="fas fa-plus"></i></button>
-      </add-book>
+      <button id='addBook'><i class="fas fa-plus"></i></button>
+    </add-book>
 </booklist-menu>
 
 
@@ -47,7 +51,7 @@
   
   <toolbar>
     <row1>
-      <button id="bookmenu"><i class="fas fa-book"></i></button>
+      <button id="booklist-menu"><i class="fas fa-book"></i></button>
     </row1>
     <row>
       <button  id="editor"><i class="fas fa-edit"></i></button>
@@ -67,8 +71,6 @@
     </row>
   </toolbar>
 
-  <!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
- a middle section for a text editor and a draft section for revising there chapters-->
 	<editor>
       <!-- Contains everything on the left menu-->
       <div class = 'col-1'>
@@ -106,9 +108,11 @@
         </div>
       </div>
 
-		</editor><!--end of editor tool -->
+	</editor>
 
-	</app>
+  <world>
+  </world>
+</app>
 
 
 </body>

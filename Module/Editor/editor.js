@@ -36,7 +36,7 @@ var texteditor = new Quill('#quill-editor', {
 
 firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
-  $(document).on('click','#edit', function(){ //loads editor
+  $(document).on('click','#editor', function(){ //loads editor
       bookID = localStorage.getItem('bookid');
       booktitle = localStorage.getItem('booktitle');
       $('#booktitle').html(booktitle);
