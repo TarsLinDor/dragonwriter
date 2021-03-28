@@ -1,24 +1,44 @@
-toolbar-top{
-  grid-row: 1;
-  grid-column: 1/span 3;
-  display: grid;
-  grid-template-columns: 2.5em 1fr 2.5em;
-  background-color: darkgrey;
+toolbar{
+  grid-row: 1/span 2;
+  grid-column: 3;
+  background-color: rgb(141, 114, 96);
   padding: .25em;
-}
-toolbar-left{
-  grid-row: 2;
-  grid-column: 1;
   display: grid;
-  grid-template-rows: 2em;
-  background-color: grey;
+  grid-template-rows: 2.25em 1fr 2.5em;
 }
-toolbar-top book-title{
+
+toolbar book-title{
+  display: block;
+  margin: auto 0em auto .5em;
+}
+
+toolbar row{
   display: block;
 }
 
 
-toolbar-top button{
+toolbar row button{
+  background-color: inherit;
+  color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  margin: .5em auto 0em auto;
+}
+row button:hover{
+  background-color: #C6B9B0;
+}
+toolbar row1{
+  display: block;
+  border-color: black;
+  border-bottom: solid 1px;
+}
+
+toolbar row1 button{
   background-color: inherit;
   color: black;
   border-radius: 50%;
@@ -30,23 +50,14 @@ toolbar-top button{
   cursor: pointer;
   margin: auto;
 }
-toolbar-top button:hover{
+toolbar row1 button:hover{
   background-color: #C6B9B0;
 }
 
-toolbar-left button{
-  background-color: inherit;
-  color: black;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  font-size: 100%;
-  width: 2em;
-  height: 2em;
-  cursor: pointer;
-  margin: auto;
-}
-toolbar-left button:hover{
+button.selected{
   background-color: #C6B9B0;
 }
+
+
+
 

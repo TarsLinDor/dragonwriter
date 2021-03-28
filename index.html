@@ -32,42 +32,40 @@
 </login>
 
 <!-- Right Menu page-->
-<div id = 'bookmenu' class = 'rightmenu'> 
+<booklist-menu> 
+    <menu-title>My Books</menu-title>
+    <booklist></booklist>
 
-    <div class = 'menu_title'>My Books</div>
-    <div id='booklist'></div>
-
-    <div class='addBook'>
+    <add-book>
       <a id='bookName' contenteditable="true" placeholder='Insert book title...'></a>
       <button class='circle' id='addBook'><i class="fas fa-plus"></i></button>
-      </div>
-</div>
+      </add-book>
+</booklist-menu>
 
 
 <app> <!-- The 'app' contains all the tools for the book writing software-->
   
-	<toolbar-top>
-			  <button id="book"><i class="fas fa-book"></i></button>
-        <book-title>Title</book-title>
-			  <button id="logout"><i class="fas fa-sign-out-alt"></i></button>
-  </toolbar-top>
-
-  <toolbar-left>
-  
-        <button  id="edit"><i class="fas fa-edit"></i></button>
-        <button  id="world"><i class="fas fa-globe-europe"></i></button>
-        <button  id="character"><i class="fas fa-users"></i></button>
-        <button  id="magic"><i class="fas fa-hat-wizard"></i></button>
-        <button  id="dictionary"><i class="fas fa-book-open"></i></button>
-        <button  id="note"><i class="far fa-sticky-note"></i></button>
-        <button  id="outline"><i class="fas fa-code-branch"></i></button>
-
-        <button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
-        <button class="circle" id="print"><i class="fas fa-print"></i></button>
-        <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
-        <button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
-
-		</toolbar-left>
+  <toolbar>
+    <row1>
+      <button id="book"><i class="fas fa-book"></i></button>
+    </row1>
+    <row>
+      <button  id="edit"><i class="fas fa-edit"></i></button>
+      <button  id="world"><i class="fas fa-globe-europe"></i></button>
+      <button  id="character"><i class="fas fa-users"></i></button>
+      <button  id="magic"><i class="fas fa-hat-wizard"></i></button>
+      <button  id="dictionary"><i class="fas fa-book-open"></i></button>
+      <button  id="note"><i class="far fa-sticky-note"></i></button>
+      <button  id="outline"><i class="fas fa-code-branch"></i></button>
+      <button class="circle" id="feedback"><i class="fas fa-exchange-alt"></i></button>
+      <button class="circle" id="print"><i class="fas fa-print"></i></button>
+      <button class="circle" id="settings"><i class="fas fa-sliders-h"></i></button>
+      <button class="circle" id="stats"><i class="fas fa-chart-line"></i></button>
+    </row>
+    <row>
+      <button id="logout"><i class="fas fa-sign-out-alt"></i></button>
+    </row>
+  </toolbar>
 
   <!-- The editor tool is where the user writes the book. it containts a left menu for a book table of contents.
  a middle section for a text editor and a draft section for revising there chapters-->

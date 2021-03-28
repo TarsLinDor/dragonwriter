@@ -8,7 +8,7 @@ body {
 }
 
 app {
-  background-color: white;
+  background-color: inherit;
   overflow: none;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
@@ -29,6 +29,6 @@ app.side{
 }
 app.grid1{
   display: grid;
-  grid-template-columns: 2.5em 1fr;
-  grid-template-rows: 2.5em 1fr;
+  grid-template-columns: 1fr 1fr 2.5em;
+  grid-template-rows: 1fr 1fr;
 }

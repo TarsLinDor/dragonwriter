@@ -56,8 +56,8 @@ async function bookmenu(){
       });
 
   $(document).on('click','#book', function(){ // defines events when the book button is clicked.
-        $('.app').toggleClass('app-full');
-        $('.app').toggleClass('app-side');
+        $('app').toggleClass('full');
+        $('app').toggleClass('side');
         $('#bookmenu').toggle(); 
         //$('.booklist_MetaData').hide();
       });
