@@ -6,6 +6,7 @@ import $ from "jquery";
 import Sortable from 'sortablejs';
 import texteditor from './quill.js';
 import toolbarOptions from './quill.js';
+import './editor.css';
 
 
 // define global variables
