@@ -18,7 +18,7 @@ async function bookmenu(){
             var count = 0;
             snaps.forEach((doc) => {
               
-              var item = "<book id ='"+doc.id+"'>\
+              var item = "<book class='unselected' id ='"+doc.id+"'>\
                           <booktitle contenteditable='true' placeholder='Book Title'>"+ doc.data().title+ "</booktitle>\
                             <MetaData>\
                               <a class='Item'><b>Genre: </b></a>\
@@ -48,7 +48,7 @@ async function bookmenu(){
                 $('#tag'+doc.id+'').append(tags);
                 };
               }); 
-              $('booktitle').first().trigger('click');
+              //$('booktitle').first().trigger('click');
       });
 
   $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -94,8 +94,6 @@ async function bookmenu(){
 
       });
 
-  
-  //select book
   $(document).on('click','booktitle', function(){//selects book  
           $('book').addClass('unselected').removeClass('selected');
           $(this).parent().addClass('selected').removeClass('unselected');
@@ -105,9 +103,9 @@ async function bookmenu(){
           $('MetaData').hide()
           $(this).parent().children('MetaData').show()
       });
-  //select book
 
-  $(document).on('focusout','MetaData a.Item', function(){//update meta data
+//TODO: Make this focusout for book and update all feilds at once. 
+  $(document).on('focusout','MetaData a.Item', function(){//update
           if($(this).attr('contenteditable')){
           var item = $(this).html();
           var itemid = $(this).attr('id');
@@ -118,7 +116,7 @@ async function bookmenu(){
               });
               };
       });
-  $(document).on('focusout','booktitle', function(){//update meta data
+  $(document).on('focusout','booktitle', function(){//update Title
           var item = $(this).html();
           var itemid = $(this).attr('id');
           var bookid = $(this).parent().attr('id');
@@ -126,19 +124,14 @@ async function bookmenu(){
               updatebook.update({
                 title: item,
               });
-              
     });
   $(document).on('click','.addtag', function(){
         var tag = $(this).parent().children('.tagname').text();
-        
-        //if(tag !=''){
         var bookid = $(this).parent().parent().parent().attr('id');
             var updatebook = firebase.firestore().collection("books").doc(bookid);
             updatebook.update({
               tags: firebase.firestore.FieldValue.arrayUnion(tag)
             });
-        tag
-            //newbook.update({
         });
 
 
