@@ -19,7 +19,7 @@ async function bookmenu(){
             snaps.forEach((doc) => {
               
               var item = "<book id ='"+doc.id+"'>\
-                          <booktitle contenteditable='true'>"+ doc.data().title+ "</booktitle>\
+                          <booktitle contenteditable='true' placeholder='Book Title'>"+ doc.data().title+ "</booktitle>\
                             <MetaData>\
                               <a class='Item'><b>Genre: </b></a>\
                               <a class='Item' contenteditable='true' id='genre'>"+doc.data().genre+"</a>\
@@ -100,8 +100,8 @@ async function bookmenu(){
           $('book').addClass('unselected').removeClass('selected');
           $(this).parent().addClass('selected').removeClass('unselected');
           localStorage.setItem('bookid', $(this).parent().attr('id'));
-          localStorage.setItem('booktitle', $(this).parent().text());
-          $('#editor').trigger('click');
+          localStorage.setItem('booktitle', $(this).text());
+          //$('#editor').trigger('click');
           $('MetaData').hide()
           $(this).parent().children('MetaData').show()
       });
@@ -132,7 +132,7 @@ async function bookmenu(){
         var tag = $(this).parent().children('.tagname').text();
         
         //if(tag !=''){
-        var bookid = $(this).parent().parent().attr('id');
+        var bookid = $(this).parent().parent().parent().attr('id');
             var updatebook = firebase.firestore().collection("books").doc(bookid);
             updatebook.update({
               tags: firebase.firestore.FieldValue.arrayUnion(tag)
