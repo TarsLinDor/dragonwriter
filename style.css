@@ -1,6 +1,6 @@
 body {
   font-family: 'Merriweather', serif;
-  background-color: #607B8D;
+  background-color: #dfc6aa;
   overflow: none;
 }
 ::-webkit-scrollbar {
@@ -8,9 +8,10 @@ body {
 }
 
 app {
-  background-color: rgb(141, 114, 96);
+  background-color: 	#a05f5f;
   overflow: none;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+  //grid-gap: .25em;
+  //box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 
 app.full{
@@ -46,4 +47,16 @@ app.grid4{
   display: grid;
   grid-template-columns: 1fr 1fr 2.5em;
   grid-template-rows: 1fr 1fr;
+}
+
+button:hover {
+  background-color: lightgrey;
+}
+
+.left{
+  text-align: left;
+}
+
+.right{
+  text-align: right;
 }

@@ -48,7 +48,8 @@ async function bookmenu(){
                 $('#tag'+doc.id+'').append(tags);
                 };
               }); 
-              //$('booktitle').first().trigger('click');
+              $('booktitle').first().trigger('click');
+              $('#editor').trigger('click');
       });
 
   $(document).on('click','#addBook', function(){ // adds a new book to the book tab bar.
@@ -99,7 +100,7 @@ async function bookmenu(){
           $(this).parent().addClass('selected').removeClass('unselected');
           localStorage.setItem('bookid', $(this).parent().attr('id'));
           localStorage.setItem('booktitle', $(this).text());
-          //$('#editor').trigger('click');
+          $('#editor').trigger('change');
           $('MetaData').hide()
           $(this).parent().children('MetaData').show()
       });

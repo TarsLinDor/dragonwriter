@@ -36,34 +36,35 @@ var texteditor = new Quill('#quill-editor', {
 
 firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
-  $(document).on('click','#editor', function(){ //loads editor
+  $(document).on('change','#editor', function(){ //loads editor
       bookID = localStorage.getItem('bookid');
       booktitle = localStorage.getItem('booktitle');
-      $('#booktitle').html(booktitle);
+      $('editor booktitle').html(booktitle);
       db.collection("books").doc(bookID).collection('contents').orderBy('timestamp')
       //.where('hidden','==', false)
       .onSnapshot((snaps) => {
         // Reset page
-        $("#content-list").html('');
-        $(".draft_toc").html('<hr>');
+        $("editor table-of-contents").html('');
+        $(".draft_toc").html('');
         //$(".col-draft").hide();
         // Loop through documents in database
         var word_count = 0;
           snaps.forEach((doc) => {
+
             content = doc.data().content;
             drafts = doc.data().drafts;
             var words = content.split(" ").length;
             word_count = word_count + words;
             order = $('.order').length+1;
-                  
 
-                    var hidden = "<div class ='content-data hidden'>";
+            var hidden = "<div class ='content-data hidden'>";
+
                     if(drafts){
-                    draft_NUM = drafts.length;
-                    for (var i = 0; i < draft_NUM; i++) {
-                      var drafts = "<a class='drafts' value='"+i+"'>"+drafts[i]+"</a>";
-                      hidden = hidden + drafts;
-                    }
+                      draft_NUM = drafts.length;
+                      for (var i = 0; i < draft_NUM; i++) {
+                        var drafts = "<a class='drafts' value='"+i+"'>"+drafts[i]+"</a>";
+                        hidden = hidden + drafts;
+                      }
                     }
 
                     var content_title = "<a class='content_title title' > "+doc.data().title+"</a>"
@@ -87,7 +88,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                                   "+content_meta+"\
                                   "+ hidden + content+"<\div>\
                                 </div>";
-                    $("#content-list").append(item);
+                    $("editor table-of-contents").append(item);
 
                   
                 $('.hidden').hide();

@@ -29,7 +29,7 @@ toolbar row button{
   margin: .5em auto 0em auto;
 }
 row button:hover{
-  background-color: #C6B9B0;
+  background-color: lightgrey;
 }
 toolbar row1{
   display: block;
@@ -50,11 +50,11 @@ toolbar row1 button{
   margin: auto;
 }
 toolbar row1 button:hover{
-  background-color: #C6B9B0;
+  background-color: lightgrey;
 }
 
 button.selected{
-  background-color: #C6B9B0;
+  background-color: lightgrey;
 }
 
 

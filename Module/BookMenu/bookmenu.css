@@ -25,16 +25,16 @@ booklist-menu book{
       padding: .25em;
       margin: .5em .75em;
       border-radius: .25em;
-      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.3);
+      //box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.3);
 }
 booklist-menu  book:hover {
       box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
     }
 booklist-menu  book.selected {
-      background-color: rgb(176, 185, 198);
+      background-color: 	#5F8EA0;
     }
     booklist-menu  book.unselected {
-       background-color: #C6B9B0;
+       background-color: 	#5F8EA0;
     }
 
 booklist-menu booktitle{
@@ -99,7 +99,7 @@ booklist-menu    MetaData button{
         grid-column: 2;
       }
       booklist-menu    MetaData button:hover{
-        background-color: #C6B9B0;
+        background-color: lightgrey;
       }
 
 booklist-menu    MetaData addTag{
