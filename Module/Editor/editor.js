@@ -67,9 +67,9 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                       }
                     }
 
-                    var content_title = "<a class='content_title title' > "+doc.data().title+"</a>"
+                    var content_title = "<a class='content_title title' > "+doc.data().title+"</a>";
                     var content_type = "<a class='content_title order'>0"+order+":</a>";
-                    var content = "<a class='drafts'>"+doc.data().content+"</a>"
+                    var content = "<a class='drafts'>"+doc.data().content+"</a>";
                     var content_meta = "<div class='content_MetaData hidden'>\
                                           <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
                                           <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
