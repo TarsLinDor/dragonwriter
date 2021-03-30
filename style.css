@@ -72,7 +72,7 @@ ol {
   background-color: #F1EDEB;
   border-radius: 5px;
   display: grid;
-  grid-template-columns: 210px auto auto auto 90px;
+  grid-template-columns: 250px auto auto auto 80px;
   margin:  0px 0px 0px 5px;
   overflow: hidden;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
@@ -87,6 +87,7 @@ ol {
   
 }
 .toc{
+  max-height: 95vh;
   overflow: auto ;
 }
 
@@ -120,35 +121,25 @@ ol {
       box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
       z-index: 10;
 }
-
-li.leftmenu-list{
-  display: grid;
-  grid-template-columns: 25px auto 5px;
-  padding: 1px 15px 2px 2px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: #E3DCD7;
-  counter-increment: elementcounter;
-  }
- div.leftmenu-list{
-  display: grid;
-  grid-template-columns: auto 5px;
-  padding: 1px 15px 2px 7px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: #E3DCD7;
-  counter-increment: elementcounter;
-  }
-li.leftmenu-list:before{
-    /* print out "Element " followed by the current counter value */
-  content: counter(elementcounter) ": ";
-  margin: auto ;
-  /* increment counter */
+.order{
+  /*display: inline;*/
+  /*grid-template-columns: 20px auto;*/
 }
+
+ div.leftmenu-list{
+
+  padding: 2px 2px 2px 7px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 12px;
+  background-color: #E3DCD7;
+  }
 
 .leftmenu-list:hover{
   background-color: #C6B9B0;
   }
+.content-selected{
+  background-color: #C6B9B0;
+}
 
 .leftmenu-bottom{
   display: grid;
@@ -215,6 +206,9 @@ li.leftmenu-list:before{
 }
 
 #Content_Title {
+  outline: none;
+}
+.content_title{
   outline: none;
 }
 
@@ -294,6 +288,9 @@ li.leftmenu-list:before{
 .circle:hover {
   background-color: #C6B9B0;
 }
+#numb{
+  font-size: 120%;
+}
 
 /* bookmenu*/
 
@@ -332,6 +329,7 @@ li.leftmenu-list:before{
 
     .booklist_title{
     font-weight: bold;
+    outline: none;
     }
 
     .booklist_item:hover {
@@ -381,12 +379,12 @@ li.leftmenu-list:before{
       grid-column: 1 / span 2;
       padding: 0px
       }
-    #addTag{
+    .addTag{
       text-align: center;
       padding: 5px;
       }
 
-    #TagName{
+    .TagName{
       outline: none;
       margin: 2px;
       min-width: 50px;
@@ -451,7 +449,31 @@ li.leftmenu-list:before{
     .content-item{
       display: grid;
       grid-template-columns: auto 20px;
+      
     }
+  .content_MetaData{
+      position: relative;
+      display: grid;
+      grid-gap: 5px;
+      grid-template-columns: auto auto;
+      font-size: 75%;
+      grid-column: 1/span 2;
+      background-color: whitesmoke;
+      margin: 5px 5px 5px 0px;
+      padding: 5px;
+      border-radius: 5px 5px 5px 5px;
+      z-index: 1;
+  }
+  .content-full{
+    text-align: center;
+    grid-column: 1/span 2;
+  }
+  .underline{
+    border-bottom: solid 1px;
+  }
+  .right{
+    text-align: right;
+  }
 
 /* meta stuff*/
 ::-webkit-scrollbar {
