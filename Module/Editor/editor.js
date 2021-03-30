@@ -28,71 +28,60 @@ $('editor').html(editor);
       placeholder: "      Oh! the places you'll go..."
       });
 
-  firebase.auth().onAuthStateChanged((user)=>{ if(user){
+firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
-    $(document).on('change','#editor', function(){ //loads editor
-        bookID = localStorage.getItem('bookid');
-        booktitle = localStorage.getItem('booktitle');
-        $('editor booktitle').html(booktitle);
-        db.collection("books").doc(bookID).collection('contents').orderBy('timestamp')
-        //.where('hidden','==', false)
-        .onSnapshot((snaps) => {
-          // Reset page
-          $("editor table-of-contents").html('');
-          $(".draft_toc").html('');
-          //$(".col-draft").hide();
-          // Loop through documents in database
-          var word_count = 0;
-            snaps.forEach((doc) => {
+  $(document).on('change','#editor', function(){ //loads editor
+    bookID = localStorage.getItem('bookid');
+    booktitle = localStorage.getItem('booktitle');
+    $('editor booktitle').html(booktitle);
+    db.collection("books").doc(bookID).collection('contents').orderBy('timestamp').onSnapshot((snaps) => {
+      // Reset page
+      $("editor table-of-contents").html('');
+      $(".draft_toc").html('');
+      // Loop through documents in database
+      var word_count = 0;
+      snaps.forEach((doc) => {
+        content = doc.data().content;
+        drafts = doc.data().drafts;
+        var words = content.split(" ").length;
+        word_count = word_count + words;
+        order = $('.order').length+1;
+        var hidden = "<div class ='content-data hidden'>";
+        if(drafts){
+          draft_NUM = drafts.length;
+          for (var i = 0; i < draft_NUM; i++) {
+            var drafts = "<a class='drafts' value='"+i+"'>"+drafts[i]+"</a>";
+            hidden = hidden + drafts;
+          };
+        };
 
-              content = doc.data().content;
-              drafts = doc.data().drafts;
-              var words = content.split(" ").length;
-              word_count = word_count + words;
-              order = $('.order').length+1;
+        var content_title = "<a class='content_title title' > "+doc.data().title+"</a>";
+        var content_type = "<a class='content_title order'>0"+order+":</a>";
+        var content = "<a class='drafts'>"+doc.data().content+"</a>";
+        var content_meta = "<div class='content_MetaData hidden'>\
+                              <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
+                              <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
+                              <a><b>Word Count:</b></a><a class='right'>"+words+"</a>\
+                              <a class='content-full underline'><b>Chapter Descrition</b></a>\
+                              <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
+                            </div>";
 
-              var hidden = "<div class ='content-data hidden'>";
+        if(doc.data().type != 'Chapter'){
+            content_type = "<a class='content_title'>"+doc.data().type+" "+order+":</a>";
+        }
 
-                      if(drafts){
-                        draft_NUM = drafts.length;
-                        for (var i = 0; i < draft_NUM; i++) {
-                          var drafts = "<a class='drafts' value='"+i+"'>"+drafts[i]+"</a>";
-                          hidden = hidden + drafts;
-                        }
-                      }
-
-                      var content_title = "<a class='content_title title' > "+doc.data().title+"</a>";
-                      var content_type = "<a class='content_title order'>0"+order+":</a>";
-                      var content = "<a class='drafts'>"+doc.data().content+"</a>";
-                      var content_meta = "<div class='content_MetaData hidden'>\
-                                            <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
-                                            <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
-                                            <a><b>Word Count:</b></a><a class='right'>"+words+"</a>\
-                                            <a class='content-full underline'><b>Chapter Descrition</b></a>\
-                                            <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
-                                          </div>";
-
-                      if(doc.data().type != 'Chapter'){
-                          content_type = "<a class='content_title'>"+doc.data().type+" "+order+":</a>";
-                      }
-
-                      var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
-                                    "+content_type+"\
-                                    "+content_title+"\
-                                    "+content_meta+"\
-                                    "+ hidden + content+"<\div>\
-                                  </div>";
-                      $("editor table-of-contents").append(item);
-
-                    
-                  $('.hidden').hide();
-                  
-                  });
-                  $(".leftmenu-bottom").prepend(word_count);
-                  
-            });
-        
-        });
+        var item = "<div class = 'leftmenu-list order' id ='"+doc.id+"'>\
+                  "+content_type+"\
+                  "+content_title+"\
+                  "+content_meta+"\
+                  "+ hidden + content+"<\div>\
+                  </div>";
+        $("editor table-of-contents").append(item);
+        $('.hidden').hide();         
+      });
+    $(".leftmenu-bottom").prepend(word_count);
+    });       
+  });
       
         //adds new chapters and stuff.
         $(document).on('click','#AddContent', function(){
