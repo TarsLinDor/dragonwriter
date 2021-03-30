@@ -20,7 +20,7 @@ booktitle{
   display: block;
   margin: .25em;
   font-size: 1.125em;
-  border-bottom: solid 1px grey;
+  border-bottom: solid 1px darkgrey;
   text-align: center;
 }
 
@@ -51,6 +51,8 @@ booktitle{
   padding: .25em 0 .25em 0;
   display: grid;
   grid-template-columns: auto 2.25em;
+  margin: .25em;
+   border-top: solid 1px darkgrey;
   }
 
  .ql-toolbar.ql-snow {
@@ -175,8 +177,28 @@ booktitle{
     background-color: darkgrey;
   }
 
-
-
+  col-3{  
+  border-radius: 0px 5px 5px 5px;
+  display: grid;
+  grid-template-rows: 35px auto 40px;
+  grid-row: 1 / span 3;
+  grid-column: 3 / span 1;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
+  text-align: center;
+  }
+  draft-title{
+    margin: .25em;
+    text-align: center;
+    
+    border-bottom: solid 1px darkgrey;
+  }
+a{
+  outline: none;
+}
+a:focus{
+  border-radius: .125em;
+  background-color: lightgrey;
+}
 
 
 

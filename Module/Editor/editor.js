@@ -66,6 +66,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
         var content_meta = "<div class='content_MetaData hidden'>\
                               <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
                               <a><b>POV:</b></a><a class='right' contenteditable='true'>"+doc.data().pov+"</a>\
+                              <a><b>Order:</b></a><a class='right' contenteditable='true'>"+doc.data().order+"</a>\
                               <a><b>Word Count:</b></a><a class='right'>"+words+"</a>\
                               <a class='content-full underline'><b>Chapter Descrition</b></a>\
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
@@ -111,15 +112,12 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
     $(this).children('.content_MetaData').show();
     $('content').removeClass('selected');
     $(this).addClass('selected');
-    var content_type = $(this).children('.content_MetaData').children('.type').html();
-    if(content_type =='Chapter'){
-      content_type = "";
-      };
-    var content_order = $(this).children('.order').html();
-    var content_title = $(this).children('.title').html();
-    $('#content_type').html(content_type);
-    $('#numb').html(content_order);
-    $('#Content_Title').html(content_title);
+    var content_type = $(this).attr('name');
+    var content_order = $(this).attr('value');
+    var content_title = $(this).attr('title');
+    $('Content-Title').html(content_title);
+    $('Content-Title').attr('value', content_order);
+    $('Content-Title').attr('type', content_type);
     chapterID = $(this).attr('id');
     localStorage.setItem('ChapterID', chapterID);
     texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
