@@ -6,10 +6,7 @@ editor{
   overflow: hidden;
   margin: 5px 0px 5px 5px;
   border-radius: .25em;
-  //box-shadow: 0 5px 10px 0px rgb(0, 0, 0);
-}
 
-editor 
 col-1{
   background-color: whitesmoke;
   display: grid;
@@ -19,7 +16,7 @@ col-1{
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
-editor 
+
 booktitle{
   display: block;
   margin: .25em;
@@ -28,7 +25,7 @@ booktitle{
   text-align: center;
 }
 
-editor button{
+ button{
   background-color: inherit;
   color: black;
   border-radius: 50%;
@@ -40,20 +37,20 @@ editor button{
   cursor: pointer;
 }
 
-editor button:hover {
+ button:hover {
   background-color: lightgrey;
 }
 
-editor word-count{
+word-count{
   padding: .25em .5em;
 }
-editor add-contents{
+ add-contents{
   padding: .25em 0 .25em 0;
   display: grid;
   grid-template-columns: auto 2.25em;
 }
 
-editor .ql-toolbar.ql-snow {
+ .ql-toolbar.ql-snow {
   
   border-style: none;
   text-align: center;
@@ -61,14 +58,14 @@ editor .ql-toolbar.ql-snow {
   grid-row: 3;
 }
 
-editor .ql-align-center.ql-snow {
+ .ql-align-center.ql-snow {
   border-style: none;
   text-align: center;
   grid-column: 1 / span 3;
   grid-row: 3 / span 1;
 }
 
-editor
+
 .ql-container.ql-snow {
   overflow-x: hidden;
   overflow-y: auto;
@@ -84,18 +81,18 @@ editor
   padding: 0px 0 0 0 ;
 }
 
-editor
+
 .ql-container.ql-snow p{ 
   text-indent: 20px;
   padding: 0px 0px 5px 0px;
   }
 
-editor
+
 .ql-align-center {
   text-align: center;
 }
 
-editor 
+
 col-2{ 
   background-color: white; 
   display: grid;
@@ -103,19 +100,19 @@ col-2{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   }
 
-editor 
+
 top-toolbar{
   padding: .5em;
   display: grid;
   grid-template-columns: auto auto auto;
 }
-editor 
+ 
 content-title{
   font-size: 1.25em;
   text-align: center;
 }
 
-editor 
+ 
 adjacent.right:before{
  content: attr(value) " "" ";
  font-weight: bold;
@@ -123,11 +120,11 @@ adjacent.right:before{
 
 
 
-editor 
+
 content-title:before{
  content: attr(name)" " attr(value) ": ";
 }
-editor adjacent:hover{
+adjacent:hover{
   color: blue
 }
   .content_MetaData{
@@ -172,9 +169,11 @@ editor adjacent:hover{
 
 
 
-editor [contenteditable=true]:empty:before{
+[contenteditable=true]:empty:before{
   content: attr(placeholder);
   pointer-events: none;
-  display: block; /* For Firefox */
+  display: block; 
   color: gray;
+}
+
 }

@@ -1,5 +1,7 @@
  import $ from "jquery";
  import './toolbar.css';
+ import toolbar from './toolbar.html';
+$('toolbar').html(toolbar);
 
 $('editor').hide();
 $('world').hide();
@@ -53,3 +55,4 @@ $('toolbar').on('click','button', function(){
 
 
 });
+

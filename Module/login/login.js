@@ -3,9 +3,12 @@ import "firebase/auth";
 import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 import $ from "jquery";
-import "./login.css";
+import "./login.scss";
+import login from './login.html';
 
-function login_logout() {
+$('login').html(login);
+
+async function login_logout() {
   // Logs users in and out of DragonWriter.
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -39,6 +42,15 @@ function login_logout() {
       $("login").show();
     }
   });
+
+$("#logout").on("click", function() {
+    if (firebase.auth().currentUser) {
+      // User is signed in, let's sign out
+      firebase.auth().signOut();
+      console.log("Logged out successfully!");
+    }
+});
+
 }
 
-export default login_logout;
+login_logout();

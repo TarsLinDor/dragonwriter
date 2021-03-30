@@ -2,7 +2,9 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
-import './editor.css';
+import './editor.scss';
+import editor from './editor.html';
+$('editor').html(editor);
 
   var db = firebase.firestore(); 
   var contents = "";
@@ -25,7 +27,6 @@ import './editor.css';
       theme: 'snow',
       placeholder: "      Oh! the places you'll go..."
       });
-
 
   firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
