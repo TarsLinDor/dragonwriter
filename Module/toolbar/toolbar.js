@@ -1,5 +1,5 @@
  import $ from "jquery";
- import './toolbar.css';
+ import './toolbar.scss';
  import toolbar from './toolbar.html';
 $('toolbar').html(toolbar);
 

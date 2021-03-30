@@ -1,0 +1,44 @@
+toolbar{
+  grid-row: 1/span 2;
+  grid-column: 3;
+  padding: .25em;
+  display: grid;
+  grid-template-rows: 2.25em 1fr 2.5em;
+
+
+  book-title{
+    display: block;
+    margin: auto 0em auto .5em;
+  }
+
+  row{
+    display: block;
+  }
+
+  row1{
+    display: block;
+    border-color: grey;
+    border-bottom: solid 1px;
+  }
+
+  button{
+    background-color: inherit;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    margin: auto;
+  }
+
+  button:hover{
+    color: darkgrey;
+  }
+
+  button.selected{
+    color: darkgrey;
+  }
+}

@@ -1,6 +1,6 @@
 body {
   font-family: 'Merriweather', serif;
-  background-color: #dfc6aa;
+  background-color: grey;
   overflow: none;
 }
 ::-webkit-scrollbar {
@@ -8,10 +8,8 @@ body {
 }
 
 app {
-  background-color: 	#a05f5f;
+  background-color: 	#4e4e4e;
   overflow: none;
-  //grid-gap: .25em;
-  //box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 
 app.full{
@@ -49,9 +47,6 @@ app.grid4{
   grid-template-rows: 1fr 1fr;
 }
 
-button:hover {
-  background-color: lightgrey;
-}
 
 .left{
   text-align: left;
