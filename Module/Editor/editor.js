@@ -115,7 +115,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
     var content_type = $(this).attr('name');
     var content_order = $(this).attr('value');
     var content_title = $(this).attr('title');
-    $('Content-Title').html(content_title);
+    $('Content-Title').children('a').html(content_title);
     $('Content-Title').attr('value', content_order);
     $('Content-Title').attr('type', content_type);
     chapterID = $(this).attr('id');
@@ -139,7 +139,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
     $('.leftmenu-list').attr("id", chapterID).trigger('click');
   });
 
-  $(document).on('focusout','#Content_Title', function(){//update meta data
+  $(document).on('focusout','content-Title a', function(){//update meta data
     if($(this).attr('contenteditable')){
       var text = $(this).html();
       bookID = localStorage.getItem('bookid');
