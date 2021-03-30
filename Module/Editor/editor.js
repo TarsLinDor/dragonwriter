@@ -3,7 +3,6 @@ import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
 import './editor.css';
-import Quill from 'quill/core';
 
   var db = firebase.firestore(); 
   var contents = "";
