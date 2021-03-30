@@ -3,7 +3,7 @@ toolbar{
   grid-column: 3;
   padding: .25em;
   display: grid;
-  grid-template-rows: 2.25em 1fr 2.5em;
+  grid-template-rows: 2.5em 1fr 2.25em;
 
 
   book-title{
@@ -12,16 +12,18 @@ toolbar{
   }
 
   row{
+    padding: -.5em 0em;
     display: block;
   }
 
   row1{
+    padding: -.25em 0em;
     display: block;
     border-color: grey;
     border-bottom: solid 1px;
   }
 
-  button{
+  row1 button{
     background-color: inherit;
     color: black;
     border-radius: 50%;
@@ -31,14 +33,27 @@ toolbar{
     width: 2em;
     height: 2em;
     cursor: pointer;
-    margin: auto;
+    margin: 0em 0em;
+  }
+
+  row button{
+    background-color: inherit;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    margin: .25em 0em;
   }
 
   button:hover{
-    color: darkgrey;
+    background-color: darkgrey;
   }
 
   button.selected{
-    color: darkgrey;
+    background-color: darkgrey;
   }
 }
