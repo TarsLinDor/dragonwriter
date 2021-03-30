@@ -7,7 +7,6 @@ import "./login.css";
 
 function login_logout() {
   // Logs users in and out of DragonWriter.
-
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
@@ -38,14 +37,6 @@ function login_logout() {
       $("login").hide();
     } else {
       $("login").show();
-    }
-  });
-
-  $("#logout").on("click", function() {
-    if (firebase.auth().currentUser) {
-      // User is signed in, let's sign out
-      firebase.auth().signOut();
-      console.log("Logged out successfully!");
     }
   });
 }

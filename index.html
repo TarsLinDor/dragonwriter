@@ -28,7 +28,36 @@
 
 <app> <!-- The 'app' contains all the tools for the book writing software--> 
   <toolbar></toolbar>
-  <editor></editor>
+  <editor><col-1>
+  <div>
+    <booktitle contenteditable="true" placeholder='Book Title'></booktitle>
+    <table-of-contents></table-of-contents>
+  </div>
+  <add-contents>
+    <word-count>1000</word-count>
+    <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
+    <!--<button class='circle' id="HideContent"><i class="fas fa-eye"></i></button>-->
+  </add-contents>
+</col-1>
+
+<col-2>
+  <top-toolbar>
+    <adjacent class="left" name="Chapter" value='1'><i class="fas fa-list-ul"></i></adjacent>
+    <content-title name='Chapter' value='1'>Chapter Title</content-title>
+    <adjacent class='right' value='1'><i class="fas fa-drafting-compass"></i></adjacent>
+  </top-toolbar>
+  <div id="quill-editor"></div>
+</col-2>
+
+<col-3>
+  <draft-title>Drafts</draft-title>
+  <draft-toc>
+    <button class='circle' ><b>1</b></button>
+  </draft-toc>
+  <add-draft>
+    <button id ='addDraft'><i class="fas fa-plus"></i></button>
+  </add-draft>
+</col-3></editor>
   <world></world>
 </app>
 
