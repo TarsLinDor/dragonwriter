@@ -43,9 +43,17 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
       snaps.forEach((doc) => {
         content = doc.data().content;
         drafts = doc.data().drafts;
+        var type = doc.data().type;
+        order = $('.order').length+1;
+        if (type == 'Chapter'){
+          type = "";
+        }
+        else {
+          order = 0;
+        };
         var words = content.split(" ").length;
         word_count = word_count + words;
-        order = $('.order').length+1;
+        
         var hidden = "<div class ='content-data hidden'>";
         if(drafts){
           draft_NUM = drafts.length;
@@ -54,9 +62,6 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
             hidden = hidden + drafts;
           };
         };
-
-        var content_title = "<a class='content_title title' > "+doc.data().title+"</a>";
-        var content_type = "<a class='content_title'>0"+order+":</a>";
         var content = "<a class='drafts'>"+doc.data().content+"</a>";
         var content_meta = "<div class='content_MetaData hidden'>\
                               <a><b>Type:</b></a><a class='right type' contenteditable='true'>"+doc.data().type+"</a>\
@@ -66,13 +71,9 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
                               <a class='content-full' contenteditable='true'>"+doc.data().discription+"</a>\
                             </div>";
 
-        if(doc.data().type != 'Chapter'){
-            content_type = "<a class='content_title'>"+doc.data().type+" "+order+":</a>";
-        }
 
-        var item = "<content class = 'leftmenu-list order' id ='"+doc.id+"'>\
-                  "+content_type+"\
-                  "+content_title+"\
+
+        var item = "<content class = 'order' id ='"+doc.id+"' value='"+order+"' name = '"+type+"' title ='"+doc.data().title+"'>\
                   "+content_meta+"\
                   "+ hidden + content+"<\div>\
                   </content>";
@@ -94,7 +95,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
       pov: "",
       discription: "Write a description.",
       content: '',
-      order: $('.leftmenu-list').length,
+      order: $('content').length,
       hidden: false,
       }).then(() => {
         console.log("Document successfully written!");
@@ -104,12 +105,12 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
     };
   });
       
-  $(document).on('click','.leftmenu-list', function(){
+  $(document).on('click','content', function(){
     $('.content_MetaData').hide();
     $(".draft_toc").html('<hr>');
-    $('.leftmenu-list').css('background-color','#E3DCD7');
     $(this).children('.content_MetaData').show();
-    $(this).css('background-color','#C6B9B0');
+    $('content').removeClass('selected');
+    $(this).addClass('selected');
     var content_type = $(this).children('.content_MetaData').children('.type').html();
     if(content_type =='Chapter'){
       content_type = "";

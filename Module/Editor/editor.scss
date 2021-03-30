@@ -1,5 +1,5 @@
 editor{
-  background-color: whitesmoke;
+  background-color: lightgrey;
   display: grid;
   grid-template-columns: 15em 1fr 5em;
   grid-template-rows: 1fr;
@@ -8,7 +8,6 @@ editor{
   border-radius: .25em;
 
 col-1{
-  background-color: whitesmoke;
   display: grid;
   grid-column: 1;
   grid-template-rows: auto 2.5em;
@@ -41,32 +40,35 @@ booktitle{
   background-color: lightgrey;
 }
 
-word-count{
+  word-count{
+    font-weight: bold;
   padding: .25em .5em;
-}
- add-contents{
+  }
+  word-count:after{
+    content: ' words';
+  }
+  add-contents{
   padding: .25em 0 .25em 0;
   display: grid;
   grid-template-columns: auto 2.25em;
-}
+  }
 
  .ql-toolbar.ql-snow {
-  
   border-style: none;
   text-align: center;
   grid-column: 1 ;
   grid-row: 3;
-}
+  }
 
  .ql-align-center.ql-snow {
   border-style: none;
   text-align: center;
   grid-column: 1 / span 3;
   grid-row: 3 / span 1;
-}
+  }
 
 
-.ql-container.ql-snow {
+  .ql-container.ql-snow {
   overflow-x: hidden;
   overflow-y: auto;
   outline: none;
@@ -79,21 +81,21 @@ word-count{
   font-family: 'Merriweather', serif;
   font-size: 16px;
   padding: 0px 0 0 0 ;
-}
+  }
 
 
-.ql-container.ql-snow p{ 
+  .ql-container.ql-snow p{ 
   text-indent: 20px;
   padding: 0px 0px 5px 0px;
   }
 
 
-.ql-align-center {
+  .ql-align-center {
   text-align: center;
-}
+  }
 
 
-col-2{ 
+  col-2{ 
   background-color: white; 
   display: grid;
   grid-template-rows: 40px auto 40px;
@@ -101,32 +103,36 @@ col-2{
   }
 
 
-top-toolbar{
+  top-toolbar{
   padding: .5em;
   display: grid;
   grid-template-columns: auto auto auto;
-}
+  }
  
-content-title{
+  content-title{
   font-size: 1.25em;
   text-align: center;
-}
+  }
 
  
-adjacent.right:before{
- content: attr(value) " "" ";
- font-weight: bold;
-}
+  adjacent.right:before{
+  content: attr(value) " "" ";
+  font-weight: bold;
+  }
+  title{
+    display: inline-block;
+    outline: none;
+  }
 
 
 
 
-content-title:before{
- content: attr(name)" " attr(value) ": ";
-}
-adjacent:hover{
+  content-title:before{
+      content: attr(name)" " attr(value) ": " ;
+  }
+  adjacent:hover{
   color: blue
-}
+  }
   .content_MetaData{
       position: relative;
       display: grid;
@@ -151,16 +157,22 @@ adjacent:hover{
       
     }
 
-     div.leftmenu-list{
-
+  content{
+  display: block;
   padding: 2px 2px 2px 7px;
   margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: lightgrey;
+  border-radius: .25em;
+  background-color: darkgrey;
+  }
+  content:before{
+      content: attr(name)" " attr(value) ": " attr(title);
   }
 
-.leftmenu-list:hover{
-  background-color: rgb(196, 196, 196);
+  content:hover{
+  background-color: rgb(184, 182, 182);
+  }
+  .selected{
+    background-color: darkgrey;
   }
 
 
