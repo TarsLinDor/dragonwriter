@@ -130,7 +130,7 @@ booktitle{
 
 
   content-title:before{
-      content: attr(name)" " attr(value) ": " ;
+      content: attr(name) attr(value) ": " ;
   }
   adjacent:hover{
   color: blue
@@ -167,7 +167,7 @@ booktitle{
   background-color: darkgrey;
   }
   content:before{
-      content: attr(name)" " attr(value) ": " attr(title);
+      content: attr(name) attr(value) ": " attr(title);
   }
 
   content:hover{

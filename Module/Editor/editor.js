@@ -31,6 +31,10 @@ var texteditor = new Quill('#quill-editor', {
 firebase.auth().onAuthStateChanged((user)=>{ if(user){
 
   $(document).on('change','#editor', function(){ //loads editor
+    texteditor.root.innerHTML="";
+    $('Content-Title').children('a').html('');
+    $('Content-Title').attr('value', "");
+    $('Content-Title').attr('name', "");
     bookID = localStorage.getItem('bookid');
     booktitle = localStorage.getItem('booktitle');
     $('editor booktitle').html(booktitle);
@@ -49,7 +53,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
           type = "";
         }
         else {
-          order = 0;
+          order = '';
         };
         var words = content.split(" ").length;
         word_count = word_count + words;
@@ -82,9 +86,10 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
         $('.hidden').hide();         
       });
     $("word-count").html(word_count);
-    });       
+    }); 
+         
   });
-      
+   
   //adds new chapters and stuff.
   $(document).on('click','#AddContent', function(){
     const bookid = localStorage.getItem('bookid');
@@ -117,7 +122,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
     var content_title = $(this).attr('title');
     $('Content-Title').children('a').html(content_title);
     $('Content-Title').attr('value', content_order);
-    $('Content-Title').attr('type', content_type);
+    $('Content-Title').attr('name', content_type);
     chapterID = $(this).attr('id');
     localStorage.setItem('ChapterID', chapterID);
     texteditor.root.innerHTML = $(this).children('.content-data').children('.drafts').last().html();
@@ -136,7 +141,7 @@ firebase.auth().onAuthStateChanged((user)=>{ if(user){
       update.update({
         drafts: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML),
       });
-    $('.leftmenu-list').attr("id", chapterID).trigger('click');
+    $('content').attr("id", chapterID).trigger('click');
   });
 
   $(document).on('focusout','content-Title a', function(){//update meta data
