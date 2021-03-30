@@ -1,0 +1,51 @@
+login{
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto 30%;
+  grid-template-rows: 20% 40% 40%;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: grey;
+}
+
+login 
+firebaseUI-login{
+  grid-column: 2;
+  grid-row: 2;
+  display: block;
+  background-color: GhostWhite;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin: auto;
+}
+
+login 
+  login-title {
+  grid-row: 2;
+  grid-column: 1;
+  margin: auto;
+  }
+
+login 
+h1{
+  text-align: center;
+  font-size: 72px;
+}
+
+login 
+h2{
+  text-align: center;
+  font-size: 40px;
+}
+
+login 
+h3{
+    text-align: center;
+  font-size: 24px;
+}
+

@@ -1,0 +1,183 @@
+booklist-menu{
+  display: grid;
+  position: absolute;
+  top: 0em;
+  bottom: 0em;
+  width: 20em;
+  right: 0em;
+  grid-template-rows: 2.5em auto 40px;
+  z-index: 0;
+
+  menu-title{
+  margin: 0em .25em;
+  padding: .25em .25em .25em .25em;
+  font-size: 1.5em;
+  border-bottom: solid 1px;
+  }
+
+ booklist{
+  display: block;
+  }
+
+ book{
+    display: grid;
+    padding: .25em;
+    margin: .5em .75em;
+    border-radius: .25em;
+    }
+book:hover {
+      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+    }
+book.selected {
+      background-color: 	#5F8EA0;
+    }
+book.unselected {
+       background-color: 	#5F8EA0;
+    }
+
+booktitle{
+  display: block;
+  font-size: 1.125em;
+  outline: none;
+  text-align: center; 
+}
+
+MetaData{
+      position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: .25em;
+      margin: .25em;
+      border-radius: .25em;
+      background-color: whitesmoke;
+      font-size: 80%;
+      }
+    
+
+MetaData a.Item{
+      outline: none;
+      padding: .3em;
+      border-radius: .25em;
+      }
+MetaData a.Item:focus{
+      background-color: lightgrey;
+      }
+
+MetaData a.Title{
+      grid-column: 1/span 2;
+      outline: none;
+      padding: .5em;
+      border-bottom: solid 1px;
+      border-color: black;
+      text-align: center;
+      }
+MetaData a.Title:focus{
+      background-color: lightgrey;
+      }
+
+tag{
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      grid-column: 1 / span 2;
+      padding: 5px;
+      margin: 2px;
+      }
+
+MetaData button{
+        display: block;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        font-size: 100%;
+        width: 2em;
+        height: 2em;
+        text-align: center;
+        padding: 5px;
+        grid-column: 2;
+      }
+MetaData button:hover{
+        background-color: lightgrey;
+      }
+
+MetaData addTag{
+      grid-column: 1/span 2;
+      outline: none;
+      font-size: 82%;
+      display: grid;
+      grid-template-columns: auto 2em;
+      grid-gap: .5em;
+    }
+
+MetaData .tagname{
+      padding: .3em;
+      outline: none;
+      border-bottom: 1px solid lightgrey;
+
+    }
+      
+MetaData .tagname:hover{
+      border-bottom: 1px solid lightgrey;
+      background-color: lightgrey;
+      border-radius: 5px;
+    }
+MetaData .tagname:focus{
+        background-color: lightgrey;
+        border-radius: 5px;
+      }
+
+MetaData  .tag{ 
+      margin: 2px;
+      background-color: lightgrey;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 82%;
+      }
+
+add-Book{
+      display: grid;
+      grid-template-columns: auto 50px;
+    }
+
+#bookName[contenteditable=true]:empty:before{
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+      color: #242E35;
+      font-weight: bold;
+    }
+
+#bookName{
+      text-align: left;
+      outline: none;
+      margin: 0px 5px 7px 15px;
+      padding: 5px 5px 0px 5px;
+      color: #242E35;
+      font-weight: bold;
+      border-bottom: 1px solid #242E35;
+      overflow-y: hidden;
+    }
+
+add-book button {
+  background-color: inherit;
+  color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  width: 35px;
+  height: 35px;
+  margin: 0px 5px 5px 5px;
+  cursor: pointer;
+}
+add-book button:hover {
+  background-color: #C6B9B0;
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
+  color: gray;
+}
+}

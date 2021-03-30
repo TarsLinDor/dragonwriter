@@ -1,466 +1,62 @@
-/*general css*/
 body {
-  /*font-family: "Open Sans", sans-serif;*/
   font-family: 'Merriweather', serif;
-  background-color: #607B8D;
+  background-color: #dfc6aa;
   overflow: none;
 }
-
-
-hr {
-  height: 1px;
-  background-color: black;
-  border: none;
-  padding: 0px;
-  margin: 0px 5px 0px 5px;
-}
-
-ol {
-  cursor: pointer;
-  padding: 0px;
-  list-style-position: inside;
-  margin: 0px;
-  border-radius: 5px;
-}
-/*end gerneral*/
-
-.app {
-  background-color: rgb(141, 114, 96);
-  display: grid;
-  grid-template-columns: 50% auto 40px;
-  grid-template-rows: 100%;
-  overflow: none;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
-  padding: 5px 5px 5px 0px;
-}
-
-.app-full{
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-}
-
-.app-side{
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 300px;
-}
-
-/*toolbar classes*/
-.full {
-  background-color: white;
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 1;
-}
-.first {
-  background-color: white;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-}
-.second {
-  background-color: white;
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
-}
-
-/*For tools*/
-.tool {
-  background-color: #F1EDEB;
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: 210px auto auto auto 90px;
-  margin:  0px 0px 0px 5px;
-  overflow: hidden;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
-}
-/*Left menu items*/
-.col-1{
-  display: grid;
-  grid-template-rows: auto 37px;
-  grid-row: 1 / span 3;
-  border-radius: 5px 0px 0px 5px;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
-  
-}
-.toc{
-  overflow: auto ;
-}
-
-.col-1-title {
-  padding: 7px 5px 5px 5px;
-  outline: none;
-  font-size: 110%;
-  text-align: center;
-}
-.leftmenu-tooltitle2 {
-  display: flex;
-  height: 35px;
-  padding: 7px 5px 0px 5px;
-  outline: none;
-  font-size: 110%;
-  overflow-y: hidden ;
-  overflow-x: auto;
-}
-
-
-.leftmenu-toc2{overflow:auto}
-
-.selected_book {
-    position: relative;
-      padding: 3px 5px 3px 10px;
-      margin: 5px 10px 5px 10px;
-      border-radius: 12px;
-      display: grid;
-      grid-template-columns: auto 15px;
-      background-color: rgb(176, 185, 198);
-      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
-      z-index: 10;
-}
-
-li.leftmenu-list{
-  display: grid;
-  grid-template-columns: 25px auto 5px;
-  padding: 1px 15px 2px 2px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: #E3DCD7;
-  counter-increment: elementcounter;
-  }
- div.leftmenu-list{
-  display: grid;
-  grid-template-columns: auto 5px;
-  padding: 1px 15px 2px 7px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 12px;
-  background-color: #E3DCD7;
-  counter-increment: elementcounter;
-  }
-li.leftmenu-list:before{
-    /* print out "Element " followed by the current counter value */
-  content: counter(elementcounter) ": ";
-  margin: auto ;
-  /* increment counter */
-}
-
-.leftmenu-list:hover{
-  background-color: #C6B9B0;
-  }
-
-.leftmenu-bottom{
-  display: grid;
-  grid-template-columns: auto 50px;
-}
-/*middle content items*/
-.col-middle{ 
-  background-color: white; 
-  display: grid;
-  grid-template-rows: 40px auto 40px;
-  grid-row: 1 / span 3;
-  grid-column: 2 / span 3;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  }
-  .col-middle2{ 
-  border-radius: 0px 5px 5px 0px;
-  background-color: white; 
-  display: grid;
-  grid-template-rows: 35px auto 40px;
-  grid-row: 1 / span 3;
-  grid-column: 2 / span 3;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  }
-
-
-.middle-title {
-  padding: 5px;
-  margin: 10px;
-  text-align: center;
-  grid-column: 1 / span 3;
-  grid-row: 1 / span 1;
-  font-size: 130%;
-}
-.ql-toolbar.ql-snow {
-  border-style: none;
-  text-align: center;
-  grid-column: 1 / span 3;
-  grid-row: 3 / span 1;
-}
-
-.ql-container.ql-snow {
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: none;
-  border: none;
-  margin: auto;
-  max-width: 700px;
-  width: 85%;
-  max-height: 89vh;
-  grid-column: 1 / span 3;
-  grid-row: 2 / span 1;
-  font-family: 'Merriweather', serif;
-  font-size: 14px;
-  padding: 0px 0 0 0 ;
-}
-
-.ql-container.ql-snow p{ 
-  text-indent: 20px;
-  padding: 0px 0px 5px 0px;
-  }
-
-.ql-align-center {
-  text-align: center;
-}
-
-#Content_Title {
-  outline: none;
-}
-
-/*right 'draft' items*/
-.col-draft{  
-  border-radius: 0px 5px 5px 5px;
-  display: grid;
-  grid-template-rows: 35px auto 40px;
-  grid-row: 1 / span 3;
-  grid-column: 5 / span 1;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
-  }
-
-.draft_title {
-  font-size: 110%;
-  text-align: center;
-  padding: 7px 5px 0px 5px;
-}
-
-.draft_toc {
-  text-align: center;
-  padding: 0px 0px 0px 0px;
-  grid-row: 2 / span 1;
-}
-.addDraft {
-  text-align: center;
-  padding: 0px 0px 0px 0px;
-  grid-row: 3 / span 1;
-}
-
-/*Login*/
-#login {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(141, 114, 96);
-  opacity: 1;
-}
-
-#login_window{
-  background-color: whitesmoke;
-  width: 300px;
-  padding: 20px;
-  text-align: center;
-  border-radius: 5px;
-}
-
-#welcome {
-  margin: 12vh auto 0 auto;
-}
-#login_window {
-  margin: auto;
-}
-/*toolbar*/
-#Toolbar {
-  margin: 0px;
-  display: grid;
-  grid-template-rows: 35px auto 35px;
-  grid-column: 3 / span 1;
-}
-
-.circle {
-  background-color: inherit;
-  color: black;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  font-size: 100%;
-  width: 35px;
-  height: 35px;
-  margin: 0px 5px 5px 5px;
-  cursor: pointer;
-}
-.circle:hover {
-  background-color: #C6B9B0;
-}
-
-/* bookmenu*/
-
-/*Menu Items*/
- #bookmenu {
-      display: grid;
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      width: 300px;
-      right: 0px;
-      grid-template-rows: 35px auto 40px;
-      z-index: 0;
-    }
-
-    .menu_title {
-      margin: 0px 5px 0px 5px;
-      padding: 5px 5px 5px 10px;
-      outline: none;
-      font-weight: bold;
-      font-size: 20px;
-      border-bottom: solid 1px;
-    }
-
-    .booklist_item {
-      position: relative;
-      padding: 3px 5px 3px 10px;
-      margin: 5px 10px 5px 10px;
-      border-radius: 12px;
-      display: grid;
-      grid-template-columns: auto 15px;
-      background-color: #C6B9B0;
-      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.4);
-      z-index: 10;
-    }
-
-    .booklist_title{
-    font-weight: bold;
-    }
-
-    .booklist_item:hover {
-      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .dropdown{
-      margin: auto;
-      padding: 2px 5px 2px 0px;
-    }
-    .dropdown:hover{
-      color:#3C4D58;
-    }
-    #booklist{
-      overflow: auto;
-    }
-
-    .booklist_MetaData{
-      position: relative;
-      display: grid;
-      grid-template-columns: 120px auto;
-      padding: 15px 5px 2px 10px;
-      margin: -15px 20px 5px 20px;
-      border-radius: 0px 0px 5px 5px;
-      background-color: whitesmoke;
-      font-size: 80%;
-      }
-
-    .MetaData_Item{
-      outline: none;
-      padding: 5px;
-      border-radius: 5px;
-      }
-    .MetaData_Item:focus{background-color: lightgrey;}
-
-    .Taglist{
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      grid-column: 1 / span 2;
-      padding: 5px;
-      margin: 2px;
-      }
-    .MetaData_Title{
-      text-align: center;
-      border-bottom: 1px solid black;
-      grid-column: 1 / span 2;
-      padding: 0px
-      }
-    #addTag{
-      text-align: center;
-      padding: 5px;
-      }
-
-    #TagName{
-      outline: none;
-      margin: 2px;
-      min-width: 50px;
-      border-radius: 5px 5px 0px 0px;
-      padding: 5px;
-      font-size: 82%;
-      border-bottom: 1px solid lightgrey;
-      
-    }
-      
-    #TagName:hover{
-      background-color: lightgrey;
-      border-radius: 5px;
-    }
-      #TagName:focus{
-        background-color: lightgrey;
-        border-radius: 5px;
-      }
-
-    .insertTag{
-      grid-column: 1 / span 2;
-      position: relative;
-      text-align: left;
-      padding: 0px 0px 5px 5px;
-      display: grid;
-      grid-template-columns: auto 20px;
-      }
-      
-      
-    .tag{ 
-      margin: 2px;
-      background-color: lightgrey;
-      border-radius: 5px;
-      padding: 5px;
-      font-size: 82%;
-      }
-
-    .addBook{
-      display: grid;
-      grid-template-columns: auto 50px;
-    }
-
-    #bookName[contenteditable=true]:empty:before{
-      content: attr(placeholder);
-      pointer-events: none;
-      display: block; /* For Firefox */
-      color: #242E35;
-      font-weight: bold;
-    }
-
-    #bookName{
-      text-align: left;
-      outline: none;
-      margin: 0px 5px 7px 15px;
-      padding: 5px 5px 0px 5px;
-      color: #242E35;
-      font-weight: bold;
-      border-bottom: 1px solid #242E35;
-      overflow-y: hidden;
-    }
-
-    .content-item{
-      display: grid;
-      grid-template-columns: auto 20px;
-    }
-
-/* meta stuff*/
 ::-webkit-scrollbar {
   display: none;
 }
 
-[contenteditable=true]:empty:before{
-  content: attr(placeholder);
-  pointer-events: none;
-  display: block; /* For Firefox */
-  color: gray;
+app {
+  background-color: 	#a05f5f;
+  overflow: none;
+  //grid-gap: .25em;
+  //box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
+}
+
+app.full{
+  position: absolute;
+  top: 0em;
+  bottom: 0em;
+  left: 0em;
+  right: 0em;
+}
+app.side{
+  position: absolute;
+  top: 0em;
+  bottom: 0em;
+  left: 0em;
+  right: 20em;
+}
+app.grid1{
+  display: grid;
+  grid-template-columns: 1fr 0em 2.5em;
+  grid-template-rows: 1fr 0fr;
+}
+app.grid2{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.5em;
+  grid-template-rows: 1fr 0fr;
+}
+app.grid3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.5em;
+  grid-template-rows: 1fr 1fr;
+}
+app.grid4{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.5em;
+  grid-template-rows: 1fr 1fr;
+}
+
+button:hover {
+  background-color: lightgrey;
+}
+
+.left{
+  text-align: left;
+}
+
+.right{
+  text-align: right;
 }
