@@ -6,23 +6,125 @@ editor{
   overflow: hidden;
   margin: 5px 0px 5px 5px;
   border-radius: .25em;
-
-col-1{
+  .full{  
+  grid-template-columns: 15em 1fr 5em;
+  grid-template-rows: 1fr;
+  }
+  .hide-toc{
+  grid-template-columns: 0em 1fr 5em;
+  grid-template-rows: 1fr;
+  }
+  .hide-drafts{
+  grid-template-columns: 15em 1fr 0em;
+  grid-template-rows: 1fr;
+  }
+  .hide-both{
+  grid-template-columns: 0em 1fr 0em;
+  grid-template-rows: 1fr;
+  }
+  col-1{
   display: grid;
   grid-column: 1;
   grid-template-rows: auto 2.5em;
   border-radius: 5px 0px 0px 5px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-}
+    booktitle{
+      display: block;
+      margin: .25em;
+      font-size: 1.125em;
+      border-bottom: solid 1px darkgrey;
+      text-align: center;
+    }
+    add-contents{
+      padding: .25em 0 .25em 0;
+      display: grid;
+      grid-template-columns: auto 2.25em;
+      margin: .25em;
+      border-top: solid 1px darkgrey;
+    }
+    word-count{
+      font-weight: bold;
+      padding: .25em .5em;
+    }
+    word-count:after{
+      content: ' words';
+    }
+  }
+  col-2{ 
+    background-color: white; 
+    display: grid;
+    grid-template-rows: 40px auto 40px;
+    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+
+    top-toolbar{
+      padding: .5em;
+      display: grid;
+      grid-template-columns: auto auto auto;
+    }
+
+    adjacent.right:before{
+      content: attr(value) " "" ";
+      font-weight: bold;
+    }
+
+    adjacent:hover{
+      color: blue
+    }
+
+    content-title{
+      font-size: 1.25em;
+      text-align: center;
+    }
+
+    content-title:before{
+      content: attr(name) attr(value) ": " ;
+    }
+
+    .ql-toolbar.ql-snow {
+      border-style: none;
+      text-align: center;
+      grid-column: 1 ;
+      grid-row: 3;
+    }
+
+    .ql-align-center.ql-snow {
+      border-style: none;
+      text-align: center;
+      grid-column: 1 / span 3;
+      grid-row: 3 / span 1;
+    }
 
 
-booktitle{
-  display: block;
-  margin: .25em;
-  font-size: 1.125em;
-  border-bottom: solid 1px darkgrey;
-  text-align: center;
-}
+    .ql-container.ql-snow {
+      overflow-x: hidden;
+      overflow-y: auto;
+      outline: none;
+      border: none;
+      margin: auto;
+      max-width: 700px;
+      width: 85%;
+      max-height: 90vh;
+      grid-row: 2 ;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      padding: 0px 0 0 0 ;
+    }
+
+
+    .ql-container.ql-snow p{ 
+      text-indent: 20px;
+      padding: 0px 0px 5px 0px;
+    }
+
+
+    .ql-align-center {
+      text-align: center;
+    } 
+    
+  }
+
+
+
 
  button{
   background-color: inherit;
@@ -40,101 +142,27 @@ booktitle{
   background-color: lightgrey;
 }
 
-  word-count{
-    font-weight: bold;
-  padding: .25em .5em;
-  }
-  word-count:after{
-    content: ' words';
-  }
-  add-contents{
-  padding: .25em 0 .25em 0;
-  display: grid;
-  grid-template-columns: auto 2.25em;
-  margin: .25em;
-   border-top: solid 1px darkgrey;
-  }
-
- .ql-toolbar.ql-snow {
-  border-style: none;
-  text-align: center;
-  grid-column: 1 ;
-  grid-row: 3;
-  }
-
- .ql-align-center.ql-snow {
-  border-style: none;
-  text-align: center;
-  grid-column: 1 / span 3;
-  grid-row: 3 / span 1;
-  }
 
 
-  .ql-container.ql-snow {
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: none;
-  border: none;
-  margin: auto;
-  max-width: 700px;
-  width: 85%;
-  max-height: 90vh;
-  grid-row: 2 ;
-  font-family: 'Merriweather', serif;
-  font-size: 16px;
-  padding: 0px 0 0 0 ;
-  }
 
 
-  .ql-container.ql-snow p{ 
-  text-indent: 20px;
-  padding: 0px 0px 5px 0px;
-  }
 
 
-  .ql-align-center {
-  text-align: center;
-  }
 
 
-  col-2{ 
-  background-color: white; 
-  display: grid;
-  grid-template-rows: 40px auto 40px;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  }
 
-
-  top-toolbar{
-  padding: .5em;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  }
- 
-  content-title{
-  font-size: 1.25em;
-  text-align: center;
-  }
 
  
-  adjacent.right:before{
-  content: attr(value) " "" ";
-  font-weight: bold;
-  }
-  title{
-    display: inline-block;
-    outline: none;
-  }
+ 
+
+ 
 
 
 
 
-  content-title:before{
-      content: attr(name) attr(value) ": " ;
-  }
-  adjacent:hover{
-  color: blue
-  }
+
+
+
   .content_MetaData{
       position: relative;
       display: grid;
