@@ -22,9 +22,10 @@ async function Load_Writer(data){
     },
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
+  
   });
+  texteditor.root.innerHTML = data.content;
   $(document).on("focusout", "#quill-editor", function() {
-  //update meta data
   var bookID = localStorage.getItem("bookID");
   var chapterID = localStorage.getItem("ChapterID");
   var update = firebase
@@ -185,14 +186,14 @@ $(document).on("click", "chapter", function() {
   $("chapter").removeClass("selected");
   $(this).addClass("selected");
   var order = $(this).children('line-1').children('chapter-title').attr("value");
-  var title = $(this).children('line-1').children('chapter-title').html();
-  var contents = $(this).children("drafts").children('.content').html();
+  var title = $(this).children('line-1').children('chapter-title').children('a').html();
+  var content = $(this).children("drafts").children('.content').html();
   var chapterID = $(this).attr("id");
   var draft_num = $(this).children("drafts").children("a.draft").length+1;
   var data = {title: title,
               order: order,
               type: 'Chapter',
-              contents: contents,
+              content: content,
               draft_num: draft_num,
               }
   Load_Writer(data);
@@ -217,7 +218,7 @@ $(document).on("click", "#newDraft", function() {
     .trigger("click");
 });
 
-$(document).on("focusout", "content-Title a", function() {
+$(document).on("focusout", "content-title a", function() {
   //update meta data
   if ($(this).attr("contenteditable")) {
     var text = $(this).html();

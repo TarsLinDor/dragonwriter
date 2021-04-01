@@ -1,9 +1,9 @@
 <top-toolbar>
-  <adj class="left" > <i class="fas fa-list-ul"></i> </adj>
-  <content-title type={{type}} value={{order}}> 
+  <adj class="left" type={{type}} value={{order}}> <i class="fas fa-list-ul"></i> </adj>
+  <content-title > 
     <a contenteditable="true">{{title}}</a>
     </content-title>
-  <adj class="right">{{draft_num}}<i class="fas fa-drafting-compass"></i></adj>
+  <adj class="right" value= {{draft_num}}><i class="fas fa-drafting-compass"></i></adj>
 </top-toolbar>
 
-<div id="quill-editor">{{contents}}</div>
+<div id="quill-editor">{{content}}</div>

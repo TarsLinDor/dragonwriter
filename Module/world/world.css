@@ -1,5 +1,5 @@
 world{
-  background-color: whitesmoke;
+  background-color: rgb(212, 211, 211);
   display: grid;
   grid-template-columns: 20em 1fr 5em;
   margin: 5px 0px 5px 5px;

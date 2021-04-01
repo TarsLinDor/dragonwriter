@@ -21,7 +21,11 @@ col-2 {
   }
   adj.right:before {
     content: attr(value) " " " ";
-    font-weight: bold;
+    
+  }
+  adj.left:after{
+    content: ' 'attr(type)' 'attr(value);
+    font-size: 85%;
   }
   adj:hover {
     color: rgb(36, 36, 87);
