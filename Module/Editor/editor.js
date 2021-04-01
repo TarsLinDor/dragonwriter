@@ -61,12 +61,13 @@ async function LoadEditor() {
             Part(part, "table-of-contents");
           });
         });
-        $("editor part").html("");
+
       db.collection("books")
         .doc(bookID)
         .collection("contents")
         .where("type", "==", "Chapter")
         .onSnapshot(snaps => {
+          $("editor part").html("");
           snaps.forEach(doc => {
             var part = doc.data().part;
             var content = doc.data().contents;
