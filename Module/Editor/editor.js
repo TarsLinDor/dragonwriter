@@ -116,14 +116,9 @@ $(document).on("dblclick", "chapter", function(event) {
 });
 //adds new chapters and stuff.
 $(document).on("click", "#AddChapter", function() {
-  const bookid = localStorage.getItem("bookid");
-  if (bookid != null) {
-    firebase
-      .firestore()
-      .collection("books")
-      .doc(bookid)
-      .collection("contents")
-      .add({
+  var bookID = localStorage.getItem("bookID");
+  if (bookID != null) {
+    firebase.firestore().collection("books").doc(bookID).collection("contents").add({
         timestamp: Date.now(),
         title: "",
         type: "Chapter",
@@ -145,12 +140,12 @@ $(document).on("click", "#AddChapter", function() {
 });
 
 $(document).on("click", "#AddPart", function() {
-  const bookid = localStorage.getItem("bookid");
-  if (bookid != null) {
+  var bookID = localStorage.getItem("bookID");
+  if (bookID != null) {
     firebase
       .firestore()
       .collection("books")
-      .doc(bookid)
+      .doc(bookID)
       .collection("contents")
       .add({
         timestamp: Date.now(),
