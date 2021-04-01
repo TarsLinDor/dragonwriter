@@ -10,7 +10,7 @@ var db = firebase.firestore();
 LoadBooks();
 
 async function LoadBooks() {
-  var menu_data = { user: firebase.auth().currentUser.displayName };
+  var menu_data = { user: 'my' };
   Menu(menu_data, "booklist-menu");
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
