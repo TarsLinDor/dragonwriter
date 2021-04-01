@@ -1,63 +1,73 @@
-col-2{
+col-2 {
   background-color: white;
   display: grid;
   grid-template-rows: 40px auto 40px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  top-toolbar{
-      padding: 0.5em;
-      display: grid;
-      grid-template-columns: auto auto auto;
+  h1 {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50%;
+    margin-bottom: 0px;
+    font-size: 52px;
+  }
+  h3 {
+    margin-top: 1em;
+    font-size: 16px;
+  }
+  top-toolbar {
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: auto auto auto;
   }
   adj.right:before {
     content: attr(value) " " " ";
     font-weight: bold;
   }
-  adj:hover{
+  adj:hover {
     color: rgb(36, 36, 87);
   }
-  content-title{
+  content-title {
     font-size: 1.25em;
     text-align: center;
   }
 }
 
-#quill-editor{
+#quill-editor {
   .ql-toolbar.ql-snow {
-      border-style: none;
-      text-align: center;
-      grid-column: 1;
-      grid-row: 3;
-    }
+    border-style: none;
+    text-align: center;
+    grid-column: 1;
+    grid-row: 3;
+  }
 
-    .ql-align-center.ql-snow {
-      border-style: none;
-      text-align: center;
-      grid-column: 1 / span 3;
-      grid-row: 3 / span 1;
-    }
+  .ql-align-center.ql-snow {
+    border-style: none;
+    text-align: center;
+    grid-column: 1 / span 3;
+    grid-row: 3 / span 1;
+  }
 
-    .ql-container.ql-snow {
-      overflow-x: hidden;
-      overflow-y: auto;
-      outline: none;
-      border: none;
-      margin: auto;
-      max-width: 700px;
-      width: 85%;
-      max-height: 90vh;
-      grid-row: 2;
-      font-family: "Merriweather", serif;
-      font-size: 16px;
-      padding: 0px 0 0 0;
-    }
+  .ql-container.ql-snow {
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: none;
+    border: none;
+    margin: auto;
+    max-width: 700px;
+    width: 85%;
+    max-height: 90vh;
+    grid-row: 2;
+    font-family: "Merriweather", serif;
+    font-size: 16px;
+    padding: 0px 0 0 0;
+  }
 
-    .ql-container.ql-snow p {
-      text-indent: 20px;
-      padding: 0px 0px 5px 0px;
-    }
+  .ql-container.ql-snow p {
+    text-indent: 20px;
+    padding: 0px 0px 5px 0px;
+  }
 
-    .ql-align-center {
-      text-align: center;
-    }
+  .ql-align-center {
+    text-align: center;
+  }
 }
-
