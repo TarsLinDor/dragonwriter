@@ -30,13 +30,7 @@ async function LoadBooks() {
               audience: doc.data().audience,
               tag: doc.data().tags,
             };
-
             Book(data, "booklist");
-            var numOfTag = doc.data().tags.length;
-            for (var i = 0; i < numOfTag; i++) {
-              var tagData = { tag: doc.data().tags[i] };
-              Tag(tagData, "#" + TagID);
-            }
           });
           $("MetaData").hide();
         });
