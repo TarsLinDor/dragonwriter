@@ -8,8 +8,13 @@ col-2{
       display: grid;
       grid-template-columns: auto auto auto;
   }
-  adj{}
-  content-title{}
+  adj:hover{
+    color: rgb(36, 36, 87);
+  }
+  content-title{
+    font-size: 1.25em;
+    text-align: center;
+  }
   div{}
 }
 #quill-editor{
