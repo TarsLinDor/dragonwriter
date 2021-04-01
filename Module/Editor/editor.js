@@ -55,7 +55,7 @@ async function Load_TOC() {
       template.TableOfContents(data, "col-1");
       var bookID = localStorage.getItem("bookID");
 
-      db.collection("books")
+      db.collection("books")//Load parts
         .doc(bookID)
         .collection("contents")
         .where("type", "==", "Part")
@@ -75,16 +75,14 @@ async function Load_TOC() {
           });
         });
 
-      db.collection("books")
+      db.collection("books")//load chapters
         .doc(bookID)
         .collection("contents")
         .where("type", "==", "Chapter")
         .onSnapshot(snaps => {
           $("editor part").html("");
           snaps.forEach(doc => {
-            var part = doc.data().part;
-            var content = doc.data().contents;
-            var wordcount = content;
+            var wordcount = 10;
             var Chap = {
               chapID: doc.id,
               order: doc.data().order,
@@ -94,16 +92,17 @@ async function Load_TOC() {
               handle: "chapter",
               content: doc.data().content,
               description: doc.data().description,
+              drafts: doc.data().drafts,
               words: wordcount
             };
-            Chapter(Chap, "#Part-" + part);
+            Chapter(Chap, "#Part-" + doc.data().part);
           });
           $("metadata").hide();
           //$("chapter").hide();
         });
     }
   });
-}
+};
 
 $(document).on("dblclick", "part", function(e) {
   $(this)
