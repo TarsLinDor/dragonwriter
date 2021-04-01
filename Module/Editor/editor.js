@@ -58,7 +58,7 @@ async function Load_TOC() {
           // Loop through documents in database
           snaps.forEach(doc => {
             var part = {
-              partID: "Part-" + doc.data().order,
+              partID: "part-" + doc.data().order,
               title: doc.data().title,
               order: doc.data().order,
               type: doc.data().type
@@ -72,7 +72,7 @@ async function Load_TOC() {
         .collection("contents")
         .where("type", "==", "Chapter")
         .onSnapshot(snaps => {
-          //$("editor part chapter").html("");
+          $("chapter").remove();
           snaps.forEach(doc => {
             var wordcount = 10;
             var Chap = {
@@ -87,7 +87,7 @@ async function Load_TOC() {
               drafts: doc.data().drafts,
               words: wordcount,
             };
-            template.Chapter(Chap, "part");
+            template.Chapter(Chap, "#part-1");
             $("metadata").hide();
             $("drafts").hide();
           });
@@ -207,7 +207,7 @@ $(document).on("focusout", "content-Title a", function() {
   //update meta data
   if ($(this).attr("contenteditable")) {
     var text = $(this).html();
-    bookID = localStorage.getItem("bookID");
+    var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("ChapterID");
     var update = firebase
       .firestore()
@@ -223,8 +223,8 @@ $(document).on("focusout", "content-Title a", function() {
 
 $(document).on("focusout", "#quill-editor", function() {
   //update meta data
-  bookID = localStorage.getItem("bookID");
-  chapterID = localStorage.getItem("ChapterID");
+  var bookID = localStorage.getItem("bookID");
+  var chapterID = localStorage.getItem("ChapterID");
   var update = firebase
     .firestore()
     .collection("books")
