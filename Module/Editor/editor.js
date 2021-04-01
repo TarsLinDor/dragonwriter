@@ -93,10 +93,11 @@ async function Load_TOC() {
               content: doc.data().content,
               description: doc.data().description,
               drafts: doc.data().drafts,
-              words: wordcount
+              words: wordcount,
             };
             template.Chapter(Chap, "#Part-" + doc.data().part);
             $("metadata").hide();
+            $("drafts").hide();
           });
         });
 
@@ -178,11 +179,11 @@ $(document).on("click", "#AddPart", function() {
   }
 });
 
-$(document).on("click", "content", function() {
+$(document).on("click", "chapter", function() {
   $(".content_MetaData").hide();
   $(".draft_toc").html("<hr>");
   $(this)
-    .children(".content_MetaData")
+    .children("metadata")
     .show();
   $("content").removeClass("selected");
   $(this).addClass("selected");
