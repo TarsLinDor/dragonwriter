@@ -8,6 +8,7 @@
     "firebaseui": "^4.8.0",
     "handlebars": "^4.7.7",
     "jquery": "^3.6.0",
+    "quilljs": "^0.18.1",
     "sortablejs": "^1.13.0"
   }
 }
