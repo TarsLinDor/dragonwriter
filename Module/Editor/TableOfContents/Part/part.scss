@@ -1,14 +1,13 @@
 part {
   display: block;
-  
   border-radius: 0.25em;
-  padding: 0.125em;
   margin: .25em;
   font-size: .80em;
   z-index: 1;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
   line-1 {
     display: grid;
-    grid-template-columns: 1fr 0.75em;
+    grid-template-columns: 1fr 1em;
     font-size: 1.125em;
     padding: 0.125em;
     part-title {
@@ -28,11 +27,5 @@ part {
       cursor: grabbing;
     }
   }
-  .chosen {
-    background-color: lightcoral;
-    box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.5);
-  }
-}
-part:hover{
-  background-color: darkgrey;
+
 }

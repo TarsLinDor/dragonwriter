@@ -72,7 +72,7 @@ async function Load_TOC() {
           // Loop through documents in database
           snaps.forEach(doc => {
             var part = {
-              partID: "part-" + doc.data().order,
+              partID: 'part-'+doc.data().order,
               title: doc.data().title,
               order: doc.data().order,
               type: doc.data().type
@@ -101,7 +101,8 @@ async function Load_TOC() {
               drafts: doc.data().drafts,
               words: wordcount,
             };
-            template.Chapter(Chap, "#part-1");
+            var part = 'part#'+'part-'+doc.data().part; 
+            template.Chapter(Chap, part);
             $("metadata").hide();
             $("drafts").hide();
           });
@@ -115,11 +116,11 @@ async function Load_TOC() {
   });
 };
 
-$(document).on("dblclick", "part", function(e) {
-  $(this)
+$(document).on("click", "part i.fa-chevron-up", function() {
+  $(this).parent('line-1').parent('part')
     .children("chapter")
     .toggle();
-  e.stopPropagation();
+
 });
 
 $(document).on("dblclick", "chapter", function(event) {
@@ -133,14 +134,13 @@ $(document).on("click", "#AddChapter", function() {
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
     firebase.firestore().collection("books").doc(bookID).collection("contents").add({
-        timestamp: Date.now(),
+        order: $("chapter").length+1,
         title: "Title",
         type: "Chapter",
         pov: "",
         discription: "Write a description.",
         content: "",
         draft: [],
-        order: $("chapter").length,
         hidden: false,
         part: $("part").length,
       })
@@ -167,7 +167,7 @@ $(document).on("click", "#AddPart", function() {
         type: "Part",
         pov: [],
         discription: "Write a description.",
-        order: $("part").length,
+        order: $("part").length+1,
         hidden: false,
       })
       .then(() => {

@@ -6,12 +6,12 @@ col-2 {
   h1 {
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 50%;
+    margin-top: 4em;
     margin-bottom: 0px;
     font-size: 52px;
   }
   h3 {
-    margin-top: 1em;
+    margin-top: 2em;
     font-size: 16px;
   }
   top-toolbar {
@@ -33,32 +33,32 @@ col-2 {
 }
 
 .ql-toolbar.ql-snow {
-      border-style: none;
-      text-align: center;
-      grid-column: 1;
-      grid-row: 3;
+  border-style: none;
+  text-align: center;
+  grid-column: 1;
+  grid-row: 3;
 }
 
 .ql-align-center.ql-snow {
-      border-style: none;
-      text-align: center;
-      grid-column: 1 / span 3;
-      grid-row: 3 / span 1;
+  border-style: none;
+  text-align: center;
+  grid-column: 1 / span 3;
+  grid-row: 3 / span 1;
 }
 
 .ql-container.ql-snow {
-      overflow-x: hidden;
-      overflow-y: auto;
-      outline: none;
-      border: none;
-      margin: auto;
-      max-width: 700px;
-      width: 85%;
-      max-height: 90vh;
-      grid-row: 2;
-      font-family: "Merriweather", serif;
-      font-size: 16px;
-      padding: 0px 0 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  border: none;
+  margin: auto;
+  max-width: 700px;
+  width: 85%;
+  max-height: 90vh;
+  grid-row: 2;
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  padding: 0px 0 0 0;
 }
 
 .ql-container.ql-snow p {
@@ -69,5 +69,3 @@ col-2 {
 .ql-align-center {
   text-align: center;
 }
-  
-
