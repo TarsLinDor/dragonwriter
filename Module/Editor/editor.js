@@ -51,11 +51,10 @@ async function Load_TOC() {
     if (user) {
       var data = {
         booktitle: localStorage.getItem("booktitle"),
-        author: firebase.auth().currentUser.displayName,
-        type: localStorage.getItem("booktype"),
       };
       template.TableOfContents(data, "col-1");
       var bookID = localStorage.getItem("bookID");
+
       db.collection("books")
         .doc(bookID)
         .collection("contents")
