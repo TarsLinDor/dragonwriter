@@ -18,7 +18,7 @@ var db = firebase.firestore();
 */
 async function load_Writer(data){
   $('col-2').html('');
-  template.Write(data,'col-2');
+  template.Write_chap(data,'col-2');
   var toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
     [{ align: "" }, { align: "center" }, { align: "right" }],
@@ -185,26 +185,21 @@ $(document).on("click", "chapter", function() {
   $(this)
     .children("metadata")
     .show();
-  $("content").removeClass("selected");
+  $("chapter").removeClass("selected");
   $(this).addClass("selected");
-  var content_type = $(this).attr("name");
-  var content_order = $(this).attr("value");
-  var content_title = $(this).attr("title");
-  $("Content-Title")
-    .children("a")
-    .html(content_title);
-  $("Content-Title").attr("value", content_order);
-  $("Content-Title").attr("name", content_type);
-  chapterID = $(this).attr("id");
+  var order = $(this).children('line-1').children('chapter-title').attr("value");
+  var title = $(this).children('line-1').children('chapter-title').html();
+  var contents = $(this).children("drafts").children('.content').html();
+  var chapterID = $(this).attr("id");
+  var data = {title: title,
+              order: order,
+              contents: contents,
+              }
   localStorage.setItem("ChapterID", chapterID);
-  texteditor.root.innerHTML = $(this)
-    .children(".content-data")
-    .children(".drafts")
-    .last()
-    .html();
+  
   var num_of_drafts = $(this)
-    .children(".content-data")
-    .children(".drafts").length;
+    .children("drafts")
+    .children("a.draft").length;
   for (var i = 0; i < num_of_drafts - 1; i++) {
     var drafts =
       "<button class='circle draft'><b>" + (i + 1) + "</b></button><br>";
