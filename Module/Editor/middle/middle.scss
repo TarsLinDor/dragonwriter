@@ -30,22 +30,23 @@ col-2 {
     font-size: 1.25em;
     text-align: center;
   }
-  #quill-editor {
-    .ql-toolbar.ql-snow {
+}
+
+.ql-toolbar.ql-snow {
       border-style: none;
       text-align: center;
       grid-column: 1;
       grid-row: 3;
-    }
+}
 
-    .ql-align-center.ql-snow {
+.ql-align-center.ql-snow {
       border-style: none;
       text-align: center;
       grid-column: 1 / span 3;
       grid-row: 3 / span 1;
-    }
+}
 
-    .ql-container.ql-snow {
+.ql-container.ql-snow {
       overflow-x: hidden;
       overflow-y: auto;
       outline: none;
@@ -58,15 +59,15 @@ col-2 {
       font-family: "Merriweather", serif;
       font-size: 16px;
       padding: 0px 0 0 0;
-    }
-
-    .ql-container.ql-snow p {
-      text-indent: 20px;
-      padding: 0px 0px 5px 0px;
-    }
-
-    .ql-align-center {
-      text-align: center;
-    }
-  }
 }
+
+.ql-container.ql-snow p {
+  text-indent: 20px;
+  padding: 0px 0px 5px 0px;
+}
+
+.ql-align-center {
+  text-align: center;
+}
+  
+

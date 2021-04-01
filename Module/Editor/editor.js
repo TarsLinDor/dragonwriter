@@ -72,7 +72,7 @@ async function Load_TOC() {
         .collection("contents")
         .where("type", "==", "Chapter")
         .onSnapshot(snaps => {
-          $("editor part").html("");
+          //$("editor part chapter").html("");
           snaps.forEach(doc => {
             var wordcount = 10;
             var Chap = {
@@ -87,7 +87,7 @@ async function Load_TOC() {
               drafts: doc.data().drafts,
               words: wordcount,
             };
-            template.Chapter(Chap, "#Part-" + doc.data().part);
+            template.Chapter(Chap, "part");
             $("metadata").hide();
             $("drafts").hide();
           });
@@ -223,7 +223,7 @@ $(document).on("focusout", "content-Title a", function() {
 
 $(document).on("focusout", "#quill-editor", function() {
   //update meta data
-  bookID = localStorage.getItem("bookid");
+  bookID = localStorage.getItem("bookID");
   chapterID = localStorage.getItem("ChapterID");
   var update = firebase
     .firestore()
@@ -231,7 +231,7 @@ $(document).on("focusout", "#quill-editor", function() {
     .doc(bookID)
     .collection("contents")
     .doc(chapterID);
-  update.update({
+    update.update({
     content: texteditor.root.innerHTML
   });
 });
