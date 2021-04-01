@@ -10,7 +10,7 @@
     <a class='Item'><b>Audience:</b></a>
     <a class='Item' contenteditable='true' id = 'audience'>{{audience}}</a><br>
     <a class='Title'><b>Tags</b></a>
-    <tag  id={{tagID}}></tag>
+    <tag>{{#each tag}}<a class='tag'>{{this}}</a>{{/each}}</tag>
     <addTag>
     <a class='tagname' contenteditable='true' placeholder='Add Tag'></a>
     <button class = 'addtag'><i class='fas fa-plus'></i></button>

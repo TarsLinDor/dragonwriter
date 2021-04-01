@@ -28,7 +28,7 @@ async function LoadBooks() {
               type: doc.data().length,
               perspective: doc.data().perspective,
               audience: doc.data().audience,
-              tagID: TagID
+              tag: doc.data().tags,
             };
 
             Book(data, "booklist");
