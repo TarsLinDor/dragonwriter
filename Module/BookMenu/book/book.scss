@@ -1,0 +1,72 @@
+book {
+  display: grid;
+  padding: 0.25em;
+  margin: 0.5em 0.75em;
+  border-radius: 0.25em;
+  booktitle {
+    outline: none;
+  }
+  MetaData {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 0.25em;
+    margin: 0.25em;
+    border-radius: 0.25em;
+    background-color: whitesmoke;
+    font-size: 80%;
+    a.Item {
+      outline: none;
+      padding: 0.3em;
+      border-radius: 0.25em;
+    }
+    a.Item:focus {
+      background-color: lightgrey;
+    }
+
+    a.Title {
+      grid-column: 1 / span 2;
+      outline: none;
+      padding: 0.5em;
+      border-bottom: solid 1px;
+      border-color: black;
+      text-align: center;
+    }
+    a.Title:focus {
+      background-color: lightgrey;
+    }
+    tag {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      grid-column: 1 / span 2;
+      padding: 5px;
+      margin: 2px;
+    }
+    button {
+      display: block;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      font-size: 100%;
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      padding: 5px;
+      grid-column: 2;
+    }
+    button:hover {
+      background-color: lightgrey;
+    }
+  }
+}
+
+book:hover {
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+}
+book.selected {
+  background-color: lightgrey;
+}
+book.unselected {
+  background-color: lightgrey;
+}

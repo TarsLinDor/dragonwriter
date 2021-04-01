@@ -1,6 +1,6 @@
 body {
   font-family: 'Merriweather', serif;
-  background-color: grey;
+  background-color: #607B8D;
   overflow: none;
 }
 ::-webkit-scrollbar {
@@ -8,7 +8,7 @@ body {
 }
 
 app {
-  background-color: 	#4e4e4e;
+  background-color: 	rgb(100, 81, 68);
   overflow: none;
 }
 

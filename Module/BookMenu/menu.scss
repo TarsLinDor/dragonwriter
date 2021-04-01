@@ -19,28 +19,7 @@ booklist-menu{
   display: block;
   }
 
- book{
-    display: grid;
-    padding: .25em;
-    margin: .5em .75em;
-    border-radius: .25em;
-    }
-book:hover {
-      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-    }
-book.selected {
-      background-color: 	lightgrey;
-    }
-book.unselected {
-       background-color: 	lightgrey;
-    }
 
-booktitle{
-  display: block;
-  font-size: 1.125em;
-  outline: none;
-  text-align: center; 
-}
 
 MetaData{
       position: relative;
@@ -75,30 +54,9 @@ MetaData a.Title:focus{
       background-color: lightgrey;
       }
 
-tag{
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      grid-column: 1 / span 2;
-      padding: 5px;
-      margin: 2px;
-      }
 
-MetaData button{
-        display: block;
-        border-radius: 50%;
-        border: none;
-        outline: none;
-        font-size: 100%;
-        width: 2em;
-        height: 2em;
-        text-align: center;
-        padding: 5px;
-        grid-column: 2;
-      }
-MetaData button:hover{
-        background-color: lightgrey;
-      }
+
+
 
 MetaData addTag{
       grid-column: 1/span 2;
