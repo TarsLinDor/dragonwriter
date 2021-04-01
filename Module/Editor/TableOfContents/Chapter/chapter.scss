@@ -3,7 +3,7 @@ chapter {
   padding: 0.125em;
   margin: 0.125em 0.125em;
   border-radius: 0.25em;
-  background-color: lighgrey;
+  background-color: grey;
   z-index: 2;
   line-1 {
     display: grid;
@@ -25,6 +25,7 @@ chapter {
     handle:before {
       font-weight: bold;
       content: "::";
+      cursor: grab;
     }
   }
 

@@ -44,7 +44,6 @@ async function LoadEditor() {
           // Loop through documents in database
           snaps.forEach(doc => {
             var part = {
-              title: "tst",
               partID: "Part-" + doc.data().order,
               title: doc.data().title,
               order: doc.data().order,
@@ -53,6 +52,7 @@ async function LoadEditor() {
             Part(part, "table-of-contents");
           });
         });
+        $("editor part").html("");
       db.collection("books")
         .doc(bookID)
         .collection("contents")
@@ -76,7 +76,7 @@ async function LoadEditor() {
             Chapter(Chap, "#Part-" + part);
           });
           $("metadata").hide();
-          $("chapter").hide();
+          //$("chapter").hide();
         });
     }
   });
@@ -96,7 +96,7 @@ $(document).on("dblclick", "chapter", function(event) {
   event.stopPropagation();
 });
 //adds new chapters and stuff.
-$(document).on("click", "#AddContent", function() {
+$(document).on("click", "#AddChapter", function() {
   const bookid = localStorage.getItem("bookid");
   if (bookid != null) {
     firebase
@@ -111,7 +111,35 @@ $(document).on("click", "#AddContent", function() {
         pov: "",
         discription: "Write a description.",
         content: "",
-        order: $("content").length,
+        order: $("Chapter").length,
+        hidden: false,
+        part: $("part").length,
+      })
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch(error => {
+        console.error("Error writing document: ", error);
+      });
+  }
+});
+
+$(document).on("click", "#AddPart", function() {
+  const bookid = localStorage.getItem("bookid");
+  if (bookid != null) {
+    firebase
+      .firestore()
+      .collection("books")
+      .doc(bookid)
+      .collection("contents")
+      .add({
+        timestamp: Date.now(),
+        title: "Title",
+        type: "Part",
+        pov: "",
+        discription: "Write a description.",
+        content: "",
+        order: $("part").length,
         hidden: false
       })
       .then(() => {
