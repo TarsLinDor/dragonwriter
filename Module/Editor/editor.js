@@ -8,7 +8,8 @@ LoadEditor();
 var db = firebase.firestore();
 
 //load quill  wysiwyg editor
-async function loadquill(content){
+async function loadquill(data){
+  template.Write()
   var toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
     [{ align: "" }, { align: "center" }, { align: "right" }],
