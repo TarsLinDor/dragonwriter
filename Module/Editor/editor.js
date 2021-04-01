@@ -4,6 +4,8 @@ import "firebase/firestore";
 import $ from "jquery";
 import { Editor, Chapter, Part, Prologe } from "./templates.js";
 
+
+
 LoadEditor();
 var db = firebase.firestore();
 
@@ -24,27 +26,50 @@ var texteditor = new Quill("#quill-editor", {
 async function LoadEditor() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      bookTitle = localStorage.getItem("booktitle");
-      bookID = localStorage.getItem("bookID");
-      $("editor").html("");
       var data = {
-        booktitle: bookTitle,
+        booktitle: localStorage.getItem("booktitle")
       };
       Editor(data, "editor");
-      /*db.collection("books")
+      var bookID = localStorage.getItem("bookID")
+      db.collection("books")
         .doc(bookID)
         .collection("contents")
-        .where('type','==','Part')
+        .where("type", "==", "Part")
         .onSnapshot(snaps => {
           // Reset page
           $("editor table-of-contents").html("");
           $(".draft_toc").html("");
           // Loop through documents in database
           snaps.forEach(doc => {
-            //var data = doc.data();
-            //Part(data,'table-of-contents');
+            var part = {
+              title: 'tst',
+              partID: doc.id,
+              title: doc.data().title,
+              order: doc.data().order,
+              type: doc.data().type,
+              };
+            Part(part, "table-of-contents");
           });
-        });*/
+        });
+      db.collection("books")
+        .doc(bookID)
+        .collection("contents")
+        .where("type", "==", "Chapter")
+        .onSnapshot(snaps => {
+          // Reset page
+
+          // Loop through documents in database
+          snaps.forEach(doc => {
+            var Chap = {
+              title: 'tst',
+              partID: doc.id,
+              title: doc.data().title,
+              order: doc.data().order,
+              type: doc.data().type,
+              };
+            Chapter(Chap, "part");
+          });
+        });        
     }
   });
 }
