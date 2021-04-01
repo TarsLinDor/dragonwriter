@@ -7,9 +7,11 @@ import * as template from "./templates.js";
 LoadEditor();
 var db = firebase.firestore();
 
-//load quill  wysiwyg editor
-async function loadquill(data){
-  template.Write()
+//load quill
+//data = 
+async function loadWriter(data){
+  $('col-2').html("");
+  template.Write(data,'col-2');
   var toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
     [{ align: "" }, { align: "center" }, { align: "right" }],
@@ -22,7 +24,6 @@ async function loadquill(data){
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
-  texteditor.root.html(content)
 };
 
 async function LoadEditor() {
@@ -34,7 +35,6 @@ async function LoadEditor() {
         type: localStorage.getItem("booktype"),
       };
       Editor(data, "editor");
-      loadquill();
       var bookID = localStorage.getItem("bookID");
       db.collection("books")
         .doc(bookID)
