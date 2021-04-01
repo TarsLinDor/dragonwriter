@@ -8,15 +8,6 @@ Load_TOC();
 Load_TitlePage();
 var db = firebase.firestore();
 
-//load_writer
-/*data = {
-        title:
-        type:
-        order:
-        contents:
-        draft_num:
-        }
-*/
 async function Load_Writer(data){
   $('col-2').html('');
   template.Write_chap(data,'col-2');
@@ -165,11 +156,10 @@ $(document).on("click", "#AddPart", function() {
         timestamp: Date.now(),
         title: "Title",
         type: "Part",
-        pov: "",
+        pov: [],
         discription: "Write a description.",
-        content: "",
         order: $("part").length,
-        hidden: false
+        hidden: false,
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -223,7 +213,7 @@ $(document).on("focusout", "content-Title a", function() {
   if ($(this).attr("contenteditable")) {
     var text = $(this).html();
     bookID = localStorage.getItem("bookid");
-    chapterID = localStorage.getItem("ChapterID");
+    var chapterID = localStorage.getItem("ChapterID");
     var update = firebase
       .firestore()
       .collection("books")
