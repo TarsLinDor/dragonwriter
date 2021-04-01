@@ -207,7 +207,7 @@ $(document).on("focusout", "content-Title a", function() {
   //update meta data
   if ($(this).attr("contenteditable")) {
     var text = $(this).html();
-    bookID = localStorage.getItem("bookid");
+    bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("ChapterID");
     var update = firebase
       .firestore()
