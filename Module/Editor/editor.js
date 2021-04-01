@@ -4,24 +4,25 @@ import "firebase/firestore";
 import $ from "jquery";
 import { Editor, Chapter, Part, Prologe } from "./templates.js";
 
-
-
 LoadEditor();
 var db = firebase.firestore();
 
 //load quill  wysiwyg editor
-var toolbarOptions = [
-  ["bold", "italic", "underline", "strike"],
-  [{ align: "" }, { align: "center" }, { align: "right" }],
-  ["clean"]
-];
-var texteditor = new Quill("#quill-editor", {
-  modules: {
-    toolbar: toolbarOptions
-  },
-  theme: "snow",
-  placeholder: "      Oh! the places you'll go..."
-});
+async function loadquill(content){
+  var toolbarOptions = [
+    ["bold", "italic", "underline", "strike"],
+    [{ align: "" }, { align: "center" }, { align: "right" }],
+    ["clean"]
+  ];
+  var texteditor = new Quill("#quill-editor", {
+    modules: {
+      toolbar: toolbarOptions
+    },
+    theme: "snow",
+    placeholder: "      Oh! the places you'll go..."
+  });
+  texteditor.root.html(content)
+};
 
 async function LoadEditor() {
   firebase.auth().onAuthStateChanged(user => {
@@ -30,7 +31,8 @@ async function LoadEditor() {
         booktitle: localStorage.getItem("booktitle")
       };
       Editor(data, "editor");
-      var bookID = localStorage.getItem("bookID")
+      loadquill();
+      var bookID = localStorage.getItem("bookID");
       db.collection("books")
         .doc(bookID)
         .collection("contents")
@@ -42,12 +44,12 @@ async function LoadEditor() {
           // Loop through documents in database
           snaps.forEach(doc => {
             var part = {
-                  title: 'tst',
-                  partID: 'Part-'+doc.data().order,
-                  title: doc.data().title,
-                  order: doc.data().order,
-                  type: doc.data().type,
-                };
+              title: "tst",
+              partID: "Part-" + doc.data().order,
+              title: doc.data().title,
+              order: doc.data().order,
+              type: doc.data().type
+            };
             Part(part, "table-of-contents");
           });
         });
@@ -61,22 +63,38 @@ async function LoadEditor() {
             var content = doc.data().contents;
             var wordcount = content;
             var Chap = {
-                  chapID: doc.id,
-                  order: doc.data().order,
-                  type: doc.data().type,
-                  title: doc.data().title,
-                  pov: doc.data().pov,
-                  handle: 'chapter',
-                  content: doc.data().content,
-                  description: doc.data().description,
-                  words: wordcount,
-                };
-            Chapter(Chap, "#Part-"+1);
+              chapID: doc.id,
+              order: doc.data().order,
+              type: doc.data().type,
+              title: doc.data().title,
+              pov: doc.data().pov,
+              handle: "chapter",
+              content: doc.data().content,
+              description: doc.data().description,
+              words: wordcount
+            };
+            Chapter(Chap, "#Part-" + part);
           });
-        });        
+          $("metadata").hide();
+          $("chapter").hide();
+        });
     }
   });
 }
+
+$(document).on("dblclick", "part", function(e) {
+  $(this)
+    .children("chapter")
+    .toggle();
+  e.stopPropagation();
+});
+
+$(document).on("dblclick", "chapter", function(event) {
+  $(this)
+    .children("metadata")
+    .toggle();
+  event.stopPropagation();
+});
 //adds new chapters and stuff.
 $(document).on("click", "#AddContent", function() {
   const bookid = localStorage.getItem("bookid");
