@@ -8,15 +8,16 @@ Load_TOC();
 Load_TitlePage();
 var db = firebase.firestore();
 
-//load quill
+//load_writer
 /*data = {
         title:
         type:
         order:
         contents:
+        draft_num:
         }
 */
-async function load_Writer(data){
+async function Load_Writer(data){
   $('col-2').html('');
   template.Write_chap(data,'col-2');
   var toolbarOptions = [
@@ -180,32 +181,25 @@ $(document).on("click", "#AddPart", function() {
 });
 
 $(document).on("click", "chapter", function() {
-  $(".content_MetaData").hide();
-  $(".draft_toc").html("<hr>");
-  $(this)
-    .children("metadata")
-    .show();
+  $("chapter metadata").hide();
+  $(this).children("metadata").show();
   $("chapter").removeClass("selected");
   $(this).addClass("selected");
   var order = $(this).children('line-1').children('chapter-title').attr("value");
   var title = $(this).children('line-1').children('chapter-title').html();
   var contents = $(this).children("drafts").children('.content').html();
   var chapterID = $(this).attr("id");
+  var draft_num = $(this).children("drafts").children("a.draft").length+1;
   var data = {title: title,
               order: order,
+              type: 'Chapter',
               contents: contents,
+              draft_num: draft_num,
               }
+  Load_Writer(data);
   localStorage.setItem("ChapterID", chapterID);
-  
-  var num_of_drafts = $(this)
-    .children("drafts")
-    .children("a.draft").length;
-  for (var i = 0; i < num_of_drafts - 1; i++) {
-    var drafts =
-      "<button class='circle draft'><b>" + (i + 1) + "</b></button><br>";
-    $(".draft_toc").append(drafts);
-  }
 });
+
 
 $(document).on("click", "#newDraft", function() {
   bookID = localStorage.getItem("bookid");
