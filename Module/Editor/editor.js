@@ -23,6 +23,20 @@ async function Load_Writer(data){
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
+  $(document).on("focusout", "#quill-editor", function() {
+  //update meta data
+  var bookID = localStorage.getItem("bookID");
+  var chapterID = localStorage.getItem("ChapterID");
+  var update = firebase
+    .firestore()
+    .collection("books")
+    .doc(bookID)
+    .collection("contents")
+    .doc(chapterID);
+    update.update({
+    content: texteditor.root.innerHTML,
+  });
+});
 };
 
 async function Load_TitlePage(){
@@ -221,20 +235,7 @@ $(document).on("focusout", "content-Title a", function() {
   }
 });
 
-$(document).on("focusout", "#quill-editor", function() {
-  //update meta data
-  var bookID = localStorage.getItem("bookID");
-  var chapterID = localStorage.getItem("ChapterID");
-  var update = firebase
-    .firestore()
-    .collection("books")
-    .doc(bookID)
-    .collection("contents")
-    .doc(chapterID);
-    update.update({
-    content: texteditor.root.innerHTML
-  });
-});
+
 
 $(document).on("click", "button.draft", function() {
   var numb = Number($(this).text());
