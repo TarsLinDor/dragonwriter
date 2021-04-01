@@ -8,7 +8,13 @@ LoadEditor();
 var db = firebase.firestore();
 
 //load quill
-//data = 
+/*data = {
+        title:
+        type:
+        order:
+        contents:
+        }
+*/
 async function loadWriter(data){
   $('col-2').html("");
   template.Write(data,'col-2');
