@@ -71,7 +71,7 @@ async function Load_TOC() {
               order: doc.data().order,
               type: doc.data().type
             };
-            Part(part, "table-of-contents");
+            template.Part(part, "table-of-contents");
           });
         });
 
@@ -95,11 +95,15 @@ async function Load_TOC() {
               drafts: doc.data().drafts,
               words: wordcount
             };
-            Chapter(Chap, "#Part-" + doc.data().part);
+            template.Chapter(Chap, "#Part-" + doc.data().part);
+            $("metadata").hide();
           });
-          $("metadata").hide();
-          //$("chapter").hide();
         });
+
+        //load Prologue
+        //load epilogue
+        //load interlude
+        //load acknoledgements
     }
   });
 };
@@ -128,12 +132,13 @@ $(document).on("click", "#AddChapter", function() {
       .collection("contents")
       .add({
         timestamp: Date.now(),
-        title: "Title",
+        title: "",
         type: "Chapter",
         pov: "",
         discription: "Write a description.",
         content: "",
-        order: $("Chapter").length,
+        draft: [],
+        order: $("chapter").length,
         hidden: false,
         part: $("part").length,
       })
