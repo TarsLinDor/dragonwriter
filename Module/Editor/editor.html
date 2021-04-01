@@ -1,10 +1,11 @@
 <col-1 class='full'>
   <div>
-    <booktitle contenteditable="true" placeholder='Book Title'></booktitle>
+    <booktitle contenteditable="true" placeholder='Book Title'>{{booktitle}}</booktitle>
     <table-of-contents></table-of-contents>
   </div>
   <add-contents>
     <word-count></word-count>
+    <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
     <button class='circle' id="AddContent"><i class="fas fa-plus"></i></button>
   </add-contents>
 </col-1>
@@ -12,7 +13,7 @@
 <col-2>
   <top-toolbar>
     <adjacent class="left" name="Chapter" value='1'><i class="fas fa-list-ul"></i></adjacent>
-    <content-title  name='Chapter' value='1'> <a contenteditable='true'>Chapter Title</a></content-title>
+    <content-title name='Chapter' value='1'><a contenteditable='true'>Chapter Title</a></content-title>
     <adjacent class='right' value='1'><i class="fas fa-drafting-compass"></i></adjacent>
   </top-toolbar>
   <div id="quill-editor"></div>

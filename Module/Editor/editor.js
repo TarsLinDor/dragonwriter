@@ -3,8 +3,11 @@ import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
 import './editor.scss';
-import editor from './editor.html';
-$('editor').html(editor);
+import {Editor, Chapter, Part, Prologe} from './templates.js';
+var data = {
+  booktitle:localStorage.getItem('booktitle'),
+}
+Editor(data,'editor');
 
 var db = firebase.firestore(); 
 var contents = "";
