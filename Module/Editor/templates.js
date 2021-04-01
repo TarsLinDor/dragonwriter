@@ -4,7 +4,8 @@ import toc from './TableOfContents/TableOfContents.html';
 import chap from "./TableOfContents/Chapter/chapter.html";
 import part from "./TableOfContents/Part/part.html";
 import Prol from "./TableOfContents/Part/part.html";
-import write from "./middle/middle.html";
+import write_chap from "./middle/chap.html";
+import titlepage from "./middle/title-page.html";
 import './editor.scss';
 import './middle/middle.scss';
 import './TableOfContents/Chapter/chapter.scss';
@@ -30,15 +31,13 @@ async function Prologue(data, location) {
   $(location).append(template(data));
 }
 
-async function Word(data, location) {
-  var words = '<p>{{word-count}}</p>';
-  var template = Handlebars.compile(words);
+async function Write_chap(data, location) {
+  var template = Handlebars.compile(write_chap);
+  $(location).append(template(data));
+}
+async function TitlePage(data, location) {
+  var template = Handlebars.compile(titlepage);
   $(location).append(template(data));
 }
 
-async function Write(data, location) {
-  var template = Handlebars.compile(write);
-  $(location).append(template(data));
-}
-
-export {TableOfContents, Chapter, Part, Prologue, Word, Write};
+export {TableOfContents, Chapter, Part, Prologue, Write_chap, TitlePage};

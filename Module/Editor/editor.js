@@ -4,7 +4,8 @@ import "firebase/firestore";
 import $ from "jquery";
 import * as template from "./templates.js";
 
-LoadEditor();
+Load_TOC();
+Load_TitlePage();
 var db = firebase.firestore();
 
 //load quill
@@ -15,8 +16,8 @@ var db = firebase.firestore();
         contents:
         }
 */
-async function loadWriter(data){
-  $('col-2').html("");
+async function load_Writer(data){
+  $('col-2').html('');
   template.Write(data,'col-2');
   var toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
@@ -32,15 +33,28 @@ async function loadWriter(data){
   });
 };
 
-async function LoadEditor() {
+async function Load_TitlePage(){
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       var data = {
         booktitle: localStorage.getItem("booktitle"),
-        author: 'Author Name',
+        author: firebase.auth().currentUser.displayName,
         type: localStorage.getItem("booktype"),
       };
-      Editor(data, "editor");
+  $('col-2').html('');
+  template.TitlePage(data,'col-2');
+    }});
+};
+
+async function Load_TOC() {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      var data = {
+        booktitle: localStorage.getItem("booktitle"),
+        author: firebase.auth().currentUser.displayName,
+        type: localStorage.getItem("booktype"),
+      };
+      template.TableOfContents(data, "col-1");
       var bookID = localStorage.getItem("bookID");
       db.collection("books")
         .doc(bookID)
