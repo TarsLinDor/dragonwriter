@@ -21,38 +21,6 @@ booklist-menu{
 
 
 
-MetaData{
-      position: relative;
-      display: grid;
-      grid-template-columns: auto auto;
-      padding: .25em;
-      margin: .25em;
-      border-radius: .25em;
-      background-color: whitesmoke;
-      font-size: 80%;
-      }
-    
-
-MetaData a.Item{
-      outline: none;
-      padding: .3em;
-      border-radius: .25em;
-      }
-MetaData a.Item:focus{
-      background-color: lightgrey;
-      }
-
-MetaData a.Title{
-      grid-column: 1/span 2;
-      outline: none;
-      padding: .5em;
-      border-bottom: solid 1px;
-      border-color: black;
-      text-align: center;
-      }
-MetaData a.Title:focus{
-      background-color: lightgrey;
-      }
 
 
 
@@ -84,13 +52,7 @@ MetaData .tagname:focus{
         border-radius: 5px;
       }
 
-MetaData  .tag{ 
-      margin: 2px;
-      background-color: lightgrey;
-      border-radius: 5px;
-      padding: 5px;
-      font-size: 82%;
-      }
+MetaData  
 
 add-Book{
       display: grid;

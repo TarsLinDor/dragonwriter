@@ -23,7 +23,6 @@ book {
     a.Item:focus {
       background-color: lightgrey;
     }
-
     a.Title {
       grid-column: 1 / span 2;
       outline: none;
@@ -58,6 +57,13 @@ book {
     button:hover {
       background-color: lightgrey;
     }
+    .tag{ 
+      margin: 2px;
+      background-color: lightgrey;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 82%;
+      }
   }
 }
 

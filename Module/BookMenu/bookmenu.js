@@ -6,6 +6,7 @@ import $ from "jquery";
 import {Book, Tag, Menu} from './templates.js';
 
 Menu(null,'booklist-menu');
+LoadBooks();
 
 var db = firebase.firestore();
 
@@ -38,7 +39,7 @@ async function LoadBooks(){
     });
   }});
 };
-LoadBooks();
+
 
 $(document).on("click", "#addBook", function() {
   var title = $("#bookName").html();
