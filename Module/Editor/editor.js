@@ -120,7 +120,7 @@ $(document).on("click", "#AddChapter", function() {
   if (bookID != null) {
     firebase.firestore().collection("books").doc(bookID).collection("contents").add({
         timestamp: Date.now(),
-        title: "",
+        title: "Title",
         type: "Chapter",
         pov: "",
         discription: "Write a description.",
