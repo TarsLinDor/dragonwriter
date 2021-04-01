@@ -10,7 +10,7 @@ var db = firebase.firestore();
 LoadBooks();
 
 async function LoadBooks() {
-  var menu_data ={user: firebase.auth().currentUser.displayName}
+  var menu_data = { user: firebase.auth().currentUser.displayName };
   Menu(menu_data, "booklist-menu");
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -28,7 +28,7 @@ async function LoadBooks() {
               type: doc.data().length,
               perspective: doc.data().perspective,
               audience: doc.data().audience,
-              tag: doc.data().tags,
+              tags: doc.data().tags
             };
             Book(data, "booklist");
           });
@@ -95,7 +95,14 @@ $(document).on("click", "booktitle", function() {
       .parent()
       .attr("id")
   );
-  localStorage.setItem("booktype", $(this).parent().children('metadata').children('#type').text());
+  localStorage.setItem(
+    "booktype",
+    $(this)
+      .parent()
+      .children("metadata")
+      .children("#type")
+      .text()
+  );
   localStorage.setItem("booktitle", $(this).text());
   $("#editor").trigger("change");
   $("MetaData").hide();

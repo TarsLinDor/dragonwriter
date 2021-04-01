@@ -1,19 +1,21 @@
-<book class='unselected' id ={{bookID}}>
-  <booktitle contenteditable='true' placeholder='Book Title'>{{title}}</booktitle>
+<book class="unselected" id="{{bookID}}">
+  <booktitle contenteditable="true" placeholder="Book Title"
+    >{{title}}</booktitle
+  >
   <MetaData>
-    <a class='Item'><b>Genre: </b></a>
-    <a class='Item' contenteditable='true' id='genre'>{{genre}}</a>
-    <a class='Item'><b>Type</b></a>
-    <a class='Item' contenteditable='true' id = 'type'>{{type}}</a>
-    <a class='Item'><b>Perspective:</b></a>    
-    <a class='Item' contenteditable='true' id = 'perspective'>{{perspective}}</a>
-    <a class='Item'><b>Audience:</b></a>
-    <a class='Item' contenteditable='true' id = 'audience'>{{audience}}</a><br>
-    <a class='Title'><b>Tags</b></a>
-    <tag>{{#each tag}}<a class='tag'>{{this}}</a>{{/each}}</tag>
+    <a class="Item"><b>Genre: </b></a>
+    <a class="Item" contenteditable="true" id="genre">{{genre}}</a>
+    <a class="Item"><b>Type</b></a>
+    <a class="Item" contenteditable="true" id="type">{{type}}</a>
+    <a class="Item"><b>Perspective:</b></a>
+    <a class="Item" contenteditable="true" id="perspective">{{perspective}}</a>
+    <a class="Item"><b>Audience:</b></a>
+    <a class="Item" contenteditable="true" id="audience">{{audience}}</a><br />
+    <a class="Title"><b>Tags</b></a>
+    <tag>{{#each tags}}<a class="tag">{{this}}</a>{{/each}}</tag>
     <addTag>
-    <a class='tagname' contenteditable='true' placeholder='Add Tag'></a>
-    <button class = 'addtag'><i class='fas fa-plus'></i></button>
+      <a class="tagname" contenteditable="true" placeholder="Add Tag"></a>
+      <button class="addtag"><i class="fas fa-plus"></i></button>
     </addTag>
   </MetaData>
 </book>
