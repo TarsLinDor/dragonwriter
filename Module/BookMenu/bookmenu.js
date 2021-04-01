@@ -25,7 +25,7 @@ async function LoadBooks() {
               bookID: doc.id,
               title: doc.data().title,
               genre: doc.data().genre,
-              type: doc.data().length,
+              type: doc.data().type,
               perspective: doc.data().perspective,
               audience: doc.data().audience,
               tags: doc.data().tags
@@ -48,10 +48,11 @@ $(document).on("click", "#addBook", function() {
         timestamp: Date.now(),
         title: "Book Title",
         genre: "Fantasy",
-        length: "Short Story",
+        type: "Short Story",
         perspective: "3rd Person",
         audience: "Adult",
-        tags: []
+        order: $('book').length,
+        tags: [],
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -59,25 +60,7 @@ $(document).on("click", "#addBook", function() {
       .catch(error => {
         console.error("Error writing document: ", error);
       });
-  } else {
-    newbook
-      .set({
-        user: firebase.auth().currentUser.uid,
-        timestamp: Date.now(),
-        title: title,
-        genre: "Fantasy",
-        length: "Novel",
-        perspective: "3rd Person",
-        audience: "Adult",
-        tags: []
-      })
-      .then(() => {
-        console.log("Document successfully written!");
-      })
-      .catch(error => {
-        console.error("Error writing document: ", error);
-      });
-  }
+  } 
   $("#bookName").html("");
 });
 
