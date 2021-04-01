@@ -28,4 +28,10 @@ async function Prologue(data, location) {
   $(location).append(template(data));
 }
 
+async function Word(data, location) {
+  var words = '<p>{{word-count}}</p>';
+  var template = Handlebars.compile();
+  $(location).append(template(data));
+}
+
 export { Editor, Chapter, Part, Prologue };

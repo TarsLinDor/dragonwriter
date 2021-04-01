@@ -42,12 +42,12 @@ async function LoadEditor() {
           // Loop through documents in database
           snaps.forEach(doc => {
             var part = {
-              title: 'tst',
-              partID: doc.id,
-              title: doc.data().title,
-              order: doc.data().order,
-              type: doc.data().type,
-              };
+                  title: 'tst',
+                  partID: 'Part-'+doc.data().order,
+                  title: doc.data().title,
+                  order: doc.data().order,
+                  type: doc.data().type,
+                };
             Part(part, "table-of-contents");
           });
         });
@@ -56,18 +56,22 @@ async function LoadEditor() {
         .collection("contents")
         .where("type", "==", "Chapter")
         .onSnapshot(snaps => {
-          // Reset page
-
-          // Loop through documents in database
           snaps.forEach(doc => {
+            var part = doc.data().part;
+            var content = doc.data().contents;
+            var wordcount = content;
             var Chap = {
-              title: 'tst',
-              partID: doc.id,
-              title: doc.data().title,
-              order: doc.data().order,
-              type: doc.data().type,
-              };
-            Chapter(Chap, "part");
+                  chapID: doc.id,
+                  order: doc.data().order,
+                  type: doc.data().type,
+                  title: doc.data().title,
+                  pov: doc.data().pov,
+                  handle: 'chapter',
+                  content: doc.data().content,
+                  description: doc.data().description,
+                  words: wordcount,
+                };
+            Chapter(Chap, "#Part-"+1);
           });
         });        
     }
