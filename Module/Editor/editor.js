@@ -2,7 +2,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
-import { Editor, Chapter, Part, Prologe } from "./templates.js";
+import * as template from "./templates.js";
 
 LoadEditor();
 var db = firebase.firestore();
