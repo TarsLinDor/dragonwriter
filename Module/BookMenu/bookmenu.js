@@ -3,14 +3,15 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import $ from "jquery";
-import { Book, Tag, Menu } from "./templates.js";
+import { Book, Menu } from "./templates.js";
 
 var db = firebase.firestore();
 
 LoadBooks();
 
 async function LoadBooks() {
-  Menu(null, "booklist-menu");
+  var menu_data ={user: firebase.auth().currentUser.displayName}
+  Menu(menu_data, "booklist-menu");
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       db.collection("books")
@@ -20,7 +21,6 @@ async function LoadBooks() {
           $("booklist").html("");
           // Loop through documents in database
           snaps.forEach(doc => {
-            var TagID = "tag" + doc.id;
             var data = {
               bookID: doc.id,
               title: doc.data().title,
