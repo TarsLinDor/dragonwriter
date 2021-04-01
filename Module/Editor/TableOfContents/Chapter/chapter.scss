@@ -1,0 +1,57 @@
+chapter {
+  display: block;
+  padding: 0.25em;
+  margin: 0.25em 0.25em;
+  border-radius: 0.25em;
+  background-color: darkgrey;
+  line-1 {
+    display: grid;
+    grid-template-columns: 1fr 0.75em;
+    font-size: 1.125em;
+    margin: 0em;
+    chapter-title {
+      display: grid;
+      grid-template-columns: 1em 1fr;
+      text-align: left;
+      outline: none;
+    }
+    chapter-title:before {
+      content: attr(value) ":";
+    }
+    handle {
+      display: block;
+    }
+    handle:before {
+      font-weight: bold;
+      content: "::";
+    }
+  }
+
+  MetaData {
+    position: relative;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: auto auto;
+    font-size: 75%;
+    grid-column: 1 / span 2;
+    background-color: whitesmoke;
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    z-index: 1;
+    .content-full {
+      grid-column: 1 / span 2;
+    }
+    a {
+      outline: none;
+    }
+    a:focus {
+      background-color: rgb(216, 215, 215);
+    }
+  }
+}
+
+chapter.chosen {
+  background-color: LightSteelBlue;
+  box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.5);
+}
