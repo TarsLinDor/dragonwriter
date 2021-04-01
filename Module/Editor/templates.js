@@ -1,17 +1,17 @@
 import $ from "jquery";
 import Handlebars from "handlebars";
+import toc from './TableOfContents/TableOfContents.html';
 import chap from "./TableOfContents/Chapter/chapter.html";
 import part from "./TableOfContents/Part/part.html";
 import Prol from "./TableOfContents/Part/part.html";
-import edit from "./editor.html";
 import write from "./middle/middle.html";
 import './editor.scss';
 import './middle/middle.scss';
 import './TableOfContents/Chapter/chapter.scss';
 import './TableOfContents/Part/part.scss';
 
-async function Editor(data, location) {
-  var template = Handlebars.compile(edit);
+async function TableOfContents(data, location) {
+  var template = Handlebars.compile(toc);
   $(location).append(template(data));
 }
 
@@ -41,4 +41,4 @@ async function Write(data, location) {
   $(location).append(template(data));
 }
 
-export { Editor, Chapter, Part, Prologue, Word, Write };
+export {TableOfContents, Chapter, Part, Prologue, Word, Write};

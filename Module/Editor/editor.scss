@@ -53,46 +53,6 @@ editor {
     background-color: lightgrey;
   }
 
-  .content_MetaData {
-    position: relative;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: auto auto;
-    font-size: 75%;
-    grid-column: 1 / span 2;
-    background-color: whitesmoke;
-    margin: 5px 5px 5px 0px;
-    padding: 5px;
-    border-radius: 5px 5px 5px 5px;
-    z-index: 1;
-  }
-  .content-full {
-    text-align: center;
-    grid-column: 1 / span 2;
-  }
-
-  .content-item {
-    display: grid;
-    grid-template-columns: auto 20px;
-  }
-
-  content {
-    display: block;
-    padding: 2px 2px 2px 7px;
-    margin: 5px 5px 5px 5px;
-    border-radius: 0.25em;
-    background-color: darkgrey;
-  }
-  content:before {
-    content: attr(name) attr(value) ": " attr(title);
-  }
-
-  content:hover {
-    background-color: rgb(184, 182, 182);
-  }
-  .selected {
-    background-color: darkgrey;
-  }
 
   col-3 {
     border-radius: 0px 5px 5px 5px;
