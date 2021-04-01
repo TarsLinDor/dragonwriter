@@ -61,35 +61,6 @@ editor {
       content: " words";
     }
   }
-  col-2 {
-    background-color: white;
-    display: grid;
-    grid-template-rows: 40px auto 40px;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-
-    top-toolbar {
-      padding: 0.5em;
-      display: grid;
-      grid-template-columns: auto auto auto;
-    }
-
-    adjacent.right:before {
-      content: attr(value) " " " ";
-      font-weight: bold;
-    }
-
-    adjacent:hover {
-      color: blue;
-    }
-
-    content-title {
-      font-size: 1.25em;
-      text-align: center;
-    }
-
-    content-title:before {
-      content: attr(name) attr(value) ": ";
-    }
 
     
 
@@ -162,7 +133,6 @@ editor {
   draft-title {
     margin: 0.25em;
     text-align: center;
-
     border-bottom: solid 1px darkgrey;
   }
   a {
@@ -179,4 +149,5 @@ editor {
     display: block;
     color: gray;
   }
+}
 }
