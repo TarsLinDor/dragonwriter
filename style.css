@@ -7,6 +7,11 @@ body {
   display: none;
 }
 
+
+.center{
+  text-align: center;
+}
+
 app {
   background-color: 	rgb(100, 81, 68);
   overflow: none;

@@ -6,6 +6,17 @@ editor {
   overflow: hidden;
   margin: 5px 0px 5px 5px;
   border-radius: 0.25em;
+  h1{
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 50%;
+  margin-bottom: 0px;
+  font-size: 52px;
+  }
+  h3{
+  margin-top: 1em ;
+  font-size: 18px;
+  }
   .full {
     grid-template-columns: 15em 1fr 5em;
     grid-template-rows: 1fr;

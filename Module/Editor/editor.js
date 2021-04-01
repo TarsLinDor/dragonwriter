@@ -28,7 +28,9 @@ async function LoadEditor() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       var data = {
-        booktitle: localStorage.getItem("booktitle")
+        booktitle: localStorage.getItem("booktitle"),
+        author: 'Author Name',
+        type: localStorage.getItem("booktype"),
       };
       Editor(data, "editor");
       loadquill();

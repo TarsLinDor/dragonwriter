@@ -101,6 +101,7 @@ $(document).on("click", "booktitle", function() {
       .parent()
       .attr("id")
   );
+  localStorage.setItem("booktype", $(this).parent().children('metadata').children('#type').text());
   localStorage.setItem("booktitle", $(this).text());
   $("#editor").trigger("change");
   $("MetaData").hide();
