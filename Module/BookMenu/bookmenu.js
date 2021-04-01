@@ -5,12 +5,14 @@ import "firebase/firestore";
 import $ from "jquery";
 import {Book, Tag, Menu} from './templates.js';
 
-Menu(null,'booklist-menu');
-LoadBooks();
-
 var db = firebase.firestore();
 
+LoadBooks();
+
+
+
 async function LoadBooks(){
+  Menu(null,'booklist-menu');
   firebase.auth().onAuthStateChanged(user => {if (user) {
     db.collection("books").where("user", "==", user.uid).onSnapshot(snaps => {
       // Reset page
@@ -39,7 +41,6 @@ async function LoadBooks(){
     });
   }});
 };
-
 
 $(document).on("click", "#addBook", function() {
   var title = $("#bookName").html();

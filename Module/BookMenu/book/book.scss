@@ -64,6 +64,31 @@ book {
       padding: 5px;
       font-size: 82%;
       }
+      MetaData addTag{
+      grid-column: 1/span 2;
+      outline: none;
+      font-size: 82%;
+      display: grid;
+      grid-template-columns: auto 2em;
+      grid-gap: .5em;
+    }
+
+     .tagname{
+      padding: .3em;
+      outline: none;
+      border-bottom: 1px solid lightgrey;
+
+    }
+      
+     .tagname:hover{
+      border-bottom: 1px solid lightgrey;
+      background-color: lightgrey;
+      border-radius: 5px;
+    }
+     .tagname:focus{
+        background-color: lightgrey;
+        border-radius: 5px;
+      }
   }
 }
 
