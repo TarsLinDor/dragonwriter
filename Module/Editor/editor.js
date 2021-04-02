@@ -33,7 +33,6 @@ async function Load_Writer(data,draft) {
   $('adj.right').click( function(){
     $('col-3').toggle()
     $('editor').toggleClass('hide-drafts');
-
   })
   
   $(document).on("focusout", "#quill-editor", function() {
