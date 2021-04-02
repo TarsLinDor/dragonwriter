@@ -14,7 +14,7 @@ $(document).on("change", "#editor", function() {
   Load_TitlePage();
 });
 
-async function Load_Writer(data) {
+async function Load_Writer(data,draft) {
   $("col-2").html("");
   template.Write_chap(data, "col-2");
   var toolbarOptions = [
@@ -29,6 +29,7 @@ async function Load_Writer(data) {
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
+  Load_Draft(draft,texteditor);
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");
@@ -43,8 +44,10 @@ async function Load_Writer(data) {
     update.update({
       content: texteditor.root.innerHTML
     });
+    
   });
-}
+  
+};
 
 async function Load_TitlePage() {
   firebase.auth().onAuthStateChanged(user => {
@@ -125,8 +128,25 @@ async function Load_Chapters() {
     });
 }
 
-async function Load_Draft(data){
-  template.draft(data, 'col-3')
+async function Load_Draft(data,quill){
+  $("col-3").html("");
+  template.Draft(data, 'col-3')
+    $(document).on("click", "#addDraft", function() {
+    var bookID = localStorage.getItem("bookID");
+    var chapterID = localStorage.getItem("chapterID");
+    var update = firebase
+      .firestore()
+      .collection("books")
+      .doc(bookID)
+      .collection("chapters")
+      .doc(chapterID)
+      .collection('content')
+      .doc('content');
+    update.update({
+      draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
+      draft_num: firebase.firestore.FieldValue.arrayUnion(data.draft_num+1),
+    });
+});
 }
 
 $(document).on("click", "part i", function() {
@@ -248,9 +268,10 @@ $(document).on("click", "chapter", function() {
           draft_num: draft_num
           
         };
-        var draft ={draft:1};
-        Load_Writer(chap);
-        Load_Draft(draft);
+        var draft ={
+          draft_num: draft_num
+          };
+        Load_Writer(chap,draft);
       });
 
 });

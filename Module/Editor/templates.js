@@ -52,4 +52,4 @@ async function Draft(data, location) {
   $(location).append(template(data));
 }
 
-export { TableOfContents, Chapter, Part, Prologue, Write_chap, TitlePage };
+export { TableOfContents, Chapter, Part, Prologue, Write_chap, TitlePage, Draft };
