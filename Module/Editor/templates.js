@@ -23,9 +23,11 @@ async function Chapter(data, location) {
 
 async function Part(data, location) {
   var template = Handlebars.compile(part);
-  var part_num
-  data.order
-  $(location).append(template(data));
+  var part_num = $('part').length;
+  for(var i = 0; i < part_num; i++ ){
+
+  }
+  $(location).after(template(data));
 }
 
 async function Prologue(data, location) {
