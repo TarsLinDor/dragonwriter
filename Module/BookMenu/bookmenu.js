@@ -41,12 +41,12 @@ async function LoadBooks() {
 $(document).on("click", "#addBook", function() {
   var title = $("#bookName").html();
   var newbook = db.collection("books").doc();
-  if (title == "") {
+  if (title == "") {}
     newbook
       .set({
         user: firebase.auth().currentUser.uid,
         timestamp: Date.now(),
-        title: "Book Title",
+        title: title,
         genre: "Fantasy",
         type: "Short Story",
         perspective: "3rd Person",
@@ -60,7 +60,7 @@ $(document).on("click", "#addBook", function() {
       .catch(error => {
         console.error("Error writing document: ", error);
       });
-  } 
+   
   $("#bookName").html("");
 });
 
@@ -88,7 +88,7 @@ $(document).on("click", "booktitle", function() {
   );
   localStorage.setItem("booktitle", $(this).text());
   $("#editor").trigger("change");
-  $("MetaData").hide();
+  $("book metadata").hide();
   $(this)
     .parent()
     .children("MetaData")

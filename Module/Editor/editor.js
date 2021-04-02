@@ -36,7 +36,7 @@ async function Load_Writer(data) {
       .firestore()
       .collection("books")
       .doc(bookID)
-      .collection("contents")
+      .collection("chapter")
       .doc(chapterID);
     update.update({
       content: texteditor.root.innerHTML
@@ -78,7 +78,7 @@ async function Load_Parts() {
           order: doc.data().order
         };
         template.Part(part, "table-of-contents");
-        Sort(part.partID, "Chapter", "handle", "chosen", "prologue");
+        Sort(part.partID, "Chapter", "handle", "chosen", "ignore");
       });
     Load_Chapters();
     });
@@ -115,7 +115,7 @@ async function Load_Chapters() {
         }
         template.Chapter(Chap, part);
         
-        $("metadata").hide();
+        $("chapter metadata").hide();
         $("drafts").hide();
       });
     });
@@ -222,7 +222,7 @@ $(document).on("click", "chapter", function() {
   var data = {
     title: title,
     order: order,
-    type: "Chapter",
+    type: type,
     content: content,
     draft_num: draft_num
   };

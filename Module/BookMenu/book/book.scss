@@ -97,6 +97,7 @@ book:hover {
 }
 book.selected {
   background-color: darkgrey;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
 }
 book.unselected {
   background-color: lightgrey;
