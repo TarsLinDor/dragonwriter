@@ -11,6 +11,7 @@ import "./editor.scss";
 import "./middle/middle.scss";
 import "./TableOfContents/Chapter/chapter.scss";
 import "./TableOfContents/Part/part.scss";
+import "./draft/draft.scss";
 
 async function TableOfContents(data, location) {
   var template = Handlebars.compile(toc);
