@@ -37,7 +37,9 @@ async function Load_Writer(data) {
       .collection("books")
       .doc(bookID)
       .collection("chapters")
-      .doc(chapterID);
+      .doc(chapterID)
+      .collection('content')
+      .doc('content');
     update.update({
       content: texteditor.root.innerHTML
     });
@@ -116,7 +118,9 @@ async function Load_Chapters() {
 
         $("chapter metadata").hide();
         $("drafts").hide();
+        
       });
+      $('word-count').html(total_words);
     });
 }
 
@@ -150,21 +154,24 @@ $(document).on("click", "#AddChapter", function() {
   }
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
-    firebase
+  var addChap = firebase
       .firestore()
       .collection("books")
       .doc(bookID)
-      .collection("chapters")
-      .add({
+      .collection("chapters").doc();
+
+      addChap.set({
         order: order,
         title: "Title",
         type: type,
-        pov: "",
         discription: "Write a description.",
-        content: "",
-        draft: [],
         hidden: false,
         part: partID
+      });
+
+      addChap.collection('content').doc('content').set({
+        content: "",
+        draft: [],
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -214,24 +221,30 @@ $(document).on("click", "chapter", function() {
     .children("chapter-title")
     .children("a")
     .html();
-  var content = $(this)
-    .children("drafts")
-    .children(".content")
-    .html();
   var chapterID = $(this).attr("id");
+  var bookID = localStorage.getItem("bookID");
   localStorage.setItem("chapterID", chapterID);
   var draft_num =
     $(this)
       .children("drafts")
       .children("a.draft").length + 1;
-  var data = {
-    title: title,
-    order: order,
-    type: type,
-    content: content,
-    draft_num: draft_num
-  };
-  Load_Writer(data);
+  db.collection("books") //load chapters
+    .doc(bookID)
+    .collection("chapters")
+    .doc(chapterID)
+    .collection('content')
+    .doc('content')
+    .onSnapshot((doc) => {
+          var data = {
+          title: title,
+          order: order,
+          type: type,
+          content: doc.data().content,
+          draft_num: draft_num
+        };
+        Load_Writer(data);
+      });
+
 });
 
 $(document).on("focusout", "part-title a", function() {
