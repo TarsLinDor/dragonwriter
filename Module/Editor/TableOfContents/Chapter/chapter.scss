@@ -10,13 +10,12 @@ chapter {
     font-size: 1.125em;
     margin: auto;
     chapter-title {
-      display: grid;
-      grid-template-columns: 1em 1fr;
+      display: block;
       text-align: left;
       outline: none;
     }
     chapter-title:before {
-      content: attr(value) ":";
+      content: attr(type)" "attr(value) ": ";
     }
     handle {
       display: block;

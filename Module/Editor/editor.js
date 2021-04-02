@@ -6,6 +6,8 @@ import * as template from "./templates.js";
 import Sort from "./Sort.js";
 import wordcount from "wordcount";
 var db = firebase.firestore();
+Load_Parts();
+Load_TitlePage();
 
 $(document).on("change", "#editor", function() {
   Load_Parts();
@@ -204,9 +206,9 @@ $(document).on("click", "chapter", function() {
   $("chapter").removeClass("selected");
   $(this).addClass("selected");
   var order = $(this)
-    .children("line-1")
-    .children("chapter-title")
     .attr("value");
+  var type = $(this)
+    .attr("name");
   var title = $(this)
     .children("line-1")
     .children("chapter-title")
