@@ -7,7 +7,7 @@ import Sort from "./Sort.js";
 
 Load_TOC();
 Load_TitlePage();
-Sort('part','Chapter','handle','chosen','');
+
 var db = firebase.firestore();
 
 async function Load_Writer(data){
@@ -70,7 +70,6 @@ async function Load_TOC() {
         .where("type", "==", "Part")
         .onSnapshot(snaps => {
           // Reset page
-          $("editor table-of-contents").html("");
           $(".draft_toc").html("");
           // Loop through documents in database
           snaps.forEach(doc => {
@@ -81,7 +80,9 @@ async function Load_TOC() {
               type: doc.data().type
             };
             template.Part(part, "table-of-contents");
+            Sort(part.partID,'Chapter','handle','chosen','');
           });
+          
         });
 
       db.collection("books")//load chapters
