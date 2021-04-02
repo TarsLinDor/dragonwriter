@@ -1,12 +1,12 @@
 import $ from "jquery";
 import Sortable from "sortablejs";
 
-async function Sort_TableOfContents(
+async function Sort(
   item,
   groupname,
   handleClass,
   pickClass,
-  ignore
+  ignore,
 ) {
   var el = document.getElementById(item);
   Sortable.create(el, {
@@ -18,4 +18,4 @@ async function Sort_TableOfContents(
   });
 }
 
-export { Sort_TableOfContents };
+export default Sort;

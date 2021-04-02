@@ -51,11 +51,14 @@ chapter {
     }
   }
 }
-chapter:hover{
-  background-color: grey;
+chapter:hover {
+  background-color: darkgrey;
 }
 
 chapter.chosen {
   background-color: LightSteelBlue;
   box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.5);
+}
+chapter.selected {
+  background-color: darkgrey;
 }

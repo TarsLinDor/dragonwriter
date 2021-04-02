@@ -17,7 +17,7 @@ col-2 {
   top-toolbar {
     padding: 0.5em;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 7em auto 7em;
   }
   adj.right:before {
     content: attr(value) " " " ";
@@ -31,6 +31,8 @@ col-2 {
     color: rgb(36, 36, 87);
   }
   content-title {
+    position: relative;
+    //left: -1.5em;
     font-size: 1.25em;
     text-align: center;
   }
