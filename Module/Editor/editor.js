@@ -30,6 +30,12 @@ async function Load_Writer(data,draft) {
     placeholder: "      Oh! the places you'll go..."
   });
   Load_Draft(draft,texteditor);
+  $('adj.right').click( function(){
+    $('col-3').toggle()
+    $('editor').toggleClass('hide-drafts');
+
+  })
+  
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");
@@ -144,9 +150,26 @@ async function Load_Draft(data,quill){
       .doc('content');
     update.update({
       draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
-      draft_num: firebase.firestore.FieldValue.arrayUnion(data.draft_num+1),
+      draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length+1)),
+    });
+
+  $(document).on("click", "draft-toc button", function() {
+    var bookID = localStorage.getItem("bookID");
+    var chapterID = localStorage.getItem("chapterID");
+    var update = firebase
+      .firestore()
+      .collection("books")
+      .doc(bookID)
+      .collection("chapters")
+      .doc(chapterID)
+      .collection('content')
+      .doc('content');
+    update.update({
+      draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
+      draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length+1)),
     });
 });
+    });
 }
 
 $(document).on("click", "part i", function() {
@@ -250,7 +273,6 @@ $(document).on("click", "chapter", function() {
   var chapterID = $(this).attr("id");
   var bookID = localStorage.getItem("bookID");
   localStorage.setItem("chapterID", chapterID);
-  var draft_num =
     $(this)
       .children("drafts")
       .children("a.draft").length + 1;
@@ -266,7 +288,7 @@ $(document).on("click", "chapter", function() {
           order: order,
           type: type,
           content: doc.data().content,
-          draft_num: doc.data().draft_num
+          draft_num: doc.data().draft_num.length
           
         };
         var draft ={

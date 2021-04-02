@@ -6,11 +6,15 @@
     grid-column: 3 / span 1;
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
     text-align: center;
-  }
+  
   draft-title {
     margin: 0.25em;
     text-align: center;
     border-bottom: solid 1px darkgrey;
+  }
+  draft-toc{
+    display: wrap;
+    overflow: scroll;
   }
   a {
     outline: none;
@@ -19,16 +23,4 @@
     border-radius: 0.125em;
     background-color: lightgrey;
   }
-
-  [contenteditable="true"]:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block;
-    color: gray;
-  }
-    booktitle:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block;
-    color: gray;
-  }
+}
