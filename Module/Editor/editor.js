@@ -66,7 +66,7 @@ async function Load_Parts() {
   db.collection("books")
     .doc(bookID)
     .collection("parts")
-    .orderBy("order")
+    //.orderBy("order")
     .onSnapshot(snaps => {
       snaps.forEach(doc => {
         var part = {
@@ -84,7 +84,7 @@ async function Load_Chapters() {
   db.collection("books") //load chapters
     .doc(bookID)
     .collection("chapters")
-    .orderBy("order")
+    //.orderBy("order")
     .onSnapshot(snaps => {
       $("chapter").remove();
       snaps.forEach(doc => {
@@ -167,12 +167,10 @@ $(document).on("click", "#AddPart", function() {
       .doc(bookID)
       .collection("parts")
       .add({
-        timestamp: Date.now(),
         title: "Title",
         pov: [],
         discription: "Write a description.",
         order: $("part").length + 1,
-        hidden: false
       })
       .then(() => {
         console.log("Document successfully written!");
