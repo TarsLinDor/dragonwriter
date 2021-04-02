@@ -66,8 +66,8 @@ async function Load_TOC() {
 
       db.collection("books") //Load parts
         .doc(bookID)
-        .collection("contents")
-        .where("type", "==", "Part")
+        .collection("parts")
+        .orderby("order")
         .onSnapshot(snaps => {
           // Reset page
           $(".draft_toc").html("");
@@ -86,8 +86,8 @@ async function Load_TOC() {
 
       db.collection("books") //load chapters
         .doc(bookID)
-        .collection("contents")
-        .where("type", "==", "Chapter")
+        .collection("chapters")
+        .orderBy("order")
         .onSnapshot(snaps => {
           $("chapter").remove();
           snaps.forEach(doc => {
@@ -134,7 +134,7 @@ $(document).on("click", "#AddChapter", function() {
       .firestore()
       .collection("books")
       .doc(bookID)
-      .collection("contents")
+      .collection("chapters")
       .add({
         order: $("chapter").length + 1,
         title: "Title",
@@ -162,11 +162,10 @@ $(document).on("click", "#AddPart", function() {
       .firestore()
       .collection("books")
       .doc(bookID)
-      .collection("contents")
+      .collection("parts")
       .add({
         timestamp: Date.now(),
         title: "Title",
-        type: "Part",
         pov: [],
         discription: "Write a description.",
         order: $("part").length + 1,
