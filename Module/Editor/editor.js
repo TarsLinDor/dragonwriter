@@ -122,7 +122,7 @@ async function Load_TOC() {
 }
 
 $(document).on("click", "part i", function() {
-  $(this).parent().parent().children("chapter").toggle();
+  $(this).parent('row1').parent('part').children("chapter").toggle();
   $(this).toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
 });
 
