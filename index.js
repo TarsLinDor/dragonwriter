@@ -10,8 +10,8 @@ import './Module/world/world.js';
 import './Module/login/login.js';
 
 $(document).ready(function(){ //initial load technically should be done after login so needs to be moved.
-  $('book').first().children('booktitle').trigger('click');
-  $('#editor').trigger('click');
+$('#editor').trigger('click')
+$('#editor').trigger('change');
 });
 
 

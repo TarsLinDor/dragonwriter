@@ -6,9 +6,10 @@ import * as template from "./templates.js";
 import Sort from "./Sort.js";
 var db = firebase.firestore();
 
-Load_Parts();
-Load_Chapters();
-Load_TitlePage();
+$(document).on('change', '#editor', function(){
+  Load_Parts();
+  Load_TitlePage();
+})
 
 
 
@@ -58,6 +59,7 @@ async function Load_TitlePage() {
 }
 
 async function Load_Parts() {
+  $("col-1").html("");
   var bookID = localStorage.getItem("bookID");
   var data = {
     booktitle: localStorage.getItem("booktitle")
@@ -68,6 +70,7 @@ async function Load_Parts() {
     .collection("parts")
     .orderBy("order",'desc')
     .onSnapshot(snaps => {
+      $("part").remove();
       snaps.forEach(doc => {
         var part = {
           partID: doc.id,
@@ -77,14 +80,17 @@ async function Load_Parts() {
         template.Part(part, "table-of-contents");
         Sort(part.partID, "Chapter", "handle", "chosen", "prologue");
       });
+    Load_Chapters();
     });
+
 }
 
 async function Load_Chapters() {
+  var bookID = localStorage.getItem("bookID");
   db.collection("books") //load chapters
     .doc(bookID)
     .collection("chapters")
-    //.orderBy("order")
+    .orderBy("order")
     .onSnapshot(snaps => {
       $("chapter").remove();
       snaps.forEach(doc => {
@@ -101,21 +107,15 @@ async function Load_Chapters() {
           drafts: doc.data().drafts,
           words: wordcount
         };
-        var part = doc.data().part;
+        var part = '#'+doc.data().part;
         template.Chapter(Chap, part);
-        //$("chapter").hide();
+        
         $("metadata").hide();
         $("drafts").hide();
-        $("part i")
-          .last()
-          .trigger("click");
       });
     });
-
-  //load Prologue
-  //load epilogue
-  //load interlude
-  //load acknoledgements
+  $("chapter").hide();
+  $('part i').last().trigger('click')
 };
 
 $(document).on("click", "part i", function() {
