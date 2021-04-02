@@ -107,7 +107,12 @@ async function Load_Chapters() {
           drafts: doc.data().drafts,
           words: wordcount
         };
-        var part = '#'+doc.data().part;
+        if(doc.data().part == """){
+          var part = 'table-of-contents';
+        }
+        else{
+          var part = '#'+doc.data().part;
+        }
         template.Chapter(Chap, part);
         
         $("metadata").hide();
@@ -131,6 +136,12 @@ $(document).on("click", "part i", function() {
 
 //adds new chapters and stuff.
 $(document).on("click", "#AddChapter", function() {
+  if($("part").last().attr('id')){
+  var partID = $("part").last().attr('id');
+  }
+  else{
+    var partID ='';
+  }
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
     firebase
@@ -147,7 +158,7 @@ $(document).on("click", "#AddChapter", function() {
         content: "",
         draft: [],
         hidden: false,
-        part: $("part").last().attr('id'),
+        part: partID,
       })
       .then(() => {
         console.log("Document successfully written!");

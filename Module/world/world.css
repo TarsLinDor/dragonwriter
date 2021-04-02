@@ -5,4 +5,5 @@ world{
   margin: 5px 0px 5px 5px;
   overflow: hidden;
   border-radius: .25em;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.75);
 }

@@ -13,8 +13,9 @@ body {
 }
 
 app {
-  background-color: 	white;
+  background-color: 	rgb(141, 114, 96);
   overflow: none;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.8);
 }
 
 app.full{
