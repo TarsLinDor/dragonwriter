@@ -56,7 +56,8 @@ booklist-menu{
     cursor: pointer;
   }
   add-book button:hover {
-    background-color: #8d6060;
+    background-color: rgba(211, 211, 211, 0.25);
+    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.2);
   }
 
   [contenteditable=true]:empty:before{
