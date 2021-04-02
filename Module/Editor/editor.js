@@ -29,7 +29,7 @@ async function Load_Writer(data) {
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
-  texteditor.root.innerHTML = data.content;
+  //texteditor.root.innerHTML = data.content;
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");
@@ -37,7 +37,7 @@ async function Load_Writer(data) {
       .firestore()
       .collection("books")
       .doc(bookID)
-      .collection("chapter")
+      .collection("chapters")
       .doc(chapterID);
     update.update({
       content: texteditor.root.innerHTML
@@ -138,11 +138,13 @@ $(document).on("click", "part i", function() {
 $(document).on("click", "#AddChapter", function() {
   if($("part").last().attr('id')){
   var partID = $("part").last().attr('id');
-  var type = 'chapter';
+  var type = 'Chapter';
+  var order = $("chapter.Chapter").length + 1;
   }
   else{
     var partID ='';
-    var type = 'prologue';
+    var type = 'Prologue';
+    order = '';
   }
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
@@ -152,7 +154,7 @@ $(document).on("click", "#AddChapter", function() {
       .doc(bookID)
       .collection("chapters")
       .add({
-        order: $("chapter").length + 1,
+        order: order,
         title: "Title",
         type: type,
         pov: "",
@@ -215,6 +217,7 @@ $(document).on("click", "chapter", function() {
     .children(".content")
     .html();
   var chapterID = $(this).attr("id");
+  localStorage.setItem("chapterID", chapterID);
   var draft_num =
     $(this)
       .children("drafts")
@@ -227,7 +230,7 @@ $(document).on("click", "chapter", function() {
     draft_num: draft_num
   };
   Load_Writer(data);
-  localStorage.setItem("ChapterID", chapterID);
+  
 });
 
 
