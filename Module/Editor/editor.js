@@ -197,6 +197,7 @@ $(document).on("click", "#AddChapter", function() {
       addChap.collection('content').doc('content').set({
         content: "",
         draft: [],
+        draft_num: [1],
       })
       .then(() => {
         console.log("Document successfully written!");
