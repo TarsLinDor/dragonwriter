@@ -20,7 +20,7 @@ async function TableOfContents(data, location) {
 
 async function Chapter(data, location) {
   var template = Handlebars.compile(chap);
-  if(data.type=='prologue'){
+  if(data.type=='Prologue'){
     $(location).prepend(template(data));
   }
   else{

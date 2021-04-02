@@ -266,11 +266,12 @@ $(document).on("click", "chapter", function() {
           order: order,
           type: type,
           content: doc.data().content,
-          draft_num: draft_num
+          draft_num: doc.data().draft_num
           
         };
         var draft ={
-          draft_num: draft_num
+          draft: doc.data().draft,
+          draft_num: doc.data().draft_num
           };
         Load_Writer(chap,draft);
       });
