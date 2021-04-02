@@ -7,7 +7,14 @@ import { Book, Menu } from "./templates.js";
 
 var db = firebase.firestore();
 
-LoadBooks();
+LoadBooks()
+setTimeout(function() {
+  $('#booklist-menu').trigger('click');
+  $('booktitle').trigger('change');
+
+}, 10);
+
+
 
 async function LoadBooks() {
   var menu_data = { user: 'My' };
@@ -33,10 +40,12 @@ async function LoadBooks() {
             Book(data, "booklist");
           });
           $("MetaData").hide();
+          
         });
     }
   });
-}
+  $('#editor').trigger('click');
+};
 
 $(document).on("click", "#addBook", function() {
   var title = $("#bookName").html();
