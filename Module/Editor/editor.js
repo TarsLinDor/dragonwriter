@@ -5,7 +5,8 @@ import $ from "jquery";
 import * as template from "./templates.js";
 import Sort from "./Sort.js";
 
-Load_TOC();
+Load_Parts();
+Load_Chapters();
 Load_TitlePage();
 
 var db = firebase.firestore();
@@ -55,75 +56,77 @@ async function Load_TitlePage() {
   });
 }
 
-async function Load_TOC() {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      var data = {
-        booktitle: localStorage.getItem("booktitle")
-      };
-      template.TableOfContents(data, "col-1");
-      var bookID = localStorage.getItem("bookID");
+async function Load_Parts() {
+  var data = {
+    booktitle: localStorage.getItem("booktitle")
+  };
+  template.TableOfContents(data, "col-1");
+  var bookID = localStorage.getItem("bookID");
 
-      db.collection("books") //Load parts
-        .doc(bookID)
-        .collection("parts")
-        .orderby("order")
-        .onSnapshot(snaps => {
-          // Reset page
-          $(".draft_toc").html("");
-          // Loop through documents in database
-          snaps.forEach(doc => {
-            var part = {
-              partID: "part-" + doc.data().order,
-              title: doc.data().title,
-              order: doc.data().order,
-              type: doc.data().type
-            };
-            template.Part(part, "table-of-contents");
-            Sort(part.partID, "Chapter", "handle", "chosen", "");
-          });
-        });
-
-      db.collection("books") //load chapters
-        .doc(bookID)
-        .collection("chapters")
-        .orderBy("order")
-        .onSnapshot(snaps => {
-          $("chapter").remove();
-          snaps.forEach(doc => {
-            var wordcount = 10;
-            var Chap = {
-              chapID: doc.id,
-              order: doc.data().order,
-              type: doc.data().type,
-              title: doc.data().title,
-              pov: doc.data().pov,
-              handle: "handle",
-              content: doc.data().content,
-              description: doc.data().description,
-              drafts: doc.data().drafts,
-              words: wordcount
-            };
-            var part = "part#" + "part-" + doc.data().part;
-            template.Chapter(Chap, part);
-            $("chapter").hide();
-            $("metadata").hide();
-            $("drafts").hide();
-            $("part i").last().trigger("click");
-          });
-        });
-
-      //load Prologue
-      //load epilogue
-      //load interlude
-      //load acknoledgements
-    }
-  });
+  db.collection("books")
+    .doc(bookID)
+    .collection("parts")
+    .orderBy("order")
+    .onSnapshot(snaps => {
+      snaps.forEach(doc => {
+        var part = {
+          partID: "part-" + doc.data().order,
+          title: doc.data().title,
+          order: doc.data().order
+        };
+        template.Part(part, "table-of-contents");
+        Sort(part.partID, "Chapter", "handle", "chosen", "prologue");
+      });
+    });
 }
 
+async function Load_Chapters() {
+  db.collection("books") //load chapters
+    .doc(bookID)
+    .collection("chapters")
+    .orderBy("order")
+    .onSnapshot(snaps => {
+      $("chapter").remove();
+      snaps.forEach(doc => {
+        var wordcount = 10;
+        var Chap = {
+          chapID: doc.id,
+          order: doc.data().order,
+          type: doc.data().type,
+          title: doc.data().title,
+          pov: doc.data().pov,
+          handle: "handle",
+          content: doc.data().content,
+          description: doc.data().description,
+          drafts: doc.data().drafts,
+          words: wordcount
+        };
+        var part = "part#" + "part-" + doc.data().part;
+        template.Chapter(Chap, part);
+        $("chapter").hide();
+        $("metadata").hide();
+        $("drafts").hide();
+        $("part i")
+          .last()
+          .trigger("click");
+      });
+    });
+
+  //load Prologue
+  //load epilogue
+  //load interlude
+  //load acknoledgements
+};
+
 $(document).on("click", "part i", function() {
-  $(this).parent('row1').parent('part').children("chapter").toggle();
-  $(this).toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+  $(this)
+    .parent("row1")
+    .parent("part")
+    .children("chapter")
+    .toggle();
+  $(this)
+    .toggleClass("fa-chevron-up")
+    .toggleClass("fa-chevron-down");
 });
 
 //adds new chapters and stuff.
@@ -144,7 +147,7 @@ $(document).on("click", "#AddChapter", function() {
         content: "",
         draft: [],
         hidden: false,
-        part: $("part").length
+        part: $("part").length,
       })
       .then(() => {
         console.log("Document successfully written!");
