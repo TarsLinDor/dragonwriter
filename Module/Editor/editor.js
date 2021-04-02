@@ -4,6 +4,7 @@ import "firebase/firestore";
 import $ from "jquery";
 import * as template from "./templates.js";
 import Sort from "./Sort.js";
+import wordcount from 'wordcount'
 var db = firebase.firestore();
 
 $(document).on('change', '#editor', function(){
@@ -31,7 +32,7 @@ async function Load_Writer(data) {
   texteditor.root.innerHTML = data.content;
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
-    var chapterID = localStorage.getItem("ChapterID");
+    var chapterID = localStorage.getItem("chapterID");
     var update = firebase
       .firestore()
       .collection("books")
@@ -93,6 +94,7 @@ async function Load_Chapters() {
     .orderBy("order")
     .onSnapshot(snaps => {
       $("chapter").remove();
+      var total_words = 0;
       snaps.forEach(doc => {
         var wordcount = 10;
         var Chap = {
@@ -119,8 +121,6 @@ async function Load_Chapters() {
         $("drafts").hide();
       });
     });
-  $("chapter").hide();
-  $('part i').last().trigger('click')
 };
 
 $(document).on("click", "part i", function() {
