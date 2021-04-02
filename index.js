@@ -10,7 +10,8 @@ import './Module/world/world.js';
 import './Module/login/login.js';
 
 $(document).ready(function(){ //initial load technically should be done after login so needs to be moved.
-
+$('#booklist-menu').trigger('click');
+$('book booktitle').last().trigger('click');
 });
 
 

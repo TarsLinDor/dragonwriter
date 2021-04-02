@@ -9,7 +9,6 @@ var db = firebase.firestore();
 
 LoadBooks()
 setTimeout(function() {
-  $('#booklist-menu').trigger('click');
   $('#editor').trigger('click');
 }, 10);
 
