@@ -4,12 +4,13 @@ import "firebase/firestore";
 import $ from "jquery";
 import * as template from "./templates.js";
 import Sort from "./Sort.js";
+var db = firebase.firestore();
 
 Load_Parts();
 Load_Chapters();
 Load_TitlePage();
 
-var db = firebase.firestore();
+
 
 async function Load_Writer(data) {
   $("col-2").html("");
@@ -57,20 +58,19 @@ async function Load_TitlePage() {
 }
 
 async function Load_Parts() {
+  var bookID = localStorage.getItem("bookID");
   var data = {
     booktitle: localStorage.getItem("booktitle")
   };
   template.TableOfContents(data, "col-1");
-  var bookID = localStorage.getItem("bookID");
-
   db.collection("books")
     .doc(bookID)
     .collection("parts")
-    //.orderBy("order")
+    .orderBy("order",'desc')
     .onSnapshot(snaps => {
       snaps.forEach(doc => {
         var part = {
-          partID: "part-" + doc.data().order,
+          partID: doc.id,
           title: doc.data().title,
           order: doc.data().order
         };
@@ -101,9 +101,9 @@ async function Load_Chapters() {
           drafts: doc.data().drafts,
           words: wordcount
         };
-        var part = "part#" + "part-" + doc.data().part;
+        var part = doc.data().part;
         template.Chapter(Chap, part);
-        $("chapter").hide();
+        //$("chapter").hide();
         $("metadata").hide();
         $("drafts").hide();
         $("part i")
@@ -147,7 +147,7 @@ $(document).on("click", "#AddChapter", function() {
         content: "",
         draft: [],
         hidden: false,
-        part: $("part").length,
+        part: $("part").last().attr('id'),
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -217,37 +217,21 @@ $(document).on("click", "chapter", function() {
   localStorage.setItem("ChapterID", chapterID);
 });
 
-//
-$(document).on("click", "#newDraft", function() {
-  bookID = localStorage.getItem("bookid");
-  chapterID = localStorage.getItem("ChapterID");
-  var update = firebase
-    .firestore()
-    .collection("books")
-    .doc(bookID)
-    .collection("contents")
-    .doc(chapterID);
-  update.update({
-    drafts: firebase.firestore.FieldValue.arrayUnion(texteditor.root.innerHTML)
-  });
-  $("content")
-    .attr("id", chapterID)
-    .trigger("click");
-});
 
-$(document).on("focusout", "content-title a", function() {
+
+$(document).on("focusout", "part-title a", function() {
   //update meta data
   if ($(this).attr("contenteditable")) {
     var text = $(this).text();
     if (text) {
       var bookID = localStorage.getItem("bookID");
-      var chapterID = localStorage.getItem("ChapterID");
+      var partID = $(this).parent().parent().parent().attr('id');
       var update = firebase
         .firestore()
         .collection("books")
         .doc(bookID)
-        .collection("contents")
-        .doc(chapterID);
+        .collection("parts")
+        .doc(partID);
       update.update({
         title: text
       });
@@ -255,7 +239,4 @@ $(document).on("focusout", "content-title a", function() {
   }
 });
 
-$(document).on("click", "button.draft", function() {
-  var numb = Number($(this).text());
-  $("#content-list").append(numb);
-});
+

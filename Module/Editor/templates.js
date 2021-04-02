@@ -24,22 +24,7 @@ async function Chapter(data, location) {
 
 async function Part(data, location) {
   var template = Handlebars.compile(part);
-  var part_num = $('part').length;
-  if (part_num == 0) {
-    $(location).prepend(template(data));
-  }
-  else{
-    var first = $('part').first().attr('value');
-    var last = $('part').last().attr('value');
-    if (first>=data.order){
-      var next = $('part').first();
-      next.before(template(data));
-    }
-    else if (last>=data.order){
-      var next = $('part').first();
-      next.after(template(data));
-    }
-  }
+  $(location).prepend(template(data));
 };
 
 async function Prologue(data, location) {
