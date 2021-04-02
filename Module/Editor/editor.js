@@ -8,6 +8,8 @@ import wordcount from "wordcount";
 var db = firebase.firestore();
 Load_Parts();
 Load_TitlePage();
+$('editor').addClass('hide-drafts');
+$('col-3').toggle()
 
 $(document).on("change", "#editor", function() {
   Load_Parts();
@@ -34,6 +36,10 @@ async function Load_Writer(data,draft) {
     $('col-3').toggle()
     $('editor').toggleClass('hide-drafts');
   })
+  //$('adj.left').click( function(){
+   //$('col-1').toggle()
+    //$('editor').toggleClass('hide-toc');
+  //})
   
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
