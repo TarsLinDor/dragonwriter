@@ -6,6 +6,7 @@ import part from "./TableOfContents/Part/part.html";
 import Prol from "./TableOfContents/Part/part.html";
 import write_chap from "./middle/chap.html";
 import titlepage from "./middle/title-page.html";
+import draft from "./draft/draft.html";
 import "./editor.scss";
 import "./middle/middle.scss";
 import "./TableOfContents/Chapter/chapter.scss";
@@ -43,6 +44,10 @@ async function Write_chap(data, location) {
 }
 async function TitlePage(data, location) {
   var template = Handlebars.compile(titlepage);
+  $(location).append(template(data));
+}
+async function Draft(data, location) {
+  var template = Handlebars.compile(draft);
   $(location).append(template(data));
 }
 

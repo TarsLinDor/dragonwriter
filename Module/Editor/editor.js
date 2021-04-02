@@ -125,8 +125,8 @@ async function Load_Chapters() {
     });
 }
 
-async function Load_Draft(){
-  template.draft(null, 'col-3')
+async function Load_Draft(data){
+  template.draft(data, 'col-3')
 }
 
 $(document).on("click", "part i", function() {

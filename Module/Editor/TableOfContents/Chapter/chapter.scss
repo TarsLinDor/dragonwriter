@@ -6,7 +6,7 @@ chapter {
   z-index: 2;
   line-1 {
     display: grid;
-    grid-template-columns: 1fr 0.75em;
+    grid-template-columns: 1fr 1em;
     font-size: 1.125em;
     margin: auto;
     chapter-title {
@@ -19,10 +19,6 @@ chapter {
     }
     handle {
       display: block;
-    }
-    handle:before {
-      font-weight: bold;
-      content: "::";
     }
   }
 
