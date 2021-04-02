@@ -21,17 +21,20 @@ async function Chapter(data, location) {
   $(location).append(template(data));
 }
 
+
 async function Part(data, location) {
   var template = Handlebars.compile(part);
-  var part_num = $("part").length;
+  var part_num = $('part').length;
   if (part_num == 0) {
-    $(location).append(template(data));
+    $(location).prepend(template(data));
   }
   else{
-    const next = $('part').last();
-    next.before(template(data));
+    var old = $('part').first().attr('value');
+    if (old>=data.order-1){
+      var next = $('part').first();
+      next.before(template(data));
+    }
   }
-
 };
 
 async function Prologue(data, location) {
