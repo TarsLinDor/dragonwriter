@@ -107,7 +107,7 @@ async function Load_Chapters() {
           drafts: doc.data().drafts,
           words: wordcount
         };
-        if(doc.data().part == """){
+        if(doc.data().part == ""){
           var part = 'table-of-contents';
         }
         else{
@@ -138,9 +138,11 @@ $(document).on("click", "part i", function() {
 $(document).on("click", "#AddChapter", function() {
   if($("part").last().attr('id')){
   var partID = $("part").last().attr('id');
+  var type = 'chapter';
   }
   else{
     var partID ='';
+    var type = 'prologue';
   }
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
@@ -152,7 +154,7 @@ $(document).on("click", "#AddChapter", function() {
       .add({
         order: $("chapter").length + 1,
         title: "Title",
-        type: "Chapter",
+        type: type,
         pov: "",
         discription: "Write a description.",
         content: "",
