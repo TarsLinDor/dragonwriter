@@ -45,9 +45,12 @@ col-2 {
   }
   content-title {
     position: relative;
-    //left: -1.5em;
+    outline: none;
     font-size: 1.25em;
     text-align: center;
+    a {
+      outline: none;
+    }
   }
 }
 

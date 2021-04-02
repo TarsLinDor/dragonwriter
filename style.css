@@ -2,6 +2,7 @@ body {
   font-family: 'Merriweather', serif;
   background-color: #608d87;
   overflow: none;
+  outline: none;
 }
 ::-webkit-scrollbar {
   display: none;
