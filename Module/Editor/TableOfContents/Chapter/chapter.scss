@@ -24,7 +24,6 @@ chapter {
     handle:before {
       font-weight: bold;
       content: "::";
-      cursor: grab;
     }
   }
 
@@ -57,7 +56,7 @@ chapter:hover {
 
 chapter.chosen {
   background-color: LightSteelBlue;
-  box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.5);
+  //box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.5);
 }
 chapter.selected {
   background-color: darkgrey;

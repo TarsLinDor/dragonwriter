@@ -29,10 +29,15 @@ async function Part(data, location) {
     $(location).prepend(template(data));
   }
   else{
-    var old = $('part').first().attr('value');
-    if (old>=data.order-1){
+    var first = $('part').first().attr('value');
+    var last = $('part').last().attr('value');
+    if (first>=data.order){
       var next = $('part').first();
       next.before(template(data));
+    }
+    else if (last>=data.order){
+      var next = $('part').first();
+      next.after(template(data));
     }
   }
 };
