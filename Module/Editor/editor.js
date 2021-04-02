@@ -29,7 +29,6 @@ async function Load_Writer(data) {
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
-  //texteditor.root.innerHTML = data.content;
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");

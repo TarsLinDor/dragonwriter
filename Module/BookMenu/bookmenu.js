@@ -73,7 +73,7 @@ $(document).on("click", "#addBook", function() {
   $("#bookName").html("");
 });
 
-$(document).on("click", "booktitle", function() {
+$(document).on("click", "book booktitle", function() {
   $("book")
     .addClass("unselected")
     .removeClass("selected");
