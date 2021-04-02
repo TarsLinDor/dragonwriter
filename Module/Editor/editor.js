@@ -96,7 +96,7 @@ async function Load_Chapters() {
       $("chapter").remove();
       var total_words = 0;
       snaps.forEach(doc => {
-        var wordcount = 10;
+        var wordcount = '';
         var Chap = {
           chapID: doc.id,
           order: doc.data().order,
@@ -106,7 +106,6 @@ async function Load_Chapters() {
           handle: "handle",
           content: doc.data().content,
           description: doc.data().description,
-          drafts: doc.data().drafts,
           words: wordcount
         };
         if (doc.data().part == "") {
@@ -121,6 +120,8 @@ async function Load_Chapters() {
         
       });
       $('word-count').html(total_words);
+      var chapterID = localStorage.getItem("chapterID");
+      $('#'+chapterID).trigger('click');
     });
 }
 
