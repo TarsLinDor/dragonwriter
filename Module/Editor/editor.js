@@ -125,6 +125,10 @@ async function Load_Chapters() {
     });
 }
 
+async function Load_Draft(){
+  template.draft(null, 'col-3')
+}
+
 $(document).on("click", "part i", function() {
   $(this)
     .parent("row1")
@@ -236,14 +240,17 @@ $(document).on("click", "chapter", function() {
     .collection('content')
     .doc('content')
     .onSnapshot((doc) => {
-          var data = {
+          var chap = {
           title: title,
           order: order,
           type: type,
           content: doc.data().content,
           draft_num: draft_num
+          
         };
-        Load_Writer(data);
+        var draft ={draft:1};
+        Load_Writer(chap);
+        Load_Draft(draft);
       });
 
 });

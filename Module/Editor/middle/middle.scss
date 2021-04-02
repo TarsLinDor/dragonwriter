@@ -10,9 +10,22 @@ col-2 {
     margin-bottom: 0px;
     font-size: 52px;
   }
+    h1:empty:before{
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block; /* For Firefox */
+    color: gray;
+  }
   h3 {
     margin-top: 2em;
     font-size: 16px;
+  
+    p:empty:before{
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+      color: gray;
+    }
   }
   top-toolbar {
     padding: 0.5em;

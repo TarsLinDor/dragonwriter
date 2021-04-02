@@ -22,6 +22,12 @@ editor {
       text-align: center;
       font-size: 1.125em;
     }
+    booktitle:empty:before{
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block; /* For Firefox */
+    color: gray;
+  }
     add-contents {
       padding: 0.25em 0 0.25em 0;
       display: grid;
@@ -58,40 +64,6 @@ editor {
   }
 
 
-  col-3 {
-    border-radius: 0px 5px 5px 5px;
-    display: grid;
-    grid-template-rows: 35px auto 40px;
-    grid-row: 1 / span 3;
-    grid-column: 3 / span 1;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
-    text-align: center;
-  }
-  draft-title {
-    margin: 0.25em;
-    text-align: center;
-    border-bottom: solid 1px darkgrey;
-  }
-  a {
-    outline: none;
-  }
-  a:focus {
-    border-radius: 0.125em;
-    background-color: lightgrey;
-  }
-
-  [contenteditable="true"]:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block;
-    color: gray;
-  }
-    booktitle:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block;
-    color: gray;
-  }
 }
 
 .full {
