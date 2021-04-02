@@ -10,8 +10,7 @@ var db = firebase.firestore();
 LoadBooks()
 setTimeout(function() {
   $('#booklist-menu').trigger('click');
-  $('booktitle').trigger('change');
-
+  $('#editor').trigger('click');
 }, 10);
 
 
@@ -44,7 +43,7 @@ async function LoadBooks() {
         });
     }
   });
-  $('#editor').trigger('click');
+  
 };
 
 $(document).on("click", "#addBook", function() {

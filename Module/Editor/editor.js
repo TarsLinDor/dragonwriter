@@ -4,15 +4,13 @@ import "firebase/firestore";
 import $ from "jquery";
 import * as template from "./templates.js";
 import Sort from "./Sort.js";
-import wordcount from 'wordcount'
+import wordcount from "wordcount";
 var db = firebase.firestore();
 
-$(document).on('change', '#editor', function(){
+$(document).on("change", "#editor", function() {
   Load_Parts();
   Load_TitlePage();
-})
-
-
+});
 
 async function Load_Writer(data) {
   $("col-2").html("");
@@ -68,7 +66,7 @@ async function Load_Parts() {
   db.collection("books")
     .doc(bookID)
     .collection("parts")
-    .orderBy("order",'desc')
+    .orderBy("order", "desc")
     .onSnapshot(snaps => {
       $("part").remove();
       snaps.forEach(doc => {
@@ -80,9 +78,8 @@ async function Load_Parts() {
         template.Part(part, "table-of-contents");
         Sort(part.partID, "Chapter", "handle", "chosen", "ignore");
       });
-    Load_Chapters();
+      Load_Chapters();
     });
-
 }
 
 async function Load_Chapters() {
@@ -108,19 +105,18 @@ async function Load_Chapters() {
           drafts: doc.data().drafts,
           words: wordcount
         };
-        if(doc.data().part == ""){
-          var part = 'table-of-contents';
-        }
-        else{
-          var part = '#'+doc.data().part;
+        if (doc.data().part == "") {
+          var part = "table-of-contents";
+        } else {
+          var part = "#" + doc.data().part;
         }
         template.Chapter(Chap, part);
-        
+
         $("chapter metadata").hide();
         $("drafts").hide();
       });
     });
-};
+}
 
 $(document).on("click", "part i", function() {
   $(this)
@@ -135,15 +131,20 @@ $(document).on("click", "part i", function() {
 
 //adds new chapters and stuff.
 $(document).on("click", "#AddChapter", function() {
-  if($("part").last().attr('id')){
-  var partID = $("part").last().attr('id');
-  var type = 'Chapter';
-  var order = $("chapter.Chapter").length + 1;
-  }
-  else{
-    var partID ='';
-    var type = 'Prologue';
-    order = '';
+  if (
+    $("part")
+      .last()
+      .attr("id")
+  ) {
+    var partID = $("part")
+      .last()
+      .attr("id");
+    var type = "Chapter";
+    var order = $("chapter.Chapter").length + 1;
+  } else {
+    var partID = "";
+    var type = "Prologue";
+    order = "";
   }
   var bookID = localStorage.getItem("bookID");
   if (bookID != null) {
@@ -161,7 +162,7 @@ $(document).on("click", "#AddChapter", function() {
         content: "",
         draft: [],
         hidden: false,
-        part: partID,
+        part: partID
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -184,7 +185,7 @@ $(document).on("click", "#AddPart", function() {
         title: "Title",
         pov: [],
         discription: "Write a description.",
-        order: $("part").length + 1,
+        order: $("part").length + 1
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -229,10 +230,7 @@ $(document).on("click", "chapter", function() {
     draft_num: draft_num
   };
   Load_Writer(data);
-  
 });
-
-
 
 $(document).on("focusout", "part-title a", function() {
   //update meta data
@@ -240,7 +238,11 @@ $(document).on("focusout", "part-title a", function() {
     var text = $(this).text();
     if (text) {
       var bookID = localStorage.getItem("bookID");
-      var partID = $(this).parent().parent().parent().attr('id');
+      var partID = $(this)
+        .parent()
+        .parent()
+        .parent()
+        .attr("id");
       var update = firebase
         .firestore()
         .collection("books")
@@ -254,4 +256,22 @@ $(document).on("focusout", "part-title a", function() {
   }
 });
 
-
+$(document).on("focusout", "content-title a", function() {
+  //update meta data
+  if ($(this).attr("contenteditable")) {
+    var text = $(this).text();
+    if (text) {
+      var bookID = localStorage.getItem("bookID");
+      var chapterID = localStorage.getItem("chapterID");
+      var update = firebase
+        .firestore()
+        .collection("books")
+        .doc(bookID)
+        .collection("chapters")
+        .doc(chapterID);
+      update.update({
+        title: text
+      });
+    }
+  }
+});
