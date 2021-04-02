@@ -261,9 +261,7 @@ $(document).on("click", "#AddPart", function() {
 
 $(document).on("click", "chapter", function() {
   $("chapter metadata").hide();
-  $(this)
-    .children("metadata")
-    .show();
+  //$(this).children("metadata").show();
   $("chapter").removeClass("selected");
   $(this).addClass("selected");
   var order = $(this)
