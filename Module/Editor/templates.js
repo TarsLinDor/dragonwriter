@@ -6,7 +6,7 @@ import part from "./TableOfContents/Part/part.html";
 import Prol from "./TableOfContents/Part/part.html";
 import write_chap from "./middle/chap.html";
 import titlepage from "./middle/title-page.html";
-import draft from "./draft/draft.html";
+import draft from "./draft/draft-menu.html";
 import "./editor.scss";
 import "./middle/middle.scss";
 import "./TableOfContents/Chapter/chapter.scss";
