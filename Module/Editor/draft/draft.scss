@@ -23,9 +23,28 @@ editor{
       border-radius: 0.125em;
       background-color: lightgrey;
     }
+    button {
+    background-color: inherit;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+  }
+
+  button.unselected:hover {
+    background-color: lightgrey;
+  }
   }
   draft{
     padding: 2em;
     overflow-y: scroll;
   }
+  .selected{
+    background-color: ;
+  }
+
 }

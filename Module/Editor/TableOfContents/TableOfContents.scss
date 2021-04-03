@@ -36,5 +36,20 @@ editor{
     table-of-contents{
       font-size: .80em;
     }
+    button {
+      background-color: inherit;
+      color: black;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      font-size: 100%;
+      width: 2em;
+      height: 2em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: lightgrey;
+    }
   }
 }  
