@@ -154,7 +154,7 @@ async function Load_Draft(data,quill){
       $('col-3').toggle()
       $('editor').toggleClass('hide-drafts');
       $('editor').toggleClass('full');
-    })
+    });
 
     $('draft-toc button').click( function(){
       $(this).addClass('selected');
@@ -163,8 +163,8 @@ async function Load_Draft(data,quill){
       $('editor').removeClass('full');
       $('editor').removeClass('hide-toc');
       $('editor').addClass('drafts');
-    })
-}
+    });
+};
 
 $(document).on("click", "part i", function() {
   $(this)
