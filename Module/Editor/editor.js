@@ -6,10 +6,11 @@ import * as template from "./templates.js";
 import Sort from "./Sort.js";
 import wordcount from "wordcount";
 var db = firebase.firestore();
-Load_Parts();
-Load_TitlePage();
-$('editor').addClass('hide-drafts');
-$('col-3').toggle()
+//initiazaion
+  Load_Parts();
+  Load_TitlePage();
+  $('editor').addClass('hide-drafts');
+  $('col-3').toggle()
 
 $(document).on("change", "#editor", function() {
   Load_Parts();
@@ -32,23 +33,6 @@ async function Load_Writer(data,draft) {
     placeholder: "      Oh! the places you'll go..."
   });
   Load_Draft(draft,texteditor);
-  $('adj.right').click( function(){
-    $('col-3').toggle()
-    $('editor').toggleClass('hide-drafts');
-    $('editor').toggleClass('full');
-  })
-
-  $('draft-toc button').click( function(){
-    $('col-1').toggle();
-    $('editor').toggleClass('hide-drafts');
-    $('editor').toggleClass('full');
-    $('editor').toggleClass('hide-toc');
-    $('editor').toggleClass('drafts');
-  })
-  //$('adj.left').click( function(){
-   //$('col-1').toggle()
-    //$('editor').toggleClass('hide-toc');
-  //})
   
   $(document).on("focusout", "#quill-editor", function() {
     var bookID = localStorage.getItem("bookID");
@@ -64,9 +48,7 @@ async function Load_Writer(data,draft) {
     update.update({
       content: texteditor.root.innerHTML
     });
-    
   });
-  
 };
 
 async function Load_TitlePage() {
@@ -150,7 +132,7 @@ async function Load_Chapters() {
 
 async function Load_Draft(data,quill){
   $("col-3").html("");
-  template.DraftMenu(data, 'col-3')
+  template.DraftMenu(data, 'col-3');
     $(document).on("click", "#addDraft", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");
@@ -166,24 +148,22 @@ async function Load_Draft(data,quill){
       draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
       draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length+1)),
     });
+    
+    });
+    $('adj.right').click( function(){
+      $('col-3').toggle()
+      $('editor').toggleClass('hide-drafts');
+      $('editor').toggleClass('full');
+    })
 
-  $(document).on("click", "draft-toc button", function() {
-    var bookID = localStorage.getItem("bookID");
-    var chapterID = localStorage.getItem("chapterID");
-    var update = firebase
-      .firestore()
-      .collection("books")
-      .doc(bookID)
-      .collection("chapters")
-      .doc(chapterID)
-      .collection('content')
-      .doc('content');
-    update.update({
-      draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
-      draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length+1)),
-    });
-});
-    });
+    $('draft-toc button').click( function(){
+      $(this).addClass('selected');
+      $('col-1').hide();
+      $('editor').removeClass('hide-drafts');
+      $('editor').removeClass('full');
+      $('editor').removeClass('hide-toc');
+      $('editor').addClass('drafts');
+    })
 }
 
 $(document).on("click", "part i", function() {
