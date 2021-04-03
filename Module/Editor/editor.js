@@ -37,6 +37,12 @@ async function Load_Writer(data,draft) {
     $('editor').toggleClass('hide-drafts');
     $('editor').toggleClass('full');
   })
+
+  $('').click( function(){
+    $('col-3').toggle()
+    $('editor').toggleClass('hide-drafts');
+    $('editor').toggleClass('full');
+  })
   //$('adj.left').click( function(){
    //$('col-1').toggle()
     //$('editor').toggleClass('hide-toc');
