@@ -10,6 +10,7 @@ import draft from "./draft/draft.html";
 import "./editor.scss";
 import "./middle/middle.scss";
 import "./TableOfContents/Chapter/chapter.scss";
+import "./TableOfContents/TableOfContents.scss";
 import "./TableOfContents/Part/part.scss";
 import "./draft/draft.scss";
 
