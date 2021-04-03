@@ -54,6 +54,7 @@ async function DraftMenu(data, location) {
 }
 
 async function Draft(data, location) {
+  var draft = '<draft>{{{draft}}}</draft>';
   var template = Handlebars.compile(draft);
   $(location).append(template(data));
 }
