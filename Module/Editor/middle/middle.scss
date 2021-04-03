@@ -3,6 +3,7 @@ editor{
   col-2 {
     background-color: white;
     display: grid;
+    grid-column: 2;
     grid-template-rows: 40px auto 40px;
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
     h1 {

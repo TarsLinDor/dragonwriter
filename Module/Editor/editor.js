@@ -10,7 +10,8 @@ var db = firebase.firestore();
   Load_Parts();
   Load_TitlePage();
   $('editor').addClass('hide-drafts');
-  $('col-4').toggle()
+  $('col-4').toggle();
+  $('col-3').toggle();
 
 $(document).on("change", "#editor", function() {
   Load_Parts();
@@ -32,6 +33,7 @@ async function Load_Writer(data,draft) {
     theme: "snow",
     placeholder: "      Oh! the places you'll go..."
   });
+  $('col-4').html("");
   Load_Draft(draft,texteditor);
   
   $(document).on("focusout", "#quill-editor", function() {
@@ -151,7 +153,10 @@ async function Load_Draft(data,quill){
     
     });
     $('adj.right').click( function(){
-      $('col-4').toggle()
+      $('col-4').toggle();
+      $('col-3').toggle();
+      $('col-1').show();
+      $('editor').removeClass('drafts');
       $('editor').toggleClass('hide-drafts');
       $('editor').toggleClass('full');
     });
@@ -167,6 +172,7 @@ async function Load_Draft(data,quill){
       var num = $(this).attr('value')-2;
       var draft ={draft: data.draft[num]};
       $('draft').html('');
+      $('col-3').show('');
       template.Draft(draft,'col-3');
     });
 
@@ -176,6 +182,7 @@ async function Load_Draft(data,quill){
       $('col-1').show();
       $('editor').addClass('full');
       $('editor').removeClass('drafts');
+      $('col-3').hide();
     });
 };
 

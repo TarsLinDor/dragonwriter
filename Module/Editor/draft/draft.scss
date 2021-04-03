@@ -3,7 +3,8 @@ editor{
     border-radius: 0px 5px 5px 5px;
     display: grid;
     grid-template-rows: 35px auto 40px;
-    grid-column: 3 / span 1;
+    grid-column: 4;
+    grid-row: 1;
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
   
@@ -43,7 +44,7 @@ editor{
   }
   }
   col-3{
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 1;
     padding: 2em;
     overflow-y: scroll;

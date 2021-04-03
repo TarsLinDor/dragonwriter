@@ -1,31 +1,22 @@
 editor {
   background-color: rgb(270, 250, 250);
   display: grid;
-  /*grid-template-columns: 15em 1fr 5em;
-  grid-template-rows: 1fr;
-  */
   overflow: hidden;
   margin: 5px 0px 5px 5px;
   border-radius: 0.25em;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.75);
-  
-
-
-
-
-
 }
 
 editor.full {
-    grid-template-columns: 15em 1fr 0em 5em;
+    grid-template-columns: .15fr 1fr 0em .05fr;
     grid-template-rows: 1fr;
   }
 editor.hide-toc {
-    grid-template-columns: 0em 1fr 0em 5em;
+    grid-template-columns: 0em 1fr 0em .05fr;
     grid-template-rows: 1fr;
   }
 editor.hide-drafts {
-    grid-template-columns: 15em 1fr 0em 0em;
+    grid-template-columns: .15fr 1fr 0em 0em ;
     grid-template-rows: 1fr;
   }
 editor.hide-both {
@@ -33,6 +24,6 @@ editor.hide-both {
     grid-template-rows: 1fr;
   }
 editor.drafts {
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 0em 1fr 1fr .075fr;
     grid-template-rows: 1fr;
   }  
