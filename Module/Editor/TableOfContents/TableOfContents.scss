@@ -1,0 +1,40 @@
+editor{  
+  col-1 {
+    display: grid;
+    grid-column: 1;
+    grid-template-rows: auto 2.5em;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+    
+    booktitle {
+      display: block;
+      padding: .25em;
+      border-bottom: solid 1px darkgrey;
+      text-align: center;
+      font-size: 1.125em;
+    }
+      booktitle:empty:before{
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+      color: gray;
+      }
+    add-contents {
+      padding: 0.25em 0 0.25em 0;
+      display: grid;
+      grid-template-columns: auto 4.5em;
+      margin: 0.25em;
+      border-top: solid 1px darkgrey;
+    }
+    word-count {
+      font-weight: bold;
+      padding: 0.25em 0.5em;
+    }
+    word-count:after {
+      content: " words";
+    }
+    table-of-contents{
+      font-size: .80em;
+    }
+  }
+}  

@@ -22,12 +22,12 @@ editor {
       text-align: center;
       font-size: 1.125em;
     }
-    booktitle:empty:before{
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block; /* For Firefox */
-    color: gray;
-  }
+      booktitle:empty:before{
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+      color: gray;
+      }
     add-contents {
       padding: 0.25em 0 0.25em 0;
       display: grid;

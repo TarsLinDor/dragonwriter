@@ -1,3 +1,4 @@
+editor{
   col-3 {
     border-radius: 0px 5px 5px 5px;
     display: grid;
@@ -7,20 +8,21 @@
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
     text-align: center;
   
-  draft-title {
-    margin: 0.25em;
-    text-align: center;
-    border-bottom: solid 1px darkgrey;
-  }
-  draft-toc{
-    display: wrap;
-    overflow: scroll;
-  }
-  a {
-    outline: none;
-  }
-  a:focus {
-    border-radius: 0.125em;
-    background-color: lightgrey;
+    draft-title {
+      margin: 0.25em;
+      text-align: center;
+      border-bottom: solid 1px darkgrey;
+    }
+    draft-toc{
+      display: wrap;
+      overflow: scroll;
+    }
+    a {
+      outline: none;
+    }
+    a:focus {
+      border-radius: 0.125em;
+      background-color: lightgrey;
+    }
   }
 }
