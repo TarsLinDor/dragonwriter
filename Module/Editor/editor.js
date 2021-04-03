@@ -10,7 +10,7 @@ var db = firebase.firestore();
   Load_Parts();
   Load_TitlePage();
   $('editor').addClass('hide-drafts');
-  $('col-3').toggle()
+  $('col-4').toggle()
 
 $(document).on("change", "#editor", function() {
   Load_Parts();
