@@ -131,8 +131,8 @@ async function Load_Chapters() {
 }
 
 async function Load_Draft(data,quill){
-  $("col-3").html("");
-  template.DraftMenu(data, 'col-3');
+  $("col-4").html("");
+  template.DraftMenu(data, 'col-4');
     $(document).on("click", "#addDraft", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");
@@ -151,7 +151,7 @@ async function Load_Draft(data,quill){
     
     });
     $('adj.right').click( function(){
-      $('col-3').toggle()
+      $('col-4').toggle()
       $('editor').toggleClass('hide-drafts');
       $('editor').toggleClass('full');
     });
@@ -164,9 +164,10 @@ async function Load_Draft(data,quill){
       $('editor').removeClass('full');
       $('editor').removeClass('hide-toc');
       $('editor').addClass('drafts');
-      var num = $(this).attr('value');
-      var draft ={draft: data.draft[num]}
-      template.Draft(draft,'draft')
+      var num = $(this).attr('value')-2;
+      var draft ={draft: data.draft[num]};
+      $('draft').html('');
+      template.Draft(draft,'col-3');
     });
 
     $(document).on('click','draft-toc button.selected', function(){

@@ -1,5 +1,5 @@
 editor{
-  col-3 {
+  col-4 {
     border-radius: 0px 5px 5px 5px;
     display: grid;
     grid-template-rows: 35px auto 40px;
@@ -42,7 +42,9 @@ editor{
     background-color: darkgrey;
   }
   }
-  draft{
+  col-3{
+    grid-column: 2;
+    grid-row: 1;
     padding: 2em;
     overflow-y: scroll;
   }
