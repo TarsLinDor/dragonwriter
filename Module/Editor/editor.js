@@ -156,20 +156,24 @@ async function Load_Draft(data,quill){
       $('editor').toggleClass('full');
     });
 
-    $('draft-toc button.unselected').click( function(){
+   $(document).on('click','draft-toc button.unselected', function(){
+     $('draft-toc button').removeClass('selected');
       $(this).addClass('selected');
       $('col-1').hide();
       $('editor').removeClass('hide-drafts');
       $('editor').removeClass('full');
       $('editor').removeClass('hide-toc');
       $('editor').addClass('drafts');
+      var num = $(this).attr('value');
+      var draft ={draft: data.draft[num]}
+      template.Draft(draft,'draft')
     });
 
-    $('draft-toc button.selected').click( function(){
+    $(document).on('click','draft-toc button.selected', function(){
       $(this).removeClass('selected');
       $(this).addClass('unselected');
       $('col-1').show();
-      $('editor').removeClass('full');
+      $('editor').addClass('full');
       $('editor').removeClass('drafts');
     });
 };

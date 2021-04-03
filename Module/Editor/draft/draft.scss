@@ -38,13 +38,14 @@ editor{
   button.unselected:hover {
     background-color: lightgrey;
   }
+  button.selected{
+    background-color: darkgrey;
+  }
   }
   draft{
     padding: 2em;
     overflow-y: scroll;
   }
-  .selected{
-    background-color: ;
-  }
+
 
 }
