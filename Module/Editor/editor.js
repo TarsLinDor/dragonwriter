@@ -150,7 +150,7 @@ async function Load_Chapters() {
 
 async function Load_Draft(data,quill){
   $("col-3").html("");
-  template.Draft(data, 'col-3')
+  template.DraftMenu(data, 'col-3')
     $(document).on("click", "#addDraft", function() {
     var bookID = localStorage.getItem("bookID");
     var chapterID = localStorage.getItem("chapterID");

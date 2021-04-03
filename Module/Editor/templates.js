@@ -6,7 +6,7 @@ import part from "./TableOfContents/Part/part.html";
 import Prol from "./TableOfContents/Part/part.html";
 import write_chap from "./middle/chap.html";
 import titlepage from "./middle/title-page.html";
-import draft from "./draft/draft-menu.html";
+import draftmenu from "./draft/draft-menu.html";
 import "./editor.scss";
 import "./middle/middle.scss";
 import "./TableOfContents/Chapter/chapter.scss";
@@ -48,9 +48,14 @@ async function TitlePage(data, location) {
   var template = Handlebars.compile(titlepage);
   $(location).append(template(data));
 }
+async function DraftMenu(data, location) {
+  var template = Handlebars.compile(draftmenu);
+  $(location).append(template(data));
+}
+
 async function Draft(data, location) {
   var template = Handlebars.compile(draft);
   $(location).append(template(data));
 }
 
-export { TableOfContents, Chapter, Part, Prologue, Write_chap, TitlePage, Draft };
+export { TableOfContents, Chapter, Part, Prologue, Write_chap, TitlePage, Draft, DraftMenu };
