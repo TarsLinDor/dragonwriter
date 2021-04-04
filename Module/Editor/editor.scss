@@ -8,7 +8,7 @@ editor {
 }
 
 editor.full {
-    grid-template-columns: .2fr 1fr 0em .05fr;
+    grid-template-columns: 15em 1fr 0em .05fr;
     grid-template-rows: 1fr;
   }
 editor.hide-toc {
@@ -16,7 +16,7 @@ editor.hide-toc {
     grid-template-rows: 1fr;
   }
 editor.hide-drafts {
-    grid-template-columns: .2fr 1fr 0em 0em ;
+    grid-template-columns: 15em 1fr 0em 0em ;
     grid-template-rows: 1fr;
   }
 editor.hide-both {

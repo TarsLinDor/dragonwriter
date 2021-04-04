@@ -9,7 +9,7 @@ var db = firebase.firestore();
 //initiazaion
   Load_Parts();
   Load_TitlePage();
-  $('editor').addClass('full');
+  $('editor').addClass('hide-drafts');
   $('col-4').toggle();
 
 $(document).on("change", "#editor", function() {
