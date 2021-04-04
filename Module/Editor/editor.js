@@ -147,7 +147,7 @@ async function Load_Draft(data,quill){
       .doc('content');
     update.update({
       draft: firebase.firestore.FieldValue.arrayUnion(quill.root.innerHTML),
-      draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length+1)),
+      draft_num: firebase.firestore.FieldValue.arrayUnion((data.draft_num.length)),
     });
     
     });
